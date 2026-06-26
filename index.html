@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyfimce Kafem - Dijital Kitap Menü</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #f4eae1;
+            --primary-color: #4a332d;
+            --primary-dark: #271916;
+            --accent-color: #b85c38;
+            --text-color: #3d2c28;
+            --paper-color: #fdfaf6;
+            --border-color: #e6d5c3;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+        }
+
+        /* --- 🚪 KARŞILAMA EKRANI --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .welcome-logo { font-size: 4rem; margin-bottom: 10px; }
+        #welcome-screen h1 { font-size: 2.2rem; letter-spacing: 2px; margin: 10px 0; font-weight: 700; }
+        #welcome-screen p { font-style: italic; opacity: 0.8; margin-bottom: 40px; }
+        .enter-btn {
+            background: var(--accent-color); color: white; border: none; padding: 16px 45px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: transform 0.2s;
+        }
+        .enter-btn:active { transform: scale(0.95); }
+
+        /* --- 📖 ANA UYGULAMA ALANI --- */
+        .main-app { display: none; }
+
+        .sticky-header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(244, 234, 225, 0.96); backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid var(--border-color);
+        }
+
+        .header { text-align: center; padding: 15px; background: linear-gradient(to bottom, #3d2822, #271916); color: #fff; }
+        .header h1 { margin: 0; font-size: 1.6rem; letter-spacing: 1px; cursor: pointer; }
+        .masa-bilgisi { background-color: var(--accent-color); color: white; display: inline-block; padding: 3px 12px; border-radius: 50px; font-weight: bold; margin-top: 6px; font-size: 0.75rem; font-family: sans-serif; }
+
+        .search-container { padding: 10px 15px 5px 15px; }
+        .search-input { width: 100%; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.95rem; box-sizing: border-box; outline: none; background: #fff; }
+
+        .tabs-container { padding: 8px 15px; display: flex; gap: 8px; overflow-x: auto; white-space: nowrap; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+
+        .tab-item { background: #e6d5c3; padding: 8px 16px; border-radius: 4px; font-size: 0.85rem; font-weight: 700; color: var(--primary-color); cursor: pointer; transition: all 0.3s; }
+        .tab-item.active { background: var(--paper-color); color: var(--accent-color); border-bottom: 2px solid var(--accent-color); box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+
+        .container { max-width: 520px; margin: 0 auto; padding: 15px; padding-bottom: 140px; }
+
+        /* Kitap Sayfası Görünümü */
+        .book-page {
+            background: var(--paper-color); padding: 25px 20px; border-radius: 4px;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.08), -5px 0 15px rgba(0,0,0,0.02);
+            border-left: 4px solid #e0cfbe; min-height: 400px; animation: pageFlip 0.4s ease-out forwards;
+        }
+
+        @keyframes pageFlip { from { opacity: 0.6; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+        .page-title { text-align: center; font-size: 1.4rem; border-bottom: 1px double var(--border-color); padding-bottom: 10px; margin-top: 0; margin-bottom: 20px; color: var(--primary-color); letter-spacing: 1px; }
+
+        /* 🗂️ KATEGORİ SEÇİM KATALOĞU */
+        .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .catalog-card {
+            background: #f5ece3; border: 1px solid var(--border-color); padding: 20px;
+            border-radius: 8px; text-align: center; cursor: pointer; transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .catalog-card:active { transform: scale(0.95); }
+        .catalog-card .cat-icon { font-size: 2.2rem; margin-bottom: 8px; display: block; }
+        .catalog-card .cat-title { font-weight: bold; font-size: 0.95rem; color: var(--primary-color); }
+
+        /* 🧮 ÜRÜN SATIRI VE SADE EKSTRA BİLGİ ALANI */
+        .menu-row { display: flex; flex-direction: column; margin-bottom: 18px; border-bottom: 1px dashed #ebdcd0; padding-bottom: 12px; }
+        .menu-main-content { display: flex; width: 100%; align-items: flex-start; gap: 12px; }
+        .menu-img { width: 60px; height: 60px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border-color); background: #fdfaf6; flex-shrink: 0; }
+        .menu-icon-box { width: 60px; height: 60px; border-radius: 6px; background: #f5ece3; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+        .menu-text { flex-grow: 1; }
+        .menu-meta { display: flex; justify-content: space-between; align-items: center; }
+        .menu-name { font-weight: 700; font-size: 1rem; color: var(--primary-dark); }
+        .menu-price { font-weight: 700; color: var(--accent-color); font-size: 1rem; }
+
+        /* Tik Olmayan Bilgi Ekstraları */
+        .product-info-addons {
+            background: #fdf6f0; padding: 6px 10px; border-radius: 4px; margin-top: 6px;
+            font-size: 0.78rem; display: flex; flex-direction: column; gap: 3px;
+            border-left: 2px solid #b85c38; font-style: italic; color: #5a4540;
+        }
+        .addon-info-item { display: inline-block; margin-right: 10px; background: #ebdcd0; padding: 2px 6px; border-radius: 3px; font-family: sans-serif; font-style: normal; font-size: 0.72rem; }
+
+        /* Alt Alan ve Sosyal Medya */
+        .footer-box { background: var(--paper-color); padding: 20px; border-radius: 4px; border: 1px solid var(--border-color); text-align: center; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        .wifi-btn { background: #2e1c16; color: white; border: none; padding: 12px 20px; border-radius: 4px; font-weight: bold; width: 100%; cursor: pointer; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 0.5px; }
+        .social-box { display: flex; justify-content: center; gap: 25px; margin-top: 10px; }
+        .social-item { text-decoration: none; font-size: 1.8rem; transition: transform 0.2s; }
+        .social-item:active { transform: scale(0.9); }
+        .social-item.instagram { color: #E1306C; }
+        .social-item.tiktok { color: #010101; }
+
+        /* 💬 DİJİTAL DİLEK KUTUSU FORMU */
+        .dilek-kutusu-container { background: var(--paper-color); padding: 20px; border-radius: 4px; border: 1px solid var(--border-color); margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        .dilek-form input, .dilek-form textarea { width: 100%; padding: 10px; margin: 6px 0; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; font-family: sans-serif; font-size: 0.9rem; }
+        .star-rating { display: flex; gap: 6px; font-size: 1.5rem; color: #ccc; margin: 8px 0; cursor: pointer; }
+        .star-rating .fa-star.active { color: #f57c00; }
+        .dilek-gonder-btn { background: var(--accent-color); color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; width: 100%; cursor: pointer; font-size: 0.95rem; }
+
+        /* Sabit Butonlar */
+        .garson-buton { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; border: none; padding: 14px; font-size: 1rem; font-weight: bold; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; width: 85%; max-width: 420px; z-index: 999; }
+
+        /* --- 📱 POPUP MODAL (WI-FI) --- */
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index: 10001; align-items: center; justify-content: center; }
+        .modal-content { background: var(--paper-color); padding: 25px; border-radius: 8px; width: 85%; max-width: 340px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        #qrcode { display: flex; justify-content: center; margin: 15px 0; }
+        .wifi-info-card { background: #f5ece3; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.9rem; text-align: left; line-height: 1.5; }
+        .btn-action { background: #0288d1; color: white; border: none; padding: 8px 12px; border-radius: 4px; margin-top: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; width: 100%; }
+
+        /* --- 🛠️ YÖNETİM PANELİ --- */
+        #admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.94); z-index: 99999; overflow-y: auto; color: white; padding: 15px; box-sizing: border-box; }
+        .admin-box { max-width: 500px; margin: 10px auto; background: #2d1710; padding: 20px; border-radius: 8px; }
+        .panel-section { background: #3e2723; padding: 15px; border-radius: 6px; margin-top: 15px; }
+        .panel-section input, .panel-section select, .panel-section textarea { width: 100%; padding: 9px; margin: 6px 0; border-radius: 4px; border: none; color: black; box-sizing: border-box; }
+
+        .admin-masa-satir, .comment-card { background: #4e342e; padding: 10px; border-radius: 4px; margin-bottom: 6px; font-size: 0.85rem; }
+        .comment-card { border-left: 4px solid #f57c00; }
+        .url-text { color: #ffcc80; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 3px; }
+        .copy-btn { background: #0288d1; color: white; border: none; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-weight: bold; }
+
+        .admin-tab-btn { background: #5d4037; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; margin-right: 5px; margin-bottom: 5px; }
+        .admin-tab-btn.active { background: var(--accent-color); }
+        .admin-urun-satir { display: flex; flex-direction: column; background: #4e342e; padding: 10px; border-radius: 4px; margin-bottom: 8px; border-bottom: 2px solid var(--accent-color); }
+        .admin-addon-row { display: flex; justify-content: space-between; background: rgba(0,0,0,0.2); padding: 3px 6px; border-radius: 3px; margin-top: 4px; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+<div id="welcome-screen">
+    <div class="welcome-logo">☕</div>
+    <h1>KEYFİMCE KAFEM</h1>
+    <p>Keyfimce Kafem Dijital Menü</p>
+    <button class="enter-btn" onclick="menuyeGiris()">Menüyü Aç</button>
+</div>
+
+<div class="main-app" id="main-app-interface">
+    <div class="sticky-header">
+        <div class="header">
+            <h1 ondblclick="panelAc()">KEYFİMCE KAFEM</h1>
+            <div id="masa-alani" class="custom-badge masa-bilgisi">Masa Bilgisi Alınıyor...</div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="menuSearch" class="search-input" placeholder="🔍 Menü kitaplığında ara..." onkeyup="aramaYap()">
+        </div>
+        <div class="tabs-container" id="tabsMenu"></div>
+    </div>
+
+    <div class="container">
+        <div id="menu-sayfasi" class="book-page">
+            <h3 class="page-title" id="kategori-baslik">Menü Kitaplığı</h3>
+            <div id="sayfa-icerik"></div>
+        </div>
+
+        <div class="dilek-kutusu-container" id="dilekKutusuAlani">
+            <h4 style="margin-top:0; color:var(--primary-color); border-bottom:1px solid var(--border-color); padding-bottom:6px;"><i class="fa-solid fa-comment-dots"></i> Dijital Dilek Kutusu</h4>
+            <p style="font-size:0.8rem; margin-top:-4px; color:#555;">Fikirleriniz bizim için çok değerli. Yorumlarınız buluta anlık iletilir.</p>
+            <div class="dilek-form">
+                <input type="text" id="dilekIsim" placeholder="Adınız (Boş bırakırsanız Anonim gider)">
+                <div class="star-rating" id="dilekYildizlar">
+                    <i class="fa-solid fa-star" onclick="yildizSec(1)"></i>
+                    <i class="fa-solid fa-star" onclick="yildizSec(2)"></i>
+                    <i class="fa-solid fa-star" onclick="yildizSec(3)"></i>
+                    <i class="fa-solid fa-star" onclick="yildizSec(4)"></i>
+                    <i class="fa-solid fa-star" onclick="yildizSec(5)"></i>
+                </div>
+                <textarea id="dilekMesaj" rows="3" placeholder="Yorumunuz, müzik veya kafe öneriniz..."></textarea>
+                <button class="dilek-gonder-btn" onclick="dilekGonder()">Öneriyi Gönder</button>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <button class="wifi-btn" onclick="wifiModalAc()">🌐 Kafe Wi-Fi Ağına Bağlan</button>
+            <div class="social-box">
+                <a href="https://instagram.com/keyfimcekafe" target="_blank" class="social-item instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://tiktok.com/@keyfimce.kafe" target="_blank" class="social-item tiktok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+        <button class="garson-buton" onclick="garsonCagir()">🛎️ Garson Çağır</button>
+    </div>
+</div>
+
+<div id="wifiModal" class="modal" onclick="wifiModalKapat(event)">
+    <div class="modal-content">
+        <h3 style="margin-top:0; color:var(--primary-color);">🌐 Kolay Wi-Fi Bağlantısı</h3>
+        <p style="font-size:0.8rem; color:#666;">Yandaki arkadaşınız bu QR kodu kamerasıyla okutarak ağa katılabilir.</p>
+        <div id="qrcode"></div>
+        <div class="wifi-info-card">
+            <b>Ağ Adı:</b> <span id="lblSsid"></span><br>
+            <b>Şifre:</b> <span id="lblPass"></span><br>
+            <button class="btn-action" onclick="sifreKopyala()">📋 Şifreyi Kopyala & Ayarlara Git</button>
+        </div>
+        <button onclick="document.getElementById('wifiModal').style.display='none'" style="margin-top:15px; background:var(--accent-color); color:white; border:none; padding:8px 20px; border-radius:4px; cursor:pointer;">Kapat</button>
+    </div>
+</div>
+
+<div id="admin-panel">
+    <div class="admin-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #5d4037; padding-bottom: 10px;">
+            <h3>Keyfimce Acil Panel</h3>
+            <button onclick="panelKapat()" style="background:var(--accent-color); color:white; border:none; padding:6px 14px; border-radius:4px; cursor:pointer;">X Kapat</button>
+        </div>
+        <div class="panel-section">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h4>💬 Lokal Gelen Öneriler (<span id="yorumSayisi">0</span>)</h4>
+                <button class="copy-btn" style="background:#2e7d32; font-size:0.75rem;" onclick="pythonVeriAktar()">📋 Python İçin Manuel Kopyala</button>
+            </div>
+            <div id="adminYorumListesi" style="max-height:180px; overflow-y:auto; padding:5px; margin-top:8px;">
+                <p style="font-size:0.8rem; color:#ccc; text-align:center;">Python senkronizasyonu aktiftir.</p>
+            </div>
+        </div>
+        <div class="panel-section">
+            <h4>🪧 Masa URL Yönetimi (NFC / QR İçin)</h4>
+            <div style="display:flex; gap:5px; margin-bottom:12px;">
+                <input type="number" id="yeniMasaNo" placeholder="Örn: 15" style="margin:0; flex-grow:1;">
+                <button style="background:#2e7d32; color:white; border:none; padding:0 15px; border-radius:4px; cursor:pointer; font-weight:bold;" onclick="masaEkle()">Masa Ekle</button>
+            </div>
+            <div id="adminMasaListesi" style="max-height:130px; overflow-y:auto; background:rgba(0,0,0,0.1); padding:5px; border-radius:4px;"></div>
+        </div>
+        <div class="panel-section">
+            <h4>📋 Lokal Ürün Önizleme</h4>
+            <div style="display:flex; overflow-x:auto; padding-bottom:5px;" id="adminTabs"></div>
+            <div id="adminUrunListesi" style="margin-top:10px; max-height:200px; overflow-y:auto;"></div>
+        </div>
+        <div class="panel-section">
+            <h4>🌐 Wi-Fi Bilgilerini Güncelle</h4>
+            <input type="text" id="wifiSSID" placeholder="Modem Adı (SSID)">
+            <input type="text" id="wifiPass" placeholder="Yeni Wi-Fi Şifresi">
+            <button style="background:#0288d1; color:white; border:none; padding:8px; width:100%; border-radius:4px; font-weight:bold;" onclick="wifiGuncelle()">Kaydet</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- 🔐 GİTHUB BULUT BULUT ENTEGRASYON YAPILANDIRMASI ---
+    const GH_TOKEN = "BURAYA_GITHUB_TOKEN_GELECEK";
+    const GH_REPO = "BURAYA_GITHUB_KULLANICI_ADIN/BURAYA_DEPO_ADIN"; // Örn: muhammedtalhakanat-sys/keyfimce-kafem
+    const GH_COMMENT_FILE = "gelen_yorumlar.json";
+
+    let yuklenenGorselBase64 = "";
+    let secilenYildiz = 0;
+
+    let sistemAyarlari = {
+        adminSifre: "1999",
+        wifiName: "Keyfimce_Wifi",
+        wifiPassword: "sifre1234",
+        arkaPlanUrl: ""
+    };
+
+    let kafeMasalari = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    let gelenOneriler = [];
+
+    // --- ☕ KAFE ANA MENÜ VERİ TABANI KÜTÜPHANESİ ---
+    let menuData = {
+        "cat-icecek": { isim: "🥤 İçecekler", ikon: "🥤", urunler: [
+            {id:1, ad:"Köpüklü Süt", fiyat:150, gorsel:"", ikon:"🥤", aktif:true, ekstralar:[]},
+            {id:2, ad:"Su (0.5 L)", fiyat:15, gorsel:"", ikon:"💧", aktif:true, ekstralar:[]}
+        ]},
+        "cat-kahve": { isim: "☕ Kahveler", ikon: "☕", urunler: [
+            {id:3, ad:"Americano", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[{isim:"Şurup Çeşitleri", fiyat:20}]},
+            {id:4, ad:"Dibek Kahvesi", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]},
+            {id:5, ad:"Doppio", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]},
+            {id:6, ad:"Filtre Kahve", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[{isim:"Karamel/Vanilya/Fındık Şurubu", fiyat:20}]},
+            {id:7, ad:"Lungo", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]},
+            {id:8, ad:"Menengiç Kahvesi", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]},
+            {id:9, ad:"Osmanlı Kahvesi", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]},
+            {id:10, ad:"Ristretto", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]},
+            {id:11, ad:"Türk Kahvesi", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]},
+            {id:12, ad:"Uzun Kahve", fiyat:100, gorsel:"", ikon:"☕", aktif:true, ekstralar:[]}
+        ]},
+        "cat-sutlu": { isim: "🥛 Sütlü Kahveler", ikon: "🥛", urunler: [
+            {id:13, ad:"Cafe Latte", fiyat:150, gorsel:"", ikon:"🥛", aktif:true, ekstralar:[{isim:"Yulaf Sütü", fiyat:25}, {isim:"Badem Sütü", fiyat:25}]},
+            {id:14, ad:"Cappuccino", fiyat:150, gorsel:"", ikon:"🥛", aktif:true, ekstralar:[{isim:"Yulaf/Badem Sütü", fiyat:25}]},
+            {id:15, ad:"Espresso Latte Macchiato", fiyat:150, gorsel:"", ikon:"🥛", aktif:true, ekstralar:[]},
+            {id:16, ad:"Flat White", fiyat:150, gorsel:"", ikon:"🥛", aktif:true, ekstralar:[]},
+            {id:17, ad:"Italian Cappuccino", fiyat:150, gorsel:"", ikon:"🥛", aktif:true, ekstralar:[]},
+            {id:18, ad:"Italian Macchiato", fiyat:150, gorsel:" ", ikon:"🥛", aktif:true, ekstralar:[]}
+        ]},
+        "cat-soguk-kahve": { isim: "❄️ Soğuk Kahveler", ikon: "❄️", urunler: [
+            {id:19, ad:"Soğuk Affa Gato", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]},
+            {id:20, ad:"Soğuk Cappuccino", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[{isim:"Yulaf Sütü", fiyat:25}]},
+            {id:21, ad:"Soğuk Chilled Coffe", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]},
+            {id:22, ad:"Soğuk Coffe Latte", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[{isim:"Fındık Şurubu", fiyat:20}]},
+            {id:23, ad:"Soğuk Espresso", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]},
+            {id:24, ad:"Soğuk Frappe", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]},
+            {id:25, ad:"Soğuk Italian Cappuccino", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]},
+            {id:26, ad:"Soğuk Latte Macchiato", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]},
+            {id:27, ad:"Soğuk Nitro Coffe", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]},
+            {id:28, ad:"Soğuk Uzun Kahve", fiyat:170, gorsel:"", ikon:"❄️", aktif:true, ekstralar:[]}
+        ]},
+        "cat-soguk-icecek": { isim: "🧃 Soğuk İçecekler", ikon: "🧃", urunler: [
+            {id:29, ad:"Bursa Gazozu", fiyat:40, gorsel:"", ikon:"🧃", aktif:true, ekstralar:[]},
+            {id:30, ad:"Didi Çeşitleri", fiyat:50, gorsel:"", ikon:"🧃", aktif:true, ekstralar:[]},
+            {id:31, ad:"Dimes Çeşitleri", fiyat:30, gorsel:"", ikon:"🧃", aktif:true, ekstralar:[]},
+            {id:32, ad:"Kızılay Aromalı Meyveli Soda", fiyat:30, gorsel:"", ikon:"🥤", aktif:true, ekstralar:[]},
+            {id:33, ad:"Kızılay Sade Soda", fiyat:30, gorsel:"", ikon:"🥤", aktif:true, ekstralar:[]},
+            {id:34, ad:"Niğde Gazozu", fiyat:40, gorsel:"", ikon:"🧃", aktif:true, ekstralar:[]},
+            {id:35, ad:"Sarıyer Çeşitleri", fiyat:50, gorsel:"", ikon:"🧃", aktif:true, ekstralar:[]},
+            {id:36, ad:"Uludağ Limonata", fiyat:45, gorsel:"", ikon:"🧃", aktif:true, ekstralar:[]}
+        ]},
+        "cat-cay": { isim: "🫖 Çaylar", ikon: "🫖", urunler: [
+            {id:37, ad:"Bitki Çayı Çeşitleri", fiyat:100, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]},
+            {id:38, ad:"Elma Çayı", fiyat:35, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]},
+            {id:39, ad:"Kekik Çayı", fiyat:35, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]},
+            {id:40, ad:"Kivi Çayı", fiyat:35, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]},
+            {id:41, ad:"Kuşburnu Çayı", fiyat:35, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]},
+            {id:42, ad:"Limon Çayı", fiyat:35, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]},
+            {id:43, ad:"Nane Limon Çayı", fiyat:35, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]},
+            {id:44, ad:"Oralet Portakal Çayı", fiyat:35, gorsel:"🍊", aktif:true, ekstralar:[]},
+            {id:45, ad:"Çay", fiyat:20, gorsel:"", ikon:"🫖", aktif:true, ekstralar:[]}
+        ]},
+        "cat-tatli": { isim: "🍰 Tatlılar", ikon: "🍰", urunler: [
+            {id:46, ad:"Cheesecake", fiyat:120, gorsel:"", ikon:"🍰", aktif:true, ekstralar:[]},
+            {id:47, ad:"Cup Tatlı", fiyat:120, gorsel:"", ikon:"🧁", aktif:true, ekstralar:[{isim:"Ekstra Çikolata Sosu", fiyat:15}]},
+            {id:48, ad:"Profiterol", fiyat:120, gorsel:"", ikon:"🍰", aktif:true, ekstralar:[]}
+        ]},
+        "cat-yiyecek": { isim: "🥪 Yiyecekler", ikon: "🥪", urunler: [
+            {id:49, ad:"Tost Karışık", fiyat:140, gorsel:"", ikon:"🥪", aktif:true, ekstralar:[]},
+            {id:50, ad:"Tost Kaşarlı", fiyat:100, gorsel:"", ikon:"🥪", aktif:true, ekstralar:[]},
+            {id:51, ad:"Tost Sucuklu", fiyat:120, gorsel:"", ikon:"🥪", aktif:true, ekstralar:[]}
+        ]},
+        "cat-nargile": { isim: "💨 Nargileler", ikon: "💨", urunler: [
+            {id:52, ad:"Dejavu / Dominik / Ezgotica", fiyat:350, gorsel:"", ikon:"💨", aktif:true, ekstralar:[{isim:"Buzlu Marpuç", fiyat:30}]},
+            {id:53, ad:"Elma-Nane / Laddy Killer / Love66", fiyat:350, gorsel:"", ikon:"💨", aktif:true, ekstralar:[{isim:"Buzlu Marpuç", fiyat:30}]},
+            {id:54, ad:"Nakhla / Red Dream / Sakız", fiyat:350, gorsel:"", ikon:"💨", aktif:true, ekstralar:[{isim:"Buzlu Marpuç", fiyat:30}]},
+            {id:55, ad:"Tatlı Cadı / Yeşil Peri", fiyat:350, gorsel:"", ikon:"💨", aktif:true, ekstralar:[{isim:"Buzlu Marpuç", fiyat:30}]}
+        ]}
+    }; // menuDataEnd
+
+    let aktifAdminKategori = "cat-kahve";
+
+    function menuyeGiris() {
+        document.getElementById('welcome-screen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('main-app-interface').style.display = 'block';
+            init();
+        }, 500);
+    }
+
+    function init() {
+        renderTopTabs();
+        catalogEkraniniAc();
+        ayarlariYukle();
+    }
+
+    function ayarlariYukle() {
+        document.getElementById('wifiSSID').value = sistemAyarlari.wifiName;
+        document.getElementById('wifiPass').value = sistemAyarlari.wifiPassword;
+        if(sistemAyarlari.arkaPlanUrl) {
+            document.body.style.backgroundImage = `url('${sistemAyarlari.arkaPlanUrl}')`;
+        }
+    }
+
+    function renderTopTabs() {
+        const tabsContainer = document.getElementById('tabsMenu');
+        tabsContainer.innerHTML = '';
+
+        const homeDiv = document.createElement('div');
+        homeDiv.className = 'tab-item active';
+        homeDiv.id = 'tab-btn-home';
+        homeDiv.innerText = "📖 Katalog";
+        homeDiv.onclick = catalogEkraniniAc;
+        tabsContainer.appendChild(homeDiv);
+
+        Object.keys(menuData).forEach(key => {
+            const div = document.createElement('div');
+            div.className = 'tab-item';
+            div.id = `tab-btn-${key}`;
+            div.innerText = menuData[key].isim.split(' ')[1] || menuData[key].isim;
+            div.onclick = () => switchKategori(key);
+            tabsContainer.appendChild(div);
+        });
+    }
+
+    function catalogEkraniniAc() {
+        document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
+        document.getElementById('tab-btn-home').classList.add('active');
+
+        document.getElementById('kategori-baslik').innerText = "📖 Menü Kitaplığı";
+        const icerikKutusu = document.getElementById('sayfa-icerik');
+        icerikKutusu.innerHTML = '<p style="text-align:center; font-style:italic; font-size:0.9rem; margin-bottom:20px;">Lütfen incelemek istediğiniz bölümü seçiniz:</p>';
+
+        const grid = document.createElement('div');
+        grid.className = 'catalog-grid';
+
+        Object.keys(menuData).forEach(key => {
+            const card = document.createElement('div');
+            card.className = 'catalog-card';
+            card.onclick = () => switchKategori(key);
+            card.innerHTML = `
+                <span class="cat-icon">${menuData[key].ikon}</span>
+                <span class="cat-title">${menuData[key].isim.replace(menuData[key].ikon, '')}</span>
+            `;
+            grid.appendChild(card);
+        });
+        icerikKutusu.appendChild(grid);
+    }
+
+    function buildClientAddonHTML(ekstralar) {
+        if (!ekstralar || ekstralar.length === 0) return "";
+        let html = `<div class="product-info-addons"><b>Seçenekler:</b> `;
+        ekstralar.forEach(ekstra => {
+            html += `<span class="addon-info-item">${ekstra.isim} (+₺${ekstra.fiyat})</span> `;
+        });
+        html += `</div>`;
+        return html;
+    }
+
+    function switchKategori(key) {
+        document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
+        if(document.getElementById(`tab-btn-${key}`)) document.getElementById(`tab-btn-${key}`).classList.add('active');
+
+        document.getElementById('kategori-baslik').innerText = menuData[key].isim;
+        const icerikKutusu = document.getElementById('sayfa-icerik');
+        icerikKutusu.innerHTML = '';
+
+        menuData[key].urunler.forEach(urun => {
+            if(!urun.aktif) return;
+            const satir = document.createElement('div');
+            satir.className = 'menu-row';
+
+            let solAlan = urun.gorsel ? `<img class="menu-img" src="${urun.gorsel}">` : `<div class="menu-icon-box">${urun.ikon}</div>`;
+            let eklentiAlani = buildClientAddonHTML(urun.ekstralar);
+
+            satir.innerHTML = `
+                <div class="menu-main-content">
+                    ${solAlan}
+                    <div class="menu-text">
+                        <div class="menu-meta">
+                            <span class="menu-name">${urun.ad}</span>
+                            <span class="menu-price">₺${urun.fiyat}</span>
+                        </div>
+                    </div>
+                </div>
+                ${eklentiAlani}
+            `;
+            icerikKutusu.appendChild(satir);
+        });
+    }
+
+    function aramaYap() {
+        let input = document.getElementById('menuSearch').value.toLowerCase();
+        if(input.length === 0) { catalogEkraniniAc(); return; }
+
+        document.getElementById('kategori-baslik').innerText = "🔍 Arama Sonuçları";
+        const icerikKutusu = document.getElementById('sayfa-icerik');
+        icerikKutusu.innerHTML = '';
+
+        Object.keys(menuData).forEach(key => {
+            menuData[key].urunler.forEach(urun => {
+                if(urun.ad.toLowerCase().includes(input) && urun.aktif) {
+                    const satir = document.createElement('div');
+                    satir.className = 'menu-row';
+                    let solAlan = urun.gorsel ? `<img class="menu-img" src="${urun.gorsel}">` : `<div class="menu-icon-box">${urun.ikon}</div>`;
+                    let eklentiAlani = buildClientAddonHTML(urun.ekstralar);
+                    satir.innerHTML = `
+                        <div class="menu-main-content">
+                            ${solAlan}<div class="menu-text"><div class="menu-meta"><span class="menu-name">${urun.ad}</span><span class="menu-price">₺${urun.fiyat}</span></div></div>
+                        </div>
+                        ${eklentiAlani}
+                    `;
+                    icerikKutusu.appendChild(satir);
+                }
+            });
+        });
+    }
+
+    function yildizSec(skor) {
+        secilenYildiz = skor;
+        const yildizlar = document.getElementById('dilekYildizlar').children;
+        for (let i = 0; i < yildizlar.length; i++) {
+            if (i < skor) yildizlar[i].classList.add('active');
+            else yildizlar[i].classList.remove('active');
+        }
+    }
+
+    // --- 📡 BULUT BULUT GÖNDERİM MEKANİZMASI (WEB -> GİTHUB -> PYTHON) ---
+    async function dilekGonder() {
+        const isim = document.getElementById('dilekIsim').value.trim() || "Anonim Müşteri";
+        const mesaj = document.getElementById('dilekMesaj').value.trim();
+
+        if (!mesaj) { alert("Lütfen öneri veya yorum alanını boş bırakmayın."); return; }
+        if (secilenYildiz === 0) { alert("Lütfen memnuniyet puanınızı belirtin."); return; }
+
+        let yeniYorum = {
+            id: Date.now(),
+            masa: masaNo || "Bilinmiyor",
+            isim: isim,
+            skor: secilenYildiz,
+            mesaj: mesaj,
+            tarih: new Date().toLocaleString('tr-TR')
+        };
+
+        const btn = document.querySelector('.dilek-gonder-btn');
+        btn.disabled = true;
+        btn.innerText = "Gönderiliyor...";
+
+        try {
+            let mevcutYorumlar = [];
+            let sha = null;
+
+            const getRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_COMMENT_FILE}`, {
+                headers: { "Authorization": `token ${GH_TOKEN}` }
+            });
+
+            if (getRes.status === 200) {
+                const data = await getRes.json();
+                sha = data.sha;
+                const decodedContent = decodeURIComponent(atob(data.content).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+                mevcutYorumlar = JSON.parse(decodedContent);
+            }
+
+            mevcutYorumlar.unshift(yeniYorum);
+            const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(mevcutYorumlar, null, 2))));
+
+            const putRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_COMMENT_FILE}`, {
+                method: "PUT",
+                headers: { "Authorization": `token ${GH_TOKEN}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: `Yeni yorum eklendi: Masa ${yeniYorum.masa}`,
+                    content: updatedContent,
+                    sha: sha
+                })
+            });
+
+            if (putRes.ok) {
+                alert("Harika! Öneriniz başarıyla iletildi. Teşekkür ederiz.");
+                document.getElementById('dilekIsim').value = "";
+                document.getElementById('dilekMesaj').value = "";
+                yildizSec(0);
+            } else {
+                alert("Yorum sunucuya iletilemedi. Acil durum yedekleme listesine alındı.");
+                gelenOneriler.unshift(yeniYorum);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Bağlantı hatası! Yorum yerel listeye eklendi.");
+            gelenOneriler.unshift(yeniYorum);
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Öneriyi Gönder";
+        }
+    }
+
+    function pythonVeriAktar() {
+        if(gelenOneriler.length === 0) { alert("Aktarılacak lokal yedek yorum bulunmuyor."); return; }
+        let jsonString = JSON.stringify(gelenOneriler, null, 2);
+        navigator.clipboard.writeText(jsonString);
+        alert("Yorumlar panoya kopyalandı!");
+    }
+
+    function wifiModalAc() {
+        document.getElementById('lblSsid').innerText = sistemAyarlari.wifiName;
+        document.getElementById('lblPass').innerText = sistemAyarlari.wifiPassword;
+        document.getElementById('wifiModal').style.display = 'flex';
+
+        const wifiString = `WIFI:S:${sistemAyarlari.wifiName};T:WPA;P:${sistemAyarlari.wifiPassword};;`;
+        document.getElementById("qrcode").innerHTML = "";
+        new QRCode(document.getElementById("qrcode"), {
+            text: wifiString, width: 150, height: 150, colorDark : "#271916", colorLight : "#fdfaf6", correctLevel : QRCode.CorrectLevel.H
+        });
+    }
+
+    function sifreKopyala() {
+        navigator.clipboard.writeText(sistemAyarlari.wifiPassword);
+        alert("Şifre kopyalandı! Ayarlara yönlendiriliyorsunuz.");
+        window.location.href = "Intent://connect#Intent;scheme=settings;package=com.android.settings;end";
+    }
+
+    function wifiModalKapat(e) {
+        if(e.target.id === 'wifiModal') document.getElementById('wifiModal').style.display = 'none';
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const masaNo = urlParams.get('masa');
+    document.getElementById('masa-alani').innerText = masaNo ? "Masa: " + masaNo : "Masa Seçilmedi";
+
+    function garsonCagir() {
+        if (!masaNo) { alert("Masa numarası sistemde bulunamadı."); return; }
+        alert(`Masa ${masaNo} için garson çağrısı merkeze iletildi.`);
+    }
+
+    function panelAc() {
+        let sifre = prompt("Kontrol Paneli Şifresi:");
+        if (sifre === sistemAyarlari.adminSifre) {
+            document.getElementById('admin-panel').style.display = 'block';
+            renderAdminPanel();
+            renderMasaListesi();
+        } else { alert("Hatalı Yetkilendirme!"); }
+    }
+
+    function panelKapat() { document.getElementById('admin-panel').style.display = 'none'; init(); }
+
+    function renderMasaListesi() {
+        const listetutucu = document.getElementById('adminMasaListesi');
+        listetutucu.innerHTML = '';
+        const anaUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+
+        kafeMasalari.forEach(masa => {
+            const tamMasaUrl = `${anaUrl}?masa=${masa}`;
+            const satir = document.createElement('div');
+            satir.className = 'admin-masa-satir';
+            satir.innerHTML = `
+                <b>Masa ${masa}</b>
+                <span class="url-text">${tamMasaUrl}</span>
+                <button class="copy-btn" onclick="masaUrlKopyala('${tamMasaUrl}', '${masa}')">📋 Kopyala</button>
+            `;
+            listetutucu.appendChild(satir);
+        });
+    }
+
+    function masaEkle() {
+        const masaGiris = document.getElementById('yeniMasaNo').value.trim();
+        if(!masaGiris) { alert("Geçersiz masa."); return; }
+        if(kafeMasalari.includes(masaGiris)) { alert("Masa zaten mevcut."); return; }
+        kafeMasalari.push(masaGiris);
+        kafeMasalari.sort((a, b) => parseInt(a) - parseInt(b));
+        document.getElementById('yeniMasaNo').value = '';
+        renderMasaListesi();
+    }
+
+    function masaUrlKopyala(url, no) {
+        navigator.clipboard.writeText(url);
+        alert(`Masa ${no} URL'si kopyalandı!`);
+    }
+
+    function renderAdminPanel() {
+        const tabsBox = document.getElementById('adminTabs'); tabsBox.innerHTML = '';
+        Object.keys(menuData).forEach(key => {
+            const btn = document.createElement('button');
+            btn.className = `admin-tab-btn ${key === aktifAdminKategori ? 'active' : ''}`;
+            btn.innerText = menuData[key].isim;
+            btn.onclick = () => { aktifAdminKategori = key; renderAdminPanel(); };
+            tabsBox.appendChild(btn);
+        });
+
+        const listeBox = document.getElementById('adminUrunListesi'); listeBox.innerHTML = '';
+        menuData[aktifAdminKategori].urunler.forEach((urun, idx) => {
+            const sat = document.createElement('div'); sat.className = 'admin-urun-satir';
+            let ekstralarHtml = "";
+            if(urun.ekstralar && urun.ekstralar.length > 0) {
+                urun.ekstralar.forEach((ex) => {
+                    ekstralarHtml += `<div class="admin-addon-row"><span>🔸 ${ex.isim} (+₺${ex.fiyat})</span></div>`;
+                });
+            }
+            sat.innerHTML = `<b>${urun.ad}</b> <span style="color:var(--accent-color);">₺${urun.fiyat}</span> ${ekstralarHtml}`;
+            listeBox.appendChild(sat);
+        });
+    }
+
+    function wifiGuncelle() {
+        sistemAyarlari.wifiName = document.getElementById('wifiSSID').value;
+        sistemAyarlari.wifiPassword = document.getElementById('wifiPass').value;
+        alert("Lokal Wi-Fi güncellendi.");
+    }
+</script>
+</body>
+</html>
