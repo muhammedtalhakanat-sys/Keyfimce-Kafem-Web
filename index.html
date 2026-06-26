@@ -273,9 +273,11 @@
 
 <script>
     // --- 🔐 GİTHUB BULUT BULUT ENTEGRASYON YAPILANDIRMASI ---
-    const GH_TOKEN = "BURAYA_GITHUB_TOKEN_GELECEK";
-    const GH_REPO = "BURAYA_GITHUB_KULLANICI_ADIN/BURAYA_DEPO_ADIN"; // Örn: muhammedtalhakanat-sys/keyfimce-kafem
+    const GH_TOKEN = "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";
+    const GH_REPO = "muhammedtalhakanat-sys/Keyfimce-Kafem-Web";
     const GH_COMMENT_FILE = "gelen_yorumlar.json";
+    const GH_WAITER_CALL_FILE = "garson_cagrilari.json";
+    const GH_MENU_FILE = "index.html";
 
     let yuklenenGorselBase64 = "";
     let secilenYildiz = 0;
@@ -618,9 +620,55 @@
     const masaNo = urlParams.get('masa');
     document.getElementById('masa-alani').innerText = masaNo ? "Masa: " + masaNo : "Masa Seçilmedi";
 
-    function garsonCagir() {
+    async function garsonCagir() {
         if (!masaNo) { alert("Masa numarası sistemde bulunamadı."); return; }
-        alert(`Masa ${masaNo} için garson çağrısı merkeze iletildi.`);
+        
+        let cagriBilgisi = {
+            id: Date.now(),
+            masa: masaNo,
+            durum: "beklemede",
+            tarih: new Date().toLocaleString('tr-TR')
+        };
+
+        try {
+            let mevcutCagrilar = [];
+            let sha = null;
+
+            const getRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_WAITER_CALL_FILE}`, {
+                headers: { "Authorization": `token ${GH_TOKEN}` }
+            });
+
+            if (getRes.status === 200) {
+                const data = await getRes.json();
+                sha = data.sha;
+                const decodedContent = decodeURIComponent(atob(data.content).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+                mevcutCagrilar = JSON.parse(decodedContent);
+            }
+
+            mevcutCagrilar.unshift(cagriBilgisi);
+            const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(mevcutCagrilar, null, 2))));
+
+            const putRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_WAITER_CALL_FILE}`, {
+                method: "PUT",
+                headers: { "Authorization": `token ${GH_TOKEN}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: `Garson çağrısı: Masa ${cagriBilgisi.masa}`,
+                    content: updatedContent,
+                    sha: sha
+                })
+            });
+
+            if (putRes.ok) {
+                alert(`Masa ${masaNo} için garson çağrısı merkeze iletildi.`);
+            } else {
+                alert("Garson çağrısı iletilemedi. Lütfen garsona sözlü olarak bildirin.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Bağlantı hatası! Lütfen garsona sözlü olarak bildirin.");
+        }
     }
 
     function panelAc() {
