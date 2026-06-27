@@ -1,97 +1,129 @@
 {
-  "menu": {
-    "icecekler": [
-      { "name": "Köpüklü Süt", "price": 150.00 },
-      { "name": "Su (0.5 L)", "price": 15.00 }
-    ],
-    "kahveler": [
-      { "name": "Americano", "price": 100.00 },
-      { "name": "Dibek Kahvesi", "price": 100.00 },
-      { "name": "Doppio", "price": 100.00 },
-      { "name": "Filtre Kahve", "price": 100.00 },
-      { "name": "Lungo", "price": 100.00 },
-      { "name": "Menengiç Kahvesi", "price": 100.00 },
-      { "name": "Osmanlı Kahvesi", "price": 100.00 },
-      { "name": "Ristretto", "price": 100.00 },
-      { "name": "Türk Kahvesi", "price": 100.00 },
-      { "name": "Uzun Kahve", "price": 100.00 }
-    ],
-    "sutlu_kahveler": [
-      { "name": "Cafe Latte", "price": 150.00 },
-      { "name": "Cappuccino", "price": 150.00 },
-      { "name": "Espresso Latte Macchiato", "price": 150.00 },
-      { "name": "Flat White", "price": 150.00 },
-      { "name": "Italian Cappuccino", "price": 150.00 },
-      { "name": "Italian Macchiato", "price": 150.00 }
-    ],
-    "soguk_kahveler": [
-      { "name": "Soğuk Affa Gato", "price": 170.00 },
-      { "name": "Soğuk Cappuccino", "price": 170.00 },
-      { "name": "Soğuk Chilled Coffe", "price": 170.00 },
-      { "name": "Soğuk Coffe Latte", "price": 170.00 },
-      { "name": "Soğuk Espresso", "price": 170.00 },
-      { "name": "Soğuk Frappe", "price": 170.00 },
-      { "name": "Soğuk Italian Cappuccino", "price": 170.00 },
-      { "name": "Soğuk Latte Macchiato", "price": 170.00 },
-      { "name": "Soğuk Nitro Coffe", "price": 170.00 },
-      { "name": "Soğuk Uzun Kahve", "price": 170.00 }
-    ],
-    "soguk_icecekler": [
-      { "name": "Bursa Gazozu", "price": 40.00 },
-      { "name": "Didi Bergamot", "price": 50.00 },
-      { "name": "Didi Limon", "price": 50.00 },
-      { "name": "Didi Çilek", "price": 50.00 },
-      { "name": "Didi Şeftali", "price": 50.00 },
-      { "name": "Dimes Ananas", "price": 30.00 },
-      { "name": "Dimes Karışık", "price": 30.00 },
-      { "name": "Dimes Vişne", "price": 30.00 },
-      { "name": "Dimes Şeftali", "price": 30.00 },
-      { "name": "Kızılay Elma", "price": 30.00 },
-      { "name": "Kızılay Guava", "price": 30.00 },
-      { "name": "Kızılay Karpuz Çilek", "price": 30.00 },
-      { "name": "Kızılay Limon", "price": 30.00 },
-      { "name": "Kızılay Sade", "price": 30.00 },
-      { "name": "Niğde Gazozu", "price": 40.00 },
-      { "name": "Sarıyer Portakal", "price": 50.00 },
-      { "name": "Sarıyer Siyah Kola", "price": 50.00 },
-      { "name": "Uludağ Limonata", "price": 45.00 }
-    ],
-    "caylar": [
-      { "name": "Bitki Çayı Adaçayı", "price": 100.00 },
-      { "name": "Bitki Çayı Atom", "price": 200.00 },
-      { "name": "Bitki Çayı Ihlamur", "price": 100.00 },
-      { "name": "Bitki Çayı Papatya", "price": 100.00 },
-      { "name": "Elma Çay", "price": 35.00 },
-      { "name": "Kekik Çay", "price": 35.00 },
-      { "name": "Kivi Çay", "price": 35.00 },
-      { "name": "Kuşburnu Çay", "price": 35.00 },
-      { "name": "Limon Çay", "price": 35.00 },
-      { "name": "Nane Limon Çay", "price": 35.00 },
-      { "name": "Oralet Portakal Çay", "price": 35.00 },
-      { "name": "Çay", "price": 20.00 }
-    ],
-    "nargileler": [
-      { "name": "Dejavu Nargile", "price": 350.00 },
-      { "name": "Dominik Nargile", "price": 350.00 },
-      { "name": "Ezgotica Nargile", "price": 350.00 },
-      { "name": "Elma-Nane Nargile", "price": 350.00 },
-      { "name": "Laddy Killer Nargile", "price": 350.00 },
-      { "name": "Love66 Nargile", "price": 350.00 },
-      { "name": "Nakhla Nargile", "price": 350.00 },
-      { "name": "Red Dream Nargile", "price": 350.00 },
-      { "name": "Sakız Nargile", "price": 350.00 },
-      { "name": "Tatlı Cadı Nargile", "price": 350.00 },
-      { "name": "Yeşil Peri Nargile", "price": 350.00 }
-    ],
-    "yiyecekler": [
-      { "name": "Tost Karışık", "price": 140.00 },
-      { "name": "Tost Kaşar", "price": 100.00 },
-      { "name": "Tost Sucuk", "price": 120.00 }
-    ],
-    "tatlilar": [
-      { "name": "Chees Kek", "price": 0.0 },
-      { "name": "Cup Tatlı", "price": 0.0 },
-      { "name": "Profiterol", "price": 0.0 }
-    ]
-  }
+  "menuYedek": {
+    "cat-icecek": {
+      "isim": "🥛 İçecek",
+      "urunler": [
+        { "id": 1, "ad": "Köpüklü Süt", "fiyat": 150, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 2, "ad": "Su (0.5 L)", "fiyat": 15, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-kahve": {
+      "isim": "☕ Kahve",
+      "urunler": [
+        { "id": 3, "ad": "Americano", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 4, "ad": "Dibek Kahvesi", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 5, "ad": "Doppio", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 6, "ad": "Filtre Kahve", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 7, "ad": "Lungo", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 8, "ad": "Menengiç Kahvesi", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 9, "ad": "Osmanlı Kahvesi", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 10, "ad": "Ristretto", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 11, "ad": "Türk Kahvesi", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 12, "ad": "Uzun Kahve", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-sutlu-kahve": {
+      "isim": "🥛 Sütlü Kahve",
+      "urunler": [
+        { "id": 13, "ad": "Cafe Latte", "fiyat": 150, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 14, "ad": "Cappuccino", "fiyat": 150, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 15, "ad": "Espresso Latte Macchiato", "fiyat": 150, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 16, "ad": "Flat White", "fiyat": 150, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 17, "ad": "Italian Cappuccino", "fiyat": 150, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 18, "ad": "Italian Macchiato", "fiyat": 150, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-soguk-kahve": {
+      "isim": "❄️ Soğuk Kahve",
+      "urunler": [
+        { "id": 19, "ad": "Soğuk Affa Gato", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 20, "ad": "Soğuk Cappuccino", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 21, "ad": "Soğuk Chilled Coffe", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 22, "ad": "Soğuk Coffe Latte", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 23, "ad": "Soğuk Espresso", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 24, "ad": "Soğuk Frappe", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 25, "ad": "Soğuk Italian Cappuccino", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 26, "ad": "Soğuk Latte Macchiato", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 27, "ad": "Soğuk Nitro Coffe", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 28, "ad": "Soğuk Uzun Kahve", "fiyat": 170, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-nargile": {
+      "isim": "💨 Nargile",
+      "urunler": [
+        { "id": 29, "ad": "Dejavu Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 30, "ad": "Dominik Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 31, "ad": "Ezgotica Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 32, "ad": "Elma-Nane Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 33, "ad": "Laddy Killer Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 34, "ad": "Love66 Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 35, "ad": "Nakhla Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 36, "ad": "Red Dream Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 37, "ad": "Sakız Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 38, "ad": "Tatlı Cadı Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 39, "ad": "Yeşil Peri Nargile", "fiyat": 350, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-tatli": {
+      "isim": "🍰 Tatlı",
+      "urunler": [
+        { "id": 40, "ad": "Chees Kek", "fiyat": 0, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 41, "ad": "Cup Tatlı", "fiyat": 0, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 42, "ad": "Profiterol", "fiyat": 0, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-yiyecek": {
+      "isim": "🥪 Yiyecek",
+      "urunler": [
+        { "id": 43, "ad": "Tost Karışık", "fiyat": 140, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 44, "ad": "Tost Kaşar", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 45, "ad": "Tost Sucuk", "fiyat": 120, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-soguk-icecek": {
+      "isim": "🧃 Soğuk İçecek",
+      "urunler": [
+        { "id": 46, "ad": "Bursa Gazozu", "fiyat": 40, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 47, "ad": "Didi Bergamot", "fiyat": 50, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 48, "ad": "Didi Limon", "fiyat": 50, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 49, "ad": "Didi Çilek", "fiyat": 50, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 50, "ad": "Didi Şeftali", "fiyat": 50, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 51, "ad": "Dimes Ananas", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 52, "ad": "Dimes Karışık", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 53, "ad": "Dimes Vişne", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 54, "ad": "Dimes Şeftali", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 55, "ad": "Kızılay Elma", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 56, "ad": "Kızılay Guava", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 57, "ad": "Kızılay Karpuz Çilek", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 58, "ad": "Kızılay Limon", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 59, "ad": "Kızılay Sade", "fiyat": 30, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 60, "ad": "Niğde Gazozu", "fiyat": 40, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 61, "ad": "Sarıyer Portakal", "fiyat": 50, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 62, "ad": "Sarıyer Siyah Kola", "fiyat": 50, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 63, "ad": "Uludağ Limonata", "fiyat": 45, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    },
+    "cat-cay": {
+      "isim": "🫖 Çay",
+      "urunler": [
+        { "id": 64, "ad": "Bitki Çayı Adaçayı", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 65, "ad": "Bitki Çayı Atom", "fiyat": 200, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 66, "ad": "Bitki Çayı Ihlamur", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 67, "ad": "Bitki Çayı Papatya", "fiyat": 100, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 68, "ad": "Elma Çay", "fiyat": 35, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 69, "ad": "Kekik Çay", "fiyat": 35, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 70, "ad": "Kivi Çay", "fiyat": 35, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 71, "ad": "Kuşburnu Çay", "fiyat": 35, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 72, "ad": "Limon Çay", "fiyat": 35, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 73, "ad": "Nane Limon Çay", "fiyat": 35, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 74, "ad": "Oralet Portakal Çay", "fiyat": 35, "gorsel": "", "stoktaVar": true, "ekstralar": [] },
+        { "id": 75, "ad": "Çay", "fiyat": 20, "gorsel": "", "stoktaVar": true, "ekstralar": [] }
+      ]
+    }
+  },
+  "wifiYedek": {
+    "ad": "Keyfimce_WiFi",
+    "sifre": "keyfimce2024"
+  },
+  "sifreYedek": "2000"
 }
