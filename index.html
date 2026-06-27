@@ -861,8 +861,32 @@ const githubKullaniciAdi = "muhammedtalhakanat-sys";
 const repoAdi = "Keyfimce-Kafem-Web";
 const jsonDosyaAdi = "keyfimce_menu_ayarlar.json";
 
-// ── BAŞLATMA FONKSİYONU ──
-window.onload = () => {
+// ── BAŞLATMA VE GITHUB VERİ ÇEKME FONKSİYONU ──
+window.onload = async () => {
+  // GitHub Pages veya jsDelivr CDN üzerinden JSON dosyasının ham (raw) URL'si
+  const rawUrl = `https://raw.githubusercontent.com/${githubKullaniciAdi}/${repoAdi}/main/${jsonDosyaAdi}`;
+
+  try {
+    const response = await fetch(rawUrl);
+    if (response.ok) {
+      const guncelVeri = await response.json();
+      
+      // Gelen verinin doğruluğunu kontrol et (Yedek yapısına uygun mu?)
+      if (guncelVeri.menuYedek && guncelVeri.wifiYedek && guncelVeri.sifreYedek) {
+        menuData = guncelVeri.menuYedek;
+        wifiData = guncelVeri.wifiYedek;
+        adminSifre = guncelVeri.sifreYedek;
+        saveAll(); // LocalStorage'a da en güncel hali eşitleyelim
+        console.log("GitHub'dan en güncel veriler başarıyla yüklendi.");
+      }
+    } else {
+      console.warn("GitHub verisi alınamadı, LocalStorage üzerinden devam ediliyor.");
+    }
+  } catch (err) {
+    console.error("GitHub entegrasyon hatası (LocalStorage kullanılıyor):", err);
+  }
+
+  // Arayüz bileşenlerini oluştur ve başlat
   buildNav();
   renderProducts();
   skorGuncelle();
