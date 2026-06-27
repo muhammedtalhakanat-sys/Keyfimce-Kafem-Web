@@ -1,105 +1,97 @@
 {
-  "menuYedek": {
-    "cat-kahve": {
-      "isim": "☕ Kahveler",
-      "urunler": [
-        {
-          "id": 1,
-          "ad": "Türk Kahvesi",
-          "fiyat": 150,
-          "gorsel": "",
-          "stoktaVar": true,
-          "ekstralar": []
-        },
-        {
-          "id": 2,
-          "ad": "Filtre Kahve",
-          "fiyat": 75,
-          "gorsel": "",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Süt",
-              "fiyat": 15
-            }
-          ]
-        }
-      ]
-    },
-    "cat-sutlu": {
-      "isim": "🥛 Sütlü Kahveler",
-      "urunler": [
-        {
-          "id": 3,
-          "ad": "Latte Macchiato",
-          "fiyat": 90,
-          "gorsel": "",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Karamel",
-              "fiyat": 20
-            },
-            {
-              "isim": "Vanilya",
-              "fiyat": 20
-            }
-          ]
-        }
-      ]
-    },
-    "cat-soguk-kahve": {
-      "isim": "❄️ Soğuk Kahveler",
-      "urunler": [
-        {
-          "id": 4,
-          "ad": "Iced Latte",
-          "fiyat": 95,
-          "gorsel": "",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Şurubu",
-              "fiyat": 20
-            }
-          ]
-        }
-      ]
-    },
-    "cat-tatli": {
-      "isim": "🍰 Tatlılar",
-      "urunler": [
-        {
-          "id": 5,
-          "ad": "San Sebastian",
-          "fiyat": 200,
-          "gorsel": "",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Ekstra Çikolata",
-              "fiyat": 35
-            }
-          ]
-        }
-      ]
-    },
-    "cat-cay": {
-      "isim": "🫖 Çaylar",
-      "urunler": []
-    },
-    "cat-soguk-icecek": {
-      "isim": "🧃 İçecekler",
-      "urunler": []
-    },
-    "cat-yiyecek": {
-      "isim": "🥪 Yiyecekler",
-      "urunler": []
-    }
-  },
-  "wifiYedek": {
-    "ad": "Keyfimce_WiFi",
-    "sifre": "keyfimce2024"
-  },
-  "sifreYedek": "2000"
+  "menu": {
+    "icecekler": [
+      { "name": "Köpüklü Süt", "price": 150.00 },
+      { "name": "Su (0.5 L)", "price": 15.00 }
+    ],
+    "kahveler": [
+      { "name": "Americano", "price": 100.00 },
+      { "name": "Dibek Kahvesi", "price": 100.00 },
+      { "name": "Doppio", "price": 100.00 },
+      { "name": "Filtre Kahve", "price": 100.00 },
+      { "name": "Lungo", "price": 100.00 },
+      { "name": "Menengiç Kahvesi", "price": 100.00 },
+      { "name": "Osmanlı Kahvesi", "price": 100.00 },
+      { "name": "Ristretto", "price": 100.00 },
+      { "name": "Türk Kahvesi", "price": 100.00 },
+      { "name": "Uzun Kahve", "price": 100.00 }
+    ],
+    "sutlu_kahveler": [
+      { "name": "Cafe Latte", "price": 150.00 },
+      { "name": "Cappuccino", "price": 150.00 },
+      { "name": "Espresso Latte Macchiato", "price": 150.00 },
+      { "name": "Flat White", "price": 150.00 },
+      { "name": "Italian Cappuccino", "price": 150.00 },
+      { "name": "Italian Macchiato", "price": 150.00 }
+    ],
+    "soguk_kahveler": [
+      { "name": "Soğuk Affa Gato", "price": 170.00 },
+      { "name": "Soğuk Cappuccino", "price": 170.00 },
+      { "name": "Soğuk Chilled Coffe", "price": 170.00 },
+      { "name": "Soğuk Coffe Latte", "price": 170.00 },
+      { "name": "Soğuk Espresso", "price": 170.00 },
+      { "name": "Soğuk Frappe", "price": 170.00 },
+      { "name": "Soğuk Italian Cappuccino", "price": 170.00 },
+      { "name": "Soğuk Latte Macchiato", "price": 170.00 },
+      { "name": "Soğuk Nitro Coffe", "price": 170.00 },
+      { "name": "Soğuk Uzun Kahve", "price": 170.00 }
+    ],
+    "soguk_icecekler": [
+      { "name": "Bursa Gazozu", "price": 40.00 },
+      { "name": "Didi Bergamot", "price": 50.00 },
+      { "name": "Didi Limon", "price": 50.00 },
+      { "name": "Didi Çilek", "price": 50.00 },
+      { "name": "Didi Şeftali", "price": 50.00 },
+      { "name": "Dimes Ananas", "price": 30.00 },
+      { "name": "Dimes Karışık", "price": 30.00 },
+      { "name": "Dimes Vişne", "price": 30.00 },
+      { "name": "Dimes Şeftali", "price": 30.00 },
+      { "name": "Kızılay Elma", "price": 30.00 },
+      { "name": "Kızılay Guava", "price": 30.00 },
+      { "name": "Kızılay Karpuz Çilek", "price": 30.00 },
+      { "name": "Kızılay Limon", "price": 30.00 },
+      { "name": "Kızılay Sade", "price": 30.00 },
+      { "name": "Niğde Gazozu", "price": 40.00 },
+      { "name": "Sarıyer Portakal", "price": 50.00 },
+      { "name": "Sarıyer Siyah Kola", "price": 50.00 },
+      { "name": "Uludağ Limonata", "price": 45.00 }
+    ],
+    "caylar": [
+      { "name": "Bitki Çayı Adaçayı", "price": 100.00 },
+      { "name": "Bitki Çayı Atom", "price": 200.00 },
+      { "name": "Bitki Çayı Ihlamur", "price": 100.00 },
+      { "name": "Bitki Çayı Papatya", "price": 100.00 },
+      { "name": "Elma Çay", "price": 35.00 },
+      { "name": "Kekik Çay", "price": 35.00 },
+      { "name": "Kivi Çay", "price": 35.00 },
+      { "name": "Kuşburnu Çay", "price": 35.00 },
+      { "name": "Limon Çay", "price": 35.00 },
+      { "name": "Nane Limon Çay", "price": 35.00 },
+      { "name": "Oralet Portakal Çay", "price": 35.00 },
+      { "name": "Çay", "price": 20.00 }
+    ],
+    "nargileler": [
+      { "name": "Dejavu Nargile", "price": 350.00 },
+      { "name": "Dominik Nargile", "price": 350.00 },
+      { "name": "Ezgotica Nargile", "price": 350.00 },
+      { "name": "Elma-Nane Nargile", "price": 350.00 },
+      { "name": "Laddy Killer Nargile", "price": 350.00 },
+      { "name": "Love66 Nargile", "price": 350.00 },
+      { "name": "Nakhla Nargile", "price": 350.00 },
+      { "name": "Red Dream Nargile", "price": 350.00 },
+      { "name": "Sakız Nargile", "price": 350.00 },
+      { "name": "Tatlı Cadı Nargile", "price": 350.00 },
+      { "name": "Yeşil Peri Nargile", "price": 350.00 }
+    ],
+    "yiyecekler": [
+      { "name": "Tost Karışık", "price": 140.00 },
+      { "name": "Tost Kaşar", "price": 100.00 },
+      { "name": "Tost Sucuk", "price": 120.00 }
+    ],
+    "tatlilar": [
+      { "name": "Chees Kek", "price": 0.0 },
+      { "name": "Cup Tatlı", "price": 0.0 },
+      { "name": "Profiterol", "price": 0.0 }
+    ]
+  }
 }
