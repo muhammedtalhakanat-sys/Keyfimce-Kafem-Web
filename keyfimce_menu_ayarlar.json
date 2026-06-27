@@ -1,0 +1,113 @@
+{
+  "menuYedek": {
+    "cat-kahve": {
+      "isim": "☕ Kahveler",
+      "urunler": [
+        {
+          "id": 1,
+          "ad": "Türk Kahvesi",
+          "fiyat": 65,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 2,
+          "ad": "Filtre Kahve",
+          "fiyat": 75,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Süt",
+              "fiyat": 15
+            }
+          ]
+        },
+        {
+          "id": 1782582137988,
+          "ad": "Filtre kahve",
+          "fiyat": 15,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        }
+      ]
+    },
+    "cat-sutlu": {
+      "isim": "🥛 Sütlü Kahveler",
+      "urunler": [
+        {
+          "id": 3,
+          "ad": "Latte Macchiato",
+          "fiyat": 90,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Karamel",
+              "fiyat": 20
+            },
+            {
+              "isim": "Vanilya",
+              "fiyat": 20
+            }
+          ]
+        }
+      ]
+    },
+    "cat-soguk-kahve": {
+      "isim": "❄️ Soğuk Kahveler",
+      "urunler": [
+        {
+          "id": 4,
+          "ad": "Iced Latte",
+          "fiyat": 95,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Şurubu",
+              "fiyat": 20
+            }
+          ]
+        }
+      ]
+    },
+    "cat-tatli": {
+      "isim": "🍰 Tatlılar",
+      "urunler": [
+        {
+          "id": 5,
+          "ad": "San Sebastian",
+          "fiyat": 130,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Ekstra Çikolata",
+              "fiyat": 35
+            }
+          ]
+        }
+      ]
+    },
+    "cat-cay": {
+      "isim": "🫖 Çaylar",
+      "urunler": []
+    },
+    "cat-soguk-icecek": {
+      "isim": "🧃 İçecekler",
+      "urunler": []
+    },
+    "cat-yiyecek": {
+      "isim": "🥪 Yiyecekler",
+      "urunler": []
+    }
+  },
+  "wifiYedek": {
+    "ad": "Keyfimce_WiFi",
+    "sifre": "keyfimce2024"
+  },
+  "sifreYedek": "2001"
+}
