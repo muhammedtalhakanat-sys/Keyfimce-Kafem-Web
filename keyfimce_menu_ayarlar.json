@@ -6,7 +6,7 @@
         {
           "id": 1,
           "ad": "Türk Kahvesi",
-          "fiyat": 65,
+          "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": []
@@ -23,14 +23,6 @@
               "fiyat": 15
             }
           ]
-        },
-        {
-          "id": 1782582137988,
-          "ad": "Filtre kahve",
-          "fiyat": 15,
-          "gorsel": "",
-          "stoktaVar": true,
-          "ekstralar": []
         }
       ]
     },
@@ -109,5 +101,5 @@
     "ad": "Keyfimce_WiFi",
     "sifre": "keyfimce2024"
   },
-  "sifreYedek": "2001"
+  "sifreYedek": "2000"
 }
