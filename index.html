@@ -30,7 +30,8 @@
     overscroll-behavior: none;
   }
   input, textarea, select { -webkit-user-select: text; user-select: text; }
-  .serif { font-family: 'Cinzel', serif; }
+  .serif { font-family: 'Cinzel', serif;
+  }
 
   /* ── Kategori pill ── */
   .cat-pill {
@@ -56,20 +57,25 @@
     position: relative; overflow: hidden;
     transition: border-color .25s, transform .25s, box-shadow .25s;
   }
-  .prod-card:active { transform: scale(.98); }
+  .prod-card:active { transform: scale(.98);
+  }
 
   /* ── Scrollbar gizle ── */
   .no-scroll::-webkit-scrollbar { display: none; }
-  .no-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scroll { -ms-overflow-style: none;
+    scrollbar-width: none; }
 
   /* ── Toast ── */
   #toast {
-    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+    position: fixed; bottom: 90px;
+    left: 50%; transform: translateX(-50%) translateY(20px);
     background: var(--rust); color: #fff; padding: 10px 20px; border-radius: 999px;
-    font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none;
+    font-size: 13px; font-weight: 600; opacity: 0;
+    pointer-events: none;
     transition: all .35s ease; z-index: 9999; white-space: nowrap;
   }
-  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0);
+  }
 
   /* ── WiFi modal ── */
   .wifi-bar {
@@ -82,19 +88,23 @@
 
   /* ── Bottom nav ── */
   #bottomNav {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
+    position: fixed;
+    bottom: 0; left: 0; right: 0; z-index: 40;
     background: rgba(15,8,6,.96); backdrop-filter: blur(12px);
     border-top: 1px solid rgba(61,44,40,.5);
-    display: flex; align-items: center; justify-content: space-around;
+    display: flex; align-items: center;
+    justify-content: space-around;
     padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
   }
   .bnav-btn {
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 3px;
     font-size: 11px; color: #6b5b57; cursor: pointer; transition: color .2s;
     min-width: 80px;
   }
   .bnav-btn.active { color: var(--rust); }
-  .bnav-btn i { font-size: 20px; }
+  .bnav-btn i { font-size: 20px;
+  }
 
   /* ── Header ── */
   #mainHeader {
@@ -102,13 +112,15 @@
     background-image: linear-gradient(to bottom, rgba(15,8,6,.1) 0%, rgba(15,8,6,1) 100%),
       url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80');
     background-size: cover; background-position: center;
-    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    display: flex;
+    flex-direction: column; justify-content: flex-end; align-items: center;
     padding-bottom: 14px;
   }
 
   /* ── Admin panel form inputs ── */
   .ap-input {
-    width: 100%; background: var(--ink); border: 1px solid var(--border);
+    width: 100%;
+    background: var(--ink); border: 1px solid var(--border);
     border-radius: 10px; padding: 8px 10px; color: #fff; font-size: 12px;
     outline: none; transition: border-color .2s;
   }
@@ -116,7 +128,8 @@
 
   /* ── Modal overlay ── */
   .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.88);
+    position: fixed;
+    inset: 0; background: rgba(0,0,0,.88);
     z-index: 50; display: none; align-items: center; justify-content: center;
     padding: 16px; backdrop-filter: blur(6px);
   }
@@ -146,6 +159,7 @@
     </a>
     <a href="https://www.tiktok.com/@keyfimce.kafe" target="_blank" rel="noopener"
        class="flex items-center gap-1.5 text-[11px] text-[#e6af87]/70 hover:text-[#e6af87] transition-colors">
+     
       <i class="fa-brands fa-tiktok text-base"></i>
       <span>keyfimce.kafe</span>
     </a>
@@ -166,7 +180,8 @@
 <div class="px-4 mt-2 mb-3">
   <div class="relative">
     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-500 text-sm"></i>
-    <input type="text" id="searchInput" oninput="renderProducts()"
+    <input type="text" 
+      id="searchInput" oninput="renderProducts()"
       class="w-full bg-[#170e0c] border border-[#3d2c28]/60 rounded-2xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#b85c38] transition-all"
       placeholder="Ne içersiniz?">
   </div>
@@ -190,6 +205,7 @@
   <div class="modal-box">
     <button onclick="modalKapat('wifiModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white">
       <i class="fa-solid fa-xmark text-lg"></i>
+  
     </button>
     <h3 class="serif text-base text-[#e6af87] mb-4"><i class="fa-solid fa-wifi mr-2"></i>Misafir Wi-Fi</h3>
     <div class="space-y-3">
@@ -200,6 +216,7 @@
       <div class="bg-[#241613] rounded-xl p-4 border border-[#3d2c28]/60 flex items-center justify-between">
         <div>
           <p class="text-[10px] text-gray-500 mb-0.5">Şifre</p>
+    
           <p class="text-sm font-semibold text-white tracking-widest" id="wifiPassDisplay">keyfimce2024</p>
         </div>
         <button onclick="wifiSifreyiKopyala()"
@@ -209,6 +226,7 @@
       </div>
       <button onclick="wifiBaglan()"
         class="w-full bg-[#b85c38] text-white py-3 rounded-xl font-semibold text-sm hover:bg-[#a04f2f] transition-all">
+      
         <i class="fa-solid fa-link mr-1.5"></i>Otomatik Bağlanmayı Dene
       </button>
       <p class="text-center text-[10px] text-gray-600">Sorun yaşarsanız şifreyi kopyalayıp ayarlardan Wi-Fi ağına yapıştırabilirsiniz.</p>
@@ -248,6 +266,7 @@
 </div>
 
 <div id="authModal" class="modal-overlay">
+ 
   <div class="modal-box" style="max-width:320px;">
     <button onclick="modalKapat('authModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white">
       <i class="fa-solid fa-xmark"></i>
@@ -260,6 +279,7 @@
         placeholder="••••"
         onkeydown="if(event.key==='Enter')authKontrol()">
       <div class="flex gap-2">
+    
         <button onclick="modalKapat('authModal')" class="flex-1 bg-gray-900 text-gray-400 py-2 rounded-xl text-xs">İptal</button>
         <button onclick="authKontrol()" class="flex-1 bg-[#b85c38] text-white py-2 rounded-xl text-xs font-bold">Giriş</button>
       </div>
@@ -278,6 +298,7 @@
       <button onclick="adminKapat()"
         class="bg-[#241613] border border-[#3d2c28] text-gray-400 hover:text-white px-3 py-1.5 rounded-xl text-xs font-medium">
         <i class="fa-solid fa-arrow-left mr-1"></i>Menüye Dön
+  
       </button>
     </div>
 
@@ -307,6 +328,7 @@
       <h3 class="text-xs font-bold text-[#e6af87] mb-3"><i class="fa-solid fa-wifi mr-1.5"></i>Wi-Fi Bilgileri</h3>
       <div class="grid grid-cols-2 gap-2">
         <div>
+       
           <label class="text-[10px] text-gray-500 block mb-1">Ağ Adı (SSID)</label>
           <input type="text" id="apWifiAd" class="ap-input" placeholder="Keyfimce_WiFi">
         </div>
@@ -326,6 +348,7 @@
           <input type="text"   id="apAd"     class="ap-input" placeholder="Ürün adı">
           <input type="number" id="apFiyat"  class="ap-input" placeholder="Fiyat (TL)">
         </div>
+  
         <input type="text" id="apGorsel" class="ap-input" placeholder="Görsel URL (isteğe bağlı)">
         <input type="text" id="apEkstra" class="ap-input" placeholder="Ekstralar: Karamel:20, Vanilya:20">
         <button onclick="urunEkle()" class="w-full bg-[#b85c38] text-white py-2 rounded-lg text-xs font-semibold">Sisteme Ekle</button>
@@ -338,6 +361,7 @@
     </div>
 
     <div class="bg-[#241613] rounded-2xl p-4 border border-[#3d2c28]/60">
+ 
       <div class="flex justify-between items-center mb-3">
         <h3 class="text-xs font-bold text-[#e6af87]"><i class="fa-solid fa-heart-pulse mr-1.5"></i>Müşteri Yorumları</h3>
         <button onclick="yorumlariSil()" class="text-[10px] bg-red-950 border border-red-800 text-red-300 px-2 py-1 rounded-lg">
@@ -353,7 +377,7 @@
 <script>
 // ── İLK KURULUMDA OKUNACAK VARSAYILAN KOD İÇİ AYARLAR ──
 const varsayilanMenu = {
-  "cat-kahve":        { isim:"☕ Kahveler",       urunler:[
+  "cat-kahve":         { isim:"☕ Kahveler",       urunler:[
     {id:1, ad:"Türk Kahvesi",    fiyat:65,  gorsel:"", stoktaVar:true, ekstralar:[]},
     {id:2, ad:"Filtre Kahve",    fiyat:75,  gorsel:"", stoktaVar:true, ekstralar:[{isim:"Süt",fiyat:15}]}
   ]},
@@ -370,11 +394,9 @@ const varsayilanMenu = {
   "cat-soguk-icecek": { isim:"🧃 İçecekler",       urunler:[] },
   "cat-yiyecek":      { isim:"🥪 Yiyecekler",      urunler:[] }
 };
-
 const varsayilanWifi = { ad:"Keyfimce_WiFi", sifre:"keyfimce2024" };
 const varsayilanSifre = "1999";
 const PRESS_MS    = 10000;
-
 const gorselHavuzu = {
   "cat-kahve":        "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80",
   "cat-sutlu":        "https://images.unsplash.com/photo-1593444201283-e02abb57c568?auto=format&fit=crop&w=400&q=80",
@@ -384,25 +406,24 @@ const gorselHavuzu = {
   "cat-soguk-icecek": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=400&q=80",
   "cat-yiyecek":      "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?auto=format&fit=crop&w=400&q=80"
 };
-
 // ── LOCALSTORAGE DEPOLAMA YÖNETİMİ ──
 function ls(key, def) {
-  try { return JSON.parse(localStorage.getItem(key)) || def; } catch { return def; }
+  try { return JSON.parse(localStorage.getItem(key)) || def;
+} catch { return def; }
 }
 function lsSave(key, val) {
-  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+  try { localStorage.setItem(key, JSON.stringify(val));
+} catch {}
 }
 
 if (!localStorage.getItem('kfm_menu'))   lsSave('kfm_menu',   varsayilanMenu);
 if (!localStorage.getItem('kfm_yorumlar')) lsSave('kfm_yorumlar', []);
 if (!localStorage.getItem('kfm_wifi'))   lsSave('kfm_wifi',   varsayilanWifi);
 if (!localStorage.getItem('kfm_asifre')) lsSave('kfm_asifre',  varsayilanSifre);
-
 let menuData   = ls('kfm_menu',    varsayilanMenu);
 let yorumData  = ls('kfm_yorumlar', []);
 let wifiData   = ls('kfm_wifi',    varsayilanWifi);
 let adminSifre = ls('kfm_asifre',   varsayilanSifre);
-
 function saveAll() {
   lsSave('kfm_menu',     menuData);
   lsSave('kfm_yorumlar', yorumData);
@@ -412,7 +433,6 @@ function saveAll() {
 
 let aktifKat   = "cat-kahve";
 let secilenPuan = 5;
-
 // ── TOAST PANELUYARI ──
 function toast(msg, dur=2000) {
   const el = document.getElementById('toast');
@@ -422,7 +442,8 @@ function toast(msg, dur=2000) {
 }
 
 function modalAc(id)   { document.getElementById(id).classList.add('open'); }
-function modalKapat(id){ document.getElementById(id).classList.remove('open'); }
+function modalKapat(id){ document.getElementById(id).classList.remove('open');
+}
 
 // ── JSON EXPORT & IMPORT (GITHUB İÇİN TEMEL YAPI) ──
 function sistemiDisariAktarJSON() {
@@ -576,12 +597,10 @@ function renderProducts() {
   const grid  = document.getElementById('productGrid');
   const arama = document.getElementById('searchInput').value.toLowerCase().trim();
   grid.innerHTML = '';
-
   let list = [];
   (menuData[aktifKat]?.urunler || []).forEach(u => list.push({...u, catKey:aktifKat}));
 
   if (arama) list = list.filter(u => u.ad.toLowerCase().includes(arama));
-
   if (!list.length) {
     grid.innerHTML = '<p class="text-center text-gray-600 text-sm py-12">Ürün bulunamadı</p>';
     return;
@@ -634,7 +653,8 @@ function setPuan(r) {
 }
 function yorumKaydet() {
   const msg = document.getElementById('txtMesaj').value.trim();
-  if (!msg) { toast('❌ Lütfen görüşünüzü yazın'); return; }
+  if (!msg) { toast('❌ Lütfen görüşünüzü yazın'); return;
+  }
   yorumData.unshift({
     id: Date.now(),
     isim: document.getElementById('txtAd').value.trim() || 'Ziyaretçi',
@@ -678,7 +698,6 @@ trigger.addEventListener('mouseleave',  cancelPress);
 trigger.addEventListener('touchstart',  startPress,  {passive:false});
 trigger.addEventListener('touchend',    cancelPress, {passive:false});
 trigger.addEventListener('touchcancel', cancelPress, {passive:false});
-
 function authKontrol() {
   const v = document.getElementById('authPass').value;
   if (v === adminSifre) {
@@ -695,7 +714,8 @@ function adminAc() {
   document.getElementById('adminPanel').style.display = 'block';
   document.body.style.overflow = 'hidden';
   document.getElementById('apAdminSifre').value = adminSifre;
-  apWifiDoldur(); apUrunListesiYenile(); apYorumlariYenile();
+  apWifiDoldur(); apUrunListesiYenile();
+  apYorumlariYenile();
 }
 function adminKapat() {
   document.getElementById('adminPanel').style.display = 'none';
@@ -822,7 +842,8 @@ function apUrunListesiYenile() {
 function apYorumlariYenile() {
   const box = document.getElementById('apYorumListesi');
   box.innerHTML = '';
-  if (!yorumData.length) { box.innerHTML = '<p class="text-gray-600 italic text-[11px]">Henüz yorum yok.</p>'; return; }
+  if (!yorumData.length) { box.innerHTML = '<p class="text-gray-600 italic text-[11px]">Henüz yorum yok.</p>'; return;
+  }
   yorumData.forEach(y => {
     box.insertAdjacentHTML('beforeend', `
       <div class="bg-[#0f0806] rounded-xl p-2.5 border border-[#3d2c28]/50 text-[11px]">
@@ -834,6 +855,11 @@ function apYorumlariYenile() {
       </div>`);
   });
 }
+
+// ── GITHUB ENTEGRASYON DEĞİŞKENLERİ ──
+const githubKullaniciAdi = "muhammedtalhakanat-sys";
+const repoAdi = "Keyfimce-Kafem-Web";
+const jsonDosyaAdi = "keyfimce_menu_ayarlar.json";
 
 // ── BAŞLATMA FONKSİYONU ──
 window.onload = () => {
