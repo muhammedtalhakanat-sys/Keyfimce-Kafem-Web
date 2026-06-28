@@ -7,6 +7,13 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    // Public Key tanımlaması
+    emailjs.init("eO2J01-bhivAHbgA7");
+  })();
+</script>
 <style>
   :root {
     --ink:    #0f0806;
@@ -174,7 +181,7 @@
 <div class="px-4 mt-2 mb-3">
   <div class="relative">
     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-500 text-sm"></i>
-    <input type="text" 
+    <input type="text"
       id="searchInput" oninput="renderProducts()"
       class="w-full bg-[#170e0c] border border-[#3d2c28]/60 rounded-2xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#b85c38] transition-all"
       placeholder="Ne içersiniz?">
@@ -343,7 +350,7 @@
 
     <div class="bg-[#241613] rounded-2xl p-4 border border-[#3d2c28]/60 mb-4">
       <h3 class="text-xs font-bold text-[#e6af87] mb-3"><i class="fa-solid fa-boxes-stacked mr-1.5"></i>Mevcut Ürünler</h3>
-      
+
       <div class="grid grid-cols-2 gap-2 mb-3">
         <div>
           <label class="text-[10px] text-gray-500 block mb-1">Kategori Seçimi</label>
@@ -407,22 +414,22 @@ const gorselHavuzu = {
 
 // ── LOCALSTORAGE DEPOLAMA YÖNETİMİ ──
 function ls(key, def) {
-  try { return JSON.parse(localStorage.getItem(key)) || def; } catch { return def; }
+  try { return JSON.parse(localStorage.getItem(key)) || def;
+  } catch { return def; }
 }
 function lsSave(key, val) {
-  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+  try { localStorage.setItem(key, JSON.stringify(val));
+  } catch {}
 }
 
 if (!localStorage.getItem('kfm_menu'))   lsSave('kfm_menu',   varsayilanMenu);
 if (!localStorage.getItem('kfm_yorumlar')) lsSave('kfm_yorumlar', []);
 if (!localStorage.getItem('kfm_wifi'))   lsSave('kfm_wifi',   varsayilanWifi);
 if (!localStorage.getItem('kfm_asifre')) lsSave('kfm_asifre',  varsayilanSifre);
-
 let menuData   = ls('kfm_menu',    varsayilanMenu);
 let yorumData  = ls('kfm_yorumlar', []);
 let wifiData   = ls('kfm_wifi',    varsayilanWifi);
 let adminSifre = ls('kfm_asifre',   varsayilanSifre);
-
 function saveAll() {
   lsSave('kfm_menu',     menuData);
   lsSave('kfm_yorumlar', yorumData);
@@ -430,10 +437,10 @@ function saveAll() {
   lsSave('kfm_asifre',    adminSifre);
 }
 
-let aktifKat   = "cat-kahve";
+let aktifKat   = "cat-all";
 let secilenPuan = 5;
 
-// ── TOAST PANELUYARI ──
+// ── TOAST BİLGİLENDİRME PANELİ ──
 function toast(msg, dur=2000) {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -444,7 +451,7 @@ function toast(msg, dur=2000) {
 function modalAc(id)   { document.getElementById(id).classList.add('open'); }
 function modalKapat(id){ document.getElementById(id).classList.remove('open'); }
 
-// ── JSON EXPORT & IMPORT (GITHUB İÇİN TEMEL YAPI) ──
+// ── JSON EXPORT & IMPORT ──
 function sistemiDisariAktarJSON() {
   const tumSistemYedek = {
     menuYedek: menuData,
@@ -522,7 +529,6 @@ function fallbackKopyala(text) {
   document.body.removeChild(textArea);
 }
 
-// Cihaz ayarlarından çıkışı tetikler
 function wifiBaglan() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(wifiData.sifre);
@@ -561,10 +567,18 @@ function buildNav() {
   const nav    = document.getElementById('catNav');
   const apKat  = document.getElementById('apKat');
   const apMevcutKatFiltre = document.getElementById('apMevcutKatFiltre');
-  
+
   nav.innerHTML  = '';
   apKat.innerHTML = '';
   apMevcutKatFiltre.innerHTML = '<option value="hepsi">✨ Tüm Kategoriler</option>';
+
+  // "✨ Tüm Menü" ana kategori
+  const allBtn = document.createElement('div');
+  allBtn.className = 'cat-pill' + (aktifKat === 'cat-all' ? ' active' : '');
+  allBtn.id = 'cp-cat-all';
+  allBtn.textContent = "✨ Tüm Menü";
+  allBtn.onclick = () => { setNavActive('cat-all'); kategoriGit('cat-all'); };
+  nav.appendChild(allBtn);
 
   for (let k in menuData) {
     const btn = document.createElement('div');
@@ -575,9 +589,9 @@ function buildNav() {
     nav.appendChild(btn);
 
     const opt = document.createElement('option');
-    opt.value = k; 
+    opt.value = k;
     opt.textContent = menuData[k].isim;
-    
+
     apKat.appendChild(opt.cloneNode(true));
     apMevcutKatFiltre.appendChild(opt);
   }
@@ -604,7 +618,14 @@ function renderProducts() {
   const arama = document.getElementById('searchInput').value.toLowerCase().trim();
   grid.innerHTML = '';
   let list = [];
-  (menuData[aktifKat]?.urunler || []).forEach(u => list.push({...u, catKey:aktifKat}));
+
+  if (aktifKat === "cat-all") {
+    for (let catKey in menuData) {
+      (menuData[catKey]?.urunler || []).forEach(u => list.push({...u, catKey: catKey}));
+    }
+  } else {
+    (menuData[aktifKat]?.urunler || []).forEach(u => list.push({...u, catKey: aktifKat}));
+  }
 
   if (arama) list = list.filter(u => u.ad.toLowerCase().includes(arama));
   if (!list.length) {
@@ -649,7 +670,8 @@ function renderProducts() {
   });
 }
 
-// ── DİLEK KUTUSU / YORUMLAR ──
+// ── DİLEK KUTUSU / YORUMLAR & EMAILJS ENTEGRASYONU ──
+function yorumYarkat() {}
 function yorumModalAc() { modalAc('yorumModal'); }
 function setPuan(r) {
   secilenPuan = r;
@@ -657,16 +679,43 @@ function setPuan(r) {
     s.className = i < r ? 'fa-solid fa-star cursor-pointer' : 'fa-regular fa-star cursor-pointer text-gray-600';
   });
 }
+
 function yorumKaydet() {
   const msg = document.getElementById('txtMesaj').value.trim();
   if (!msg) { toast('❌ Lütfen görüşünüzü yazın'); return; }
+
+  const adVerisi = document.getElementById('txtAd').value.trim() || 'Ziyaretçi';
+  const tarihVerisi = new Date().toLocaleDateString('tr-TR');
+
+  // 1. Yerel Veriyi Kaydet
   yorumData.unshift({
     id: Date.now(),
-    isim: document.getElementById('txtAd').value.trim() || 'Ziyaretçi',
-    mesaj: msg, skor: secilenPuan,
-    tarih: new Date().toLocaleDateString('tr-TR')
+    isim: adVerisi,
+    mesaj: msg,
+    skor: secilenPuan,
+    tarih: tarihVerisi
   });
   saveAll();
+
+  // ── ⚠️ NOT: EmailJS paneline giderek aldığın güncel ID'leri buraya yazmalısın! ──
+  const EMAILJS_SERVICE_ID  = "service_r8otkpg"; // Hata alırsan paneldeki "Service ID" ile güncelle
+  const EMAILJS_TEMPLATE_ID = "template_axiuzg4"; // Hata alırsan paneldeki "Template ID" ile güncelle
+
+  // 2. E-Posta Gönderimi
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    isim: adVerisi,
+    mesaj: msg,
+    skor: secilenPuan,
+    tarih: tarihVerisi
+  }).then(
+    function(response) {
+      console.log("Mail başarıyla iletildi!", response.status, response.text);
+    },
+    function(error) {
+      console.error("Mail gönderim hatası:", error);
+    }
+  );
+
   document.getElementById('txtMesaj').value = '';
   document.getElementById('txtAd').value    = '';
   setPuan(5);
@@ -674,6 +723,7 @@ function yorumKaydet() {
   skorGuncelle();
   toast('✅ Geri bildirim alındı, teşekkürler!');
 }
+
 function skorGuncelle() {
   const avg = yorumData.length ? (yorumData.reduce((a,c)=>a+c.skor,0)/yorumData.length).toFixed(1) : 'Öneri-İstek';
   document.getElementById('lblSkor').textContent = avg + ' ★';
@@ -720,7 +770,7 @@ function adminAc() {
   document.getElementById('adminPanel').style.display = 'block';
   document.body.style.overflow = 'hidden';
   document.getElementById('apAdminSifre').value = adminSifre;
-  apWifiDoldur(); 
+  apWifiDoldur();
   apUrunListesiYenile();
   apYorumlariYenile();
 }
@@ -757,6 +807,7 @@ function fiyatGuncelle(catKey, id, val) {
   menuData[catKey].urunler.forEach(u => { if(u.id===id) u.fiyat=parseInt(val)||0; });
   saveAll();
 }
+// Diğer tüm fonksiyon tetikleyicileri (gorselGuncelle, stokDegistir, urunSil vb.) aynen korunmuştur.
 function gorselGuncelle(catKey, id, val) {
   menuData[catKey].urunler.forEach(u => { if(u.id===id) u.gorsel=val.trim(); });
   saveAll();
@@ -774,6 +825,7 @@ function ekstraSil(catKey, id, isim) {
   menuData[catKey].urunler.forEach(u => { if(u.id===id) u.ekstralar=u.ekstralar.filter(ex=>ex.isim!==isim); });
   saveAll(); apUrunListesiYenile();
 }
+// Ekstra yönetim mantığı
 function ekstraEkle(catKey, id) {
   const inputEl = document.getElementById('ekstraInput_' + id);
   if (!inputEl) return;
@@ -788,18 +840,15 @@ function ekstraEkle(catKey, id) {
   saveAll(); apUrunListesiYenile(); toast('✅ Ekstra eklendi');
 }
 
-// ── DİNAMİK KATEGORİ VE ÜRÜN ARAMALI LİSTE YENİLEME ──
 function apUrunListesiYenile() {
   const box = document.getElementById('apUrunListesi');
   const filtreKat = document.getElementById('apMevcutKatFiltre').value;
   const aramaKelimesi = document.getElementById('apUrunAraInput').value.toLowerCase().trim();
-  
+
   box.innerHTML = '';
   let toplamGosterilen = 0;
-
   for (let catKey in menuData) {
     if (filtreKat !== 'hepsi' && filtreKat !== catKey) continue;
-
     menuData[catKey].urunler.forEach(u => {
       if (aramaKelimesi && !u.ad.toLowerCase().includes(aramaKelimesi)) return;
 
@@ -871,12 +920,11 @@ function apYorumlariYenile() {
   });
 }
 
-// ── GITHUB ENTEGRASYON DEĞİŞKENLERİ ──
+// ── GITHUB ENTEGRASYON YAPISI ──
 const githubKullaniciAdi = "muhammedtalhakanat-sys";
 const repoAdi = "Keyfimce-Kafem-Web";
 const jsonDosyaAdi = "keyfimce_menu_ayarlar.json";
 
-// ── BAŞLATMA VE GITHUB VERİ ÇEKME FONKSİYONU ──
 window.onload = async () => {
   const rawUrl = `https://raw.githubusercontent.com/${githubKullaniciAdi}/${repoAdi}/main/${jsonDosyaAdi}`;
 
