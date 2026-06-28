@@ -7,7 +7,7 @@
           "id": 1,
           "ad": "Köpüklü Süt",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://kahhve.com/blog/wp-content/uploads/2023/03/su%CC%88t-ko%CC%88pu%CC%88rtme-2.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -15,7 +15,7 @@
           "id": 2,
           "ad": "Su (0.5 L)",
           "fiyat": 15,
-          "gorsel": "",
+          "gorsel": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/qJyGEVhdS6_1024x1024.png",
           "stoktaVar": true,
           "ekstralar": []
         }
@@ -113,7 +113,7 @@
           "id": 13,
           "ad": "Cafe Latte",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -121,7 +121,7 @@
           "id": 14,
           "ad": "Cappuccino",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -129,7 +129,7 @@
           "id": 15,
           "ad": "Espresso Latte Macchiato",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -137,7 +137,7 @@
           "id": 16,
           "ad": "Flat White",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -145,7 +145,7 @@
           "id": 17,
           "ad": "Italian Cappuccino",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -153,7 +153,7 @@
           "id": 18,
           "ad": "Italian Macchiato",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
           "stoktaVar": true,
           "ekstralar": []
         }
@@ -251,7 +251,7 @@
           "id": 29,
           "ad": "Dejavu Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -259,7 +259,7 @@
           "id": 30,
           "ad": "Dominik Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -267,7 +267,7 @@
           "id": 31,
           "ad": "Ezgotica Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -275,7 +275,7 @@
           "id": 32,
           "ad": "Elma-Nane Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -283,7 +283,7 @@
           "id": 33,
           "ad": "Laddy Killer Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -291,7 +291,7 @@
           "id": 34,
           "ad": "Love66 Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -299,7 +299,7 @@
           "id": 35,
           "ad": "Nakhla Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -307,7 +307,7 @@
           "id": 36,
           "ad": "Red Dream Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -315,7 +315,7 @@
           "id": 37,
           "ad": "Sakız Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -323,7 +323,7 @@
           "id": 38,
           "ad": "Tatlı Cadı Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -331,7 +331,7 @@
           "id": 39,
           "ad": "Yeşil Peri Nargile",
           "fiyat": 350,
-          "gorsel": "",
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
           "ekstralar": []
         }
@@ -650,5 +650,5 @@
     "ad": "Keyfimce_WiFi",
     "sifre": "keyfimce2024"
   },
-  "sifreYedek": "2000"
+  "sifreYedek": "457300"
 }
