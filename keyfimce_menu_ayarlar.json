@@ -28,7 +28,7 @@
           "id": 3,
           "ad": "Americano",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://menu.myqrcodemenu.com/files/products/2ad3c80a-73c2-46db-9c7e-c490475335f6bd945340-eb0a-405b-b8bf-48ff19cb5d58.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -36,7 +36,7 @@
           "id": 4,
           "ad": "Dibek Kahvesi",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://www.yoreselbakkal.com.tr/idea/jl/78/myassets/products/121/dibek-kahve.png?revision=1770984380",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -44,7 +44,7 @@
           "id": 5,
           "ad": "Doppio",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJlRU5P9um_PY9euCxgwpLCjuXQmkWn_NPLGeX3dF5MMPvAj2g3jd2X7hy&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -52,7 +52,7 @@
           "id": 6,
           "ad": "Filtre Kahve",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHI__x_nPAZHzyFoVxJds-Sq5qXVZYn4fdNmyr_TgLYw&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -60,7 +60,7 @@
           "id": 7,
           "ad": "Lungo",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://illy.com.tr/cdn/shop/articles/illy_lungo_tarifi-kapak_8a309e66-4df6-4070-9707-b4ff4f9232ee.jpg?v=1780393544",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -68,7 +68,7 @@
           "id": 8,
           "ad": "Menengiç Kahvesi",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQism_to0UYflxGz6LAhegMriXYPfsoBeSWTf-WVafeE8LOSAZOzZPbmLeu&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -76,7 +76,7 @@
           "id": 9,
           "ad": "Osmanlı Kahvesi",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQeaWGGKwVWGmwuVozvyH_QI9_n_zKyySMsssesDS7wptQZ__dXifjxSk&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -84,7 +84,7 @@
           "id": 10,
           "ad": "Ristretto",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5fcRVNhmuqfr0lbvO3PmMEchZ8z9e1tRymo6kiQJVFGe2pBP2x1eNnTms&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -92,7 +92,7 @@
           "id": 11,
           "ad": "Türk Kahvesi",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://st5.depositphotos.com/1510356/68037/i/950/depositphotos_680377324-stock-photo-turkish-coffee-classic-coffee-cup.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -100,7 +100,7 @@
           "id": 12,
           "ad": "Uzun Kahve",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1546000/kahve-depophotos-1546610.jpg",
           "stoktaVar": true,
           "ekstralar": []
         }
@@ -113,7 +113,7 @@
           "id": 13,
           "ad": "Cafe Latte",
           "fiyat": 150,
-          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8IRRZIOICggAY_9ByM0qC-YKJ1GlDEpRxH9mbPdnqro__Tl_MKGehO7Xo&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -121,7 +121,7 @@
           "id": 14,
           "ad": "Cappuccino",
           "fiyat": 150,
-          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFS8elQ-q1CvCfuB9iJdi0E_IDLrMWSgZjHtP_k1f5QcejA2izo5IHOaY&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -129,7 +129,7 @@
           "id": 15,
           "ad": "Espresso Latte Macchiato",
           "fiyat": 150,
-          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
+          "gorsel": "https://www.texanerin.com/content/uploads/2024/01/easy-espresso-macchiato-photo.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -137,7 +137,7 @@
           "id": 16,
           "ad": "Flat White",
           "fiyat": 150,
-          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
+          "gorsel": "https://yemeksozluk.com/uploads/2024/09/Flat-White12.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -145,7 +145,7 @@
           "id": 17,
           "ad": "Italian Cappuccino",
           "fiyat": 150,
-          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWgJheC5yy9rgLDD4NIBG0VKQC5XqM4nqP_fQgSLLOBmncuyB7v7kx2Wbz&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -153,7 +153,7 @@
           "id": 18,
           "ad": "Italian Macchiato",
           "fiyat": 150,
-          "gorsel": "https://coffee-slang.com/wp-content/uploads/2024/05/how-to-make-a-cappuccino.jpg",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzkDZR9_fwbNEwkGILjkWc4NhpUjutXayEcz-8Ikjx1g&s=10",
           "stoktaVar": true,
           "ekstralar": []
         }
@@ -166,7 +166,7 @@
           "id": 19,
           "ad": "Soğuk Affa Gato",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_e8MJw6gPGKO0-pHbhfbGmMIb33iAFgk1F1pFW4TtsFjORztyXIPNzdtU&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -174,7 +174,7 @@
           "id": 20,
           "ad": "Soğuk Cappuccino",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BfIDlv2PtkXoTVo1BroHGTC-mAUx-Anfzn3yshkPj1WluaMcPRP-3KgA&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -182,7 +182,7 @@
           "id": 21,
           "ad": "Soğuk Chilled Coffe",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://c8.alamy.com/comp/2BR57KH/pouring-cold-coffee-into-tall-glass-with-ice-cubes-on-light-grey-background-refreshment-drink-vertical-format-closeup-2BR57KH.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -190,7 +190,7 @@
           "id": 22,
           "ad": "Soğuk Coffe Latte",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuXjdbZQlSZV8IRT8kPokImk0miUpFF1BxY88QwE-T4rV-nw0IFJ4xrQFA&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -198,7 +198,7 @@
           "id": 23,
           "ad": "Soğuk Espresso",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS88NmdAGA-oa4laPt_pjOB6LgfrMt85l_98mhM0sXo3npHbw_D2-RQxKs&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -206,7 +206,7 @@
           "id": 24,
           "ad": "Soğuk Frappe",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAfLsFCuBt1I43gH-msjzzgdQHQGFzBbtVq1VGJ9IhB4fJ_ypA3xpterNI&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -214,7 +214,7 @@
           "id": 25,
           "ad": "Soğuk Italian Cappuccino",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCXyI_KnpX5jnrEJaC7Dxr3zPRNfcgc8giFUQG3ctp2CHsiEDi7JCUkFA&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -222,7 +222,7 @@
           "id": 26,
           "ad": "Soğuk Latte Macchiato",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9-TfWAoaehz4mgJl2Ft7JfeoIh6OlpHpL62SVrhf6CKHbSmBNaErEZZXW&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -230,7 +230,7 @@
           "id": 27,
           "ad": "Soğuk Nitro Coffe",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://nitrokahve.com/cdn/shop/articles/nitro3.jpg?v=1735304243",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -238,7 +238,7 @@
           "id": 28,
           "ad": "Soğuk Uzun Kahve",
           "fiyat": 170,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfT-QGByhzN_GvN3vEQuAeYV2Y75-lnU95bnTUh42z_Sy4o7MER9ICD8Y&s=10",
           "stoktaVar": true,
           "ekstralar": []
         }
@@ -343,24 +343,24 @@
         {
           "id": 40,
           "ad": "Chees Kek",
-          "fiyat": 0,
-          "gorsel": "",
+          "fiyat": 140,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuxZSL2RAYds7i3inxaZ9A-8Fojzhoqr0p2yhwfGEKwRsu_fjR0CjIiHw&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
         {
           "id": 41,
           "ad": "Cup Tatlı",
-          "fiyat": 0,
-          "gorsel": "",
+          "fiyat": 140,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBq-6QULvba1DWiWchEvFf5UmMu_9Gf2r6aB2deYpKzQpS4rT_dok-auQh&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
         {
           "id": 42,
           "ad": "Profiterol",
-          "fiyat": 0,
-          "gorsel": "",
+          "fiyat": 140,
+          "gorsel": "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/86A0BE97-A721-421D-BFE4-977718FF5734/Derivates/1CDB68C5-0B63-4A92-BF27-7822F654CDCE.jpg",
           "stoktaVar": true,
           "ekstralar": []
         }
@@ -402,7 +402,7 @@
           "id": 46,
           "ad": "Bursa Gazozu",
           "fiyat": 40,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDq-3Fy5MZj0CbuVrNFpNUuGI3hd9tzXAURclQDVM_6EMQZMd8Yr3idCWI&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -410,7 +410,7 @@
           "id": 47,
           "ad": "Didi Bergamot",
           "fiyat": 50,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtNngyLo9Dl7uT2AxFn_anLxehTNoaxxHH_CBeYzzOJQzXcMBxCJOcWM&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -418,7 +418,7 @@
           "id": 48,
           "ad": "Didi Limon",
           "fiyat": 50,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfpzduTh59lUTsES8EVg6SFjPoTetGGYvysNJjS7COF9YqRcIUGA4_Q2k&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -426,7 +426,7 @@
           "id": 49,
           "ad": "Didi Çilek",
           "fiyat": 50,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAxVeySiUia8EFVbeycNAhOqP6AOaaCVU0JsQphHRffoM6f_X9_DaGyg&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -434,7 +434,7 @@
           "id": 50,
           "ad": "Didi Şeftali",
           "fiyat": 50,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_19WK0KrvhlxScF8UsRCqDU52xDw7gCQxj24yeooXqH1h4Jw1EMRf6wM&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -442,7 +442,7 @@
           "id": 51,
           "ad": "Dimes Ananas",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -450,7 +450,7 @@
           "id": 52,
           "ad": "Dimes Karışık",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3cceERI9eWklUzA3L0MG3yA390ROXUAmrH-76AfN6-W4wnUhI0BjuDv95&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -458,7 +458,7 @@
           "id": 53,
           "ad": "Dimes Vişne",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzriHpYp4-2xYcRWtqaTfpud3YBd3D1QyuVvLjqqOaKi_DbvYBDnIQFVfv&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -466,7 +466,7 @@
           "id": 54,
           "ad": "Dimes Şeftali",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqS5togEQLNXp_86i_w3CKgRgnuMOgaIgaw&s",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -474,7 +474,7 @@
           "id": 55,
           "ad": "Kızılay Elma",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcpSZApZ2rJRN_JY_vBZWanOQQf2nJh3X1gfpsIU09UeEDkIG3yFyj0EGH&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -482,7 +482,7 @@
           "id": 56,
           "ad": "Kızılay Guava",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31R_G4VCThtPqCiQSAv0vW-X-L53ucEKGutlcp32C3VMMa1twMcYcguQ&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -490,7 +490,7 @@
           "id": 57,
           "ad": "Kızılay Karpuz Çilek",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjG6Q14SgLeCIRsxfZ8u1YYaQtyhUXnFDHsFuBtuo9aXokxyxxiLmQohNy&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -498,7 +498,7 @@
           "id": 58,
           "ad": "Kızılay Limon",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR-syAVnRd0gBreSr3j97iwtm9B4ti2VKDj5yaWWCrnA&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -506,7 +506,7 @@
           "id": 59,
           "ad": "Kızılay Sade",
           "fiyat": 30,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2QXtKHKAYM1P87dc_P3Gmng3pK_yXVql_A&s",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -514,7 +514,7 @@
           "id": 60,
           "ad": "Niğde Gazozu",
           "fiyat": 40,
-          "gorsel": "",
+          "gorsel": "https://cdn.dsmcdn.com/ty1433/product/media/images/prod/QC/20240720/01/f26c508a-39bf-3f36-8eb7-f08f72895ef7/1_org_zoom.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -522,7 +522,7 @@
           "id": 61,
           "ad": "Sarıyer Portakal",
           "fiyat": 50,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfYWqcKQ89hk3evZgIHQUg7z2sLv2_04zsteplhVZvGC1nqRuenUijMNWn&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -530,7 +530,7 @@
           "id": 62,
           "ad": "Sarıyer Siyah Kola",
           "fiyat": 50,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB0aj5P_80bLUIR53RkiVRqJ-Mjvw3ONORc-cYCvVOd-tmAFPYaD7ZCmuu&s=10",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -538,7 +538,7 @@
           "id": 63,
           "ad": "Uludağ Limonata",
           "fiyat": 45,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQA0UVuTZJTLJDtbgcj8LYtvG6-S2NyIs4qOdPYvzIqA&s=10",
           "stoktaVar": true,
           "ekstralar": []
         }
