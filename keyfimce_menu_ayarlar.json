@@ -103,6 +103,14 @@
           "gorsel": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1546000/kahve-depophotos-1546610.jpg",
           "stoktaVar": true,
           "ekstralar": []
+        },
+        {
+          "id": 1782668549696,
+          "ad": "Klasik Hazır Kahve",
+          "fiyat": 50,
+          "gorsel": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b47bca86-9b07-4a38-a89e-0166030f19b8.__CR0,0,300,300_PT0_SX300_V1___.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
         }
       ]
     },
@@ -551,7 +559,7 @@
           "id": 64,
           "ad": "Bitki Çayı Adaçayı",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://www.okanhastanesi.com.tr/upload/mucizevi-bitki-adacayi-20200701084553.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -559,7 +567,7 @@
           "id": 65,
           "ad": "Bitki Çayı Atom",
           "fiyat": 200,
-          "gorsel": "",
+          "gorsel": "https://png.pngtree.com/png-vector/20260221/ourlarge/pngtree-transparent-glass-cup-filled-with-herbal-tea-ginger-and-daisies-perfect-png-image_18800190.webp",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -567,7 +575,7 @@
           "id": 66,
           "ad": "Bitki Çayı Ihlamur",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://www.buyukanadoluhastanesi.com/images/news/actual/Yhlamurun_Faydalari_Nelerdir_-_Buyuk_Anadolu_Hastanesi.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -575,7 +583,7 @@
           "id": 67,
           "ad": "Bitki Çayı Papatya",
           "fiyat": 100,
-          "gorsel": "",
+          "gorsel": "https://onlinekuruyemis.com/wp-content/uploads/2024/10/papatya-cayinin-faydalari-1.jpg",
           "stoktaVar": true,
           "ekstralar": []
         },
@@ -639,7 +647,7 @@
           "id": 75,
           "ad": "Çay",
           "fiyat": 20,
-          "gorsel": "",
+          "gorsel": "https://mehtaperturk.com/wp-content/uploads/2022/04/turkish-tea.jpg",
           "stoktaVar": true,
           "ekstralar": []
         }
