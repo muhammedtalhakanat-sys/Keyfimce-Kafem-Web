@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Keyfimce Kafem</title>
-<script src="https://cdn.tailwindcss.com">
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
   (function() {
     emailjs.init("eO2J01-bhivAHbgA7");
@@ -30,50 +29,62 @@
     --muted: #8a7068;
     --muted2: #b8a89e;
   }
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
 
-  /* ── Dinamik Renk Geçişli Arka Plan ── */
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: linear-gradient(135deg, #f5f0eb, #fffbf7, #fdf8f4, #f5f0eb);
     background-size: 300% 300%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 18s ease infinite;
     color: var(--ink);
     scroll-behavior: smooth;
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-    overscroll-behavior: none;
+    overscroll-behavior-y: contain;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
   }
 
   @keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  input,
-  textarea,
-  select {
+  input, textarea, select {
     -webkit-user-select: text;
     user-select: text;
+    font-family: inherit;
   }
-  .serif {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-}
 
-  /* ── Glassmorphism (Cam Efekti) ── */
+  .serif {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  /* Genel okunabilirlik: gövde metni biraz daha geniş satır aralığı */
+  p, span, label { line-height: 1.5; }
+
+  /* ── Sayfa giriş animasyonu (içerik yukarı kayarak belirir) ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp .55s cubic-bezier(0.22,1,0.36,1) both; }
+  .fade-up-1 { animation-delay: .05s; }
+  .fade-up-2 { animation-delay: .12s; }
+  .fade-up-3 { animation-delay: .2s; }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(.92) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* ── Glassmorphism ── */
   .glass {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(16px);
@@ -86,9 +97,9 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 10px 18px;
+    padding: 11px 19px;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 600;
     white-space: nowrap;
     border: 1.5px solid var(--border2);
@@ -98,10 +109,9 @@
     transition: all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .03);
+    scroll-snap-align: start;
   }
-  .cat-pill:active {
-    transform: scale(0.92);
-  }
+  .cat-pill:active { transform: scale(0.92); }
   .cat-pill.active {
     background: var(--rust);
     color: #fff;
@@ -110,39 +120,63 @@
     transform: translateY(-2px);
   }
 
-  /* ── Ürün kartı (Büyük Görsel, Cam Efekti, Mikro Animasyon) ── */
+  /* ── Ürün kartı ── */
   .prod-card {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 24px;
-    padding: 16px;
+    border-radius: 22px;
+    padding: 14px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     position: relative;
     overflow: hidden;
     transition: all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .04);
-  }
-  .prod-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(184, 92, 56, 0.12);
-    border-color: var(--rust-lt);
+    animation: popIn .4s cubic-bezier(0.22,1,0.36,1) both;
   }
   .prod-card:active {
-    transform: scale(.96);
+    transform: scale(.97);
     box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
   }
-
-  /* ── Scrollbar gizle ── */
-  .no-scroll::-webkit-scrollbar {
-    display: none;
+  @media (hover:hover) {
+    .prod-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(184, 92, 56, 0.12);
+      border-color: var(--rust-lt);
+    }
   }
+
+  .prod-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    display: block;
+    word-break: break-word;
+  }
+  .prod-price {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--rust);
+    background: rgba(240, 228, 219, 0.7);
+    border: 1px solid rgba(184,92,56,0.2);
+    padding: 5px 12px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(184,92,56,0.1);
+    white-space: nowrap;
+  }
+
+  /* ── Scrollbar gizle + kaydırma rahatlığı ── */
+  .no-scroll::-webkit-scrollbar { display: none; }
   .no-scroll {
     -ms-overflow-style: none;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
   }
 
   /* ── Toast ── */
@@ -151,7 +185,7 @@
     bottom: 100px;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: rgba(44, 26, 18, 0.9);
+    background: rgba(44, 26, 18, 0.92);
     backdrop-filter: blur(8px);
     color: #fff;
     padding: 12px 24px;
@@ -164,6 +198,9 @@
     z-index: 9999;
     white-space: nowrap;
     box-shadow: 0 8px 25px rgba(0, 0, 0, .2);
+    max-width: 90vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   #toast.show {
     opacity: 1;
@@ -181,29 +218,29 @@
     transition: all .3s ease;
     box-shadow: 0 6px 16px rgba(0, 0, 0, .04);
   }
-  .wifi-bar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(184, 92, 56, .08);
-  }
-  .wifi-bar:active {
-    transform: scale(0.97);
+  .wifi-bar:active { transform: scale(0.97); }
+  @media (hover:hover) {
+    .wifi-bar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(184, 92, 56, .08);
+    }
   }
 
-  /* ── Bottom nav (Glass) ── */
+  /* ── Bottom nav ── */
   #bottomNav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 40;
-    background: rgba(255, 255, 255, .75);
+    background: rgba(255, 255, 255, .8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid rgba(255, 255, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+    padding: 11px 0 calc(11px + env(safe-area-inset-bottom));
     box-shadow: 0 -10px 30px rgba(0, 0, 0, .05);
   }
   .bnav-btn {
@@ -212,29 +249,26 @@
     align-items: center;
     gap: 4px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--muted2);
     cursor: pointer;
     transition: all .3s cubic-bezier(0.25, 0.8, 0.25, 1);
     min-width: 80px;
+    padding: 4px 8px;
   }
-  .bnav-btn:active {
-    transform: scale(0.9);
-  }
+  .bnav-btn:active { transform: scale(0.9); }
   .bnav-btn.active {
     color: var(--rust);
     font-weight: 700;
     transform: translateY(-3px);
   }
   .bnav-btn i {
-    font-size: 22px;
+    font-size: 21px;
     transition: transform .3s ease;
   }
-  .bnav-btn.active i {
-    transform: scale(1.1);
-  }
+  .bnav-btn.active i { transform: scale(1.1); }
 
-  /* ── Header (Dinamik arka plan + tam ortalama) ── */
+  /* ── Header ── */
   #mainHeader {
     position: relative;
     height: 220px;
@@ -247,7 +281,6 @@
     align-items: center;
     gap: 12px;
   }
-  /* Header overlay (yazının okunabilirliği için) */
   #mainHeader::before {
     content: '';
     position: absolute;
@@ -259,18 +292,22 @@
     z-index: 1;
     pointer-events: none;
   }
-  #mainHeader>* {
-    position: relative;
-    z-index: 2;
+  #mainHeader > * { position: relative; z-index: 2; }
+
+  #secretTrigger {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+    line-height: 1.15;
+    animation: fadeUp .7s cubic-bezier(0.22,1,0.36,1) both;
   }
 
-  /* ── Search input (Glass) ── */
+  /* ── Search ── */
   .search-wrap input {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.8);
     color: var(--ink);
     box-shadow: 0 4px 15px rgba(0, 0, 0, .03);
+    font-size: 15px;
   }
   .search-wrap input::placeholder {
     color: var(--muted);
@@ -283,7 +320,7 @@
     box-shadow: 0 6px 20px rgba(184, 92, 56, .15);
   }
 
-  /* ── Admin panel form inputs ── */
+  /* ── Admin panel inputs ── */
   .ap-input {
     width: 100%;
     background: rgba(255, 255, 255, 0.5);
@@ -301,7 +338,7 @@
     box-shadow: 0 4px 12px rgba(184, 92, 56, .1);
   }
 
-  /* ── Modal overlay ── */
+  /* ── Modal ── */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -316,12 +353,9 @@
     -webkit-backdrop-filter: blur(10px);
     transition: opacity 0.3s ease;
   }
-  .modal-overlay.open {
-    display: flex;
-    opacity: 1;
-  }
+  .modal-overlay.open { display: flex; opacity: 1; }
   .modal-box {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.6);
@@ -329,18 +363,16 @@
     padding: 26px;
     width: 100%;
     max-width: 420px;
-    max-height: 90vh;
+    max-height: 88vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
     transform: translateY(20px) scale(0.95);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-  .modal-overlay.open .modal-box {
-    transform: translateY(0) scale(1);
-  }
+  .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
 
-  /* ── Stok tükendi overlay ── */
   .stok-overlay {
     position: absolute;
     inset: 0;
@@ -363,7 +395,6 @@
     box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
   }
 
-  /* ── Ekstra pill (müşteri) ── */
   .extra-pill {
     font-size: 11px;
     font-weight: 600;
@@ -375,7 +406,7 @@
     box-shadow: 0 2px 6px rgba(184, 92, 56, 0.1);
   }
 
-  /* ── Açılış / Hoş Geldin Animasyonu ── */
+  /* ── Açılış animasyonu ── */
   #welcomeScreen {
     position: fixed;
     inset: 0;
@@ -399,47 +430,41 @@
     animation: slideUpFade 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
   }
   .welcome-emoji {
-    font-size: 72px;
+    font-size: 64px;
     margin-bottom: 16px;
     display: inline-block;
     animation: wave 2.5s infinite;
     transform-origin: 70% 70%;
   }
   @keyframes slideUpFade {
-    0% {
-        opacity: 0;
-        transform: translateY(40px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   @keyframes wave {
-    0% {
-        transform: rotate(0.0deg)
+    0% { transform: rotate(0.0deg) }
+    10% { transform: rotate(14.0deg) }
+    20% { transform: rotate(-8.0deg) }
+    30% { transform: rotate(14.0deg) }
+    40% { transform: rotate(-4.0deg) }
+    50% { transform: rotate(10.0deg) }
+    60% { transform: rotate(0.0deg) }
+    100% { transform: rotate(0.0deg) }
+  }
+
+  /* ── Erişilebilirlik: hareket azaltma tercihi ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
     }
-    10% {
-        transform: rotate(14.0deg)
-    }
-    20% {
-        transform: rotate(-8.0deg)
-    }
-    30% {
-        transform: rotate(14.0deg)
-    }
-    40% {
-        transform: rotate(-4.0deg)
-    }
-    50% {
-        transform: rotate(10.0deg)
-    }
-    60% {
-        transform: rotate(0.0deg)
-    }
-    100% {
-        transform: rotate(0.0deg)
-    }
+  }
+
+  /* ── Küçük ekranlarda ek sıkılaştırma ── */
+  @media (max-width: 380px) {
+    #secretTrigger { font-size: clamp(1.8rem, 9vw, 2.4rem); }
+    .prod-name { font-size: 15px; }
   }
 </style>
 </head>
@@ -457,315 +482,316 @@
 
     <header id="mainHeader">
         <h1 id="secretTrigger"
-class="serif text-5xl text-center transition-transform active:scale-95"
-style="
-font-weight:700;
-letter-spacing:.18em;
-color:#8c5e3c;
-text-shadow:
-0 2px 8px rgba(255,255,255,.7),
-0 4px 20px rgba(184,92,56,.30);
-">
-Keyfimce Kafem
-</h1>
-    <div class="flex gap-6 glass px-5 py-2 rounded-full shadow-sm">
-        <a href="https://www.instagram.com/keyfimcekafe" target="_blank" rel="noopener"
-        class="flex items-center gap-2 text-xs font-semibold transition-colors hover:text-[#b85c38]"
-        style="color:var(--muted);">
-        <i class="fa-brands fa-instagram text-lg"></i>
-        <span>keyfimcekafe</span>
-    </a>
-    <a href="https://www.tiktok.com/@keyfimce.kafe" target="_blank" rel="noopener"
-    class="flex items-center gap-2 text-xs font-semibold transition-colors hover:text-[#b85c38]"
-    style="color:var(--muted);">
-    <i class="fa-brands fa-tiktok text-lg"></i>
-    <span>keyfimce.kafe</span>
-</a>
-</div>
-</header>
-
-<div class="px-4 mt-5 mb-4" id="wifiBarWrap">
-    <div class="wifi-bar glass" onclick="wifiModalAc()">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-inner" style="background:var(--rust-lt);">
-            <i class="fa-solid fa-wifi text-lg" style="color:var(--rust);"></i>
+            class="serif text-center transition-transform active:scale-95"
+            style="
+            font-weight:700;
+            letter-spacing:.14em;
+            color:#8c5e3c;
+            text-shadow:
+            0 2px 8px rgba(255,255,255,.7),
+            0 4px 20px rgba(184,92,56,.30);
+            padding: 0 12px;
+            ">
+            Keyfimce Kafem
+        </h1>
+        <div class="flex gap-6 glass px-5 py-2 rounded-full shadow-sm fade-up fade-up-1">
+            <a href="https://www.instagram.com/keyfimcekafe" target="_blank" rel="noopener"
+               class="flex items-center gap-2 text-xs font-semibold transition-colors hover:text-[#b85c38]"
+               style="color:var(--muted);">
+                <i class="fa-brands fa-instagram text-lg"></i>
+                <span>keyfimcekafe</span>
+            </a>
+            <a href="https://www.tiktok.com/@keyfimce.kafe" target="_blank" rel="noopener"
+               class="flex items-center gap-2 text-xs font-semibold transition-colors hover:text-[#b85c38]"
+               style="color:var(--muted);">
+                <i class="fa-brands fa-tiktok text-lg"></i>
+                <span>keyfimce.kafe</span>
+            </a>
         </div>
-        <div class="flex-1 min-w-0">
-            <p class="text-sm font-bold truncate" style="color:var(--ink);" id="wifiDisplayName">Keyfimce_WiFi</p>
-            <p class="text-[11px] font-medium mt-0.5" style="color:var(--muted2);">Misafir Wi-Fi — bağlan veya şifreyi kopyala</p>
-        </div>
-        <i class="fa-solid fa-chevron-right text-sm" style="color:var(--muted2);"></i>
-    </div>
-</div>
+    </header>
 
-<div class="px-4 mt-2 mb-5 search-wrap relative">
-    <div class="relative">
-        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-base" style="color:var(--muted);"></i>
-        <input type="text"
-        id="searchInput" oninput="renderProducts()"
-        class="w-full rounded-2xl pl-11 pr-5 py-3 text-[15px] font-medium transition-all"
-        placeholder=":🔍Ne içersiniz?">
-    </div>
-</div>
-
-<div id="catNav" class="no-scroll overflow-x-auto whitespace-nowrap px-4 pb-2 mb-5 flex gap-3"></div>
-
-<main class="px-4" id="productGrid"></main>
-
-<nav id="bottomNav">
-    <div class="bnav-btn active" id="bnav-menu" onclick="setTab('menu')">
-        <i class="fa-solid fa-utensils"></i><span>Menü</span>
-    </div>
-    <div class="bnav-btn" id="bnav-review" onclick="yorumModalAc()">
-        <i class="fa-solid fa-star"></i>
-        <span id="lblSkor">Öneri-İstek</span>
-    </div>
-</nav>
-
-<div id="wifiModal" class="modal-overlay">
-    <div class="modal-box">
-        <button onclick="modalKapat('wifiModal')"
-        class="absolute top-5 right-5 transition-colors hover:text-gray-800"
-        style="color:var(--muted2);">
-        <i class="fa-solid fa-xmark text-xl"></i>
-    </button>
-    <h3 class="serif text-xl mb-5 font-bold flex items-center gap-2" style="color:var(--rust);">
-        <i class="fa-solid fa-wifi"></i> Misafir Wi-Fi
-    </h3>
-    <div class="space-y-4">
-        <div class="rounded-2xl p-5 border shadow-sm glass">
-            <p class="text-xs mb-1 font-semibold" style="color:var(--muted);">Ağ Adı (SSID)</p>
-            <p class="text-base font-bold" style="color:var(--ink);" id="wifiNameDisplay">Keyfimce_WiFi</p>
-        </div>
-        <div class="rounded-2xl p-5 border flex items-center justify-between shadow-sm glass">
-            <div>
-                <p class="text-xs mb-1 font-semibold" style="color:var(--muted);">Şifre</p>
-                <p class="text-base font-bold tracking-widest" style="color:var(--ink);" id="wifiPassDisplay">keyfimce2024</p>
+    <div class="px-4 mt-5 mb-4 fade-up fade-up-1" id="wifiBarWrap">
+        <div class="wifi-bar glass" onclick="wifiModalAc()">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-inner flex-shrink-0" style="background:var(--rust-lt);">
+                <i class="fa-solid fa-wifi text-lg" style="color:var(--rust);"></i>
             </div>
-            <button onclick="wifiSifreyiKopyala()"
-            class="text-white px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-transform active:scale-95 shadow-lg"
-            style="background:var(--rust); box-shadow: 0 4px 15px rgba(184,92,56,0.3);">
-            <i class="fa-solid fa-copy"></i>Kopyala
-        </button>
+            <div class="flex-1 min-w-0">
+                <p class="text-sm font-bold truncate" style="color:var(--ink);" id="wifiDisplayName">Keyfimce_WiFi</p>
+                <p class="text-[11px] font-medium mt-0.5" style="color:var(--muted2);">Misafir Wi-Fi — bağlan veya şifreyi kopyala</p>
+            </div>
+            <i class="fa-solid fa-chevron-right text-sm" style="color:var(--muted2);"></i>
+        </div>
     </div>
-    <button onclick="wifiBaglan()"
-    class="w-full text-white py-3.5 rounded-2xl font-bold text-base transition-all active:scale-95 shadow-lg"
-    style="background:var(--rust); box-shadow: 0 6px 20px rgba(184,92,56,0.25);">
-    <i class="fa-solid fa-link mr-2"></i>Otomatik Bağlanmayı Dene
-</button>
-<p class="text-center text-xs font-medium mt-2" style="color:var(--muted2);">
-    Sorun yaşarsanız şifreyi kopyalayıp ayarlardan Wi-Fi ağına yapıştırabilirsiniz.
-</p>
-</div>
-</div>
-</div>
 
-<div id="yorumModal" class="modal-overlay">
-    <div class="modal-box">
-        <button onclick="modalKapat('yorumModal')"
-        class="absolute top-5 right-5 hover:text-gray-800 transition-colors"
-        style="color:var(--muted2);">
-        <i class="fa-solid fa-xmark text-xl"></i>
-    </button>
-    <h3 class="serif text-xl mb-5 font-bold flex items-center gap-2" style="color:var(--rust);">
-        <i class="fa-solid fa-comments"></i> Öneri-İstek Kutusu
-    </h3>
-    <div class="space-y-4">
-        <div>
-            <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">İsminiz (İsteğe Bağlı)</label>
-            <input type="text" id="txtAd" class="ap-input" placeholder="Adınız">
+    <div class="px-4 mt-2 mb-5 search-wrap relative fade-up fade-up-2">
+        <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-base" style="color:var(--muted);"></i>
+            <input type="text"
+                   id="searchInput" oninput="renderProducts()"
+                   class="w-full rounded-2xl pl-11 pr-5 py-3 font-medium transition-all"
+                   placeholder="🔍 Ne içersiniz?">
         </div>
-        <div>
-            <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Görüşünüz</label>
-            <textarea id="txtMesaj" rows="3" class="ap-input resize-none" placeholder="Fikirleriniz değerlidir..."></textarea>
+    </div>
+
+    <div id="catNav" class="no-scroll overflow-x-auto whitespace-nowrap px-4 pb-2 mb-5 flex gap-3 fade-up fade-up-2"></div>
+
+    <main class="px-4" id="productGrid"></main>
+
+    <nav id="bottomNav">
+        <div class="bnav-btn active" id="bnav-menu" onclick="setTab('menu')">
+            <i class="fa-solid fa-utensils"></i><span>Menü</span>
         </div>
-        <div class="glass p-4 rounded-2xl border text-center">
-            <label class="text-xs block mb-2 font-bold" style="color:var(--muted);">Puanınız</label>
-            <div class="flex justify-center gap-3 text-3xl text-amber-400" id="starContainer">
-                <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(1)"></i>
-                <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(2)"></i>
-                <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(3)"></i>
-                <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(4)"></i>
-                <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(5)"></i>
+        <div class="bnav-btn" id="bnav-review" onclick="yorumModalAc()">
+            <i class="fa-solid fa-star"></i>
+            <span id="lblSkor">Öneri-İstek</span>
+        </div>
+    </nav>
+
+    <div id="wifiModal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="modalKapat('wifiModal')"
+                    class="absolute top-5 right-5 transition-colors hover:text-gray-800"
+                    style="color:var(--muted2);">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="serif text-xl mb-5 font-bold flex items-center gap-2" style="color:var(--rust);">
+                <i class="fa-solid fa-wifi"></i> Misafir Wi-Fi
+            </h3>
+            <div class="space-y-4">
+                <div class="rounded-2xl p-5 border shadow-sm glass">
+                    <p class="text-xs mb-1 font-semibold" style="color:var(--muted);">Ağ Adı (SSID)</p>
+                    <p class="text-base font-bold" style="color:var(--ink);" id="wifiNameDisplay">Keyfimce_WiFi</p>
+                </div>
+                <div class="rounded-2xl p-5 border flex items-center justify-between shadow-sm glass">
+                    <div>
+                        <p class="text-xs mb-1 font-semibold" style="color:var(--muted);">Şifre</p>
+                        <p class="text-base font-bold tracking-widest" style="color:var(--ink);" id="wifiPassDisplay">keyfimce2024</p>
+                    </div>
+                    <button onclick="wifiSifreyiKopyala()"
+                            class="text-white px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-transform active:scale-95 shadow-lg"
+                            style="background:var(--rust); box-shadow: 0 4px 15px rgba(184,92,56,0.3);">
+                        <i class="fa-solid fa-copy"></i>Kopyala
+                    </button>
+                </div>
+                <button onclick="wifiBaglan()"
+                        class="w-full text-white py-3.5 rounded-2xl font-bold text-base transition-all active:scale-95 shadow-lg"
+                        style="background:var(--rust); box-shadow: 0 6px 20px rgba(184,92,56,0.25);">
+                    <i class="fa-solid fa-link mr-2"></i>Şifreyi Kopyala ve Bağlan
+                </button>
+                <p class="text-center text-xs font-medium mt-2" style="color:var(--muted2);">
+                    Şifre kopyalanır; ayarlardan Wi-Fi ağına yapıştırabilirsiniz.
+                </p>
             </div>
         </div>
-        <button onclick="yorumKaydet()"
-        class="w-full text-white py-3.5 rounded-2xl font-bold text-base active:scale-95 transition-all shadow-lg mt-2"
-        style="background:var(--rust); box-shadow: 0 6px 20px rgba(184,92,56,0.25);">
-        Gönder
-    </button>
-</div>
-</div>
-</div>
+    </div>
 
-<div id="authModal" class="modal-overlay">
-    <div class="modal-box glass" style="max-width:320px;">
-        <button onclick="modalKapat('authModal')"
-        class="absolute top-4 right-4 hover:text-gray-800 transition-colors"
-        style="color:var(--muted2);">
-        <i class="fa-solid fa-xmark text-lg"></i>
-    </button>
-    <div class="text-center">
-        <div class="text-4xl mb-3 animate-pulse" style="color:var(--rust);"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3 class="serif text-lg mb-5 font-bold" style="color:var(--rust);">Yetkili Girişi</h3>
-        <input type="password" id="authPass"
-        class="ap-input text-center text-xl tracking-[0.5em] mb-5 font-bold"
-        placeholder="••••"
-        onkeydown="if(event.key==='Enter')authKontrol()">
-        <div class="flex gap-3">
+    <div id="yorumModal" class="modal-overlay">
+        <div class="modal-box">
+            <button onclick="modalKapat('yorumModal')"
+                    class="absolute top-5 right-5 hover:text-gray-800 transition-colors"
+                    style="color:var(--muted2);">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="serif text-xl mb-5 font-bold flex items-center gap-2" style="color:var(--rust);">
+                <i class="fa-solid fa-comments"></i> Öneri-İstek Kutusu
+            </h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">İsminiz (İsteğe Bağlı)</label>
+                    <input type="text" id="txtAd" class="ap-input" placeholder="Adınız">
+                </div>
+                <div>
+                    <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Görüşünüz</label>
+                    <textarea id="txtMesaj" rows="3" class="ap-input resize-none" placeholder="Fikirleriniz değerlidir..."></textarea>
+                </div>
+                <div class="glass p-4 rounded-2xl border text-center">
+                    <label class="text-xs block mb-2 font-bold" style="color:var(--muted);">Puanınız</label>
+                    <div class="flex justify-center gap-3 text-3xl text-amber-400" id="starContainer">
+                        <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(1)"></i>
+                        <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(2)"></i>
+                        <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(3)"></i>
+                        <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(4)"></i>
+                        <i class="fa-solid fa-star cursor-pointer transition-transform hover:scale-110" onclick="setPuan(5)"></i>
+                    </div>
+                </div>
+                <button onclick="yorumKaydet()"
+                        class="w-full text-white py-3.5 rounded-2xl font-bold text-base active:scale-95 transition-all shadow-lg mt-2"
+                        style="background:var(--rust); box-shadow: 0 6px 20px rgba(184,92,56,0.25);">
+                    Gönder
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal-overlay">
+        <div class="modal-box glass" style="max-width:320px;">
             <button onclick="modalKapat('authModal')"
-            class="flex-1 py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform"
-            style="background:rgba(255,255,255,0.8); color:var(--muted); border:1.5px solid var(--border);">
-            İptal
-        </button>
-        <button onclick="authKontrol()"
-        class="flex-1 text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-lg"
-        style="background:var(--rust); box-shadow: 0 4px 15px rgba(184,92,56,0.25);">
-        Giriş
-    </button>
-</div>
-</div>
-</div>
-</div>
-
-<div id="adminPanel" style="display:none; position:fixed; inset:0; z-index:50; overflow-y:auto; background:var(--bg);">
-    <div class="max-w-2xl mx-auto px-4 py-6 pb-24">
-
-        <div class="flex items-center justify-between mb-6 glass p-4 rounded-2xl border shadow-sm">
-            <div>
-                <h2 class="serif text-xl font-bold" style="color:var(--rust);">
-                    <i class="fa-solid fa-sliders mr-2"></i>Yönetim Paneli
-                </h2>
-                <p class="text-xs mt-1 font-medium" style="color:var(--muted2);">Keyfimce Kafem · Kontrol Merkezi</p>
+                    class="absolute top-4 right-4 hover:text-gray-800 transition-colors"
+                    style="color:var(--muted2);">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="text-center">
+                <div class="text-4xl mb-3 animate-pulse" style="color:var(--rust);"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3 class="serif text-lg mb-5 font-bold" style="color:var(--rust);">Yetkili Girişi</h3>
+                <input type="password" id="authPass"
+                       class="ap-input text-center text-xl tracking-[0.5em] mb-5 font-bold"
+                       placeholder="••••"
+                       onkeydown="if(event.key==='Enter')authKontrol()">
+                <div class="flex gap-3">
+                    <button onclick="modalKapat('authModal')"
+                            class="flex-1 py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform"
+                            style="background:rgba(255,255,255,0.8); color:var(--muted); border:1.5px solid var(--border);">
+                        İptal
+                    </button>
+                    <button onclick="authKontrol()"
+                            class="flex-1 text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-lg"
+                            style="background:var(--rust); box-shadow: 0 4px 15px rgba(184,92,56,0.25);">
+                        Giriş
+                    </button>
+                </div>
             </div>
-            <button onclick="adminKapat()"
-            class="py-2.5 px-4 rounded-xl text-sm font-bold flex items-center gap-2 transition-transform active:scale-95 shadow-sm"
-            style="background:#fff; border:1.5px solid var(--border2); color:var(--muted);">
-            <i class="fa-solid fa-arrow-left"></i>Menüye Dön
-        </button>
-    </div>
-
-    <div class="glass p-5 rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(253, 186, 116, 0.5); background:rgba(255, 251, 247, 0.8);">
-        <h3 class="text-sm font-bold mb-2" style="color:#c2410c;">
-            <i class="fa-solid fa-cloud-arrow-down mr-2"></i>GitHub & Yedek Entegrasyonu
-        </h3>
-        <p class="text-xs mb-4 font-medium" style="color:var(--muted);">Tüm sistemi (Menü, WiFi, Şifre, Header Arka Plan) tek bir dosya olarak dışarı aktarın veya içeri yükleyin.</p>
-        <div class="grid grid-cols-2 gap-3">
-            <button onclick="sistemiDisariAktarJSON()"
-            class="py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
-            style="background:#fff7ed; border:1.5px solid #fdba74; color:#c2410c; box-shadow:0 4px 10px rgba(194, 65, 12, 0.1);">
-            <i class="fa-solid fa-download"></i> JSON İndir
-        </button>
-        <label class="py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 cursor-pointer text-center active:scale-95 transition-transform"
-        style="background:rgba(255,255,255,0.8); border:1.5px solid var(--border2); color:var(--muted); box-shadow:0 4px 10px rgba(0,0,0,0.02);">
-        <i class="fa-solid fa-upload"></i> JSON Yükle
-        <input type="file" id="jsonFileInput" accept=".json" onchange="sistemiIceriAktarJSON(event)" class="hidden">
-    </label>
-</div>
-</div>
-
-<div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-    <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
-        <i class="fa-solid fa-lock mr-2"></i>Yönetim Giriş Şifresi
-    </h3>
-    <div class="flex gap-3">
-        <input type="text" id="apAdminSifre" class="ap-input flex-1 text-sm font-medium" placeholder="Yeni Giriş Şifresi">
-        <button onclick="sifreKaydet()"
-        class="text-white px-5 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md"
-        style="background:var(--rust);">
-        Güncelle
-    </button>
-</div>
-</div>
-
-<div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-    <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
-        <i class="fa-solid fa-image mr-2"></i>Header Arka Plan Resmi
-    </h3>
-    <p class="text-xs mb-3 font-medium" style="color:var(--muted);">Sayfanın en üstündeki banner görselinin URL adresi. Canlı ön izleme için kaydedin.</p>
-    <div class="flex gap-3">
-        <input type="text" id="apHeaderBg" class="ap-input flex-1 text-sm font-medium" placeholder="https://images.unsplash.com/...">
-        <button onclick="headerBgKaydet()"
-        class="text-white px-5 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md"
-        style="background:var(--rust);">
-        Kaydet
-    </button>
-</div>
-</div>
-
-<div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-    <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
-        <i class="fa-solid fa-wifi mr-2"></i>Wi-Fi Bilgileri
-    </h3>
-    <div class="grid grid-cols-2 gap-4">
-        <div>
-            <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Ağ Adı (SSID)</label>
-            <input type="text" id="apWifiAd" class="ap-input text-sm font-medium" placeholder="Keyfimce_WiFi">
-        </div>
-        <div>
-            <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Şifre</label>
-            <input type="text" id="apWifiSifre" class="ap-input text-sm font-medium" placeholder="keyfimce2024">
         </div>
     </div>
-    <button onclick="wifiKaydet()"
-    class="mt-4 w-full text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md"
-    style="background:var(--rust);">
-    Kaydet
-</button>
-</div>
 
-<div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-    <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
-        <i class="fa-solid fa-circle-plus mr-2"></i>Yeni Ürün Ekle
-    </h3>
-    <div class="space-y-3">
-        <select id="apKat" class="ap-input text-sm font-medium"></select>
-        <div class="grid grid-cols-2 gap-3">
-            <input type="text" id="apAd" class="ap-input text-sm font-medium" placeholder="Ürün adı">
-            <input type="number" id="apFiyat" class="ap-input text-sm font-medium" placeholder="Fiyat (TL)">
-        </div>
-        <input type="text" id="apGorsel" class="ap-input text-sm font-medium" placeholder="Görsel URL (isteğe bağlı)">
-        <input type="text" id="apEkstra" class="ap-input text-sm font-medium" placeholder="Ekstralar (Örn: Karamel:20, Vanilya:20)">
-        <button onclick="urunEkle()"
-        class="w-full text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md mt-2"
-        style="background:var(--rust);">
-        Sisteme Ekle
-    </button>
-</div>
-</div>
+    <div id="adminPanel" style="display:none; position:fixed; inset:0; z-index:50; overflow-y:auto; -webkit-overflow-scrolling:touch; background:var(--bg);">
+        <div class="max-w-2xl mx-auto px-4 py-6 pb-24">
 
-<div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-    <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
-        <i class="fa-solid fa-boxes-stacked mr-2"></i>Mevcut Ürünler
-    </h3>
-    <div class="grid grid-cols-2 gap-3 mb-4">
-        <div>
-            <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Kategori Seçimi</label>
-            <select id="apMevcutKatFiltre" onchange="apUrunListesiYenile()" class="ap-input text-xs font-medium"></select>
-        </div>
-        <div>
-            <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Ürünlerde Ara</label>
-            <input type="text" id="apUrunAraInput" oninput="apUrunListesiYenile()" class="ap-input text-xs font-medium" placeholder="Ürün adı yazın...">
+            <div class="flex items-center justify-between mb-6 glass p-4 rounded-2xl border shadow-sm">
+                <div>
+                    <h2 class="serif text-xl font-bold" style="color:var(--rust);">
+                        <i class="fa-solid fa-sliders mr-2"></i>Yönetim Paneli
+                    </h2>
+                    <p class="text-xs mt-1 font-medium" style="color:var(--muted2);">Keyfimce Kafem · Kontrol Merkezi</p>
+                </div>
+                <button onclick="adminKapat()"
+                        class="py-2.5 px-4 rounded-xl text-sm font-bold flex items-center gap-2 transition-transform active:scale-95 shadow-sm"
+                        style="background:#fff; border:1.5px solid var(--border2); color:var(--muted);">
+                    <i class="fa-solid fa-arrow-left"></i>Menüye Dön
+                </button>
+            </div>
+
+            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(253, 186, 116, 0.5); background:rgba(255, 251, 247, 0.8);">
+                <h3 class="text-sm font-bold mb-2" style="color:#c2410c;">
+                    <i class="fa-solid fa-cloud-arrow-down mr-2"></i>GitHub & Yedek Entegrasyonu
+                </h3>
+                <p class="text-xs mb-4 font-medium" style="color:var(--muted);">Tüm sistemi (Menü, WiFi, Şifre, Header Arka Plan) tek bir dosya olarak dışarı aktarın veya içeri yükleyin.</p>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="sistemiDisariAktarJSON()"
+                            class="py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                            style="background:#fff7ed; border:1.5px solid #fdba74; color:#c2410c; box-shadow:0 4px 10px rgba(194, 65, 12, 0.1);">
+                        <i class="fa-solid fa-download"></i> JSON İndir
+                    </button>
+                    <label class="py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 cursor-pointer text-center active:scale-95 transition-transform"
+                           style="background:rgba(255,255,255,0.8); border:1.5px solid var(--border2); color:var(--muted); box-shadow:0 4px 10px rgba(0,0,0,0.02);">
+                        <i class="fa-solid fa-upload"></i> JSON Yükle
+                        <input type="file" id="jsonFileInput" accept=".json" onchange="sistemiIceriAktarJSON(event)" class="hidden">
+                    </label>
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
+                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+                    <i class="fa-solid fa-lock mr-2"></i>Yönetim Giriş Şifresi
+                </h3>
+                <div class="flex gap-3">
+                    <input type="text" id="apAdminSifre" class="ap-input flex-1 text-sm font-medium" placeholder="Yeni Giriş Şifresi">
+                    <button onclick="sifreKaydet()"
+                            class="text-white px-5 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md"
+                            style="background:var(--rust);">
+                        Güncelle
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
+                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+                    <i class="fa-solid fa-image mr-2"></i>Header Arka Plan Resmi
+                </h3>
+                <p class="text-xs mb-3 font-medium" style="color:var(--muted);">Sayfanın en üstündeki banner görselinin URL adresi. Canlı ön izleme için kaydedin.</p>
+                <div class="flex gap-3">
+                    <input type="text" id="apHeaderBg" class="ap-input flex-1 text-sm font-medium" placeholder="https://images.unsplash.com/...">
+                    <button onclick="headerBgKaydet()"
+                            class="text-white px-5 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md"
+                            style="background:var(--rust);">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
+                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+                    <i class="fa-solid fa-wifi mr-2"></i>Wi-Fi Bilgileri
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Ağ Adı (SSID)</label>
+                        <input type="text" id="apWifiAd" class="ap-input text-sm font-medium" placeholder="Keyfimce_WiFi">
+                    </div>
+                    <div>
+                        <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Şifre</label>
+                        <input type="text" id="apWifiSifre" class="ap-input text-sm font-medium" placeholder="keyfimce2024">
+                    </div>
+                </div>
+                <button onclick="wifiKaydet()"
+                        class="mt-4 w-full text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md"
+                        style="background:var(--rust);">
+                    Kaydet
+                </button>
+            </div>
+
+            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
+                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+                    <i class="fa-solid fa-circle-plus mr-2"></i>Yeni Ürün Ekle
+                </h3>
+                <div class="space-y-3">
+                    <select id="apKat" class="ap-input text-sm font-medium"></select>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="text" id="apAd" class="ap-input text-sm font-medium" placeholder="Ürün adı">
+                        <input type="number" id="apFiyat" class="ap-input text-sm font-medium" placeholder="Fiyat (TL)">
+                    </div>
+                    <input type="text" id="apGorsel" class="ap-input text-sm font-medium" placeholder="Görsel URL (isteğe bağlı)">
+                    <input type="text" id="apEkstra" class="ap-input text-sm font-medium" placeholder="Ekstralar (Örn: Karamel:20, Vanilya:20)">
+                    <button onclick="urunEkle()"
+                            class="w-full text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md mt-2"
+                            style="background:var(--rust);">
+                        Sisteme Ekle
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
+                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+                    <i class="fa-solid fa-boxes-stacked mr-2"></i>Mevcut Ürünler
+                </h3>
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div>
+                        <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Kategori Seçimi</label>
+                        <select id="apMevcutKatFiltre" onchange="apUrunListesiYenile()" class="ap-input text-xs font-medium"></select>
+                    </div>
+                    <div>
+                        <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Ürünlerde Ara</label>
+                        <input type="text" id="apUrunAraInput" oninput="apUrunListesiYenile()" class="ap-input text-xs font-medium" placeholder="Ürün adı yazın...">
+                    </div>
+                </div>
+                <div id="apUrunListesi" class="space-y-4"></div>
+            </div>
+
+            <div class="glass p-5 rounded-3xl border shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-sm font-bold" style="color:var(--rust);">
+                        <i class="fa-solid fa-heart-pulse mr-2"></i>Müşteri Yorumları
+                    </h3>
+                    <button onclick="yorumlariSil()"
+                            class="text-xs px-4 py-2 rounded-xl font-bold active:scale-95 transition-transform shadow-sm"
+                            style="background:#fef2f2; border:1px solid #fca5a5; color:#b91c1c;">
+                        <i class="fa-solid fa-trash mr-1"></i>Tümünü Sil
+                    </button>
+                </div>
+                <div id="apYorumListesi" class="space-y-3"></div>
+            </div>
+
         </div>
     </div>
-    <div id="apUrunListesi" class="space-y-4"></div>
-</div>
-
-<div class="glass p-5 rounded-3xl border shadow-sm">
-    <div class="flex justify-between items-center mb-4">
-        <h3 class="text-sm font-bold" style="color:var(--rust);">
-            <i class="fa-solid fa-heart-pulse mr-2"></i>Müşteri Yorumları
-        </h3>
-        <button onclick="yorumlariSil()"
-        class="text-xs px-4 py-2 rounded-xl font-bold active:scale-95 transition-transform shadow-sm"
-        style="background:#fef2f2; border:1px solid #fca5a5; color:#b91c1c;">
-        <i class="fa-solid fa-trash mr-1"></i>Tümünü Sil
-    </button>
-</div>
-<div id="apYorumListesi" class="space-y-3"></div>
-</div>
-
-</div>
-</div>
 
 <script>
     // ── AÇILIŞ ANİMASYONU ──
@@ -774,7 +800,7 @@ Keyfimce Kafem
         setTimeout(() => {
             ws.style.opacity = '0';
             ws.style.visibility = 'hidden';
-        }, 1800);
+        }, 1600);
     });
 
     // ── VARSAYILAN VERİLER ──
@@ -784,30 +810,25 @@ Keyfimce Kafem
             isim: "☕ Kahveler",
             urunler: [
                 { id: 1, ad: "Türk Kahvesi", fiyat: 65, gorsel: "", stoktaVar: true, ekstralar: [] },
-                { id: 2, ad: "Filtre Kahve", fiyat: 75, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Süt",
-                        fiyat: 15 }] }
+                { id: 2, ad: "Filtre Kahve", fiyat: 75, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Süt", fiyat: 15 }] }
             ]
         },
         "cat-sutlu": {
             isim: "🥛 Sütlü Kahveler",
             urunler: [
-                { id: 3, ad: "Latte Macchiato", fiyat: 90, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Karamel",
-                        fiyat: 20 }, { isim: "Vanilya", fiyat: 20 }
-                ] }
+                { id: 3, ad: "Latte Macchiato", fiyat: 90, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Karamel", fiyat: 20 }, { isim: "Vanilya", fiyat: 20 }] }
             ]
         },
         "cat-soguk-kahve": {
             isim: "❄️ Soğuk Kahveler",
             urunler: [
-                { id: 4, ad: "Iced Latte", fiyat: 95, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Fındık Şurubu",
-                        fiyat: 20 }] }
+                { id: 4, ad: "Iced Latte", fiyat: 95, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Fındık Şurubu", fiyat: 20 }] }
             ]
         },
         "cat-tatli": {
             isim: "🍰 Tatlılar",
             urunler: [
-                { id: 5, ad: "San Sebastian", fiyat: 130, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Ekstra Çikolata",
-                        fiyat: 35 }] }
+                { id: 5, ad: "San Sebastian", fiyat: 130, gorsel: "", stoktaVar: true, ekstralar: [{ isim: "Ekstra Çikolata", fiyat: 35 }] }
             ]
         },
         "cat-cay": { isim: "🫖 Çaylar", urunler: [] },
@@ -816,7 +837,7 @@ Keyfimce Kafem
     };
     const varsayilanWifi = { ad: "Keyfimce_WiFi", sifre: "keyfimce2024" };
     const varsayilanSifre = "1999";
-    const PRESS_MS = 500;
+    const PRESS_MS = 10000;
     const gorselHavuzu = {
         "cat-kahve": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80",
         "cat-sutlu": "https://images.unsplash.com/photo-1593444201283-e02abb57c568?auto=format&fit=crop&w=400&q=80",
@@ -829,7 +850,12 @@ Keyfimce Kafem
 
     // ── LOCALSTORAGE ──
     function ls(key, def) {
-        try { return JSON.parse(localStorage.getItem(key)) || def; } catch { return def; }
+        try {
+            const raw = localStorage.getItem(key);
+            if (raw === null) return def;
+            const parsed = JSON.parse(raw);
+            return parsed === null || parsed === undefined ? def : parsed;
+        } catch { return def; }
     }
 
     function lsSave(key, val) {
@@ -868,11 +894,11 @@ Keyfimce Kafem
         const el = document.getElementById('toast');
         el.textContent = msg;
         el.classList.add('show');
-        setTimeout(() => el.classList.remove('show'), dur);
+        clearTimeout(el._t);
+        el._t = setTimeout(() => el.classList.remove('show'), dur);
     }
 
     function modalAc(id) { document.getElementById(id).classList.add('open'); }
-
     function modalKapat(id) { document.getElementById(id).classList.remove('open'); }
 
     // ── JSON EXPORT & IMPORT ──
@@ -919,6 +945,7 @@ Keyfimce Kafem
             } catch { toast('❌ Dosya okunurken bir hata oluştu.'); }
         };
         okuyucu.readAsText(dosya);
+        event.target.value = '';
     }
 
     // ── HEADER BG ──
@@ -938,8 +965,7 @@ Keyfimce Kafem
         document.getElementById('wifiPassDisplay').textContent = wifiData.sifre;
     }
 
-    function wifiModalAc() { wifiEkraniGuncelle();
-        modalAc('wifiModal'); }
+    function wifiModalAc() { wifiEkraniGuncelle(); modalAc('wifiModal'); }
 
     function wifiSifreyiKopyala() {
         if (navigator.clipboard) {
@@ -952,18 +978,19 @@ Keyfimce Kafem
     function fallbackKopyala(text) {
         const t = document.createElement("textarea");
         t.value = text;
+        t.style.position = 'fixed';
+        t.style.opacity = '0';
         document.body.appendChild(t);
+        t.focus();
         t.select();
-        try { document.execCommand('copy');
-            toast('📋 Şifre kopyalandı!'); } catch { toast('Şifre: ' + text, 4000); }
+        try { document.execCommand('copy'); toast('📋 Şifre kopyalandı!'); }
+        catch { toast('Şifre: ' + text, 4000); }
         document.body.removeChild(t);
     }
 
     function wifiBaglan() {
-        if (navigator.clipboard) navigator.clipboard.writeText(wifiData.sifre);
-        toast('📋 Şifre kopyalandı! Cihaz Wi-Fi ayarlarına yönlendiriliyor...');
-        setTimeout(() => { window.location.href =
-            "data:text/html, <script>window.close();<\/script>"; }, 1200);
+        if (navigator.clipboard) navigator.clipboard.writeText(wifiData.sifre).catch(() => {});
+        toast('📋 Şifre kopyalandı! Cihazınızın Wi-Fi ayarlarından ağa bağlanabilirsiniz.');
     }
 
     function wifiKaydet() {
@@ -1001,16 +1028,14 @@ Keyfimce Kafem
         allBtn.className = 'cat-pill' + (aktifKat === 'cat-all' ? ' active' : '');
         allBtn.id = 'cp-cat-all';
         allBtn.textContent = "✨ Tüm Menü";
-        allBtn.onclick = () => { setNavActive('cat-all');
-            kategoriGit('cat-all'); };
+        allBtn.onclick = () => { setNavActive('cat-all'); kategoriGit('cat-all'); };
         nav.appendChild(allBtn);
         for (let k in menuData) {
             const btn = document.createElement('div');
             btn.className = 'cat-pill' + (k === aktifKat ? ' active' : '');
             btn.id = 'cp-' + k;
             btn.textContent = menuData[k].isim;
-            btn.onclick = () => { setNavActive(k);
-                kategoriGit(k); };
+            btn.onclick = () => { setNavActive(k); kategoriGit(k); };
             nav.appendChild(btn);
             const opt = document.createElement('option');
             opt.value = k;
@@ -1023,17 +1048,30 @@ Keyfimce Kafem
     function setNavActive(k) {
         document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
         const el = document.getElementById('cp-' + k);
-        if (el) { el.classList.add('active');
-            el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
+        if (el) {
+            el.classList.add('active');
+            el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
     }
 
     function kategoriGit(k) {
         aktifKat = k;
         setNavActive(k);
         renderProducts();
+        // Kategori değişince ürün listesinin tepesine yumuşakça kaydır (mobilde kullanışlılık)
+        const grid = document.getElementById('productGrid');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // ── ÜRÜNLER ──
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
     function renderProducts() {
         const grid = document.getElementById('productGrid');
         const arama = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -1051,15 +1089,14 @@ Keyfimce Kafem
                 '<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">Ürün bulunamadı</p>';
             return;
         }
-        list.forEach(u => {
+        list.forEach((u, idx) => {
             const img = u.gorsel || gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve'];
+            const fallbackImg = gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve'];
             let exHtml = '';
             if (u.ekstralar?.length) {
-                exHtml =
-                    '<div class="flex flex-wrap gap-1.5 mt-2.5 pt-2.5" style="border-top:1px solid rgba(232,221,213,0.5);">';
+                exHtml = '<div class="flex flex-wrap gap-1.5 mt-2.5 pt-2.5" style="border-top:1px solid rgba(232,221,213,0.5);">';
                 u.ekstralar.forEach(ex => {
-                    exHtml +=
-                        `<span class="extra-pill">+${ex.isim} ${ex.fiyat}₺</span>`;
+                    exHtml += `<span class="extra-pill">+${escapeHtml(ex.isim)} ${ex.fiyat}₺</span>`;
                 });
                 exHtml += '</div>';
             }
@@ -1067,16 +1104,18 @@ Keyfimce Kafem
           <div class="stok-overlay">
             <span class="stok-badge">TÜKENDİ</span>
           </div>` : '';
+            const delay = Math.min(idx, 6) * 0.04;
             grid.insertAdjacentHTML('beforeend', `
-          <div class="prod-card mb-4">
+          <div class="prod-card mb-4" style="animation-delay:${delay}s;">
             ${stokOverlay}
-            <img src="${img}" alt="${u.ad}"
-              style="width:96px;height:96px;border-radius:18px;object-fit:cover;border:2px solid #fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.08);"
-              onerror="this.src='${gorselHavuzu[u.catKey]}'">
+            <img src="${img}" alt="${escapeHtml(u.ad)}"
+              style="width:92px;height:92px;border-radius:18px;object-fit:cover;border:2px solid #fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.08);"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='${fallbackImg}'">
             <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;">
               <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
-                <span style="font-size:16px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;">${u.ad}</span>
-                <span style="font-size:14px;font-weight:800;color:var(--rust);background:rgba(240, 228, 219, 0.7);border:1px solid rgba(184,92,56,0.2);padding:4px 12px;border-radius:12px;flex-shrink:0;box-shadow:0 2px 8px rgba(184,92,56,0.1);">${u.fiyat}₺</span>
+                <span class="prod-name">${escapeHtml(u.ad)}</span>
+                <span class="prod-price">${u.fiyat}₺</span>
               </div>
               ${exHtml}
             </div>
@@ -1105,15 +1144,17 @@ Keyfimce Kafem
         saveAll();
         const EMAILJS_SERVICE_ID = "service_r8otkpg";
         const EMAILJS_TEMPLATE_ID = "template_axiuzg4";
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            isim: adVerisi,
-            mesaj: msg,
-            skor: secilenPuan,
-            tarih: tarihVerisi
-        }).then(
-            r => console.log("Mail gönderildi!", r.status, r.text),
-            err => console.error("Mail hatası:", err)
-        );
+        if (window.emailjs) {
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                isim: adVerisi,
+                mesaj: msg,
+                skor: secilenPuan,
+                tarih: tarihVerisi
+            }).then(
+                r => console.log("Mail gönderildi!", r.status, r.text),
+                err => console.error("Mail hatası:", err)
+            );
+        }
         document.getElementById('txtMesaj').value = '';
         document.getElementById('txtAd').value = '';
         setPuan(5);
@@ -1140,9 +1181,14 @@ Keyfimce Kafem
     // ── ADMİN PANEL ──
     function authKontrol() {
         const v = document.getElementById('authPass').value;
-        if (v === adminSifre) { modalKapat('authModal');
-            adminAc(); } else { document.getElementById('authPass').value = '';
-            toast('❌ Hatalı şifre'); }
+        if (v === adminSifre) {
+            modalKapat('authModal');
+            document.getElementById('authPass').value = '';
+            adminAc();
+        } else {
+            document.getElementById('authPass').value = '';
+            toast('❌ Hatalı şifre');
+        }
     }
 
     function adminAc() {
@@ -1172,6 +1218,7 @@ Keyfimce Kafem
         const fiyat = parseInt(document.getElementById('apFiyat').value);
         const gorsel = document.getElementById('apGorsel').value.trim();
         const exRaw = document.getElementById('apEkstra').value.trim();
+        if (!cat || !menuData[cat]) { toast('❌ Lütfen önce bir kategori seçin'); return; }
         if (!ad || !fiyat) { toast('❌ Ad ve fiyat zorunlu'); return; }
         const ekstralar = [];
         if (exRaw) exRaw.split(',').forEach(item => {
@@ -1210,8 +1257,7 @@ Keyfimce Kafem
     }
 
     function ekstraSil(catKey, id, isim) {
-        menuData[catKey].urunler.forEach(u => { if (u.id === id) u.ekstralar = u.ekstralar.filter(ex => ex
-                .isim !== isim); });
+        menuData[catKey].urunler.forEach(u => { if (u.id === id) u.ekstralar = u.ekstralar.filter(ex => ex.isim !== isim); });
         saveAll();
         apUrunListesiYenile();
     }
@@ -1223,8 +1269,8 @@ Keyfimce Kafem
         if (!raw) { toast('❌ Ekstra adı ve fiyat girin'); return; }
         const parts = raw.split(':');
         if (parts.length < 2) { toast('❌ Format: Karamel:20'); return; }
-        const isim = parts[0].trim(),
-            fiyat = parseInt(parts[1]) || 0;
+        const isim = parts[0].trim(), fiyat = parseInt(parts[1]) || 0;
+        if (!isim) { toast('❌ Format: Karamel:20'); return; }
         menuData[catKey].urunler.forEach(u => { if (u.id === id) u.ekstralar.push({ isim, fiyat }); });
         saveAll();
         apUrunListesiYenile();
@@ -1244,11 +1290,10 @@ Keyfimce Kafem
                 toplamGost++;
                 let exHtml = '';
                 u.ekstralar.forEach(ex => {
-                    exHtml +=
-                        `<span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-full"
+                    exHtml += `<span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-full"
                 style="background:var(--rust-lt);border:1px solid var(--border2);color:var(--rust-dk);">
-                ${ex.isim} ${ex.fiyat}₺
-                <i onclick="ekstraSil('${catKey}',${u.id},'${ex.isim}')"
+                ${escapeHtml(ex.isim)} ${ex.fiyat}₺
+                <i onclick="ekstraSil('${catKey}',${u.id},'${escapeHtml(ex.isim).replace(/'/g, "\\'")}')"
                    class="fa-solid fa-xmark cursor-pointer text-red-500 hover:scale-110 transition-transform ml-1"></i>
               </span>`;
                 });
@@ -1258,13 +1303,13 @@ Keyfimce Kafem
               <div class="glass border p-3 rounded-2xl text-xs space-y-3 shadow-sm mb-3">
                 <div class="flex justify-between items-start gap-2">
                   <div>
-                    <p class="font-bold text-[13px]" style="color:var(--rust);">${u.ad}</p>
-                    <p class="text-[11px] font-medium" style="color:var(--muted2);">${menuData[catKey].isim}</p>
+                    <p class="font-bold text-[13px]" style="color:var(--rust);">${escapeHtml(u.ad)}</p>
+                    <p class="text-[11px] font-medium" style="color:var(--muted2);">${escapeHtml(menuData[catKey].isim)}</p>
                   </div>
                   <div class="flex gap-1.5 flex-shrink-0">
                     <button onclick="stokDegistir('${catKey}',${u.id})"
                       class="px-3 py-2 rounded-xl text-[11px] font-bold border ${stokCls} active:scale-95 transition-transform">
-                      ${u.stoktaVar?'Stok Var':'Tükendi'}
+                      ${u.stoktaVar ? 'Stok Var' : 'Tükendi'}
                     </button>
                     <button onclick="urunSil('${catKey}',${u.id})"
                       class="px-3 py-2 rounded-xl text-[11px] active:scale-95 transition-transform shadow-sm"
@@ -1280,7 +1325,7 @@ Keyfimce Kafem
                   </div>
                   <div>
                     <label class="text-[11px] block mb-1 font-bold" style="color:var(--muted);">Görsel URL</label>
-                    <input type="text" value="${u.gorsel}" onchange="gorselGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="https://...">
+                    <input type="text" value="${escapeHtml(u.gorsel)}" onchange="gorselGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="https://...">
                   </div>
                 </div>
                 <div>
@@ -1297,32 +1342,30 @@ Keyfimce Kafem
             });
         }
         if (!toplamGost)
-            box.innerHTML =
-            '<p class="italic text-sm text-center py-6 font-medium" style="color:var(--muted2);">Aranan kriterlere uygun ürün bulunamadı.</p>';
+            box.innerHTML = '<p class="italic text-sm text-center py-6 font-medium" style="color:var(--muted2);">Aranan kriterlere uygun ürün bulunamadı.</p>';
     }
 
     function apYorumlariYenile() {
         const box = document.getElementById('apYorumListesi');
         box.innerHTML = '';
         if (!yorumData.length) {
-            box.innerHTML =
-                '<p class="italic text-sm font-medium py-2" style="color:var(--muted2);">Henüz yorum yok.</p>';
+            box.innerHTML = '<p class="italic text-sm font-medium py-2" style="color:var(--muted2);">Henüz yorum yok.</p>';
             return;
         }
         yorumData.forEach(y => {
             box.insertAdjacentHTML('beforeend', `
           <div class="glass border p-3 rounded-2xl text-[12px] shadow-sm mb-2">
             <div class="flex justify-between font-bold mb-1" style="color:var(--rust);">
-              <span class="text-[13px]">${y.isim}</span>
-              <span class="font-medium text-[11px]" style="color:var(--muted2);">${y.tarih}</span>
+              <span class="text-[13px]">${escapeHtml(y.isim)}</span>
+              <span class="font-medium text-[11px]" style="color:var(--muted2);">${escapeHtml(y.tarih)}</span>
             </div>
             <div class="text-amber-500 text-[13px] mb-1.5">${'★'.repeat(y.skor)}</div>
-            <p class="font-medium" style="color:var(--ink);">${y.mesaj}</p>
+            <p class="font-medium" style="color:var(--ink);">${escapeHtml(y.mesaj)}</p>
           </div>`);
         });
     }
 
-    // ── SECRET TRIGGER ──
+    // ── SECRET TRIGGER (uzun basma ile yönetim girişi) ──
     let pressTimer = null;
     const trigger = document.getElementById('secretTrigger');
 
@@ -1330,14 +1373,14 @@ Keyfimce Kafem
         e.preventDefault();
         if (pressTimer) return;
         pressTimer = setTimeout(() => {
-            cancelPress();
+            pressTimer = null;
             modalAc('authModal');
             document.getElementById('authPass').focus();
         }, PRESS_MS);
     }
 
-    function cancelPress() { clearTimeout(pressTimer);
-        pressTimer = null; }
+    function cancelPress() { clearTimeout(pressTimer); pressTimer = null; }
+
     trigger.addEventListener('mousedown', startPress, { passive: false });
     trigger.addEventListener('mouseup', cancelPress);
     trigger.addEventListener('mouseleave', cancelPress);
@@ -1350,35 +1393,34 @@ Keyfimce Kafem
     const repoAdi = "Keyfimce-Kafem-Web";
     const jsonDosyaAdi = "keyfimce_menu_ayarlar.json";
 
-   window.addEventListener("load", async () => {
-    const rawUrl =
-        `https://raw.githubusercontent.com/${githubKullaniciAdi}/${repoAdi}/main/${jsonDosyaAdi}`;
+    window.addEventListener("load", async () => {
+        const rawUrl = `https://raw.githubusercontent.com/${githubKullaniciAdi}/${repoAdi}/main/${jsonDosyaAdi}`;
 
-    try {
-        const response = await fetch(rawUrl);
-        if (response.ok) {
-            const guncelVeri = await response.json();
-            if (guncelVeri.menuYedek && guncelVeri.wifiYedek && guncelVeri.sifreYedek) {
-                menuData = guncelVeri.menuYedek;
-                wifiData = guncelVeri.wifiYedek;
-                adminSifre = guncelVeri.sifreYedek;
-                headerBgUrl = guncelVeri.headerBgYedek || varsayilanHeaderBg;
-                saveAll();
-                console.log("GitHub'dan veriler yüklendi.");
+        try {
+            const response = await fetch(rawUrl, { cache: 'no-store' });
+            if (response.ok) {
+                const guncelVeri = await response.json();
+                if (guncelVeri.menuYedek && guncelVeri.wifiYedek && guncelVeri.sifreYedek) {
+                    menuData = guncelVeri.menuYedek;
+                    wifiData = guncelVeri.wifiYedek;
+                    adminSifre = guncelVeri.sifreYedek;
+                    headerBgUrl = guncelVeri.headerBgYedek || varsayilanHeaderBg;
+                    saveAll();
+                    console.log("GitHub'dan veriler yüklendi.");
+                }
+            } else {
+                console.warn("GitHub verisi alınamadı, LocalStorage kullanılıyor.");
             }
-        } else {
-            console.warn("GitHub verisi alınamadı, LocalStorage kullanılıyor.");
+        } catch (err) {
+            console.error("GitHub entegrasyon hatası:", err);
         }
-    } catch (err) {
-        console.error("GitHub entegrasyon hatası:", err);
-    }
 
-    headerBgUygula();
-    buildNav();
-    renderProducts();
-    skorGuncelle();
-    wifiEkraniGuncelle();
-});
+        headerBgUygula();
+        buildNav();
+        renderProducts();
+        skorGuncelle();
+        wifiEkraniGuncelle();
+    });
 </script>
 </body>
 </html>
