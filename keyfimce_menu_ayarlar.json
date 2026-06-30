@@ -40,3 +40,832 @@
           "stoktaVar": true,
           "ekstralar": []
         },
+        {
+          "id": 5,
+          "ad": "Doppio",
+          "fiyat": 100,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJlRU5P9um_PY9euCxgwpLCjuXQmkWn_NPLGeX3dF5MMPvAj2g3jd2X7hy&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 6,
+          "ad": "Filtre Kahve",
+          "fiyat": 100,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHI__x_nPAZHzyFoVxJds-Sq5qXVZYn4fdNmyr_TgLYw&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 7,
+          "ad": "Lungo",
+          "fiyat": 100,
+          "gorsel": "https://illy.com.tr/cdn/shop/articles/illy_lungo_tarifi-kapak_8a309e66-4df6-4070-9707-b4ff4f9232ee.jpg?v=1780393544",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 8,
+          "ad": "Menengiç Kahvesi",
+          "fiyat": 100,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQism_to0UYflxGz6LAhegMriXYPfsoBeSWTf-WVafeE8LOSAZOzZPbmLeu&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 9,
+          "ad": "Osmanlı Kahvesi",
+          "fiyat": 100,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQeaWGGKwVWGmwuVozvyH_QI9_n_zKyySMsssesDS7wptQZ__dXifjxSk&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 10,
+          "ad": "Ristretto",
+          "fiyat": 100,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5fcRVNhmuqfr0lbvO3PmMEchZ8z9e1tRymo6kiQJVFGe2pBP2x1eNnTms&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 11,
+          "ad": "Türk Kahvesi",
+          "fiyat": 100,
+          "gorsel": "https://st5.depositphotos.com/1510356/68037/i/950/depositphotos_680377324-stock-photo-turkish-coffee-classic-coffee-cup.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 12,
+          "ad": "Uzun Kahve",
+          "fiyat": 100,
+          "gorsel": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1546000/kahve-depophotos-1546610.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 1782668549696,
+          "ad": "Klasik Hazır Kahve",
+          "fiyat": 50,
+          "gorsel": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b47bca86-9b07-4a38-a89e-0166030f19b8.__CR0,0,300,300_PT0_SX300_V1___.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        }
+      ]
+    },
+    "cat-sutlu-kahve": {
+      "isim": "🥛 Sütlü Kahve",
+      "urunler": [
+        {
+          "id": 13,
+          "ad": "Cafe Latte",
+          "fiyat": 150,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8IRRZIOICggAY_9ByM0qC-YKJ1GlDEpRxH9mbPdnqro__Tl_MKGehO7Xo&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "ad": "Cappuccino",
+          "fiyat": 150,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFS8elQ-q1CvCfuB9iJdi0E_IDLrMWSgZjHtP_k1f5QcejA2izo5IHOaY&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "ad": "Espresso Latte Macchiato",
+          "fiyat": 150,
+          "gorsel": "https://www.texanerin.com/content/uploads/2024/01/easy-espresso-macchiato-photo.jpg",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "ad": "Flat White",
+          "fiyat": 150,
+          "gorsel": "https://yemeksozluk.com/uploads/2024/09/Flat-White12.jpg",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "ad": "Italian Cappuccino",
+          "fiyat": 150,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWgJheC5yy9rgLDD4NIBG0VKQC5XqM4nqP_fQgSLLOBmncuyB7v7kx2Wbz&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "ad": "Italian Macchiato",
+          "fiyat": 150,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzkDZR9_fwbNEwkGILjkWc4NhpUjutXayEcz-8Ikjx1g&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        }
+      ]
+    },
+    "cat-soguk-kahve": {
+      "isim": "❄️ Soğuk Kahve",
+      "urunler": [
+        {
+          "id": 19,
+          "ad": "Soğuk Affa Gato",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_e8MJw6gPGKO0-pHbhfbGmMIb33iAFgk1F1pFW4TtsFjORztyXIPNzdtU&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "ad": "Soğuk Cappuccino",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BfIDlv2PtkXoTVo1BroHGTC-mAUx-Anfzn3yshkPj1WluaMcPRP-3KgA&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "ad": "Soğuk Chilled Coffe",
+          "fiyat": 170,
+          "gorsel": "https://c8.alamy.com/comp/2BR57KH/pouring-cold-coffee-into-tall-glass-with-ice-cubes-on-light-grey-background-refreshment-drink-vertical-format-closeup-2BR57KH.jpg",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "ad": "Soğuk Coffe Latte",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuXjdbZQlSZV8IRT8kPokImk0miUpFF1BxY88QwE-T4rV-nw0IFJ4xrQFA&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "ad": "Soğuk Espresso",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS88NmdAGA-oa4laPt_pjOB6LgfrMt85l_98mhM0sXo3npHbw_D2-RQxKs&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "ad": "Soğuk Frappe",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAfLsFCuBt1I43gH-msjzzgdQHQGFzBbtVq1VGJ9IhB4fJ_ypA3xpterNI&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "ad": "Soğuk Italian Cappuccino",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCXyI_KnpX5jnrEJaC7Dxr3zPRNfcgc8giFUQG3ctp2CHsiEDi7JCUkFA&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "ad": "Soğuk Latte Macchiato",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9-TfWAoaehz4mgJl2Ft7JfeoIh6OlpHpL62SVrhf6CKHbSmBNaErEZZXW&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "ad": "Soğuk Nitro Coffe",
+          "fiyat": 170,
+          "gorsel": "https://nitrokahve.com/cdn/shop/articles/nitro3.jpg?v=1735304243",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "ad": "Soğuk Uzun Kahve",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfT-QGByhzN_GvN3vEQuAeYV2Y75-lnU95bnTUh42z_Sy4o7MER9ICD8Y&s=10",
+          "stoktaVar": true,
+          "ekstralar": [
+            {
+              "isim": "Fındık Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Karamel Aromalı",
+              "fiyat": 10
+            },
+            {
+              "isim": "Vanilya Aromalı",
+              "fiyat": 10
+            }
+          ]
+        }
+      ]
+    },
+    "cat-nargile": {
+      "isim": "💨 Nargile",
+      "urunler": [
+        {
+          "id": 29,
+          "ad": "Dejavu Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 30,
+          "ad": "Dominik Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 31,
+          "ad": "Ezgotica Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 32,
+          "ad": "Elma-Nane Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 33,
+          "ad": "Laddy Killer Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 34,
+          "ad": "Love66 Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 35,
+          "ad": "Nakhla Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 36,
+          "ad": "Red Dream Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 37,
+          "ad": "Sakız Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 38,
+          "ad": "Tatlı Cadı Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 39,
+          "ad": "Yeşil Peri Nargile",
+          "fiyat": 350,
+          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        }
+      ]
+    },
+    "cat-tatli": {
+      "isim": "🍰 Tatlı",
+      "urunler": [
+        {
+          "id": 40,
+          "ad": "Chees Kek",
+          "fiyat": 140,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuxZSL2RAYds7i3inxaZ9A-8Fojzhoqr0p2yhwfGEKwRsu_fjR0CjIiHw&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 41,
+          "ad": "Cup Tatlı",
+          "fiyat": 140,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBq-6QULvba1DWiWchEvFf5UmMu_9Gf2r6aB2deYpKzQpS4rT_dok-auQh&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 42,
+          "ad": "Profiterol",
+          "fiyat": 140,
+          "gorsel": "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/86A0BE97-A721-421D-BFE4-977718FF5734/Derivates/1CDB68C5-0B63-4A92-BF27-7822F654CDCE.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        }
+      ]
+    },
+    "cat-yiyecek": {
+      "isim": "🥪 Yiyecek",
+      "urunler": [
+        {
+          "id": 43,
+          "ad": "Tost Karışık",
+          "fiyat": 140,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 44,
+          "ad": "Tost Kaşar",
+          "fiyat": 100,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 45,
+          "ad": "Tost Sucuk",
+          "fiyat": 120,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        }
+      ]
+    },
+    "cat-soguk-icecek": {
+      "isim": "🧃 Soğuk İçecek",
+      "urunler": [
+        {
+          "id": 46,
+          "ad": "Bursa Gazozu",
+          "fiyat": 40,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDq-3Fy5MZj0CbuVrNFpNUuGI3hd9tzXAURclQDVM_6EMQZMd8Yr3idCWI&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 47,
+          "ad": "Didi Bergamot",
+          "fiyat": 50,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtNngyLo9Dl7uT2AxFn_anLxehTNoaxxHH_CBeYzzOJQzXcMBxCJOcWM&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 48,
+          "ad": "Didi Limon",
+          "fiyat": 50,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfpzduTh59lUTsES8EVg6SFjPoTetGGYvysNJjS7COF9YqRcIUGA4_Q2k&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 49,
+          "ad": "Didi Çilek",
+          "fiyat": 50,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAxVeySiUia8EFVbeycNAhOqP6AOaaCVU0JsQphHRffoM6f_X9_DaGyg&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 50,
+          "ad": "Didi Şeftali",
+          "fiyat": 50,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_19WK0KrvhlxScF8UsRCqDU52xDw7gCQxj24yeooXqH1h4Jw1EMRf6wM&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 51,
+          "ad": "Dimes Ananas",
+          "fiyat": 30,
+          "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 52,
+          "ad": "Dimes Karışık",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3cceERI9eWklUzA3L0MG3yA390ROXUAmrH-76AfN6-W4wnUhI0BjuDv95&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 53,
+          "ad": "Dimes Vişne",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzriHpYp4-2xYcRWtqaTfpud3YBd3D1QyuVvLjqqOaKi_DbvYBDnIQFVfv&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 54,
+          "ad": "Dimes Şeftali",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqS5togEQLNXp_86i_w3CKgRgnuMOgaIgaw&s",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 55,
+          "ad": "Kızılay Elma",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcpSZApZ2rJRN_JY_vBZWanOQQf2nJh3X1gfpsIU09UeEDkIG3yFyj0EGH&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 56,
+          "ad": "Kızılay Guava",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31R_G4VCThtPqCiQSAv0vW-X-L53ucEKGutlcp32C3VMMa1twMcYcguQ&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 57,
+          "ad": "Kızılay Karpuz Çilek",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjG6Q14SgLeCIRsxfZ8u1YYaQtyhUXnFDHsFuBtuo9aXokxyxxiLmQohNy&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 58,
+          "ad": "Kızılay Limon",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR-syAVnRd0gBreSr3j97iwtm9B4ti2VKDj5yaWWCrnA&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 59,
+          "ad": "Kızılay Sade",
+          "fiyat": 30,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2QXtKHKAYM1P87dc_P3Gmng3pK_yXVql_A&s",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 60,
+          "ad": "Niğde Gazozu",
+          "fiyat": 40,
+          "gorsel": "https://cdn.dsmcdn.com/ty1433/product/media/images/prod/QC/20240720/01/f26c508a-39bf-3f36-8eb7-f08f72895ef7/1_org_zoom.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 61,
+          "ad": "Sarıyer Portakal",
+          "fiyat": 50,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfYWqcKQ89hk3evZgIHQUg7z2sLv2_04zsteplhVZvGC1nqRuenUijMNWn&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 62,
+          "ad": "Sarıyer Siyah Kola",
+          "fiyat": 50,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB0aj5P_80bLUIR53RkiVRqJ-Mjvw3ONORc-cYCvVOd-tmAFPYaD7ZCmuu&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 63,
+          "ad": "Uludağ Limonata",
+          "fiyat": 45,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQA0UVuTZJTLJDtbgcj8LYtvG6-S2NyIs4qOdPYvzIqA&s=10",
+          "stoktaVar": true,
+          "ekstralar": []
+        }
+      ]
+    },
+    "cat-cay": {
+      "isim": "🫖 Çay",
+      "urunler": [
+        {
+          "id": 64,
+          "ad": "Bitki Çayı Adaçayı",
+          "fiyat": 100,
+          "gorsel": "https://www.okanhastanesi.com.tr/upload/mucizevi-bitki-adacayi-20200701084553.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 65,
+          "ad": "Bitki Çayı Atom",
+          "fiyat": 200,
+          "gorsel": "https://png.pngtree.com/png-vector/20260221/ourlarge/pngtree-transparent-glass-cup-filled-with-herbal-tea-ginger-and-daisies-perfect-png-image_18800190.webp",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 66,
+          "ad": "Bitki Çayı Ihlamur",
+          "fiyat": 100,
+          "gorsel": "https://www.buyukanadoluhastanesi.com/images/news/actual/Yhlamurun_Faydalari_Nelerdir_-_Buyuk_Anadolu_Hastanesi.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 67,
+          "ad": "Bitki Çayı Papatya",
+          "fiyat": 100,
+          "gorsel": "https://onlinekuruyemis.com/wp-content/uploads/2024/10/papatya-cayinin-faydalari-1.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 68,
+          "ad": "Elma Çay",
+          "fiyat": 35,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 69,
+          "ad": "Kekik Çay",
+          "fiyat": 35,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 70,
+          "ad": "Kivi Çay",
+          "fiyat": 35,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 71,
+          "ad": "Kuşburnu Çay",
+          "fiyat": 35,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 72,
+          "ad": "Limon Çay",
+          "fiyat": 35,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 73,
+          "ad": "Nane Limon Çay",
+          "fiyat": 35,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 74,
+          "ad": "Oralet Portakal Çay",
+          "fiyat": 35,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": []
+        },
+        {
+          "id": 75,
+          "ad": "Çay",
+          "fiyat": 20,
+          "gorsel": "https://mehtaperturk.com/wp-content/uploads/2022/04/turkish-tea.jpg",
+          "stoktaVar": true,
+          "ekstralar": []
+        }
+      ]
+    }
+  },
+  "wifiYedek": {
+    "ad": "Keyfimce_WiFi",
+    "sifre": "keyfimce2024"
+  },
+  "sifreYedek": "457300",
+  "headerBgYedek": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80"
+}
