@@ -1149,10 +1149,15 @@
         document.getElementById('langBtnLabel').textContent = aktifDil === 'tr' ? 'EN' : 'TR';
         // html lang attr
         document.getElementById('htmlRoot').lang = aktifDil;
-        // Stok badge'leri yenile
+        // Tüm dinamik bileşenleri yenile
+        buildNav();
         renderProducts();
-        // Skor etiketi
         skorGuncelle();
+        if (document.getElementById('adminPanel').style.display === 'block') {
+            apUrunListesiYenile();
+            apKategoriListesiYenile();
+            apYorumlariYenile();
+        }
     }
 
     function dilDegistir() {
@@ -1658,7 +1663,8 @@
             if (u.ekstralar?.length) {
                 exHtml = '<div class="flex flex-wrap gap-1.5 mt-2.5 pt-2.5" style="border-top:1px solid rgba(232,221,213,0.5);">';
                 u.ekstralar.forEach(ex => {
-                    exHtml += `<span class="extra-pill">+${escapeHtml(ex.isim)} ${ex.fiyat}₺</span>`;
+                    const exName = (aktifDil === 'en' && ex.isim_en) ? ex.isim_en : ex.isim;
+                    exHtml += `<span class="extra-pill">+${escapeHtml(exName)} ${ex.fiyat}₺</span>`;
                 });
                 exHtml += '</div>';
             }
@@ -1866,9 +1872,10 @@
                 toplamGost++;
                 let exHtml = '';
                 u.ekstralar.forEach(ex => {
+                    const exName = (aktifDil === 'en' && ex.isim_en) ? ex.isim_en : ex.isim;
                     exHtml += `<span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-full"
                 style="background:var(--rust-lt);border:1px solid var(--border2);color:var(--rust-dk);">
-                ${escapeHtml(ex.isim)} ${ex.fiyat}₺
+                ${escapeHtml(exName)} ${ex.fiyat}₺
                 <i onclick="ekstraSil('${catKey}',${u.id},'${escapeHtml(ex.isim).replace(/'/g, "\\'")}')"
                    class="fa-solid fa-xmark cursor-pointer text-red-500 hover:scale-110 transition-transform ml-1"></i>
               </span>`;
