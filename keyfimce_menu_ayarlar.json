@@ -9,7 +9,8 @@
           "fiyat": 150,
           "gorsel": "https://kahhve.com/blog/wp-content/uploads/2023/03/su%CC%88t-ko%CC%88pu%CC%88rtme-2.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Foamed Milk"
         },
         {
           "id": 2,
@@ -17,9 +18,11 @@
           "fiyat": 15,
           "gorsel": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/qJyGEVhdS6_1024x1024.png",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Water (0.5 L)"
         }
-      ]
+      ],
+      "isim_en": "🥛 Beverages"
     },
     "cat-kahve": {
       "isim": "☕ Kahve",
@@ -30,7 +33,8 @@
           "fiyat": 100,
           "gorsel": "https://menu.myqrcodemenu.com/files/products/2ad3c80a-73c2-46db-9c7e-c490475335f6bd945340-eb0a-405b-b8bf-48ff19cb5d58.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Americano"
         },
         {
           "id": 4,
@@ -38,7 +42,8 @@
           "fiyat": 100,
           "gorsel": "https://www.yoreselbakkal.com.tr/idea/jl/78/myassets/products/121/dibek-kahve.png?revision=1770984380",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Dibek Coffee"
         },
         {
           "id": 5,
@@ -46,7 +51,8 @@
           "fiyat": 100,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJlRU5P9um_PY9euCxgwpLCjuXQmkWn_NPLGeX3dF5MMPvAj2g3jd2X7hy&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Doppio"
         },
         {
           "id": 6,
@@ -54,7 +60,8 @@
           "fiyat": 100,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHI__x_nPAZHzyFoVxJds-Sq5qXVZYn4fdNmyr_TgLYw&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Filter Coffee"
         },
         {
           "id": 7,
@@ -62,7 +69,8 @@
           "fiyat": 100,
           "gorsel": "https://illy.com.tr/cdn/shop/articles/illy_lungo_tarifi-kapak_8a309e66-4df6-4070-9707-b4ff4f9232ee.jpg?v=1780393544",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Lungo"
         },
         {
           "id": 8,
@@ -70,7 +78,8 @@
           "fiyat": 100,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQism_to0UYflxGz6LAhegMriXYPfsoBeSWTf-WVafeE8LOSAZOzZPbmLeu&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Menengiç Coffee"
         },
         {
           "id": 9,
@@ -78,7 +87,8 @@
           "fiyat": 100,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQeaWGGKwVWGmwuVozvyH_QI9_n_zKyySMsssesDS7wptQZ__dXifjxSk&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Ottoman Coffee"
         },
         {
           "id": 10,
@@ -86,7 +96,8 @@
           "fiyat": 100,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5fcRVNhmuqfr0lbvO3PmMEchZ8z9e1tRymo6kiQJVFGe2pBP2x1eNnTms&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Ristretto"
         },
         {
           "id": 11,
@@ -94,7 +105,8 @@
           "fiyat": 100,
           "gorsel": "https://st5.depositphotos.com/1510356/68037/i/950/depositphotos_680377324-stock-photo-turkish-coffee-classic-coffee-cup.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Turkish Coffee"
         },
         {
           "id": 12,
@@ -102,7 +114,8 @@
           "fiyat": 100,
           "gorsel": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1546000/kahve-depophotos-1546610.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Long Coffee"
         },
         {
           "id": 1782668549696,
@@ -110,9 +123,11 @@
           "fiyat": 50,
           "gorsel": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b47bca86-9b07-4a38-a89e-0166030f19b8.__CR0,0,300,300_PT0_SX300_V1___.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Classic Instant Coffee"
         }
-      ]
+      ],
+      "isim_en": "☕ Coffee"
     },
     "cat-sutlu-kahve": {
       "isim": "🥛 Sütlü Kahve",
@@ -126,17 +141,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Cafe Latte"
         },
         {
           "id": 14,
@@ -147,17 +166,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Cappuccino"
         },
         {
           "id": 15,
@@ -168,17 +191,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Espresso Latte Macchiato"
         },
         {
           "id": 16,
@@ -189,17 +216,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Flat White"
         },
         {
           "id": 17,
@@ -210,17 +241,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Italian Cappuccino"
         },
         {
           "id": 18,
@@ -231,19 +266,24 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Italian Macchiato"
         }
-      ]
+      ],
+      "isim_en": "🥛 Milk Coffee"
     },
     "cat-soguk-kahve": {
       "isim": "❄️ Soğuk Kahve",
@@ -257,17 +297,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Affogato"
         },
         {
           "id": 20,
@@ -278,17 +322,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Cappuccino"
         },
         {
           "id": 21,
@@ -299,17 +347,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Chilled Coffee"
         },
         {
           "id": 22,
@@ -320,17 +372,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Coffee Latte"
         },
         {
           "id": 23,
@@ -341,17 +397,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Espresso"
         },
         {
           "id": 24,
@@ -362,17 +422,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Frappe"
         },
         {
           "id": 25,
@@ -383,17 +447,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Italian Cappuccino"
         },
         {
           "id": 26,
@@ -404,17 +472,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Latte Macchiato"
         },
         {
           "id": 27,
@@ -425,17 +497,21 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Nitro Coffee"
         },
         {
           "id": 28,
@@ -446,19 +522,24 @@
           "ekstralar": [
             {
               "isim": "Fındık Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Hazelnut Flavored"
             },
             {
               "isim": "Karamel Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Caramel Flavored"
             },
             {
               "isim": "Vanilya Aromalı",
-              "fiyat": 10
+              "fiyat": 10,
+              "isim_en": "Vanilla Flavored"
             }
-          ]
+          ],
+          "ad_en": "Iced Long Coffee"
         }
-      ]
+      ],
+      "isim_en": "❄️ Cold Coffee"
     },
     "cat-nargile": {
       "isim": "💨 Nargile",
@@ -469,7 +550,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Dejavu Hookah"
         },
         {
           "id": 30,
@@ -477,7 +559,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Dominic Hookah"
         },
         {
           "id": 31,
@@ -485,7 +568,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Exotica Hookah"
         },
         {
           "id": 32,
@@ -493,7 +577,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Apple-Mint Hookah"
         },
         {
           "id": 33,
@@ -501,7 +586,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Lady Killer Hookah"
         },
         {
           "id": 34,
@@ -509,7 +595,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Love66 Hookah"
         },
         {
           "id": 35,
@@ -517,7 +604,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Nakhla Hookah"
         },
         {
           "id": 36,
@@ -525,7 +613,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Red Dream Hookah"
         },
         {
           "id": 37,
@@ -533,7 +622,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Gum Hookah"
         },
         {
           "id": 38,
@@ -541,7 +631,8 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Sweet Witch Hookah"
         },
         {
           "id": 39,
@@ -549,9 +640,11 @@
           "fiyat": 350,
           "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Green Fairy Hookah"
         }
-      ]
+      ],
+      "isim_en": "💨 Hookah"
     },
     "cat-tatli": {
       "isim": "🍰 Tatlı",
@@ -562,7 +655,8 @@
           "fiyat": 140,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuxZSL2RAYds7i3inxaZ9A-8Fojzhoqr0p2yhwfGEKwRsu_fjR0CjIiHw&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Cheesecake"
         },
         {
           "id": 41,
@@ -570,7 +664,8 @@
           "fiyat": 140,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBq-6QULvba1DWiWchEvFf5UmMu_9Gf2r6aB2deYpKzQpS4rT_dok-auQh&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Cup Dessert"
         },
         {
           "id": 42,
@@ -578,9 +673,11 @@
           "fiyat": 140,
           "gorsel": "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/86A0BE97-A721-421D-BFE4-977718FF5734/Derivates/1CDB68C5-0B63-4A92-BF27-7822F654CDCE.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Profiterole"
         }
-      ]
+      ],
+      "isim_en": "🍰 Dessert"
     },
     "cat-yiyecek": {
       "isim": "🥪 Yiyecek",
@@ -591,7 +688,8 @@
           "fiyat": 140,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Mixed Toast"
         },
         {
           "id": 44,
@@ -599,7 +697,8 @@
           "fiyat": 100,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Cheese Toast"
         },
         {
           "id": 45,
@@ -607,9 +706,11 @@
           "fiyat": 120,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Sausage Toast"
         }
-      ]
+      ],
+      "isim_en": "🥪 Food"
     },
     "cat-soguk-icecek": {
       "isim": "🧃 Soğuk İçecek",
@@ -620,7 +721,8 @@
           "fiyat": 40,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDq-3Fy5MZj0CbuVrNFpNUuGI3hd9tzXAURclQDVM_6EMQZMd8Yr3idCWI&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Bursa Soda"
         },
         {
           "id": 47,
@@ -628,7 +730,8 @@
           "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtNngyLo9Dl7uT2AxFn_anLxehTNoaxxHH_CBeYzzOJQzXcMBxCJOcWM&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Didi Bergamot"
         },
         {
           "id": 48,
@@ -636,7 +739,8 @@
           "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfpzduTh59lUTsES8EVg6SFjPoTetGGYvysNJjS7COF9YqRcIUGA4_Q2k&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Didi Lemon"
         },
         {
           "id": 49,
@@ -644,7 +748,8 @@
           "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAxVeySiUia8EFVbeycNAhOqP6AOaaCVU0JsQphHRffoM6f_X9_DaGyg&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Didi Strawberry"
         },
         {
           "id": 50,
@@ -652,7 +757,8 @@
           "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_19WK0KrvhlxScF8UsRCqDU52xDw7gCQxj24yeooXqH1h4Jw1EMRf6wM&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Didi Peach"
         },
         {
           "id": 51,
@@ -660,7 +766,8 @@
           "fiyat": 30,
           "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Dimes Pineapple"
         },
         {
           "id": 52,
@@ -668,7 +775,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3cceERI9eWklUzA3L0MG3yA390ROXUAmrH-76AfN6-W4wnUhI0BjuDv95&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Dimes Mixed"
         },
         {
           "id": 53,
@@ -676,7 +784,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzriHpYp4-2xYcRWtqaTfpud3YBd3D1QyuVvLjqqOaKi_DbvYBDnIQFVfv&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Dimes Vişne"
         },
         {
           "id": 54,
@@ -684,7 +793,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqS5togEQLNXp_86i_w3CKgRgnuMOgaIgaw&s",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Dimes Peach"
         },
         {
           "id": 55,
@@ -692,7 +802,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcpSZApZ2rJRN_JY_vBZWanOQQf2nJh3X1gfpsIU09UeEDkIG3yFyj0EGH&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Kızılay Apple"
         },
         {
           "id": 56,
@@ -700,7 +811,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31R_G4VCThtPqCiQSAv0vW-X-L53ucEKGutlcp32C3VMMa1twMcYcguQ&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Kızılay Guava"
         },
         {
           "id": 57,
@@ -708,7 +820,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjG6Q14SgLeCIRsxfZ8u1YYaQtyhUXnFDHsFuBtuo9aXokxyxxiLmQohNy&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Kızılay Watermelon Strawberry"
         },
         {
           "id": 58,
@@ -716,7 +829,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR-syAVnRd0gBreSr3j97iwtm9B4ti2VKDj5yaWWCrnA&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Kızılay Lemon"
         },
         {
           "id": 59,
@@ -724,7 +838,8 @@
           "fiyat": 30,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2QXtKHKAYM1P87dc_P3Gmng3pK_yXVql_A&s",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Kızılay Plain"
         },
         {
           "id": 60,
@@ -732,7 +847,8 @@
           "fiyat": 40,
           "gorsel": "https://cdn.dsmcdn.com/ty1433/product/media/images/prod/QC/20240720/01/f26c508a-39bf-3f36-8eb7-f08f72895ef7/1_org_zoom.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Niğde Soda"
         },
         {
           "id": 61,
@@ -740,7 +856,8 @@
           "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfYWqcKQ89hk3evZgIHQUg7z2sLv2_04zsteplhVZvGC1nqRuenUijMNWn&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Sarıyer Orange"
         },
         {
           "id": 62,
@@ -748,7 +865,8 @@
           "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB0aj5P_80bLUIR53RkiVRqJ-Mjvw3ONORc-cYCvVOd-tmAFPYaD7ZCmuu&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Sarıyer Black Cola"
         },
         {
           "id": 63,
@@ -756,9 +874,11 @@
           "fiyat": 45,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQA0UVuTZJTLJDtbgcj8LYtvG6-S2NyIs4qOdPYvzIqA&s=10",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Uludağ Lemonade"
         }
-      ]
+      ],
+      "isim_en": "🧃 Cold Beverage"
     },
     "cat-cay": {
       "isim": "🫖 Çay",
@@ -769,7 +889,8 @@
           "fiyat": 100,
           "gorsel": "https://www.okanhastanesi.com.tr/upload/mucizevi-bitki-adacayi-20200701084553.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Herbal Tea Sage"
         },
         {
           "id": 65,
@@ -777,7 +898,8 @@
           "fiyat": 200,
           "gorsel": "https://png.pngtree.com/png-vector/20260221/ourlarge/pngtree-transparent-glass-cup-filled-with-herbal-tea-ginger-and-daisies-perfect-png-image_18800190.webp",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Herbal Tea Atom"
         },
         {
           "id": 66,
@@ -785,7 +907,8 @@
           "fiyat": 100,
           "gorsel": "https://www.buyukanadoluhastanesi.com/images/news/actual/Yhlamurun_Faydalari_Nelerdir_-_Buyuk_Anadolu_Hastanesi.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Herbal Tea Linden"
         },
         {
           "id": 67,
@@ -793,7 +916,8 @@
           "fiyat": 100,
           "gorsel": "https://onlinekuruyemis.com/wp-content/uploads/2024/10/papatya-cayinin-faydalari-1.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Herbal Tea Chamomile"
         },
         {
           "id": 68,
@@ -801,7 +925,8 @@
           "fiyat": 35,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Apple Tea"
         },
         {
           "id": 69,
@@ -809,7 +934,8 @@
           "fiyat": 35,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Thyme Tea"
         },
         {
           "id": 70,
@@ -817,7 +943,8 @@
           "fiyat": 35,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Kiwi Tea"
         },
         {
           "id": 71,
@@ -825,7 +952,8 @@
           "fiyat": 35,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Rosehip Tea"
         },
         {
           "id": 72,
@@ -833,7 +961,8 @@
           "fiyat": 35,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Lemon Tea"
         },
         {
           "id": 73,
@@ -841,7 +970,8 @@
           "fiyat": 35,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Mint Lemon Tea"
         },
         {
           "id": 74,
@@ -849,7 +979,8 @@
           "fiyat": 35,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Orange Oralet Tea"
         },
         {
           "id": 75,
@@ -857,9 +988,11 @@
           "fiyat": 20,
           "gorsel": "https://mehtaperturk.com/wp-content/uploads/2022/04/turkish-tea.jpg",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Tea"
         }
-      ]
+      ],
+      "isim_en": "🫖 Tea"
     }
   },
   "wifiYedek": {
