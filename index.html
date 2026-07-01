@@ -1044,6 +1044,96 @@
         return (i18n[aktifDil] && i18n[aktifDil][key]) ? i18n[aktifDil][key] : (i18n['tr'][key] || key);
     }
 
+    const translationsDict = {
+    "🥛 İçecek": "🥛 Beverages",
+    "☕ Kahve": "☕ Coffee",
+    "🥛 Sütlü Kahve": "🥛 Milk Coffee",
+    "❄️ Soğuk Kahve": "❄️ Cold Coffee",
+    "💨 Nargile": "💨 Hookah",
+    "🍰 Tatlı": "🍰 Dessert",
+    "🥪 Yiyecek": "🥪 Food",
+    "🧃 Soğuk İçecek": "🧃 Cold Beverage",
+    "🫖 Çay": "🫖 Tea",
+    "Köpüklü Süt": "Foamed Milk",
+    "Su (0.5 L)": "Water (0.5 L)",
+    "Americano": "Americano",
+    "Dibek Kahvesi": "Dibek Coffee",
+    "Doppio": "Doppio",
+    "Filtre Kahve": "Filter Coffee",
+    "Lungo": "Lungo",
+    "Menengiç Kahvesi": "Menengiç Coffee",
+    "Osmanlı Kahvesi": "Ottoman Coffee",
+    "Ristretto": "Ristretto",
+    "Türk Kahvesi": "Turkish Coffee",
+    "Uzun Kahve": "Long Coffee",
+    "Klasik Hazır Kahve": "Classic Instant Coffee",
+    "Cafe Latte": "Cafe Latte",
+    "Cappuccino": "Cappuccino",
+    "Espresso Latte Macchiato": "Espresso Latte Macchiato",
+    "Flat White": "Flat White",
+    "Italian Cappuccino": "Italian Cappuccino",
+    "Italian Macchiato": "Italian Macchiato",
+    "Soğuk Affa Gato": "Iced Affogato",
+    "Soğuk Cappuccino": "Iced Cappuccino",
+    "Soğuk Chilled Coffe": "Chilled Coffee",
+    "Soğuk Coffe Latte": "Iced Coffee Latte",
+    "Soğuk Espresso": "Iced Espresso",
+    "Soğuk Frappe": "Iced Frappe",
+    "Soğuk Italian Cappuccino": "Iced Italian Cappuccino",
+    "Soğuk Latte Macchiato": "Iced Latte Macchiato",
+    "Soğuk Nitro Coffe": "Iced Nitro Coffee",
+    "Soğuk Uzun Kahve": "Iced Long Coffee",
+    "Dejavu Nargile": "Dejavu Hookah",
+    "Dominik Nargile": "Dominic Hookah",
+    "Ezgotica Nargile": "Exotica Hookah",
+    "Elma-Nane Nargile": "Apple-Mint Hookah",
+    "Laddy Killer Nargile": "Lady Killer Hookah",
+    "Love66 Nargile": "Love66 Hookah",
+    "Nakhla Nargile": "Nakhla Hookah",
+    "Red Dream Nargile": "Red Dream Hookah",
+    "Sakız Nargile": "Gum Hookah",
+    "Tatlı Cadı Nargile": "Sweet Witch Hookah",
+    "Yeşil Peri Nargile": "Green Fairy Hookah",
+    "Chees Kek": "Cheesecake",
+    "Cup Tatlı": "Cup Dessert",
+    "Profiterol": "Profiterole",
+    "Tost Karışık": "Mixed Toast",
+    "Tost Kaşar": "Cheese Toast",
+    "Tost Sucuk": "Sausage Toast",
+    "Bursa Gazozu": "Bursa Soda",
+    "Didi Bergamot": "Didi Bergamot",
+    "Didi Limon": "Didi Lemon",
+    "Didi Çilek": "Didi Strawberry",
+    "Didi Şeftali": "Didi Peach",
+    "Kızılay Limon": "Kızılay Lemon",
+    "Kızılay Sade": "Kızılay Plain",
+    "Niğde Gazozu": "Niğde Soda",
+    "Sarıyer Portakal": "Sarıyer Orange",
+    "Sarıyer Siyah Kola": "Sarıyer Black Cola",
+    "Uludağ Limonata": "Uludağ Lemonade",
+    "Bitki Çayı Adaçayı": "Herbal Tea Sage",
+    "Bitki Çayı Atom": "Herbal Tea Atom",
+    "Bitki Çayı Ihlamur": "Herbal Tea Linden",
+    "Bitki Çayı Papatya": "Herbal Tea Chamomile",
+    "Elma Çay": "Apple Tea",
+    "Kekik Çay": "Thyme Tea",
+    "Kivi Çay": "Kiwi Tea",
+    "Kuşburnu Çay": "Rosehip Tea",
+    "Limon Çay": "Lemon Tea",
+    "Nane Limon Çay": "Mint Lemon Tea",
+    "Oralet Portakal Çay": "Orange Oralet Tea",
+    "Çay": "Tea",
+    "Dimes Ananas": "Dimes Pineapple",
+    "Dimes Karışık": "Dimes Mixed",
+    "Dimes Şeftali": "Dimes Peach",
+    "Kızılay Elma": "Kızılay Apple",
+    "Kızılay Guava": "Kızılay Guava",
+    "Kızılay Karpuz Çilek": "Kızılay Watermelon Strawberry",
+    "Fındık Aromalı": "Hazelnut Flavored",
+    "Karamel Aromalı": "Caramel Flavored",
+    "Vanilya Aromalı": "Vanilla Flavored"
+};
+
     function dilUygula() {
         // data-i18n elementleri
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1422,7 +1512,7 @@
         if (!id || !isim) { toast(t('toast_cat_empty')); return; }
         if (/\s/.test(id)) { toast(t('toast_cat_invalid_id')); return; }
         if (menuData[id]) { toast(t('toast_cat_exists')); return; }
-        menuData[id] = { isim, urunler: [] };
+        menuData[id] = { isim, isim_en: translationsDict[isim] || isim, urunler: [] };
         saveAll();
         buildNav();
         apKategoriListesiYenile();
@@ -1705,7 +1795,9 @@
             const [isim, f] = item.split(':');
             if (isim && f) ekstralar.push({ isim: isim.trim(), fiyat: parseInt(f.trim()) || 0 });
         });
-        menuData[cat].urunler.push({ id: Date.now(), ad, fiyat, gorsel, stoktaVar: true, ekstralar });
+        const ad_en = translationsDict[ad] || ad;
+        const ekstralar_en = ekstralar.map(ex => ({ ...ex, isim_en: translationsDict[ex.isim] || ex.isim }));
+        menuData[cat].urunler.push({ id: Date.now(), ad, ad_en, fiyat, gorsel, stoktaVar: true, ekstralar: ekstralar_en });
         saveAll();
         ['apAd', 'apFiyat', 'apGorsel', 'apEkstra'].forEach(i => document.getElementById(i).value = '');
         apUrunListesiYenile();
