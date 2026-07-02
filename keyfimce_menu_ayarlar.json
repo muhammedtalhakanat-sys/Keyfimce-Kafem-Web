@@ -763,7 +763,7 @@
         {
           "id": 51,
           "ad": "Dimes Ananas",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
           "stoktaVar": true,
           "ekstralar": [],
@@ -772,7 +772,7 @@
         {
           "id": 52,
           "ad": "Dimes Karışık",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3cceERI9eWklUzA3L0MG3yA390ROXUAmrH-76AfN6-W4wnUhI0BjuDv95&s=10",
           "stoktaVar": true,
           "ekstralar": [],
@@ -781,7 +781,7 @@
         {
           "id": 53,
           "ad": "Dimes Vişne",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzriHpYp4-2xYcRWtqaTfpud3YBd3D1QyuVvLjqqOaKi_DbvYBDnIQFVfv&s=10",
           "stoktaVar": true,
           "ekstralar": [],
@@ -790,7 +790,7 @@
         {
           "id": 54,
           "ad": "Dimes Şeftali",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqS5togEQLNXp_86i_w3CKgRgnuMOgaIgaw&s",
           "stoktaVar": true,
           "ekstralar": [],
