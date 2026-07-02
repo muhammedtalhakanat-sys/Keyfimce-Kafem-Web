@@ -496,6 +496,24 @@
   .gh-status.idle   { background:#f0fdf4; color:#15803d; border:1px solid #86efac; }
   .gh-status.saving { background:#fffbeb; color:#b45309; border:1px solid #fcd34d; }
   .gh-status.error  { background:#fef2f2; color:#b91c1c; border:1px solid #fca5a5; }
+
+  .cat-pill.active {
+    background: linear-gradient(135deg, var(--rust), var(--rust-dk));
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(184, 92, 56, .4);
+  }
+  .prod-card {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .prod-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+  #mainHeader {
+    transition: background-image 0.8s ease-in-out;
+  }
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -1397,9 +1415,9 @@
     function sistemiDisariAktarJSON() {
         const tumSistemYedek = {
             menuYedek: menuData,
-            wifiYedek: wifiData,
-            sifreYedek: adminSifre,
+            wifiYedek: { ad: wifiData.ad, sifre: "********" }, // Şifreyi gizle
             headerBgYedek: headerBgUrl
+            // Güvenlik nedeniyle admin şifresi ve GitHub token yedeğe dahil edilmedi.
         };
         const veriStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tumSistemYedek, null, 2));
         const a = document.createElement('a');
@@ -1418,10 +1436,15 @@
         okuyucu.onload = function(e) {
             try {
                 const yuklenenVeri = JSON.parse(e.target.result);
-                if (yuklenenVeri.menuYedek && yuklenenVeri.wifiYedek && yuklenenVeri.sifreYedek) {
+                if (yuklenenVeri.menuYedek) {
                     menuData    = yuklenenVeri.menuYedek;
-                    wifiData    = yuklenenVeri.wifiYedek;
-                    adminSifre  = yuklenenVeri.sifreYedek;
+                    if (yuklenenVeri.wifiYedek) {
+                        wifiData.ad = yuklenenVeri.wifiYedek.ad || wifiData.ad;
+                        if (yuklenenVeri.wifiYedek.sifre && yuklenenVeri.wifiYedek.sifre !== "********") {
+                            wifiData.sifre = yuklenenVeri.wifiYedek.sifre;
+                        }
+                    }
+                    if (yuklenenVeri.headerBgYedek) headerBgUrl = yuklenenVeri.headerBgYedek;
                     headerBgUrl = yuklenenVeri.headerBgYedek || varsayilanHeaderBg;
                     saveAll();
                     buildNav();
@@ -1560,7 +1583,7 @@
             box.insertAdjacentHTML('beforeend', `
               <div class="flex items-center justify-between glass border p-3 rounded-2xl shadow-sm">
                 <div>
-                  <p class="font-bold text-[13px]" style="color:var(--ink);">${escapeHtml(menuData[k].isim)}</p>
+                  <p class="font-bold text-[13px]" style="color:var(--ink);">${escapeHtml((aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim)}</p>
                   <p class="text-[11px] font-medium" style="color:var(--muted2);">ID: ${escapeHtml(k)} · ${urunSayisi} ürün</p>
                 </div>
                 <button onclick="kategoriSil('${escapeHtml(k)}')"
@@ -1633,11 +1656,14 @@
     // ── ÜRÜNLER ──
     // ══════════════════════════════════════════════════════════════
     function escapeHtml(str) {
+        if (!str) return "";
         return String(str)
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/\//g, '&#x2F;');
     }
 
     function renderProducts() {
