@@ -598,6 +598,9 @@
         <div class="bnav-btn active" id="bnav-menu" onclick="setTab('menu')">
             <i class="fa-solid fa-utensils"></i><span data-i18n="nav_menu">Menü</span>
         </div>
+        <div class="bnav-btn" id="bnav-waiter" onclick="garsonCagir()">
+            <i class="fa-solid fa-bell"></i><span data-i18n="call_waiter">Garson Çağır</span>
+        </div>
         <div class="bnav-btn" id="bnav-review" onclick="yorumModalAc()">
             <i class="fa-solid fa-star"></i>
             <span id="lblSkor">Öneri-İstek</span>
@@ -935,6 +938,30 @@
                 <div id="apYorumListesi" class="space-y-3"></div>
             </div>
 
+            <!-- Hızlı Sipariş Yönetimi -->
+            <div class="glass p-5 rounded-3xl border shadow-sm" style="border-color:rgba(245, 158, 11, 0.4); background:rgba(255, 251, 235, 0.7);">
+                <h3 class="text-sm font-bold mb-4" style="color:#d97706;">
+                    <i class="fa-solid fa-bolt mr-2"></i>Hızlı Sipariş Yönetimi
+                </h3>
+                <p class="text-xs mb-4 font-medium" style="color:var(--muted);" data-i18n="quick_order_desc">En çok satan ürünleri buraya ekleyin, müşteriler kısayol olarak hızlıca sipariş verebilir.</p>
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div>
+                        <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Kategori Seç</label>
+                        <select id="apQuickKat" onchange="apQuickUrunleriDoldur()" class="ap-input text-sm font-medium"></select>
+                    </div>
+                    <div>
+                        <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Ürün Seç</label>
+                        <select id="apQuickUrun" class="ap-input text-sm font-medium"></select>
+                    </div>
+                </div>
+                <button onclick="hizliSipariseEkle()"
+                        class="w-full py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-md"
+                        style="background:#f59e0b; color:#fff;">
+                    <i class="fa-solid fa-plus"></i> <span data-i18n="add_to_quick">Hızlı Siparişe Ekle</span>
+                </button>
+                <div id="apQuickListesi" class="space-y-2 mt-4"></div>
+            </div>
+
         </div>
     </div>
 
@@ -1002,7 +1029,23 @@
             toast_gh_settings_saved: "✅ GitHub ayarları kaydedildi",
             toast_gh_push_ok: "✅ GitHub'a başarıyla push edildi!",
             toast_gh_push_fail: "❌ GitHub push başarısız",
-            toast_gh_no_settings: "❌ Önce GitHub ayarlarını kaydedin"
+            toast_gh_no_settings: "❌ Önce GitHub ayarlarını kaydedin",
+            quick_order: "⚡ Hızlı Sipariş",
+            quick_order_en: "⚡ Quick Order",
+            call_waiter: "🔔 Garson Çağır",
+            call_waiter_en: "🔔 Call Waiter",
+            waiter_called: "✅ Garson çağrıldı!",
+            waiter_called_en: "✅ Waiter called!",
+            quick_order_title: "Hızlı Sipariş Yönetimi",
+            quick_order_title_en: "Quick Order Management",
+            quick_order_desc: "En çok satan ürünleri buraya ekleyin, müşteriler kısayol olarak hızlıca sipariş verebilir.",
+            quick_order_desc_en: "Add best-selling products here, customers can order quickly as shortcuts.",
+            add_to_quick: "Hızlı Siparişe Ekle",
+            add_to_quick_en: "Add to Quick Order",
+            remove_from_quick: "Kaldır",
+            remove_from_quick_en: "Remove",
+            no_quick_products: "Henüz hızlı sipariş ürünü yok.",
+            no_quick_products_en: "No quick order products yet."
         },
         en: {
             welcome_title: "Welcome",
@@ -1052,7 +1095,23 @@
             toast_gh_settings_saved: "✅ GitHub settings saved",
             toast_gh_push_ok: "✅ Successfully pushed to GitHub!",
             toast_gh_push_fail: "❌ GitHub push failed",
-            toast_gh_no_settings: "❌ Please save GitHub settings first"
+            toast_gh_no_settings: "❌ Please save GitHub settings first",
+            quick_order: "⚡ Quick Order",
+            quick_order_en: "⚡ Quick Order",
+            call_waiter: "🔔 Call Waiter",
+            call_waiter_en: "🔔 Call Waiter",
+            waiter_called: "✅ Waiter called!",
+            waiter_called_en: "✅ Waiter called!",
+            quick_order_title: "Quick Order Management",
+            quick_order_title_en: "Quick Order Management",
+            quick_order_desc: "Add best-selling products here, customers can order quickly as shortcuts.",
+            quick_order_desc_en: "Add best-selling products here, customers can order quickly as shortcuts.",
+            add_to_quick: "Add to Quick Order",
+            add_to_quick_en: "Add to Quick Order",
+            remove_from_quick: "Remove",
+            remove_from_quick_en: "Remove",
+            no_quick_products: "No quick order products yet.",
+            no_quick_products_en: "No quick order products yet."
         }
     };
 
@@ -1252,12 +1311,14 @@
     if (!localStorage.getItem('kfm_wifi')) lsSave('kfm_wifi', varsayilanWifi);
     if (!localStorage.getItem('kfm_asifre')) lsSave('kfm_asifre', varsayilanSifre);
     if (!localStorage.getItem('kfm_headerBg')) lsSave('kfm_headerBg', varsayilanHeaderBg);
+    if (!localStorage.getItem('kfm_hizliSiparis')) lsSave('kfm_hizliSiparis', []);
 
     let menuData    = ls('kfm_menu', varsayilanMenu);
     let yorumData   = ls('kfm_yorumlar', []);
     let wifiData    = ls('kfm_wifi', varsayilanWifi);
     let adminSifre  = ls('kfm_asifre', varsayilanSifre);
     let headerBgUrl = ls('kfm_headerBg', varsayilanHeaderBg);
+    let hizliSiparis = ls('kfm_hizliSiparis', []);
 
     // GitHub ayarları (localStorage'da şifreli değil, kullanıcı kendi cihazında saklıyor)
     let ghSettings = ls('kfm_gh', { token: '', user: '', repo: '', file: 'keyfimce_menu_ayarlar.json' });
@@ -1268,6 +1329,7 @@
         lsSave('kfm_wifi', wifiData);
         lsSave('kfm_asifre', adminSifre);
         lsSave('kfm_headerBg', headerBgUrl);
+        lsSave('kfm_hizliSiparis', hizliSiparis);
         // GitHub ayarları mevcutsa otomatik push
         if (ghSettings.token && ghSettings.user && ghSettings.repo && ghSettings.file) {
             githubPush();
@@ -1325,7 +1387,8 @@
             menuYedek: menuData,
             wifiYedek: wifiData,
             sifreYedek: adminSifre,
-            headerBgYedek: headerBgUrl
+            headerBgYedek: headerBgUrl,
+            hizliSiparisYedek: hizliSiparis
         };
         const icerikStr = JSON.stringify(icerik, null, 2);
         const base64Icerik = btoa(unescape(encodeURIComponent(icerikStr)));
@@ -1416,7 +1479,8 @@
         const tumSistemYedek = {
             menuYedek: menuData,
             wifiYedek: { ad: wifiData.ad, sifre: "********" }, // Şifreyi gizle
-            headerBgYedek: headerBgUrl
+            headerBgYedek: headerBgUrl,
+            hizliSiparisYedek: hizliSiparis
             // Güvenlik nedeniyle admin şifresi ve GitHub token yedeğe dahil edilmedi.
         };
         const veriStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tumSistemYedek, null, 2));
@@ -1446,6 +1510,7 @@
                     }
                     if (yuklenenVeri.headerBgYedek) headerBgUrl = yuklenenVeri.headerBgYedek;
                     headerBgUrl = yuklenenVeri.headerBgYedek || varsayilanHeaderBg;
+                    if (yuklenenVeri.hizliSiparisYedek) hizliSiparis = yuklenenVeri.hizliSiparisYedek;
                     saveAll();
                     buildNav();
                     renderProducts();
@@ -1453,6 +1518,8 @@
                     apWifiDoldur();
                     apUrunListesiYenile();
                     apKategoriListesiYenile();
+                    apQuickKategorileriDoldur();
+                    apQuickListesiYenile();
                     headerBgUygula();
                     document.getElementById('apAdminSifre').value = adminSifre;
                     document.getElementById('apHeaderBg').value   = headerBgUrl;
@@ -1601,6 +1668,7 @@
     // ══════════════════════════════════════════════════════════════
     function setTab(tab) {
         document.getElementById('bnav-menu').className = 'bnav-btn' + (tab === 'menu' ? ' active' : '');
+        document.getElementById('bnav-waiter').className = 'bnav-btn' + (tab === 'waiter' ? ' active' : '');
         kategoriGit(aktifKat);
     }
 
@@ -1618,6 +1686,14 @@
         allBtn.textContent = t('all_menu');
         allBtn.onclick = () => { setNavActive('cat-all'); kategoriGit('cat-all'); };
         nav.appendChild(allBtn);
+
+        // Hızlı Sipariş kategorisi
+        const quickBtn = document.createElement('div');
+        quickBtn.className = 'cat-pill' + (aktifKat === 'cat-quick' ? ' active' : '');
+        quickBtn.id = 'cp-cat-quick';
+        quickBtn.textContent = aktifDil === 'en' ? t('quick_order_en') : t('quick_order');
+        quickBtn.onclick = () => { setNavActive('cat-quick'); kategoriGit('cat-quick'); };
+        nav.appendChild(quickBtn);
 
         for (let k in menuData) {
             const btn = document.createElement('div');
@@ -1671,12 +1747,50 @@
         const arama = document.getElementById('searchInput').value.toLowerCase().trim();
         grid.innerHTML = '';
         let list = [];
+        
         if (aktifKat === "cat-all") {
             for (let catKey in menuData)
                 (menuData[catKey]?.urunler || []).forEach(u => list.push({ ...u, catKey }));
-        } else {
+        } else if (aktifKat === "cat-quick") {
+            // Hızlı Sipariş ürünlerini API'den çek
+            grid.innerHTML = '<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">Yükleniyor...</p>';
+            
+            fetch('http://localhost:8765/api/quick-order')
+                .then(response => response.json())
+                .then(data => {
+                    grid.innerHTML = '';
+                    if (!data.items || !data.items.length) {
+                        grid.innerHTML = `<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">${aktifDil === 'en' ? t('no_quick_products_en') : t('no_quick_products')}</p>`;
+                        return;
+                    }
+                    
+                    data.items.forEach((item, idx) => {
+                        const img = gorselHavuzu['cat-kahve'];
+                        const delay = Math.min(idx, 6) * 0.04;
+                        grid.insertAdjacentHTML('beforeend', `
+                      <div class="prod-card mb-4" style="animation-delay:${delay}s;">
+                        <img src="${img}" alt="${escapeHtml(item.ad)}"
+                          style="width:92px;height:92px;border-radius:18px;object-fit:cover;border:2px solid #fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.08);"
+                          loading="lazy">
+                        <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;">
+                          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+                            <span class="prod-name">${escapeHtml(item.ad)}</span>
+                            <span class="prod-price">${item.fiyat}₺</span>
+                          </div>
+                          <p class="text-[11px] font-medium" style="color:var(--muted2);">${escapeHtml(item.kategori)}</p>
+                        </div>
+                      </div>`);
+                    });
+                })
+                .catch(error => {
+                    console.error('Hızlı sipariş hatası:', error);
+                    grid.innerHTML = `<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">Sunucuya ulaşılamadı. kafe.py çalışıyor mu?</p>`;
+                });
+            return;
+       } else {
             (menuData[aktifKat]?.urunler || []).forEach(u => list.push({ ...u, catKey: aktifKat }));
         }
+        
         if (arama) { list = list.filter(u => { const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad; return name.toLowerCase().includes(arama); }); }
         if (!list.length) {
             grid.innerHTML = `<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">${t('no_product')}</p>`;
@@ -1763,6 +1877,58 @@
         document.getElementById('lblSkor').textContent = avg;
     }
 
+    // ══════════════════════════════════════════════════════════════
+    // ── GARSON ÇAĞIRMA ──
+    // ══════════════════════════════════════════════════════════════
+    function garsonCagir() {
+        const masaNo = prompt(aktifDil === 'en' ? 'Please enter your table number:' : 'Lütfen masa numaranızı girin:');
+        if (!masaNo) return;
+
+        // API'ye istek gönder (kafe.py HTTP server)
+        fetch('http://localhost:8765/api/waiter-call', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ masa_no: masaNo })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                toast(aktifDil === 'en' ? t('waiter_called_en') : t('waiter_called'));
+                console.log('Garson çağrısı başarılı:', data);
+            } else {
+                toast('❌ ' + (data.error || 'Bir hata oluştu'));
+            }
+        })
+        .catch(error => {
+            console.error('Garson çağrısı hatası:', error);
+            toast('⚠️ ' + (aktifDil === 'en' ? 'Server not reachable. Make sure kafe.py is running.' : 'Sunucuya ulaşılamadı. kafe.py çalışıyor mu?'));
+        });
+
+        // Tarayıcı bildirimi (destekleniyorsa)
+        const tarih = new Date().toLocaleString('tr-TR');
+        const mesaj = aktifDil === 'en' 
+            ? `Table ${masaNo} is calling a waiter. Time: ${tarih}`
+            : `Masa ${masaNo} garson çağırıyor. Saat: ${tarih}`;
+
+        if ('Notification' in window && Notification.permission === 'granted') {
+            new Notification('Keyfimce Kafem', {
+                body: mesaj,
+                icon: 'https://cdn-icons-png.flaticon.com/512/3774/3774299.png'
+            });
+        } else if ('Notification' in window && Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    new Notification('Keyfimce Kafem', {
+                        body: mesaj,
+                        icon: 'https://cdn-icons-png.flaticon.com/512/3774/3774299.png'
+                    });
+                }
+            });
+        }
+    }
+
     function yorumlariSil() {
         const onay = aktifDil === 'en' ? 'All reviews will be deleted. Are you sure?' : 'Tüm yorumlar silinecek. Emin misiniz?';
         if (!confirm(onay)) return;
@@ -1801,6 +1967,8 @@
         apUrunListesiYenile();
         apYorumlariYenile();
         apKategoriListesiYenile();
+        apQuickKategorileriDoldur();
+        apQuickListesiYenile();
     }
 
     function adminKapat() {
@@ -1975,6 +2143,125 @@
     }
 
     // ══════════════════════════════════════════════════════════════
+    // ── HIZLI SIPARIŞ YÖNETİMİ ──
+    // ══════════════════════════════════════════════════════════════
+    function apQuickKategorileriDoldur() {
+        const select = document.getElementById('apQuickKat');
+        if (!select) return;
+        select.innerHTML = '';
+        for (let k in menuData) {
+            const opt = document.createElement('option');
+            opt.value = k;
+            opt.textContent = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
+            select.appendChild(opt);
+        }
+        apQuickUrunleriDoldur();
+    }
+
+    function apQuickUrunleriDoldur() {
+        const katSelect = document.getElementById('apQuickKat');
+        const urunSelect = document.getElementById('apQuickUrun');
+        if (!katSelect || !urunSelect) return;
+        const catKey = katSelect.value;
+        urunSelect.innerHTML = '';
+        if (menuData[catKey]?.urunler) {
+            menuData[catKey].urunler.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u.id;
+                opt.textContent = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
+                urunSelect.appendChild(opt);
+            });
+        }
+    }
+
+    function hizliSipariseEkle() {
+        const urunId = parseInt(document.getElementById('apQuickUrun').value);
+        if (!urunId) { toast('❌ Lütfen bir ürün seçin'); return; }
+        
+        // API'ye istek gönder
+        fetch('http://localhost:8765/api/quick-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ urun_id: urunId, islem: 'ekle' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                toast('✅ Ürün hızlı siparişe eklendi');
+                apQuickListesiYenile();
+            } else {
+                toast('❌ ' + (data.error || 'Bir hata oluştu'));
+            }
+        })
+        .catch(error => {
+            console.error('Hızlı sipariş hatası:', error);
+            toast('⚠️ Sunucuya ulaşılamadı. kafe.py çalışıyor mu?');
+        });
+    }
+
+    function hizliSiparistenKaldir(id) {
+        // API'ye istek gönder
+        fetch('http://localhost:8765/api/quick-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ urun_id: id, islem: 'sil' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                toast('🗑️ Ürün hızlı siparişten kaldırıldı');
+                apQuickListesiYenile();
+            } else {
+                toast('❌ ' + (data.error || 'Bir hata oluştu'));
+            }
+        })
+        .catch(error => {
+            console.error('Hızlı sipariş silme hatası:', error);
+            toast('⚠️ Sunucuya ulaşılamadı. kafe.py çalışıyor mu?');
+        });
+    }
+
+    function apQuickListesiYenile() {
+        const box = document.getElementById('apQuickListesi');
+        if (!box) return;
+        box.innerHTML = '<p class="text-xs font-medium py-2" style="color:var(--muted2);">Yükleniyor...</p>';
+        
+        // API'den hızlı siparişleri al
+        fetch('http://localhost:8765/api/quick-order')
+        .then(response => response.json())
+        .then(data => {
+            box.innerHTML = '';
+            if (!data.items || !data.items.length) {
+                box.innerHTML = `<p class="italic text-xs font-medium py-2" style="color:var(--muted2);">${aktifDil === 'en' ? t('no_quick_products_en') : t('no_quick_products')}</p>`;
+                return;
+            }
+            
+            data.items.forEach(item => {
+                box.insertAdjacentHTML('beforeend', `
+              <div class="flex items-center justify-between glass border p-3 rounded-2xl shadow-sm">
+                <div>
+                  <p class="font-bold text-[13px]" style="color:var(--ink);">${escapeHtml(item.ad)}</p>
+                  <p class="text-[11px] font-medium" style="color:var(--muted2);">${escapeHtml(item.kategori)} · ${item.fiyat}₺</p>
+                </div>
+                <button onclick="hizliSiparistenKaldir(${item.urun_id})"
+                  class="px-3 py-2 rounded-xl text-[11px] font-bold active:scale-95 transition-transform shadow-sm flex-shrink-0"
+                  style="background:#fef2f2; border:1px solid #fca5a5; color:#b91c1c;">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>`);
+            });
+        })
+        .catch(error => {
+            console.error('Hızlı sipariş listesi hatası:', error);
+            box.innerHTML = `<p class="italic text-xs font-medium py-2" style="color:var(--muted2);">Sunucuya ulaşılamadı</p>`;
+        });
+    }
+
+    // ══════════════════════════════════════════════════════════════
     // ── SECRET TRIGGER (uzun basma ile yönetim girişi) ──
     // ══════════════════════════════════════════════════════════════
     let pressTimer = null;
@@ -2018,12 +2305,14 @@
                     wifiData    = guncelVeri.wifiYedek;
                     adminSifre  = guncelVeri.sifreYedek;
                     headerBgUrl = guncelVeri.headerBgYedek || varsayilanHeaderBg;
+                    hizliSiparis = guncelVeri.hizliSiparisYedek || [];
                     // localStorage güncelle ama GitHub push tetikleme
                     lsSave('kfm_menu',    menuData);
                     lsSave('kfm_yorumlar',yorumData);
                     lsSave('kfm_wifi',    wifiData);
                     lsSave('kfm_asifre',  adminSifre);
                     lsSave('kfm_headerBg',headerBgUrl);
+                    lsSave('kfm_hizliSiparis',hizliSiparis);
                     console.log("GitHub'dan veriler yüklendi.");
                 }
             } else {
