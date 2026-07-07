@@ -1687,14 +1687,6 @@
         allBtn.onclick = () => { setNavActive('cat-all'); kategoriGit('cat-all'); };
         nav.appendChild(allBtn);
 
-        // Hızlı Sipariş kategorisi
-        const quickBtn = document.createElement('div');
-        quickBtn.className = 'cat-pill' + (aktifKat === 'cat-quick' ? ' active' : '');
-        quickBtn.id = 'cp-cat-quick';
-        quickBtn.textContent = aktifDil === 'en' ? t('quick_order_en') : t('quick_order');
-        quickBtn.onclick = () => { setNavActive('cat-quick'); kategoriGit('cat-quick'); };
-        nav.appendChild(quickBtn);
-
         for (let k in menuData) {
             const btn = document.createElement('div');
             btn.className = 'cat-pill' + (k === aktifKat ? ' active' : '');
@@ -1751,43 +1743,7 @@
         if (aktifKat === "cat-all") {
             for (let catKey in menuData)
                 (menuData[catKey]?.urunler || []).forEach(u => list.push({ ...u, catKey }));
-        } else if (aktifKat === "cat-quick") {
-            // Hızlı Sipariş ürünlerini API'den çek
-            grid.innerHTML = '<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">Yükleniyor...</p>';
-            
-            fetch(`${serverApiUrl}/api/quick-order`)
-                .then(response => response.json())
-                .then(data => {
-                    grid.innerHTML = '';
-                    if (!data.items || !data.items.length) {
-                        grid.innerHTML = `<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">${aktifDil === 'en' ? t('no_quick_products_en') : t('no_quick_products')}</p>`;
-                        return;
-                    }
-                    
-                    data.items.forEach((item, idx) => {
-                        const img = gorselHavuzu['cat-kahve'];
-                        const delay = Math.min(idx, 6) * 0.04;
-                        grid.insertAdjacentHTML('beforeend', `
-                      <div class="prod-card mb-4" style="animation-delay:${delay}s;">
-                        <img src="${img}" alt="${escapeHtml(item.ad)}"
-                          style="width:92px;height:92px;border-radius:18px;object-fit:cover;border:2px solid #fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.08);"
-                          loading="lazy">
-                        <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;">
-                          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
-                            <span class="prod-name">${escapeHtml(item.ad)}</span>
-                            <span class="prod-price">${item.fiyat}₺</span>
-                          </div>
-                          <p class="text-[11px] font-medium" style="color:var(--muted2);">${escapeHtml(item.kategori)}</p>
-                        </div>
-                      </div>`);
-                    });
-                })
-                .catch(error => {
-                    console.error('Hızlı sipariş hatası:', error);
-                    grid.innerHTML = `<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">Sunucuya ulaşılamadı. kafe.py çalışıyor mu?</p>`;
-                });
-            return;
-       } else {
+        } else {
             (menuData[aktifKat]?.urunler || []).forEach(u => list.push({ ...u, catKey: aktifKat }));
         }
         
