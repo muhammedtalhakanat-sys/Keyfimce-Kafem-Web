@@ -1,0 +1,685 @@
+{
+  "cat-0": {
+    "isim": "📋 Diğer",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 38,
+        "ad": "__SISTEM_INDIRIM__",
+        "fiyat": 0.0,
+        "aktif": 0,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-1": {
+    "isim": "📋 KAHVE",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 73,
+        "ad": "AMERİCANO",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 72,
+        "ad": "DOPPİO",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 19,
+        "ad": "DUBLE KAHVE",
+        "fiyat": 170.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 30,
+        "ad": "DİBEK KAHVESİ",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 74,
+        "ad": "FİLTRE KAHVE",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 98,
+        "ad": "KAKULE DİBEK KAHVESİ",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 97,
+        "ad": "KLASİK HAZIR KAHVE",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 70,
+        "ad": "LUNGO",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 16,
+        "ad": "MENENGİÇ KAHVESİ",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 18,
+        "ad": "OSMANLI KAHVESİ",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 68,
+        "ad": "RİSTRETTO",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 21,
+        "ad": "SÜTLÜ KAHVELER",
+        "fiyat": 150.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 2,
+        "ad": "TÜRK KAHVESİ",
+        "fiyat": 70.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 71,
+        "ad": "UZUN KAHVE",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-2": {
+    "isim": "📋 NARGİLE",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 64,
+        "ad": "DEJAVU NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 94,
+        "ad": "DOMİNİK NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 67,
+        "ad": "EGZOTİCA NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 92,
+        "ad": "ELMA-NANE NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 93,
+        "ad": "LADDY KİLLER NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 95,
+        "ad": "LOVE66 NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 91,
+        "ad": "NAKHLA NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 99,
+        "ad": "NARGİLE LÜLE EXTRA",
+        "fiyat": 200.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 65,
+        "ad": "RED DREAM NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 66,
+        "ad": "SAKIZ NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 14,
+        "ad": "TATLI CADI NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 37,
+        "ad": "YEŞİL PERİ NARGİLE",
+        "fiyat": 350.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-3": {
+    "isim": "📋 SOĞUK KAHVE",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 86,
+        "ad": "SOĞUK CAPPUCCINO",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 83,
+        "ad": "SOĞUK CHİLLED COFFE",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 89,
+        "ad": "SOĞUK COFFE LATTE",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 81,
+        "ad": "SOĞUK ESPRESSO",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 90,
+        "ad": "SOĞUK FRAPPE",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 88,
+        "ad": "SOĞUK LATTE MACCİATO",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 84,
+        "ad": "SOĞUK NİTRA COFFE",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 82,
+        "ad": "SOĞUK UZUN KAHVE",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 87,
+        "ad": "SOĞUK İTALİAN CAPPUCCINO",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 85,
+        "ad": "VANİLYA DONDURMALI AFFA GATO",
+        "fiyat": 170.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-4": {
+    "isim": "📋 SOĞUK İÇECEK",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 5,
+        "ad": "Ayran",
+        "fiyat": 40.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 62,
+        "ad": "BURSA GAZOZU",
+        "fiyat": 40.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 39,
+        "ad": "DİDİ BERGAMOT",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 41,
+        "ad": "DİDİ LİMON",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 23,
+        "ad": "DİDİ ÇİLEK",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 40,
+        "ad": "DİDİ ŞEFTALİ",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 45,
+        "ad": "DİMES ANANAS",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 44,
+        "ad": "DİMES KARIŞIK",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 43,
+        "ad": "DİMES VİŞNE",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 42,
+        "ad": "DİMES ŞEFTALİ",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 46,
+        "ad": "KIZILAY ELMA",
+        "fiyat": 30.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 47,
+        "ad": "KIZILAY GUAVA",
+        "fiyat": 30.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 49,
+        "ad": "KIZILAY KARPUZ ÇİLEK",
+        "fiyat": 30.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 48,
+        "ad": "KIZILAY LİMON",
+        "fiyat": 30.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 50,
+        "ad": "KIZILAY SADE",
+        "fiyat": 30.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 26,
+        "ad": "NİĞDE GAZOZU",
+        "fiyat": 40.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 63,
+        "ad": "SARIYER PORTAKAL",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 22,
+        "ad": "SARIYER SİYAH KOLA",
+        "fiyat": 50.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 28,
+        "ad": "ULUDAĞ LİMONATA",
+        "fiyat": 45.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-5": {
+    "isim": "📋 SÜTLÜ KAHVE",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 79,
+        "ad": "CAFE LATTE",
+        "fiyat": 150.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 75,
+        "ad": "CAPPUCCINO",
+        "fiyat": 150.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 69,
+        "ad": "ESPRESSO LATTE MACCHİATO",
+        "fiyat": 150.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 80,
+        "ad": "FLAT WHİTE",
+        "fiyat": 150.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 76,
+        "ad": "İTALİAN CAPPUCCINO",
+        "fiyat": 150.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 77,
+        "ad": "İTALİAN MACCHİATO",
+        "fiyat": 150.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-6": {
+    "isim": "📋 TATLI",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 12,
+        "ad": "CHEES KEK",
+        "fiyat": 140.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 11,
+        "ad": "CUP TATLI",
+        "fiyat": 140.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 100,
+        "ad": "YAŞ PASTA",
+        "fiyat": 140.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-7": {
+    "isim": "📋 YİYECEK",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 10,
+        "ad": "Poğaça",
+        "fiyat": 15.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 8,
+        "ad": "Sandviç",
+        "fiyat": 45.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 9,
+        "ad": "Simit",
+        "fiyat": 10.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 33,
+        "ad": "TOST KARIŞIK",
+        "fiyat": 140.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 31,
+        "ad": "TOST KAŞAR",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 32,
+        "ad": "TOST SUCUK",
+        "fiyat": 120.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 7,
+        "ad": "Tost",
+        "fiyat": 100.0,
+        "aktif": 0,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-8": {
+    "isim": "📋 ÇAY",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 60,
+        "ad": "BİTKİ ÇAYI ADAÇAYI",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 36,
+        "ad": "BİTKİ ÇAYI ATOM",
+        "fiyat": 200.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 59,
+        "ad": "BİTKİ ÇAYI IHLAMUR",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 58,
+        "ad": "BİTKİ ÇAYI PAPATYA",
+        "fiyat": 100.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 56,
+        "ad": "ELMA ÇAY",
+        "fiyat": 35.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 61,
+        "ad": "KEKİK ÇAY",
+        "fiyat": 35.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 52,
+        "ad": "KUŞBURNU ÇAY",
+        "fiyat": 35.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 57,
+        "ad": "KİVİ ÇAY",
+        "fiyat": 35.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 55,
+        "ad": "LİMON ÇAY",
+        "fiyat": 35.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 53,
+        "ad": "NANE LİMON ÇAY",
+        "fiyat": 35.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 51,
+        "ad": "ORALET PORTAKAL ÇAY",
+        "fiyat": 35.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 1,
+        "ad": "ÇAY",
+        "fiyat": 20.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  },
+  "cat-9": {
+    "isim": "📋 İÇECEK",
+    "ikon": "📋",
+    "urunler": [
+      {
+        "id": 96,
+        "ad": "BARDAK SU",
+        "fiyat": 5.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 78,
+        "ad": "KÖPÜKLÜ SÜT",
+        "fiyat": 150.0,
+        "aktif": 1,
+        "ekstralar": []
+      },
+      {
+        "id": 6,
+        "ad": "Meyve Suyu",
+        "fiyat": 15.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 3,
+        "ad": "Nescafé",
+        "fiyat": 25.0,
+        "aktif": 0,
+        "ekstralar": []
+      },
+      {
+        "id": 4,
+        "ad": "SU(0.5L)",
+        "fiyat": 15.0,
+        "aktif": 1,
+        "ekstralar": []
+      }
+    ]
+  }
+}
