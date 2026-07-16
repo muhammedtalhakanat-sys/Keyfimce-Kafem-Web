@@ -1837,33 +1837,69 @@
     // ── GARSON ÇAĞIRMA ──
     // ══════════════════════════════════════════════════════════════
     let serverApiUrl = 'http://localhost:8765';
+    let serverIpLoaded = false;
     
     // GitHub'dan server IP adresini al
     async function getServerIpFromGitHub() {
+        if (serverIpLoaded) return serverApiUrl;
+        
         try {
             const response = await fetch('https://api.github.com/repos/muhammedtalhakanat-sys/Keyfimce-Kafem-Web/contents/server_ip.json');
+            if (!response.ok) throw new Error('GitHub API error');
+            
             const data = await response.json();
             const content = atob(data.content);
             const ipData = JSON.parse(content);
-            serverApiUrl = `http://${ipData.ip}:${ipData.port}`;
-            console.log('Server IP güncellendi:', serverApiUrl);
+            
+            if (ipData.ip && ipData.port) {
+                serverApiUrl = `http://${ipData.ip}:${ipData.port}`;
+                serverIpLoaded = true;
+                console.log('✓ Server IP güncellendi:', serverApiUrl);
+                return serverApiUrl;
+            }
         } catch (error) {
-            console.error('IP adresi alınamadı, localhost kullanılıyor:', error);
+            console.warn('⚠ IP adresi alınamadı, localhost kullanılıyor:', error);
         }
+        
+        // Fallback: localhost kullan
+        serverApiUrl = 'http://localhost:8765';
+        serverIpLoaded = true;
+        return serverApiUrl;
     }
     
-    // Sayfa yüklendiğinde IP adresini al
-    getServerIpFromGitHub();
+    // Sunucu bağlantısını test et
+    async function testServerConnection() {
+        try {
+            const url = await getServerIpFromGitHub();
+            const response = await fetch(`${url}/api/health`, {
+                method: 'GET',
+                signal: AbortSignal.timeout(5000) // 5 saniye timeout
+            });
+            if (response.ok) {
+                console.log('✓ Sunucu bağlantısı başarılı');
+                return true;
+            }
+        } catch (error) {
+            console.warn('⚠ Sunucu bağlantı hatası:', error);
+        }
+        return false;
+    }
+    
+    // Sayfa yüklendiğinde IP adresini al ve bağlantıyı test et
+    getServerIpFromGitHub().then(url => {
+        console.log('🔗 API URL:', url);
+        testServerConnection();
+    });
     
     async function garsonCagir() {
         const masaNo = prompt(aktifDil === 'en' ? 'Please enter your table number:' : 'Lütfen masa numaranızı girin:');
         if (!masaNo) return;
 
         // IP adresini güncelle (bekle)
-        await getServerIpFromGitHub();
+        const url = await getServerIpFromGitHub();
 
         // API'ye istek gönder (kafe.py HTTP server)
-        fetch(`${serverApiUrl}/api/waiter-call`, {
+        fetch(`${url}/api/waiter-call`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -2152,12 +2188,14 @@
         }
     }
 
-    function hizliSipariseEkle() {
+    async function hizliSipariseEkle() {
         const urunId = parseInt(document.getElementById('apQuickUrun').value);
         if (!urunId) { toast('❌ Lütfen bir ürün seçin'); return; }
         
+        const url = await getServerIpFromGitHub();
+        
         // API'ye istek gönder
-        fetch(`${serverApiUrl}/api/quick-order`, {
+        fetch(`${url}/api/quick-order`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -2179,9 +2217,11 @@
         });
     }
 
-    function hizliSiparistenKaldir(id) {
+    async function hizliSiparistenKaldir(id) {
+        const url = await getServerIpFromGitHub();
+        
         // API'ye istek gönder
-        fetch(`${serverApiUrl}/api/quick-order`, {
+        fetch(`${url}/api/quick-order`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -2203,13 +2243,15 @@
         });
     }
 
-    function apQuickListesiYenile() {
+    async function apQuickListesiYenile() {
         const box = document.getElementById('apQuickListesi');
         if (!box) return;
         box.innerHTML = '<p class="text-xs font-medium py-2" style="color:var(--muted2);">Yükleniyor...</p>';
         
+        const url = await getServerIpFromGitHub();
+        
         // API'den hızlı siparişleri al
-        fetch(`${serverApiUrl}/api/quick-order`)
+        fetch(`${url}/api/quick-order`)
         .then(response => response.json())
         .then(data => {
             box.innerHTML = '';
