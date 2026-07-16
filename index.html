@@ -2326,6 +2326,14 @@
                     adminSifre  = guncelVeri.sifreYedek;
                     headerBgUrl = guncelVeri.headerBgYedek || varsayilanHeaderBg;
                     hizliSiparis = guncelVeri.hizliSiparisYedek || [];
+                    
+                    // Server IP bilgisini güncelle
+                    if (guncelVeri.serverIp && guncelVeri.serverIp.ip && guncelVeri.serverIp.port) {
+                        serverApiUrl = `http://${guncelVeri.serverIp.ip}:${guncelVeri.serverIp.port}`;
+                        serverIpLoaded = true;
+                        console.log('✓ Server IP GitHub\'dan güncellendi:', serverApiUrl);
+                    }
+                    
                     // localStorage güncelle ama GitHub push tetikleme
                     lsSave('kfm_menu',    menuData);
                     lsSave('kfm_yorumlar',yorumData);
