@@ -5,7 +5,7 @@
       "urunler": [
         {
           "id": 1,
-          "ad": "Köpüklü Süt",
+          "ad": "Sıcak Süt",
           "fiyat": 150,
           "gorsel": "https://kahhve.com/blog/wp-content/uploads/2023/03/su%CC%88t-ko%CC%88pu%CC%88rtme-2.jpg",
           "stoktaVar": true,
@@ -24,11 +24,11 @@
         {
           "id": 9992,
           "ad": "Bardak Su",
-          "ad_en": "Glass of Water",
           "fiyat": 5,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Glass of Water"
         }
       ],
       "isim_en": "🥛 Beverages"
@@ -138,11 +138,11 @@
         {
           "id": 99911,
           "ad": "Kakule Dibek Kahvesi",
-          "ad_en": "Cardamom Dibek Coffee",
           "fiyat": 100,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Cardamom Dibek Coffee"
         }
       ],
       "isim_en": "☕ Coffee"
@@ -559,11 +559,11 @@
         {
           "id": 99910,
           "ad": "Vanilya Dondurmalı Soğuk Kahve",
-          "ad_en": "Iced Coffee with Vanilla Ice Cream",
           "fiyat": 170,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Iced Coffee with Vanilla Ice Cream"
         }
       ],
       "isim_en": "❄️ Cold Coffee"
@@ -673,11 +673,11 @@
         {
           "id": 99911,
           "ad": "Nargile Lüle Extra",
-          "ad_en": "Hookah Bowl Extra",
           "fiyat": 200,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Hookah Bowl Extra"
         }
       ],
       "isim_en": "💨 Hookah"
@@ -715,11 +715,11 @@
         {
           "id": 9993,
           "ad": "Yaş Pasta",
-          "ad_en": "Cake",
           "fiyat": 140,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Cake"
         }
       ],
       "isim_en": "🍰 Dessert"
@@ -808,7 +808,7 @@
         {
           "id": 51,
           "ad": "Dimes Ananas",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
           "stoktaVar": true,
           "ekstralar": [],
@@ -817,7 +817,7 @@
         {
           "id": 52,
           "ad": "Dimes Karışık",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3cceERI9eWklUzA3L0MG3yA390ROXUAmrH-76AfN6-W4wnUhI0BjuDv95&s=10",
           "stoktaVar": true,
           "ekstralar": [],
@@ -826,7 +826,7 @@
         {
           "id": 53,
           "ad": "Dimes Vişne",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzriHpYp4-2xYcRWtqaTfpud3YBd3D1QyuVvLjqqOaKi_DbvYBDnIQFVfv&s=10",
           "stoktaVar": true,
           "ekstralar": [],
@@ -835,7 +835,7 @@
         {
           "id": 54,
           "ad": "Dimes Şeftali",
-          "fiyat": 30,
+          "fiyat": 50,
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqS5togEQLNXp_86i_w3CKgRgnuMOgaIgaw&s",
           "stoktaVar": true,
           "ekstralar": [],
@@ -925,38 +925,38 @@
         {
           "id": 99918,
           "ad": "Churchill",
-          "ad_en": "Churchill",
           "fiyat": 50,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Churchill"
         },
         {
           "id": 99919,
           "ad": "Juss Ananas",
-          "ad_en": "Juss Pineapple",
           "fiyat": 40,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Juss Pineapple"
         },
         {
           "id": 99920,
           "ad": "Juss Vişne",
-          "ad_en": "Juss Sour Cherry",
           "fiyat": 40,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Juss Sour Cherry"
         },
         {
           "id": 99921,
           "ad": "Juss Şeftali",
-          "ad_en": "Juss Peach",
           "fiyat": 40,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Juss Peach"
         }
       ],
       "isim_en": "🧃 Cold Beverage"
@@ -1082,11 +1082,11 @@
         {
           "id": 9990,
           "ad": "Dondurma Kasesi",
-          "ad_en": "Ice Cream Bowl",
           "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Ice Cream Bowl"
         }
       ]
     },
@@ -1097,47 +1097,47 @@
         {
           "id": 9990,
           "ad": "Milkshake Fıstık",
-          "ad_en": "Pistachio Milkshake",
           "fiyat": 170,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Pistachio Milkshake"
         },
         {
           "id": 9991,
           "ad": "Milkshake Serin Şeftali",
-          "ad_en": "Cool Peach Milkshake",
           "fiyat": 170,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Cool Peach Milkshake"
         },
         {
           "id": 9992,
           "ad": "Milkshake Vanilya",
-          "ad_en": "Vanilla Milkshake",
           "fiyat": 170,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Vanilla Milkshake"
         },
         {
           "id": 9993,
           "ad": "Milkshake Çikolata",
-          "ad_en": "Chocolate Milkshake",
           "fiyat": 170,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Chocolate Milkshake"
         },
         {
           "id": 9994,
           "ad": "Milkshake Çilek",
-          "ad_en": "Strawberry Milkshake",
           "fiyat": 170,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Strawberry Milkshake"
         }
       ]
     },
@@ -1148,92 +1148,92 @@
         {
           "id": 9990,
           "ad": "Kivi Ananas Mango Smoothie",
-          "ad_en": "Kiwi Pineapple Mango Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Kiwi Pineapple Mango Smoothie"
         },
         {
           "id": 9991,
           "ad": "Mango Ananas Muz Smoothie",
-          "ad_en": "Mango Pineapple Banana Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Mango Pineapple Banana Smoothie"
         },
         {
           "id": 9992,
           "ad": "Mango Orman Meyveleri Smoothie",
-          "ad_en": "Mango Wild Berries Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Mango Wild Berries Smoothie"
         },
         {
           "id": 9993,
           "ad": "Muz Ananas Smoothie",
-          "ad_en": "Banana Pineapple Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Banana Pineapple Smoothie"
         },
         {
           "id": 9994,
           "ad": "Muz Ananas Mango Smoothie",
-          "ad_en": "Banana Pineapple Mango Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Banana Pineapple Mango Smoothie"
         },
         {
           "id": 9995,
           "ad": "Orman Meyvesi Çilek Smoothie",
-          "ad_en": "Wild Berries Strawberry Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Wild Berries Strawberry Smoothie"
         },
         {
           "id": 9996,
           "ad": "Portakal Kivi Çilek Smoothie",
-          "ad_en": "Orange Kiwi Strawberry Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Orange Kiwi Strawberry Smoothie"
         },
         {
           "id": 9997,
           "ad": "Portakal Orman Meyveleri Smoothie",
-          "ad_en": "Orange Wild Berries Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Orange Wild Berries Smoothie"
         },
         {
           "id": 9998,
           "ad": "Çilek Muz Smoothie",
-          "ad_en": "Strawberry Banana Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Strawberry Banana Smoothie"
         },
         {
           "id": 9999,
           "ad": "Çilek Muz Ananas Smoothie",
-          "ad_en": "Strawberry Banana Pineapple Smoothie",
           "fiyat": 175,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Strawberry Banana Pineapple Smoothie"
         }
       ]
     },
@@ -1244,63 +1244,64 @@
         {
           "id": 9990,
           "ad": "Elma Havuç Suyu",
-          "ad_en": "Apple Carrot Juice",
           "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Apple Carrot Juice"
         },
         {
           "id": 9991,
           "ad": "Elma Portakal Havuç Suyu",
-          "ad_en": "Apple Orange Carrot Juice",
           "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Apple Orange Carrot Juice"
         },
         {
           "id": 9992,
           "ad": "Elma Suyu",
-          "ad_en": "Apple Juice",
           "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Apple Juice"
         },
         {
           "id": 9993,
           "ad": "Havuç Suyu",
-          "ad_en": "Carrot Juice",
           "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Carrot Juice"
         },
         {
           "id": 9994,
           "ad": "Portakal Suyu",
-          "ad_en": "Orange Juice",
           "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Orange Juice"
         },
         {
           "id": 9995,
           "ad": "Taze Sıkım Limonata",
-          "ad_en": "Fresh Squeezed Lemonade",
           "fiyat": 150,
           "gorsel": "",
           "stoktaVar": true,
-          "ekstralar": []
+          "ekstralar": [],
+          "ad_en": "Fresh Squeezed Lemonade"
         }
       ]
     }
   },
   "wifiYedek": {
     "ad": "Keyfimce_WiFi",
-    "sifre": "********"
+    "sifre": "keyfimce2024"
   },
+  "sifreYedek": "457300",
   "headerBgYedek": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80"
 }
