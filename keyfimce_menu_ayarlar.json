@@ -6,7 +6,7 @@
         {
           "id": 1,
           "ad": "Sıcak Süt",
-          "fiyat": 150,
+          "fiyat": 50,
           "gorsel": "https://kahhve.com/blog/wp-content/uploads/2023/03/su%CC%88t-ko%CC%88pu%CC%88rtme-2.jpg",
           "stoktaVar": true,
           "ekstralar": [],
@@ -26,7 +26,7 @@
           "ad": "Bardak Su",
           "fiyat": 5,
           "gorsel": "",
-          "stoktaVar": true,
+          "stoktaVar": false,
           "ekstralar": [],
           "ad_en": "Glass of Water"
         }
@@ -575,7 +575,7 @@
           "id": 29,
           "ad": "Dejavu Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Dejavu Hookah"
@@ -584,7 +584,7 @@
           "id": 30,
           "ad": "Dominik Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Dominic Hookah"
@@ -593,7 +593,7 @@
           "id": 31,
           "ad": "Ezgotica Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Exotica Hookah"
@@ -602,7 +602,7 @@
           "id": 32,
           "ad": "Elma-Nane Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJq6pcQ8wVo66mBizlrkJitJEkd4PEVpO__bFSv5PSLA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Apple-Mint Hookah"
@@ -611,7 +611,7 @@
           "id": 33,
           "ad": "Laddy Killer Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Lady Killer Hookah"
@@ -620,7 +620,7 @@
           "id": 34,
           "ad": "Love66 Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Love66 Hookah"
@@ -629,7 +629,7 @@
           "id": 35,
           "ad": "Nakhla Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJq6pcQ8wVo66mBizlrkJitJEkd4PEVpO__bFSv5PSLA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Nakhla Hookah"
@@ -638,7 +638,7 @@
           "id": 36,
           "ad": "Red Dream Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Red Dream Hookah"
@@ -647,7 +647,7 @@
           "id": 37,
           "ad": "Sakız Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Gum Hookah"
@@ -656,7 +656,7 @@
           "id": 38,
           "ad": "Tatlı Cadı Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Sweet Witch Hookah"
@@ -665,7 +665,7 @@
           "id": 39,
           "ad": "Yeşil Peri Nargile",
           "fiyat": 350,
-          "gorsel": "https://menu.seyridem.com/upload/20133707345472890839.jpg",
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Green Fairy Hookah"
@@ -674,7 +674,7 @@
           "id": 99911,
           "ad": "Nargile Lüle Extra",
           "fiyat": 200,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe6SN79LwE7qrSVRuX0oN10Vjw8oZgFfB_Hp8Ry5Q_Qg&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Hookah Bowl Extra"
@@ -935,7 +935,7 @@
           "id": 99919,
           "ad": "Juss Ananas",
           "fiyat": 40,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSKi81c8-TYzhykhG3ofaH5T3hYeVgxItHgYsSvT8iXw&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Juss Pineapple"
@@ -944,7 +944,7 @@
           "id": 99920,
           "ad": "Juss Vişne",
           "fiyat": 40,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPgi45WF5HAw51w6SS9DOOZTMpIIcQ3KvoK-nUMuQfig&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Juss Sour Cherry"
@@ -953,7 +953,7 @@
           "id": 99921,
           "ad": "Juss Şeftali",
           "fiyat": 40,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC--jcIbhD3mNKSiWezctDlKdojDhqGUT0zJALwANkig&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Juss Peach"
@@ -1082,10 +1082,27 @@
         {
           "id": 9990,
           "ad": "Dondurma Kasesi",
-          "fiyat": 150,
-          "gorsel": "",
+          "fiyat": 100,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQfop16Z6J0bHxUe4xbdrCJdtq85dugZo7YQqK7wqNKg&s=10",
           "stoktaVar": true,
-          "ekstralar": [],
+          "ekstralar": [
+            {
+              "isim": "Çikolata",
+              "fiyat": 0
+            },
+            {
+              "isim": "Fıstık",
+              "fiyat": 0
+            },
+            {
+              "isim": "çilek",
+              "fiyat": 0
+            },
+            {
+              "isim": "vanilya",
+              "fiyat": 0
+            }
+          ],
           "ad_en": "Ice Cream Bowl"
         }
       ]
@@ -1245,7 +1262,7 @@
           "id": 9990,
           "ad": "Elma Havuç Suyu",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://st.depositphotos.com/1177973/3649/i/950/depositphotos_36492153-stock-photo-glasses-of-juice-apples-and.jpg",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Apple Carrot Juice"
@@ -1254,7 +1271,7 @@
           "id": 9991,
           "ad": "Elma Portakal Havuç Suyu",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://www.vijesti.me/data/images/2019/02/16/00/2959715_2019021610020_5c67d121b789684e9f066b70jpeg_ls.jpg",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Apple Orange Carrot Juice"
@@ -1263,7 +1280,7 @@
           "id": 9992,
           "ad": "Elma Suyu",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6CVtw5vinOFceV4gqY2n8Os0oTLEWXjQ89PYM7bFRcA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Apple Juice"
@@ -1272,7 +1289,7 @@
           "id": 9993,
           "ad": "Havuç Suyu",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnOiPS2Xty2LzgrT_-rJRqu_wmJ1e0RrinefCSz-6USw&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Carrot Juice"
@@ -1281,7 +1298,7 @@
           "id": 9994,
           "ad": "Portakal Suyu",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAEQgs60ImBsXeHcmvfrCtVXuSAW5QH0Qu87XQuUYjhA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Orange Juice"
@@ -1290,7 +1307,7 @@
           "id": 9995,
           "ad": "Taze Sıkım Limonata",
           "fiyat": 150,
-          "gorsel": "",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJNpQyI8ZsQlFlpKjUYOkCn62lpSpo8tGP_p-N-2dxRg&s=10",
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Fresh Squeezed Lemonade"
@@ -1300,8 +1317,8 @@
   },
   "wifiYedek": {
     "ad": "Keyfimce_WiFi",
-    "sifre": "keyfimce2024"
+    "sifre": "********"
   },
-  "sifreYedek": "457300",
-  "headerBgYedek": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80"
+  "headerBgYedek": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80",
+  "hizliSiparisYedek": []
 }
