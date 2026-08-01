@@ -4,15 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Keyfimce Kafem</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com">
+    // Admin Accordion Toggle
+    function toggleAdminAccordion(el) {
+        const section = el.closest('.admin-accordion-section');
+        section.classList.toggle('active');
+    }
+
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    // Admin Accordion Toggle
+    function toggleAdminAccordion(el) {
+        const section = el.closest('.admin-accordion-section');
+        section.classList.toggle('active');
+    }
+
+</script>
 <script type="text/javascript">
   (function() {
     emailjs.init("eO2J01-bhivAHbgA7");
   })();
+
+    // Admin Accordion Toggle
+    function toggleAdminAccordion(el) {
+        const section = el.closest('.admin-accordion-section');
+        section.classList.toggle('active');
+    }
+
 </script>
 <style>
   :root {
@@ -514,6 +535,46 @@
     transition: background-image 0.8s ease-in-out;
   }
 
+
+  /* Admin Accordion Styles */
+  .admin-accordion-section {
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  .admin-accordion-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s ease;
+    user-select: none;
+  }
+  .admin-accordion-header:hover {
+    background: rgba(0,0,0,0.02);
+  }
+  .admin-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .admin-accordion-section.active .admin-accordion-content {
+    max-height: 3000px;
+    opacity: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 1.25rem;
+  }
+  .admin-accordion-section.active .admin-accordion-header {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 0.5rem;
+  }
+  .admin-accordion-header i.chevron {
+    transition: transform 0.3s ease;
+  }
+  .admin-accordion-section.active .admin-accordion-header i.chevron {
+    transform: rotate(180deg);
+  }
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -739,13 +800,18 @@
             </div>
 
             <!-- GitHub Writeback Ayarları -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(99,102,241,0.3); background:rgba(238,242,255,0.6);">
-                <div class="flex items-center justify-between mb-3">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(99,102,241,0.3); background:rgba(238,242,255,0.6);">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <div class="flex items-center justify-between ">
                     <h3 class="text-sm font-bold" style="color:#4338ca;">
                         <i class="fa-brands fa-github mr-2"></i>GitHub Otomatik Senkronizasyon
                     </h3>
                     <span id="ghStatusBadge" class="gh-status idle"><i class="fa-solid fa-circle-check"></i> Hazır</span>
                 </div>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <p class="text-xs mb-4 font-medium" style="color:var(--muted);">
                     Aşağıdaki bilgileri doldurun; admin panelindeki her değişiklik GitHub'a otomatik commit edilir ve tüm cihazlarda anlık senkronizasyon sağlanır.
                 </p>
@@ -781,13 +847,20 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- JSON Export / Import -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(253, 186, 116, 0.5); background:rgba(255, 251, 247, 0.8);">
-                <h3 class="text-sm font-bold mb-2" style="color:#c2410c;">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(253, 186, 116, 0.5); background:rgba(255, 251, 247, 0.8);">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:#c2410c;">
                     <i class="fa-solid fa-cloud-arrow-down mr-2"></i>Yedek Entegrasyonu
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <p class="text-xs mb-4 font-medium" style="color:var(--muted);">Tüm sistemi (Menü, WiFi, Şifre, Header Arka Plan) tek bir dosya olarak dışarı aktarın veya içeri yükleyin.</p>
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="sistemiDisariAktarJSON()"
@@ -801,13 +874,20 @@
                         <input type="file" id="jsonFileInput" accept=".json" onchange="sistemiIceriAktarJSON(event)" class="hidden">
                     </label>
                 </div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- Admin Şifresi -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:var(--rust);">
                     <i class="fa-solid fa-lock mr-2"></i>Yönetim Giriş Şifresi
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <div class="flex gap-3">
                     <input type="text" id="apAdminSifre" class="ap-input flex-1 text-sm font-medium" placeholder="Yeni Giriş Şifresi">
                     <button onclick="sifreKaydet()"
@@ -816,13 +896,20 @@
                         Güncelle
                     </button>
                 </div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- Header BG -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:var(--rust);">
                     <i class="fa-solid fa-image mr-2"></i>Header Arka Plan Resmi
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <p class="text-xs mb-3 font-medium" style="color:var(--muted);">Sayfanın en üstündeki banner görselinin URL adresi. Canlı ön izleme için kaydedin.</p>
                 <div class="flex gap-3">
                     <input type="text" id="apHeaderBg" class="ap-input flex-1 text-sm font-medium" placeholder="https://images.unsplash.com/...">
@@ -832,13 +919,20 @@
                         Kaydet
                     </button>
                 </div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- WiFi -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:var(--rust);">
                     <i class="fa-solid fa-wifi mr-2"></i>Wi-Fi Bilgileri
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Ağ Adı (SSID)</label>
@@ -854,13 +948,20 @@
                         style="background:var(--rust);">
                     Kaydet
                 </button>
-            </div>
+            
+    </div>
+</div>
 
             <!-- ── YENİ: Kategori Yönetimi ── -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(34,197,94,0.3); background:rgba(240,253,244,0.7);">
-                <h3 class="text-sm font-bold mb-4" style="color:#15803d;">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(34,197,94,0.3); background:rgba(240,253,244,0.7);">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:#15803d;">
                     <i class="fa-solid fa-tags mr-2"></i>Kategori Yönetimi
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <p class="text-xs mb-4 font-medium" style="color:var(--muted);">Yeni kategori ekleyin veya mevcut kategorileri silin. Ürün içeren kategoriler silinemez.</p>
                 <!-- Yeni Kategori Ekle -->
                 <div class="space-y-3 mb-4">
@@ -882,13 +983,20 @@
                 </div>
                 <!-- Mevcut Kategoriler -->
                 <div id="apKategoriListesi" class="space-y-2"></div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- Yeni Ürün Ekle -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:var(--rust);">
                     <i class="fa-solid fa-circle-plus mr-2"></i>Yeni Ürün Ekle
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <div class="space-y-3">
                     <select id="apKat" class="ap-input text-sm font-medium"></select>
                     <div class="grid grid-cols-2 gap-3">
@@ -903,13 +1011,20 @@
                         Sisteme Ekle
                     </button>
                 </div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- Mevcut Ürünler -->
-            <div class="glass p-5 rounded-3xl border mb-5 shadow-sm">
-                <h3 class="text-sm font-bold mb-4" style="color:var(--rust);">
+            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:var(--rust);">
                     <i class="fa-solid fa-boxes-stacked mr-2"></i>Mevcut Ürünler
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <div class="grid grid-cols-2 gap-3 mb-4">
                     <div>
                         <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);">Kategori Seçimi</label>
@@ -921,11 +1036,14 @@
                     </div>
                 </div>
                 <div id="apUrunListesi" class="space-y-4"></div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- Müşteri Yorumları -->
-            <div class="glass p-5 rounded-3xl border shadow-sm">
-                <div class="flex justify-between items-center mb-4">
+            <div class="admin-accordion-section glass  rounded-3xl border shadow-sm">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <div class="flex justify-between items-center ">
                     <h3 class="text-sm font-bold" style="color:var(--rust);">
                         <i class="fa-solid fa-heart-pulse mr-2"></i>Müşteri Yorumları
                     </h3>
@@ -935,14 +1053,25 @@
                         <i class="fa-solid fa-trash mr-1"></i>Tümünü Sil
                     </button>
                 </div>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <div id="apYorumListesi" class="space-y-3"></div>
-            </div>
+            
+    </div>
+</div>
 
             <!-- Hızlı Sipariş Yönetimi -->
-            <div class="glass p-5 rounded-3xl border shadow-sm" style="border-color:rgba(245, 158, 11, 0.4); background:rgba(255, 251, 235, 0.7);">
-                <h3 class="text-sm font-bold mb-4" style="color:#d97706;">
+            <div class="admin-accordion-section glass  rounded-3xl border shadow-sm" style="border-color:rgba(245, 158, 11, 0.4); background:rgba(255, 251, 235, 0.7);">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold " style="color:#d97706;">
                     <i class="fa-solid fa-bolt mr-2"></i>Hızlı Sipariş Yönetimi
                 </h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        
                 <p class="text-xs mb-4 font-medium" style="color:var(--muted);" data-i18n="quick_order_desc">En çok satan ürünleri buraya ekleyin, müşteriler kısayol olarak hızlıca sipariş verebilir.</p>
                 <div class="grid grid-cols-2 gap-3 mb-4">
                     <div>
@@ -959,7 +1088,9 @@
                         style="background:#f59e0b; color:#fff;">
                     <i class="fa-solid fa-plus"></i> <span data-i18n="add_to_quick">Hızlı Siparişe Ekle</span>
                 </button>
-                <div id="apQuickListesi" class="space-y-2 mt-4"></div>
+                <div id="apQuickListesi" class="space-y-2 mt-4">
+    </div>
+</div>
             </div>
 
         </div>
@@ -2357,6 +2488,13 @@
         wifiEkraniGuncelle();
         dilUygula();
     });
+
+    // Admin Accordion Toggle
+    function toggleAdminAccordion(el) {
+        const section = el.closest('.admin-accordion-section');
+        section.classList.toggle('active');
+    }
+
 </script>
 </body>
 </html>
