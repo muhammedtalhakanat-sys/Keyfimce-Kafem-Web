@@ -678,6 +678,33 @@
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Hookah Bowl Extra"
+        },
+        {
+          "id": 99912,
+          "ad": "Al Fakher Nargile",
+          "fiyat": 350,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [],
+          "ad_en": "Al Fakher Hookah"
+        },
+        {
+          "id": 99913,
+          "ad": "Cappuccino Nargile",
+          "fiyat": 350,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [],
+          "ad_en": "Cappuccino Hookah"
+        },
+        {
+          "id": 99914,
+          "ad": "Üzüm-Nane Nargile",
+          "fiyat": 350,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [],
+          "ad_en": "Grape-Mint Hookah"
         }
       ],
       "isim_en": "💨 Hookah"
@@ -925,7 +952,7 @@
         {
           "id": 99918,
           "ad": "Churchill",
-          "fiyat": 50,
+          "fiyat": 60,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -957,6 +984,24 @@
           "stoktaVar": true,
           "ekstralar": [],
           "ad_en": "Juss Peach"
+        },
+        {
+          "id": 99922,
+          "ad": "Beypazarı Sade",
+          "fiyat": 30,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [],
+          "ad_en": "Beypazari Plain Soda"
+        },
+        {
+          "id": 99923,
+          "ad": "Mujitos",
+          "fiyat": 170,
+          "gorsel": "",
+          "stoktaVar": true,
+          "ekstralar": [],
+          "ad_en": "Mojitos"
         }
       ],
       "isim_en": "🧃 Cold Beverage"
@@ -1003,7 +1048,7 @@
         {
           "id": 68,
           "ad": "Elma Çay",
-          "fiyat": 35,
+          "fiyat": 30,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -1012,7 +1057,7 @@
         {
           "id": 69,
           "ad": "Kekik Çay",
-          "fiyat": 35,
+          "fiyat": 30,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -1021,7 +1066,7 @@
         {
           "id": 70,
           "ad": "Kivi Çay",
-          "fiyat": 35,
+          "fiyat": 30,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -1030,7 +1075,7 @@
         {
           "id": 71,
           "ad": "Kuşburnu Çay",
-          "fiyat": 35,
+          "fiyat": 30,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -1039,7 +1084,7 @@
         {
           "id": 72,
           "ad": "Limon Çay",
-          "fiyat": 35,
+          "fiyat": 30,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -1048,7 +1093,7 @@
         {
           "id": 73,
           "ad": "Nane Limon Çay",
-          "fiyat": 35,
+          "fiyat": 30,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -1057,7 +1102,7 @@
         {
           "id": 74,
           "ad": "Oralet Portakal Çay",
-          "fiyat": 35,
+          "fiyat": 30,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
@@ -1122,12 +1167,12 @@
         },
         {
           "id": 9991,
-          "ad": "Milkshake Serin Şeftali",
+          "ad": "Milkshake Serin Şeker",
           "fiyat": 170,
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cool Peach Milkshake"
+          "ad_en": "Cool Sugar Milkshake"
         },
         {
           "id": 9992,
