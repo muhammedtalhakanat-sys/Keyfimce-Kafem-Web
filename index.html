@@ -2220,7 +2220,11 @@
         const el = document.getElementById('cp-' + k);
         if (el) {
             el.classList.add('active');
-            el.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'center' });
+            const nav = document.getElementById('catNav');
+            if (nav) {
+                const targetTop = Math.max(0, el.offsetTop - (nav.clientHeight - el.offsetHeight) / 2);
+                nav.scrollTo({ top: targetTop, behavior: 'smooth' });
+            }
         }
     }
 
@@ -2228,8 +2232,7 @@
         aktifKat = k;
         setNavActive(k);
         renderProducts();
-        const grid = document.getElementById('productGrid');
-        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Kategori seçimi ürünleri yeniler; sayfanın konumu kesinlikle değiştirilmez.
     }
 
     // ══════════════════════════════════════════════════════════════
@@ -2933,7 +2936,8 @@
 
         function centerItem(item, behavior = 'smooth') {
             if (!item) return;
-            item.scrollIntoView({ behavior, block: 'center', inline: 'nearest' });
+            const targetTop = Math.max(0, item.offsetTop - (nav.clientHeight - item.offsetHeight) / 2);
+            nav.scrollTo({ top: targetTop, behavior });
             setTimeout(scheduleFocus, behavior === 'smooth' ? 180 : 0);
         }
 
@@ -2988,15 +2992,9 @@
             centerItem(items[nextIndex]);
         }, { passive: true });
 
-        let snapTimer = 0;
-        nav.addEventListener('scroll', () => {
-            scheduleFocus();
-            clearTimeout(snapTimer);
-            snapTimer = setTimeout(() => {
-                const items = [...nav.querySelectorAll('.cat-pill')];
-                if (items.length && !wheelLock) centerItem(items[focusedIndex(items)], 'smooth');
-            }, 130);
-        }, { passive: true });
+        // Scroll yalnızca görsel odağı günceller; kendiliğinden yeniden konumlandırma yapılmaz.
+        // Böylece çark sayfayı yukarı çekmez ve kullanıcı hareketi dışında kaymaz.
+        nav.addEventListener('scroll', scheduleFocus, { passive: true });
         nav.addEventListener('keydown', (event) => {
             if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp' && event.key !== 'PageDown' && event.key !== 'PageUp') return;
             event.preventDefault();
