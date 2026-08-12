@@ -2300,17 +2300,27 @@
     const TEMA_KEY = 'keyfimce-theme-mode';
     let temaModu = localStorage.getItem(TEMA_KEY) || 'auto';
 
+    // Otomatik mod saat bazlıdır: 07:00-18:59 açık, 19:00-06:59 koyu tema.
+    function otomatikKoyuZamanMi() {
+        const saat = new Date().getHours();
+        return saat >= 19 || saat < 7;
+    }
+
     function temaArayuzunuGuncelle() {
         const root = document.documentElement;
-        root.setAttribute('data-theme', temaModu);
+        const otomatikGece = temaModu === 'auto' && otomatikKoyuZamanMi();
+        const uygulananTema = temaModu === 'dark' || otomatikGece ? 'dark' : 'light';
+        root.setAttribute('data-theme', uygulananTema);
+        root.setAttribute('data-theme-mode', temaModu);
         const icon = document.getElementById('themeToggleIcon');
         const btn = document.getElementById('themeToggleBtn');
         if (!icon || !btn) return;
         const names = { auto: 'Otomatik tema', light: 'Açık tema', dark: 'Koyu tema' };
         const icons = { auto: 'fa-circle-half-stroke', light: 'fa-sun', dark: 'fa-moon' };
         icon.className = `fa-solid ${icons[temaModu]}`;
-        btn.title = `Tema: ${names[temaModu]}`;
-        btn.setAttribute('aria-label', names[temaModu] + '. Değiştirmek için tıklayın.');
+        const durum = temaModu === 'auto' ? (uygulananTema === 'dark' ? 'şu an koyu' : 'şu an açık') : '';
+        btn.title = `Tema: ${names[temaModu]}${durum ? ` (${durum})` : ''}`;
+        btn.setAttribute('aria-label', `${names[temaModu]}${durum ? `, ${durum}` : ''}. Değiştirmek için tıklayın.`);
     }
 
     function temaDegistir() {
@@ -2321,6 +2331,9 @@
         renderProducts();
     }
     temaArayuzunuGuncelle();
+    setInterval(() => {
+        if (temaModu === 'auto') temaArayuzunuGuncelle();
+    }, 60 * 1000);
 
     // ══════════════════════════════════════════════════════════════
     // ── DEBOUNCE ARAMA (300ms) ──
