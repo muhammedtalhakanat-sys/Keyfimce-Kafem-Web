@@ -956,6 +956,70 @@
     #catNav::before { top: 79px; }
     #catNav::after { bottom: 79px; }
   }
+
+  /* =========================================================
+     AÇILIR / KAPANIR KATEGORİ ÇARKI
+     ========================================================= */
+  #catNav {
+    overflow: hidden !important;
+    transition: height .34s cubic-bezier(.22,1,.36,1), padding .34s ease, opacity .25s ease, box-shadow .34s ease;
+  }
+  #catNav.wheel-collapsed {
+    height: 64px !important;
+    min-height: 64px;
+    padding: 8px !important;
+    margin-top: 8px;
+    margin-bottom: 18px !important;
+    overflow: hidden !important;
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(246,224,211,.88));
+    box-shadow: 0 8px 22px rgba(91,48,29,.12), inset 0 0 0 1px rgba(255,255,255,.72);
+  }
+  #catNav.wheel-collapsed::before,
+  #catNav.wheel-collapsed::after { display: none; }
+  #catNav.wheel-collapsed .cat-pill {
+    display: none;
+  }
+  #catNav.wheel-collapsed .cat-pill.active {
+    display: flex;
+    flex: 0 0 48px;
+    width: min(92%, 380px);
+    min-height: 48px;
+    opacity: 1;
+    transform: scale(1);
+    filter: none;
+    color: #fff;
+    background: linear-gradient(135deg, #bc6945, #873b25) !important;
+    border-color: rgba(255,255,255,.62);
+    box-shadow: 0 7px 18px rgba(137,59,37,.28) !important;
+  }
+  #catNav.wheel-collapsed::marker { display: none; }
+  #catNav:not(.wheel-collapsed)::after {
+    top: auto;
+    content: 'Yukarı-aşağı kaydırın · merkezde 2 sn bekleyin';
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: rgba(120,72,49,.58);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    pointer-events: none;
+    z-index: 5;
+  }
+  #catNav.wheel-dwell .wheel-focus {
+    animation: wheelDwellPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes wheelDwellPulse {
+    0%, 100% { box-shadow: 0 10px 26px rgba(137,59,37,.34), 0 0 0 3px rgba(184,92,56,.08); }
+    50% { box-shadow: 0 10px 28px rgba(137,59,37,.42), 0 0 0 7px rgba(184,92,56,.16); }
+  }
+  @media (max-width: 560px) {
+    #catNav.wheel-collapsed { height: 60px !important; min-height: 60px; }
+  }
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -2902,6 +2966,31 @@
         if (!nav) return;
         let raf = 0;
         let wheelLock = false;
+        let dwellTimer = null;
+        let dwellKey = '';
+
+        function openWheel() {
+            nav.classList.remove('wheel-collapsed');
+            nav.setAttribute('aria-expanded', 'true');
+            setTimeout(scheduleFocus, 30);
+        }
+
+        function closeWheel() {
+            clearTimeout(dwellTimer);
+            dwellTimer = null;
+            dwellKey = '';
+            nav.classList.remove('wheel-dwell');
+            nav.classList.add('wheel-collapsed');
+            nav.setAttribute('aria-expanded', 'false');
+        }
+
+        function selectWheelItem(item) {
+            if (!item) return;
+            const key = item.id.replace(/^cp-/, '');
+            if (!key) return;
+            kategoriGit(key);
+            closeWheel();
+        }
 
         function updateWheelFocus() {
             raf = 0;
@@ -2927,6 +3016,21 @@
             if (closest) {
                 closest.classList.remove('wheel-near', 'wheel-far');
                 closest.classList.add('wheel-focus');
+                if (!nav.classList.contains('wheel-collapsed')) {
+                    const key = closest.id;
+                    if (key !== dwellKey) {
+                        clearTimeout(dwellTimer);
+                        dwellKey = key;
+                        nav.classList.remove('wheel-dwell');
+                        dwellTimer = setTimeout(() => {
+                            const current = nav.querySelector('.wheel-focus');
+                            if (current && current.id === dwellKey && !nav.classList.contains('wheel-collapsed')) {
+                                nav.classList.add('wheel-dwell');
+                                selectWheelItem(current);
+                            }
+                        }, 2000);
+                    }
+                }
             }
         }
 
@@ -2942,6 +3046,15 @@
         }
 
         nav.addEventListener('scroll', scheduleFocus, { passive: true });
+
+        // Kapalı çarkta görünen başlığa dokunmak yalnızca çarkı açar.
+        nav.addEventListener('click', (event) => {
+            if (!nav.classList.contains('wheel-collapsed')) return;
+            event.preventDefault();
+            event.stopPropagation();
+            openWheel();
+        }, true);
+
         function focusedIndex(items) {
             const focused = items.findIndex(item => item.classList.contains('wheel-focus'));
             if (focused >= 0) return focused;
@@ -3007,11 +3120,20 @@
         });
         nav.addEventListener('click', (event) => {
             const item = event.target.closest('.cat-pill');
-            if (item) setTimeout(() => centerItem(item), 20);
+            if (!item || nav.classList.contains('wheel-collapsed')) return;
+            centerItem(item);
+            selectWheelItem(item);
         });
 
-        const observer = new MutationObserver(scheduleFocus);
+        const observer = new MutationObserver(() => {
+            scheduleFocus();
+            if (!nav.classList.contains('wheel-collapsed')) return;
+            const active = nav.querySelector('.cat-pill.active');
+            if (active) active.style.display = 'flex';
+        });
         observer.observe(nav, { childList: true });
+        nav.classList.add('wheel-collapsed');
+        nav.setAttribute('aria-expanded', 'false');
         scheduleFocus();
     })();
 </script>
