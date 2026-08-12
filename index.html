@@ -480,6 +480,29 @@
     user-select: none;
   }
   #langToggleBtn:active { transform: scale(0.93); }
+  #themeToggleBtn {
+    position: fixed;
+    top: 14px;
+    right: 72px;
+    z-index: 45;
+    width: 38px;
+    height: 34px;
+    border: 1.5px solid var(--border2);
+    border-radius: 999px;
+    background: rgba(255,255,255,.86);
+    color: var(--rust);
+    box-shadow: 0 4px 14px rgba(184,92,56,.12);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  #themeToggleBtn:active { transform: scale(.92); }
+  #themeToggleLabel { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 380px) {
+    #themeToggleBtn { right: 67px; }
+    #langToggleBtn { right: 10px; padding-left: 11px; padding-right: 11px; }
+  }
   @media (hover:hover) {
     #langToggleBtn:hover {
       background: var(--rust);
@@ -1097,6 +1120,135 @@
     .fade-up, .prod-card, .welcome-card, #secretTrigger { animation: none !important; }
   }
 
+  /* =========================================================
+     ÜRÜN KARTLARI, DETAY PENCERESİ VE TEMA SİSTEMİ
+     ========================================================= */
+  #productGrid { align-items: stretch; }
+  #productGrid > .prod-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 356px;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(253,246,241,.88));
+    border: 1px solid rgba(255,255,255,.9);
+    box-shadow: 0 10px 26px rgba(67,35,22,.07);
+  }
+  #productGrid > .prod-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(67,35,22,.13); }
+  .product-card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.42 / 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--rust-lt), var(--surface2));
+  }
+  .product-card-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform .35s cubic-bezier(.22,1,.36,1);
+  }
+  #productGrid > .prod-card:hover .product-card-image { transform: scale(1.045); }
+  .product-card-body { display: flex; flex: 1; flex-direction: column; padding: 13px 14px 14px; min-width: 0; }
+  .product-card-category {
+    color: var(--muted2);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .product-card-title { color: var(--ink); font-size: 15px; line-height: 1.25; font-weight: 800; margin: 0; }
+  .product-card-description {
+    color: var(--muted);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 6px;
+    min-height: 33px;
+  }
+  .product-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 12px; }
+  .product-card-price { color: var(--rust-dk); font-size: 18px; line-height: 1; font-weight: 900; letter-spacing: -.03em; white-space: nowrap; }
+  .product-detail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 34px;
+    padding: 8px 11px;
+    border: 0;
+    border-radius: 11px;
+    background: var(--rust);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    box-shadow: 0 5px 14px rgba(184,92,56,.22);
+    cursor: pointer;
+  }
+  .product-detail-btn:active { transform: scale(.96); }
+  .product-card-badge { position: absolute; left: 10px; top: 10px; z-index: 4; padding: 5px 8px; border-radius: 999px; color: #fff; background: rgba(44,26,18,.76); font-size: 9px; font-weight: 800; }
+  .detail-modal-box { max-width: 480px; padding: 0; overflow: hidden; }
+  .detail-hero { position: relative; height: 235px; background: linear-gradient(135deg, var(--rust-lt), var(--surface2)); }
+  .detail-hero img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .detail-close { position: absolute; top: 14px; right: 14px; z-index: 3; width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; color: var(--ink); background: rgba(255,255,255,.84); box-shadow: 0 5px 15px rgba(43,23,14,.12); }
+  .detail-content { padding: 20px 20px 18px; }
+  .detail-category { color: var(--rust); font-size: 10px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+  .detail-title { color: var(--ink); font-family: 'Fraunces', serif; font-size: 27px; line-height: 1.12; font-weight: 700; margin-top: 5px; }
+  .detail-description { color: var(--muted); font-size: 13px; line-height: 1.65; margin-top: 10px; }
+  .detail-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 17px; padding-top: 15px; border-top: 1px solid var(--border); }
+  .detail-price { color: var(--rust-dk); font-size: 25px; font-weight: 900; letter-spacing: -.04em; }
+  .detail-stock { color: #41805a; font-size: 11px; font-weight: 800; }
+  .detail-stock.out { color: #a34c3a; }
+  .detail-extras { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+  .detail-actions { display: flex; gap: 9px; margin-top: 19px; }
+  .detail-action-main, .detail-action-soft { flex: 1; min-height: 44px; border-radius: 13px; font-size: 12px; font-weight: 800; cursor: pointer; }
+  .detail-action-main { border: 0; background: var(--rust); color: #fff; box-shadow: 0 7px 17px rgba(184,92,56,.22); }
+  .detail-action-soft { border: 1px solid var(--border2); background: var(--surface2); color: var(--muted); }
+
+  html[data-theme="dark"] {
+    --bg: #15100e; --surface: #241a16; --surface2: #2c201b; --border: rgba(255,235,222,.13); --border2: rgba(255,235,222,.22);
+    --rust: #e28a61; --rust-dk: #f0a17a; --rust-lt: #493025; --gold: #d7a27c; --ink: #fff2e9; --muted: #c9ada0; --muted2: #9b8076;
+  }
+  html[data-theme="dark"] body { background: radial-gradient(circle at 10% 0%, #3a261d, transparent 34rem), linear-gradient(145deg, #15100e, #211612 55%, #120d0b) !important; }
+  html[data-theme="dark"] #mainHeader, html[data-theme="dark"] .glass, html[data-theme="dark"] .wifi-bar, html[data-theme="dark"] .search-wrap input,
+  html[data-theme="dark"] #bottomNav, html[data-theme="dark"] #langToggleBtn, html[data-theme="dark"] #themeToggleBtn { background: rgba(39,27,22,.94) !important; border-color: var(--border2) !important; color: var(--ink); }
+  html[data-theme="dark"] #productGrid > .prod-card { background: linear-gradient(145deg, #2d211c, #211713); border-color: var(--border2); box-shadow: 0 12px 28px rgba(0,0,0,.22); }
+  html[data-theme="dark"] .product-card-image-wrap, html[data-theme="dark"] .detail-hero { background: linear-gradient(135deg, #4a3024, #2a1d18); }
+  html[data-theme="dark"] .modal-box { background: #2a1e19 !important; border-color: var(--border2); }
+  html[data-theme="dark"] .detail-close { color: var(--ink); background: rgba(46,32,25,.9); border-color: var(--border2); }
+  html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed) { background: radial-gradient(ellipse at center, rgba(61,42,33,.98), rgba(37,25,20,.96)); border-color: rgba(226,138,97,.28); }
+  html[data-theme="dark"] .product-card-title, html[data-theme="dark"] .detail-title { color: var(--ink); }
+  html[data-theme="dark"] .product-card-price, html[data-theme="dark"] .detail-price { color: var(--rust-dk); }
+  html[data-theme="dark"] .detail-action-soft { background: var(--surface2); color: var(--muted); border-color: var(--border2); }
+
+  @media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] { --bg: #15100e; --surface: #241a16; --surface2: #2c201b; --border: rgba(255,235,222,.13); --border2: rgba(255,235,222,.22); --rust: #e28a61; --rust-dk: #f0a17a; --rust-lt: #493025; --gold: #d7a27c; --ink: #fff2e9; --muted: #c9ada0; --muted2: #9b8076; }
+    html[data-theme="auto"] body { background: linear-gradient(145deg, #15100e, #211612 55%, #120d0b) !important; }
+    html[data-theme="auto"] #mainHeader, html[data-theme="auto"] .glass, html[data-theme="auto"] .wifi-bar, html[data-theme="auto"] .search-wrap input,
+    html[data-theme="auto"] #bottomNav, html[data-theme="auto"] #langToggleBtn, html[data-theme="auto"] #themeToggleBtn { background: rgba(39,27,22,.94) !important; border-color: var(--border2) !important; color: var(--ink); }
+    html[data-theme="auto"] #productGrid > .prod-card, html[data-theme="auto"] .modal-box { background: #2a1e19 !important; border-color: var(--border2); }
+    html[data-theme="auto"] #catNav.wheel-pro-mode:not(.wheel-collapsed) { background: radial-gradient(ellipse at center, rgba(61,42,33,.98), rgba(37,25,20,.96)); border-color: rgba(226,138,97,.28); }
+    html[data-theme="auto"] .detail-close { color: var(--ink); background: rgba(46,32,25,.9); border-color: var(--border2); }
+    html[data-theme="auto"] .detail-action-soft { background: var(--surface2); color: var(--muted); border-color: var(--border2); }
+    html[data-theme="auto"] .product-card-title, html[data-theme="auto"] .detail-title { color: var(--ink); }
+  }
+  html[data-theme="dark"] #secretTrigger, html[data-theme="auto"] #secretTrigger { color: var(--rust-dk) !important; text-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  html[data-theme="dark"] .product-card-description, html[data-theme="auto"] .product-card-description { color: var(--muted); }
+
+  @media (max-width: 560px) {
+    #productGrid > .prod-card { min-height: 342px; }
+    .detail-hero { height: 205px; }
+    .detail-title { font-size: 24px; }
+  }
+
   /* Sabit menü yönlendirmesi */
   .menu-access-hint {
     display: flex;
@@ -1195,7 +1347,11 @@
 </head>
 <body style="padding-bottom: 90px;">
 
-    <!-- Dil Değiştirme Butonu -->
+    <!-- Tema ve dil kontrolleri -->
+    <button id="themeToggleBtn" onclick="temaDegistir()" aria-label="Tema değiştir" title="Tema: Otomatik">
+        <i id="themeToggleIcon" class="fa-solid fa-circle-half-stroke"></i>
+        <span id="themeToggleLabel">Tema</span>
+    </button>
     <button id="langToggleBtn" onclick="dilDegistir()">
         <i class="fa-solid fa-globe"></i>
         <span id="langBtnLabel">EN</span>
@@ -1288,6 +1444,35 @@
             <span id="lblSkor">Öneri-İstek</span>
         </div>
     </nav>
+
+    <!-- Ürün Detay Modalı -->
+    <div id="productDetailModal" class="modal-overlay" onclick="if(event.target===this) modalKapat('productDetailModal')">
+        <div class="modal-box detail-modal-box">
+            <div class="detail-hero">
+                <img id="detailImage" src="" alt="Ürün görseli">
+                <button class="detail-close" onclick="modalKapat('productDetailModal')" aria-label="Kapat">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span id="detailBadge" class="product-card-badge" style="display:none;"></span>
+            </div>
+            <div class="detail-content">
+                <div id="detailCategory" class="detail-category"></div>
+                <h2 id="detailTitle" class="detail-title"></h2>
+                <p id="detailDescription" class="detail-description"></p>
+                <div id="detailExtras" class="detail-extras"></div>
+                <div class="detail-meta">
+                    <strong id="detailPrice" class="detail-price"></strong>
+                    <span id="detailStock" class="detail-stock"></span>
+                </div>
+                <div class="detail-actions">
+                    <button class="detail-action-soft" onclick="modalKapat('productDetailModal')">Kapat</button>
+                    <button id="detailMainAction" class="detail-action-main" onclick="modalKapat('productDetailModal')">
+                        <i class="fa-solid fa-check"></i> Menüyü Görüntüle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- WiFi Modal -->
     <div id="wifiModal" class="modal-overlay">
@@ -2110,6 +2295,34 @@
     function modalKapat(id){ document.getElementById(id).classList.remove('open'); }
 
     // ══════════════════════════════════════════════════════════════
+    // ── TEMA SİSTEMİ: OTOMATİK / AÇIK / KOYU ──
+    // ══════════════════════════════════════════════════════════════
+    const TEMA_KEY = 'keyfimce-theme-mode';
+    let temaModu = localStorage.getItem(TEMA_KEY) || 'auto';
+
+    function temaArayuzunuGuncelle() {
+        const root = document.documentElement;
+        root.setAttribute('data-theme', temaModu);
+        const icon = document.getElementById('themeToggleIcon');
+        const btn = document.getElementById('themeToggleBtn');
+        if (!icon || !btn) return;
+        const names = { auto: 'Otomatik tema', light: 'Açık tema', dark: 'Koyu tema' };
+        const icons = { auto: 'fa-circle-half-stroke', light: 'fa-sun', dark: 'fa-moon' };
+        icon.className = `fa-solid ${icons[temaModu]}`;
+        btn.title = `Tema: ${names[temaModu]}`;
+        btn.setAttribute('aria-label', names[temaModu] + '. Değiştirmek için tıklayın.');
+    }
+
+    function temaDegistir() {
+        const modes = ['auto', 'dark', 'light'];
+        temaModu = modes[(modes.indexOf(temaModu) + 1) % modes.length];
+        localStorage.setItem(TEMA_KEY, temaModu);
+        temaArayuzunuGuncelle();
+        renderProducts();
+    }
+    temaArayuzunuGuncelle();
+
+    // ══════════════════════════════════════════════════════════════
     // ── DEBOUNCE ARAMA (300ms) ──
     // ══════════════════════════════════════════════════════════════
     let _aramaTimer = null;
@@ -2490,54 +2703,86 @@
         const arama = document.getElementById('searchInput').value.toLowerCase().trim();
         grid.innerHTML = '';
         let list = [];
-        
+
         if (aktifKat === "cat-all") {
             for (let catKey in menuData)
                 (menuData[catKey]?.urunler || []).forEach(u => list.push({ ...u, catKey }));
         } else {
             (menuData[aktifKat]?.urunler || []).forEach(u => list.push({ ...u, catKey: aktifKat }));
         }
-        
-        if (arama) { list = list.filter(u => { const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad; return name.toLowerCase().includes(arama); }); }
+
+        if (arama) {
+            list = list.filter(u => {
+                const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
+                return name.toLowerCase().includes(arama);
+            });
+        }
+        window.__renderedProducts = list;
         if (!list.length) {
             grid.innerHTML = `<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">${t('no_product')}</p>`;
             return;
         }
-        list.forEach((u, idx) => {
-            
-            const img = (u.gorsel && u.gorsel.trim() !== '') ? u.gorsel : (gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve']);
 
+        list.forEach((u, idx) => {
+            const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
+            const description = (aktifDil === 'en' && u.aciklama_en) ? u.aciklama_en : u.aciklama;
+            const safeDescription = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
+            const categoryName = menuData[u.catKey] ? ((aktifDil === 'en' && menuData[u.catKey].isim_en) ? menuData[u.catKey].isim_en : menuData[u.catKey].isim) : '';
+            const img = (u.gorsel && u.gorsel.trim() !== '') ? u.gorsel : (gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve']);
             const fallbackImg = gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve'];
-            let exHtml = '';
-            if (u.ekstralar?.length) {
-                exHtml = '<div class="flex flex-wrap gap-1.5 mt-2.5 pt-2.5" style="border-top:1px solid rgba(232,221,213,0.5);">';
-                u.ekstralar.forEach(ex => {
-                    const exName = (aktifDil === 'en' && ex.isim_en) ? ex.isim_en : ex.isim;
-                    exHtml += `<span class="extra-pill">+${escapeHtml(exName)} ${ex.fiyat}₺</span>`;
-                });
-                exHtml += '</div>';
-            }
-            const stokOverlay = !u.stoktaVar ? `
-          <div class="stok-overlay">
-            <span class="stok-badge">${t('out_of_stock')}</span>
-          </div>` : '';
+            const extrasCount = u.ekstralar?.length || 0;
+            const stokOverlay = !u.stoktaVar ? `<div class="stok-overlay"><span class="stok-badge">${t('out_of_stock')}</span></div>` : '';
             const delay = Math.min(idx, 6) * 0.04;
             grid.insertAdjacentHTML('beforeend', `
-          <div class="prod-card mb-4" style="animation-delay:${delay}s;">
-            ${stokOverlay}
-            <img src="${img}" alt="${escapeHtml((aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad)}"
-              style="width:92px;height:92px;border-radius:18px;object-fit:cover;border:2px solid #fff;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.08);"
-              loading="lazy"
-              onerror="this.onerror=null;this.src='${fallbackImg}'">
-            <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;">
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
-                <span class="prod-name">${escapeHtml((aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad)}</span>
-                <span class="prod-price">${u.fiyat}₺</span>
-              </div>
-              ${exHtml}
-            </div>
-          </div>`);
+              <article class="prod-card" style="animation-delay:${delay}s;" data-product-index="${idx}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
+                ${stokOverlay}
+                <div class="product-card-image-wrap">
+                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}'">
+                  ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
+                </div>
+                <div class="product-card-body">
+                  <div class="product-card-category">${escapeHtml(categoryName || 'Keyfimce')}</div>
+                  <h3 class="product-card-title">${escapeHtml(name)}</h3>
+                  <p class="product-card-description">${escapeHtml(safeDescription)}</p>
+                  ${extrasCount ? `<div class="extra-pill" style="align-self:flex-start;margin-top:8px;">+${extrasCount} seçenek</div>` : ''}
+                  <div class="product-card-footer">
+                    <strong class="product-card-price">${u.fiyat}₺</strong>
+                    <button class="product-detail-btn" type="button" onclick="event.stopPropagation();openProductDetail(${idx})">
+                      <i class="fa-solid fa-eye"></i><span>Detay</span>
+                    </button>
+                  </div>
+                </div>
+              </article>`);
         });
+    }
+
+    function openProductDetail(index) {
+        const item = window.__renderedProducts?.[index];
+        if (!item) return;
+        const name = (aktifDil === 'en' && item.ad_en) ? item.ad_en : item.ad;
+        const description = (aktifDil === 'en' && item.aciklama_en) ? item.aciklama_en : item.aciklama;
+        const categoryName = menuData[item.catKey] ? ((aktifDil === 'en' && menuData[item.catKey].isim_en) ? menuData[item.catKey].isim_en : menuData[item.catKey].isim) : '';
+        const image = (item.gorsel && item.gorsel.trim() !== '') ? item.gorsel : (gorselHavuzu[item.catKey] || gorselHavuzu['cat-kahve']);
+        const fallback = gorselHavuzu[item.catKey] || gorselHavuzu['cat-kahve'];
+        document.getElementById('detailImage').src = image;
+        document.getElementById('detailImage').onerror = function() { this.onerror = null; this.src = fallback; };
+        document.getElementById('detailImage').alt = name;
+        document.getElementById('detailCategory').textContent = categoryName || 'Keyfimce';
+        document.getElementById('detailTitle').textContent = name;
+        document.getElementById('detailDescription').textContent = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
+        document.getElementById('detailPrice').textContent = `${item.fiyat}₺`;
+        const stock = document.getElementById('detailStock');
+        stock.textContent = item.stoktaVar ? (aktifDil === 'en' ? 'Available' : 'Stokta mevcut') : t('out_of_stock');
+        stock.classList.toggle('out', !item.stoktaVar);
+        const badge = document.getElementById('detailBadge');
+        badge.textContent = t('out_of_stock');
+        badge.style.display = item.stoktaVar ? 'none' : 'inline-flex';
+        const extras = document.getElementById('detailExtras');
+        extras.innerHTML = (item.ekstralar || []).map(ex => {
+            const exName = (aktifDil === 'en' && ex.isim_en) ? ex.isim_en : ex.isim;
+            return `<span class="extra-pill">+${escapeHtml(exName)} ${ex.fiyat}₺</span>`;
+        }).join('');
+        modalAc('productDetailModal');
     }
 
     // ══════════════════════════════════════════════════════════════
