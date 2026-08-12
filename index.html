@@ -961,7 +961,8 @@
      AÇILIR / KAPANIR KATEGORİ ÇARKI
      ========================================================= */
   #catNav {
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
     transition: height .34s cubic-bezier(.22,1,.36,1), padding .34s ease, opacity .25s ease, box-shadow .34s ease;
   }
   #catNav.wheel-collapsed {
@@ -975,8 +976,23 @@
     background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(246,224,211,.88));
     box-shadow: 0 8px 22px rgba(91,48,29,.12), inset 0 0 0 1px rgba(255,255,255,.72);
   }
-  #catNav.wheel-collapsed::before,
-  #catNav.wheel-collapsed::after { display: none; }
+  #catNav.wheel-collapsed::before { display: none; }
+  #catNav.wheel-collapsed::after {
+    content: 'Menüye ulaşmak için basınız';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 3px;
+    top: auto;
+    text-align: center;
+    color: rgba(120,72,49,.72);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    pointer-events: none;
+    z-index: 6;
+  }
   #catNav.wheel-collapsed .cat-pill {
     display: none;
   }
@@ -1020,6 +1036,161 @@
   @media (max-width: 560px) {
     #catNav.wheel-collapsed { height: 60px !important; min-height: 60px; }
   }
+
+  /* =========================================================
+     AKICI MOBİL PERFORMANS VE AÇILIŞ ANİMASYONU
+     ========================================================= */
+  body {
+    animation: none !important;
+    background:
+      radial-gradient(circle at 8% 0%, rgba(214,166,132,.13), transparent 28rem),
+      linear-gradient(145deg, #f7f3ee 0%, #fffaf6 52%, #f4eee8 100%);
+  }
+  body::before { display: none; }
+  .welcome-emoji {
+    animation: welcomeWaveSmooth 1.25s cubic-bezier(.22,1,.36,1) .12s 1 both !important;
+    will-change: transform;
+    backface-visibility: hidden;
+    filter: none !important;
+  }
+  @keyframes welcomeWaveSmooth {
+    0% { opacity: .25; transform: rotate(0deg) translateZ(0); }
+    18% { opacity: 1; transform: rotate(15deg) translateZ(0); }
+    36% { transform: rotate(-10deg) translateZ(0); }
+    54% { transform: rotate(13deg) translateZ(0); }
+    72% { transform: rotate(-6deg) translateZ(0); }
+    100% { opacity: 1; transform: rotate(0deg) translateZ(0); }
+  }
+  .prod-card { content-visibility: auto; contain-intrinsic-size: 106px; }
+
+  @media (max-width: 680px) {
+    html { scroll-behavior: auto; }
+    body { background-attachment: scroll; }
+    .glass,
+    .cat-pill,
+    .prod-card,
+    .search-wrap input,
+    #bottomNav,
+    .modal-overlay,
+    .modal-box,
+    #toast,
+    #langToggleBtn,
+    .welcome-card {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+    .glass { background: rgba(255,253,251,.92); }
+    .cat-pill { background: rgba(255,253,251,.94); }
+    .prod-card { background: rgba(255,253,251,.96); animation: none !important; }
+    .search-wrap input { background: rgba(255,255,255,.96); }
+    #bottomNav { background: rgba(255,253,251,.97); box-shadow: 0 -6px 18px rgba(57,29,18,.10); }
+    #mainHeader::after { filter: none; opacity: .6; }
+    #catNav .cat-pill { filter: none; will-change: auto; transition-duration: .12s; }
+    #catNav .cat-pill.wheel-far { opacity: .36; }
+    #catNav .cat-pill.wheel-near { opacity: .72; }
+    .modal-box { box-shadow: 0 12px 34px rgba(43,23,14,.18); }
+    .welcome-card { box-shadow: 0 14px 34px rgba(127,68,40,.12); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body { animation: none !important; }
+    .welcome-emoji { animation: none !important; transform: none !important; }
+    .fade-up, .prod-card, .welcome-card, #secretTrigger { animation: none !important; }
+  }
+
+  /* Sabit menü yönlendirmesi */
+  .menu-access-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 30px;
+    margin: -6px 16px 8px;
+    color: rgba(120,72,49,.78);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .02em;
+    text-align: center;
+    user-select: none;
+  }
+  .menu-access-hint i {
+    color: var(--rust);
+    font-size: 15px;
+    animation: hintArrow 1.35s ease-in-out infinite;
+  }
+  @keyframes hintArrow {
+    0%, 100% { transform: translateY(-2px); opacity: .68; }
+    50% { transform: translateY(3px); opacity: 1; }
+  }
+  #catNav.wheel-pro-mode {
+    overflow: hidden !important;
+    scroll-snap-type: none !important;
+    overscroll-behavior: none !important;
+    touch-action: none;
+    cursor: grab;
+  }
+  #catNav.wheel-pro-mode.wheel-dragging { cursor: grabbing; }
+  #catNav.wheel-pro-mode .cat-pill {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    transform-origin: center center;
+    transition: transform .26s cubic-bezier(.22,1,.36,1), opacity .22s ease, filter .22s ease, box-shadow .22s ease;
+    user-select: none;
+  }
+  #catNav.wheel-pro-mode .cat-pill.wheel-focus { z-index: 5; }
+  @media (max-width: 680px) {
+    .menu-access-hint { margin-top: -4px; margin-bottom: 6px; }
+    .menu-access-hint i { animation-duration: 1.6s; }
+  }
+
+  /* Profesyonel çark yüzeyi ve merkez seçim kılavuzu */
+  #catNav.wheel-pro-mode:not(.wheel-collapsed) {
+    border: 1px solid rgba(169,80,49,.22);
+    border-radius: 28px;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.18), transparent 18%, transparent 82%, rgba(137,59,37,.08)),
+      radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.97) 0%, rgba(249,232,221,.82) 45%, rgba(229,195,175,.42) 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset 0 24px 34px rgba(88,42,24,.08), inset 0 -24px 34px rgba(88,42,24,.08), 0 16px 34px rgba(76,40,25,.13);
+  }
+  #catNav.wheel-pro-mode:not(.wheel-collapsed)::before {
+    content: 'KATEGORİLER';
+    top: 13px;
+    left: 0;
+    right: 0;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    color: rgba(120,72,49,.58);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .2em;
+    text-align: center;
+  }
+  #catNav.wheel-pro-mode:not(.wheel-collapsed)::after {
+    content: 'Sürükleyin · Ortada seçin';
+    top: auto;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    color: rgba(120,72,49,.58);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-align: center;
+  }
+  #catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus::before {
+    content: '';
+    position: absolute;
+    inset: -7px -12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.48);
+    pointer-events: none;
+  }
+  #catNav.wheel-pro-mode.wheel-dragging .cat-pill { transition: none !important; }
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -1094,6 +1265,11 @@
                    data-i18n-placeholder="search_placeholder"
                    placeholder="Ne aramıştınız?">
         </div>
+    </div>
+
+    <div class="menu-access-hint" aria-hidden="true">
+        <i class="fa-solid fa-arrow-down-long"></i>
+        <span>Menüye ulaşmak için tıklayınız</span>
     </div>
 
     <div id="catNav" class="no-scroll px-4 pb-2 mb-5 fade-up fade-up-2" aria-label="Kategori menüsü"></div>
@@ -1550,7 +1726,7 @@
         setTimeout(() => {
             ws.style.opacity = '0';
             ws.style.visibility = 'hidden';
-        }, 1600);
+        }, 1900);
     });
 
     // ══════════════════════════════════════════════════════════════
@@ -2284,11 +2460,7 @@
         const el = document.getElementById('cp-' + k);
         if (el) {
             el.classList.add('active');
-            const nav = document.getElementById('catNav');
-            if (nav) {
-                const targetTop = Math.max(0, el.offsetTop - (nav.clientHeight - el.offsetHeight) / 2);
-                nav.scrollTo({ top: targetTop, behavior: 'smooth' });
-            }
+            if (window.__wheelGoToKey) window.__wheelGoToKey(k);
         }
     }
 
@@ -2960,31 +3132,37 @@
         }
     }
 
-    // Profesyonel kategori çarkı: merkez odak, touch/mouse wheel ve klavye desteği.
+    // Profesyonel sabit merkezli kategori çarkı.
+    // Serbest scroll yerine kontrollü drag + tek-adım snap modeli kullanır.
     (function initProfessionalCategoryWheel() {
         const nav = document.getElementById('catNav');
         if (!nav) return;
-        let raf = 0;
+
+        const STEP = 68;
+        let currentIndex = 0;
+        let dragStartY = 0;
+        let dragStartIndex = 0;
+        let dragging = false;
+        let suppressClick = false;
         let wheelLock = false;
         let dwellTimer = null;
-        let dwellKey = '';
+        let raf = 0;
 
-        function openWheel() {
-            nav.classList.remove('wheel-collapsed');
-            nav.setAttribute('aria-expanded', 'true');
-            setTimeout(scheduleFocus, 30);
+        const getItems = () => [...nav.querySelectorAll('.cat-pill')];
+        const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+        function activeIndex(items = getItems()) {
+            const active = items.findIndex(item => item.classList.contains('active'));
+            return active >= 0 ? active : 0;
         }
 
-        function closeWheel() {
+        function clearDwell() {
             clearTimeout(dwellTimer);
             dwellTimer = null;
-            dwellKey = '';
             nav.classList.remove('wheel-dwell');
-            nav.classList.add('wheel-collapsed');
-            nav.setAttribute('aria-expanded', 'false');
         }
 
-        function selectWheelItem(item) {
+        function selectItem(item) {
             if (!item) return;
             const key = item.id.replace(/^cp-/, '');
             if (!key) return;
@@ -2992,90 +3170,102 @@
             closeWheel();
         }
 
-        function updateWheelFocus() {
-            raf = 0;
-            const items = [...nav.querySelectorAll('.cat-pill')];
-            if (!items.length) return;
-            const center = nav.getBoundingClientRect().top + nav.clientHeight / 2;
-            let closest = null;
-            let closestDistance = Infinity;
-            items.forEach((item) => {
-                item.tabIndex = 0;
-                const box = item.getBoundingClientRect();
-                const itemCenter = box.top + box.height / 2;
-                const distance = Math.abs(center - itemCenter);
-                const ratio = Math.min(distance / 82, 1);
-                const direction = itemCenter < center ? -1 : 1;
-                item.style.setProperty('--wheel-distance', (ratio * 76).toFixed(1));
-                item.style.setProperty('--wheel-rotate', (direction * ratio * 18).toFixed(1) + 'deg');
-                item.classList.remove('wheel-focus', 'wheel-near', 'wheel-far');
-                if (distance < closestDistance) { closest = item; closestDistance = distance; }
-                if (distance < 55) item.classList.add('wheel-near');
-                else item.classList.add('wheel-far');
-            });
-            if (closest) {
-                closest.classList.remove('wheel-near', 'wheel-far');
-                closest.classList.add('wheel-focus');
-                if (!nav.classList.contains('wheel-collapsed')) {
-                    const key = closest.id;
-                    if (key !== dwellKey) {
-                        clearTimeout(dwellTimer);
-                        dwellKey = key;
-                        nav.classList.remove('wheel-dwell');
-                        dwellTimer = setTimeout(() => {
-                            const current = nav.querySelector('.wheel-focus');
-                            if (current && current.id === dwellKey && !nav.classList.contains('wheel-collapsed')) {
-                                nav.classList.add('wheel-dwell');
-                                selectWheelItem(current);
-                            }
-                        }, 2000);
-                    }
-                }
-            }
-        }
-
-        function scheduleFocus() {
-            if (!raf) raf = requestAnimationFrame(updateWheelFocus);
-        }
-
-        function centerItem(item, behavior = 'smooth') {
+        function startDwell() {
+            clearDwell();
+            if (dragging || nav.classList.contains('wheel-collapsed')) return;
+            const item = getItems()[Math.round(currentIndex)];
             if (!item) return;
-            const targetTop = Math.max(0, item.offsetTop - (nav.clientHeight - item.offsetHeight) / 2);
-            nav.scrollTo({ top: targetTop, behavior });
-            setTimeout(scheduleFocus, behavior === 'smooth' ? 180 : 0);
+            dwellTimer = setTimeout(() => {
+                if (!dragging && !nav.classList.contains('wheel-collapsed')) {
+                    nav.classList.add('wheel-dwell');
+                    selectItem(item);
+                }
+            }, 2000);
         }
 
-        nav.addEventListener('scroll', scheduleFocus, { passive: true });
+        function render(index, animate = true) {
+            const items = getItems();
+            if (!items.length) return;
+            currentIndex = clamp(index, 0, items.length - 1);
+            nav.classList.toggle('wheel-dragging', dragging);
 
-        // Kapalı çarkta görünen başlığa dokunmak yalnızca çarkı açar.
+            items.forEach((item, i) => {
+                const distance = i - currentIndex;
+                const absolute = Math.abs(distance);
+                const isClosedActive = nav.classList.contains('wheel-collapsed') && item.classList.contains('active');
+                const visible = nav.classList.contains('wheel-collapsed') ? isClosedActive : absolute <= 3.2;
+                item.style.display = visible ? 'flex' : 'none';
+                if (!visible) return;
+
+                const scale = absolute < .08 ? 1.06 : Math.max(.80, 1 - absolute * .10);
+                const opacity = absolute < .08 ? 1 : Math.max(.20, 1 - absolute * .24);
+                const rotate = distance * -7;
+                const blur = absolute < .08 ? 0 : Math.min(2.2, absolute * .65);
+                const y = distance * STEP;
+                item.style.opacity = opacity.toFixed(2);
+                item.style.filter = `blur(${blur.toFixed(1)}px)`;
+                item.style.transform = `translate(-50%, -50%) translateY(${y.toFixed(1)}px) scale(${scale.toFixed(3)}) rotateX(${rotate.toFixed(1)}deg)`;
+                item.style.transitionDuration = animate ? '.26s' : '0s';
+                item.classList.toggle('wheel-focus', absolute < .08);
+                item.classList.toggle('wheel-near', absolute >= .08 && absolute < 1.1);
+                item.classList.toggle('wheel-far', absolute >= 1.1);
+            });
+            if (!dragging) startDwell();
+        }
+
+        function scheduleRender() {
+            if (!raf) raf = requestAnimationFrame(() => {
+                raf = 0;
+                render(currentIndex);
+            });
+        }
+
+        function centerPageOnWheel() {
+            const rect = nav.getBoundingClientRect();
+            const pageTop = window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+            const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            window.scrollTo({ top: clamp(pageTop, 0, maxTop), behavior: 'smooth' });
+        }
+
+        function openWheel() {
+            nav.classList.remove('wheel-collapsed');
+            nav.setAttribute('aria-expanded', 'true');
+            currentIndex = activeIndex();
+            render(currentIndex, true);
+            setTimeout(centerPageOnWheel, 45);
+        }
+
+        function closeWheel() {
+            clearDwell();
+            nav.classList.add('wheel-collapsed');
+            nav.setAttribute('aria-expanded', 'false');
+            currentIndex = activeIndex();
+            render(currentIndex, true);
+        }
+
+        function moveOneStep(direction) {
+            const items = getItems();
+            if (!items.length) return;
+            openWheel();
+            clearDwell();
+            render(Math.round(currentIndex) + direction, true);
+        }
+
+        window.__wheelGoToKey = function(key) {
+            const items = getItems();
+            const index = items.findIndex(item => item.id === 'cp-' + key);
+            if (index >= 0) {
+                currentIndex = index;
+                render(currentIndex, true);
+            }
+        };
+
         nav.addEventListener('click', (event) => {
             if (!nav.classList.contains('wheel-collapsed')) return;
             event.preventDefault();
             event.stopPropagation();
             openWheel();
         }, true);
-
-        function focusedIndex(items) {
-            const focused = items.findIndex(item => item.classList.contains('wheel-focus'));
-            if (focused >= 0) return focused;
-            const center = nav.getBoundingClientRect().top + nav.clientHeight / 2;
-            let best = 0, distance = Infinity;
-            items.forEach((item, index) => {
-                const box = item.getBoundingClientRect();
-                const d = Math.abs(center - (box.top + box.height / 2));
-                if (d < distance) { distance = d; best = index; }
-            });
-            return best;
-        }
-
-        function moveOneStep(direction) {
-            const items = [...nav.querySelectorAll('.cat-pill')];
-            if (!items.length) return;
-            const current = focusedIndex(items);
-            const nextIndex = Math.max(0, Math.min(items.length - 1, current + direction));
-            if (nextIndex !== current) centerItem(items[nextIndex]);
-            else centerItem(items[current]);
-        }
 
         nav.addEventListener('wheel', (event) => {
             event.preventDefault();
@@ -3084,57 +3274,66 @@
             if (Math.abs(delta) < 2) return;
             wheelLock = true;
             moveOneStep(delta > 0 ? 1 : -1);
-            setTimeout(() => { wheelLock = false; }, 260);
+            setTimeout(() => { wheelLock = false; }, 280);
         }, { passive: false });
 
-        let touchStartY = 0;
-        let touchStartIndex = 0;
         nav.addEventListener('pointerdown', (event) => {
-            if (event.pointerType !== 'touch') return;
-            const items = [...nav.querySelectorAll('.cat-pill')];
-            touchStartY = event.clientY;
-            touchStartIndex = focusedIndex(items);
-        }, { passive: true });
-        nav.addEventListener('pointerup', (event) => {
-            if (event.pointerType !== 'touch') return;
-            const distance = touchStartY - event.clientY;
-            if (Math.abs(distance) < 12) return;
-            const items = [...nav.querySelectorAll('.cat-pill')];
-            const direction = distance > 0 ? 1 : -1;
-            const nextIndex = Math.max(0, Math.min(items.length - 1, touchStartIndex + direction));
-            centerItem(items[nextIndex]);
-        }, { passive: true });
-
-        // Scroll yalnızca görsel odağı günceller; kendiliğinden yeniden konumlandırma yapılmaz.
-        // Böylece çark sayfayı yukarı çekmez ve kullanıcı hareketi dışında kaymaz.
-        nav.addEventListener('scroll', scheduleFocus, { passive: true });
-        nav.addEventListener('keydown', (event) => {
-            if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp' && event.key !== 'PageDown' && event.key !== 'PageUp') return;
+            if (nav.classList.contains('wheel-collapsed')) return;
+            if (event.pointerType === 'mouse' && event.button !== 0) return;
+            dragging = true;
+            suppressClick = false;
+            dragStartY = event.clientY;
+            dragStartIndex = Math.round(currentIndex);
+            clearDwell();
+            nav.classList.add('wheel-dragging');
+            nav.setPointerCapture?.(event.pointerId);
             event.preventDefault();
-            const items = [...nav.querySelectorAll('.cat-pill')];
-            const current = items.findIndex(item => item.classList.contains('wheel-focus'));
-            const step = event.key === 'ArrowDown' || event.key === 'PageDown' ? 1 : -1;
-            const next = items[Math.max(0, Math.min(items.length - 1, (current < 0 ? 0 : current) + step))];
-            centerItem(next);
-            next?.focus({ preventScroll: true });
+        }, { passive: false });
+
+        nav.addEventListener('pointermove', (event) => {
+            if (!dragging) return;
+            const distance = dragStartY - event.clientY;
+            if (Math.abs(distance) > 8) suppressClick = true;
+            render(dragStartIndex + distance / STEP, false);
+            event.preventDefault();
+        }, { passive: false });
+
+        function endDrag(event) {
+            if (!dragging) return;
+            const distance = dragStartY - event.clientY;
+            dragging = false;
+            nav.classList.remove('wheel-dragging');
+            const nextIndex = Math.round(dragStartIndex + distance / STEP);
+            render(nextIndex, true);
+            if (Math.abs(distance) > 8) setTimeout(() => { suppressClick = false; }, 120);
+        }
+        nav.addEventListener('pointerup', endDrag, { passive: true });
+        nav.addEventListener('pointercancel', endDrag, { passive: true });
+
+        nav.addEventListener('keydown', (event) => {
+            if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+            event.preventDefault();
+            moveOneStep(event.key === 'ArrowDown' ? 1 : -1);
         });
+
         nav.addEventListener('click', (event) => {
             const item = event.target.closest('.cat-pill');
-            if (!item || nav.classList.contains('wheel-collapsed')) return;
-            centerItem(item);
-            selectWheelItem(item);
+            if (!item || nav.classList.contains('wheel-collapsed') || suppressClick) return;
+            selectItem(item);
         });
 
         const observer = new MutationObserver(() => {
-            scheduleFocus();
-            if (!nav.classList.contains('wheel-collapsed')) return;
-            const active = nav.querySelector('.cat-pill.active');
-            if (active) active.style.display = 'flex';
+            const items = getItems();
+            if (!items.length) return;
+            if (!dragging) currentIndex = activeIndex(items);
+            scheduleRender();
         });
         observer.observe(nav, { childList: true });
-        nav.classList.add('wheel-collapsed');
+
+        nav.classList.add('wheel-pro-mode', 'wheel-collapsed');
         nav.setAttribute('aria-expanded', 'false');
-        scheduleFocus();
+        currentIndex = activeIndex();
+        render(currentIndex, false);
     })();
 </script>
 </body>
