@@ -588,6 +588,374 @@
     }
   }
 
+
+  /* =========================================================
+     KEYFİMCE KAFEM — MODERN TASARIM KATMANI
+     Mevcut ID'ler, onclick olayları ve işlevler korunmuştur.
+     ========================================================= */
+  :root {
+    --bg: #f7f3ee;
+    --surface: rgba(255,255,255,.78);
+    --surface-solid: #fffdfb;
+    --surface-soft: #f8eee7;
+    --border: rgba(128, 83, 59, .14);
+    --border-strong: rgba(128, 83, 59, .24);
+    --rust: #a95031;
+    --rust-dk: #78351f;
+    --rust-lt: #f4e2d7;
+    --gold: #b77945;
+    --ink: #2b1912;
+    --muted: #7d665d;
+    --muted2: #aa968a;
+    --shadow-sm: 0 8px 24px rgba(77, 42, 27, .07);
+    --shadow-md: 0 18px 46px rgba(77, 42, 27, .11);
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 8% 0%, rgba(214,166,132,.18), transparent 28rem),
+      radial-gradient(circle at 100% 22%, rgba(190,132,91,.12), transparent 24rem),
+      linear-gradient(145deg, #f7f3ee 0%, #fffaf6 48%, #f4eee8 100%);
+    background-attachment: fixed;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .22;
+    z-index: -1;
+    background-image: radial-gradient(rgba(120,76,52,.17) .65px, transparent .65px);
+    background-size: 14px 14px;
+    mask-image: linear-gradient(to bottom, #000, transparent 78%);
+  }
+
+  #langToggleBtn {
+    top: 18px;
+    right: 18px;
+    padding: 9px 14px;
+    border: 1px solid rgba(255,255,255,.75);
+    background: rgba(255,253,251,.74);
+    box-shadow: var(--shadow-sm);
+    color: var(--rust-dk);
+    letter-spacing: .04em;
+  }
+
+  #mainHeader {
+    min-height: 290px;
+    padding: 62px 20px 48px;
+    border-radius: 0 0 38px 38px;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: #ead8ca;
+    box-shadow: 0 16px 42px rgba(91,48,29,.09);
+  }
+  #mainHeader::after {
+    content: '';
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    top: -110px;
+    left: -80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.22);
+    filter: blur(2px);
+    z-index: 1;
+  }
+  #secretTrigger {
+    font-size: clamp(2.35rem, 10vw, 4.4rem);
+    letter-spacing: .08em !important;
+    color: #6f321f !important;
+    text-shadow: 0 3px 0 rgba(255,255,255,.4), 0 14px 34px rgba(96,43,25,.2) !important;
+  }
+  #mainHeader > div {
+    padding: 10px 16px !important;
+    border: 1px solid rgba(255,255,255,.62);
+    box-shadow: 0 10px 24px rgba(81,41,24,.1);
+  }
+
+  #wifiBarWrap { margin-top: 22px; }
+  .wifi-bar {
+    min-height: 76px;
+    padding: 15px 18px;
+    border: 1px solid rgba(255,255,255,.78);
+    background: linear-gradient(120deg, rgba(255,255,255,.82), rgba(255,247,241,.66));
+    box-shadow: var(--shadow-sm);
+  }
+  .wifi-bar > div:first-child {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(145deg, #f7e8de, #efd1c1) !important;
+  }
+
+  .search-wrap { margin-top: 14px; }
+  .search-wrap > div { filter: drop-shadow(0 8px 18px rgba(78,39,24,.06)); }
+  .search-wrap input {
+    min-height: 54px;
+    border: 1px solid rgba(160,106,77,.16);
+    background: rgba(255,255,255,.78);
+    border-radius: 18px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+
+  #catNav {
+    gap: 10px;
+    padding-top: 4px;
+    padding-bottom: 12px;
+    margin-bottom: 13px;
+  }
+  .cat-pill {
+    padding: 12px 17px;
+    border: 1px solid rgba(143,89,61,.17);
+    background: rgba(255,255,255,.72);
+    box-shadow: 0 5px 14px rgba(76,40,25,.06);
+    color: #765d51;
+  }
+  .cat-pill.active {
+    background: linear-gradient(135deg, #b7613d, #893b24) !important;
+    border-color: transparent;
+    box-shadow: 0 9px 22px rgba(154,70,39,.28) !important;
+  }
+
+  #productGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding-bottom: 18px;
+  }
+  #productGrid > * { min-width: 0; }
+  .prod-card {
+    min-height: 104px;
+    padding: 12px;
+    gap: 11px;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.88);
+    background: linear-gradient(145deg, rgba(255,255,255,.91), rgba(253,246,241,.75));
+    box-shadow: var(--shadow-sm);
+  }
+  .prod-card:hover { transform: translateY(-5px) !important; box-shadow: var(--shadow-md) !important; }
+  .prod-card img { border-radius: 15px !important; box-shadow: 0 6px 14px rgba(76,40,25,.1); }
+  .prod-name { font-size: 14px; line-height: 1.25; }
+  .prod-price { font-size: 12px; padding: 5px 9px; border-radius: 10px; }
+  .extra-pill { padding: 4px 9px; font-size: 10px; }
+
+  #bottomNav {
+    left: 12px;
+    right: 12px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    border: 1px solid rgba(255,255,255,.82);
+    border-radius: 24px;
+    padding: 8px 6px;
+    background: rgba(255,253,251,.88);
+    box-shadow: 0 12px 34px rgba(57,29,18,.16);
+  }
+  .bnav-btn {
+    position: relative;
+    min-width: 0;
+    flex: 1;
+    padding: 8px 5px;
+    border-radius: 17px;
+    color: #a99489;
+    font-size: 10px;
+    gap: 5px;
+  }
+  .bnav-btn i { font-size: 18px; }
+  .bnav-btn.active {
+    color: #fff;
+    background: linear-gradient(145deg, #b8613d, #883a24);
+    box-shadow: 0 7px 16px rgba(145,61,34,.25);
+    transform: translateY(-5px);
+  }
+  .bnav-btn.active i { transform: scale(1); }
+
+  .modal-overlay { background: rgba(45,25,16,.48); }
+  .modal-box {
+    max-width: 460px;
+    border: 1px solid rgba(255,255,255,.8);
+    background: rgba(255,253,251,.94);
+    border-radius: 26px;
+    box-shadow: 0 24px 70px rgba(43,23,14,.25);
+  }
+  .modal-box h3 { letter-spacing: .01em; }
+  .ap-input { border-radius: 14px; background: rgba(249,242,237,.78); }
+  .ap-input:focus { box-shadow: 0 0 0 4px rgba(184,92,56,.11); }
+
+  #welcomeScreen { background: radial-gradient(circle at 50% 30%, #fffdfb, #f4e9df 100%); }
+  .welcome-card {
+    width: min(88vw, 390px);
+    padding: 38px 28px;
+    border: 1px solid rgba(255,255,255,.9);
+    box-shadow: 0 22px 60px rgba(127,68,40,.15);
+  }
+  .welcome-emoji { filter: drop-shadow(0 8px 12px rgba(174,91,53,.17)); }
+
+  #adminPanel { background: linear-gradient(145deg, #f7f3ee, #fffaf6) !important; }
+  #adminPanel .glass { border-color: rgba(255,255,255,.84); box-shadow: var(--shadow-sm); }
+  .admin-accordion-header { border-radius: 16px; }
+
+  @media (max-width: 560px) {
+    #productGrid { grid-template-columns: 1fr; gap: 12px; }
+    .prod-card { min-height: 92px; }
+    #mainHeader { min-height: 250px; border-radius: 0 0 30px 30px; }
+  }
+  @media (min-width: 700px) {
+    body { max-width: 760px; margin: 0 auto; }
+    #bottomNav { max-width: 736px; margin: 0 auto; }
+    #productGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  /* =========================================================
+     DİKEY ÇARK KATEGORİ MENÜSÜ
+     Yatay sağ-sol kaydırma kapatıldı. Kategoriler dikey,
+     scroll-snap destekli ve dokunmatik çark hissi verecek şekilde düzenlendi.
+     ========================================================= */
+  #catNav {
+    position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    width: calc(100% - 32px);
+    height: 176px;
+    margin: 4px 16px 20px !important;
+    padding: 50px 8px !important;
+    gap: 7px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    white-space: normal !important;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: contain;
+    border: 1px solid rgba(143,89,61,.13);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(244,226,215,.48), rgba(255,255,255,.22));
+    box-shadow: inset 0 18px 24px rgba(103,52,31,.08), inset 0 -18px 24px rgba(103,52,31,.08), 0 8px 20px rgba(76,40,25,.06);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 25%, #000 75%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 25%, #000 75%, transparent 100%);
+  }
+  #catNav::before,
+  #catNav::after {
+    content: '';
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    height: 1px;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(90deg, transparent, rgba(169,80,49,.35), transparent);
+  }
+  #catNav::before { top: 49px; }
+  #catNav::after { bottom: 49px; }
+  #catNav::-webkit-scrollbar { width: 0; height: 0; display: none; }
+  #catNav { scrollbar-width: none; }
+  #catNav .cat-pill {
+    flex: 0 0 43px;
+    width: min(88%, 330px);
+    min-height: 43px;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 15px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    opacity: .48;
+    transform: scale(.88);
+    filter: blur(.25px);
+    transition: opacity .28s ease, transform .28s ease, filter .28s ease, background .28s ease, box-shadow .28s ease;
+  }
+  #catNav .cat-pill.active {
+    opacity: 1;
+    transform: scale(1.04);
+    filter: none;
+    z-index: 2;
+    box-shadow: 0 8px 22px rgba(154,70,39,.3) !important;
+  }
+  #catNav .cat-pill:active { transform: scale(.98); }
+  @media (max-width: 560px) {
+    #catNav { height: 168px; padding-top: 46px !important; padding-bottom: 46px !important; }
+    #catNav::before { top: 45px; }
+    #catNav::after { bottom: 45px; }
+  }
+
+  /* =========================================================
+     PROFESYONEL 3D KATEGORİ ÇARKI
+     ========================================================= */
+  #catNav {
+    height: 214px;
+    padding: 78px 8px !important;
+    gap: 5px !important;
+    perspective: 680px;
+    perspective-origin: center center;
+    background:
+      radial-gradient(ellipse at center, rgba(255,255,255,.86) 0%, rgba(248,231,220,.62) 47%, rgba(230,197,178,.34) 100%);
+    box-shadow: inset 0 20px 30px rgba(88,42,24,.11), inset 0 -20px 30px rgba(88,42,24,.11), 0 12px 28px rgba(76,40,25,.09);
+    touch-action: pan-y;
+    cursor: ns-resize;
+  }
+  #catNav::before,
+  #catNav::after {
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, transparent, rgba(169,80,49,.55), transparent);
+    box-shadow: 0 0 12px rgba(169,80,49,.18);
+  }
+  #catNav::before { top: 77px; }
+  #catNav::after { bottom: 77px; }
+  #catNav .cat-pill {
+    --wheel-distance: 0;
+    --wheel-opacity: .36;
+    --wheel-scale: .78;
+    --wheel-rotate: 0deg;
+    --wheel-blur: 1.8px;
+    flex-basis: 48px;
+    min-height: 48px;
+    width: min(86%, 360px);
+    border-radius: 16px;
+    opacity: var(--wheel-opacity);
+    transform: translateZ(calc(var(--wheel-distance) * -1px)) rotateX(var(--wheel-rotate)) scale(var(--wheel-scale));
+    filter: blur(var(--wheel-blur));
+    transform-origin: center center;
+    will-change: transform, opacity, filter;
+    transition: transform .16s ease-out, opacity .16s ease-out, filter .16s ease-out, background .22s ease, box-shadow .22s ease;
+  }
+  #catNav .cat-pill.wheel-focus {
+    --wheel-opacity: 1;
+    --wheel-scale: 1.07;
+    --wheel-rotate: 0deg;
+    --wheel-blur: 0px;
+    color: #fff;
+    background: linear-gradient(135deg, #bc6945, #873b25) !important;
+    border-color: rgba(255,255,255,.55);
+    box-shadow: 0 10px 26px rgba(137,59,37,.34), 0 0 0 4px rgba(184,92,56,.1);
+    z-index: 4;
+  }
+  #catNav .cat-pill.wheel-near {
+    --wheel-opacity: .66;
+    --wheel-scale: .91;
+    --wheel-blur: .55px;
+  }
+  #catNav .cat-pill.wheel-far {
+    --wheel-opacity: .28;
+    --wheel-scale: .77;
+    --wheel-blur: 2px;
+  }
+  #catNav .cat-pill.active:not(.wheel-focus) {
+    outline: 2px solid rgba(169,80,49,.18);
+    outline-offset: 2px;
+  }
+  #catNav .cat-pill:focus-visible {
+    outline: 3px solid rgba(169,80,49,.48);
+    outline-offset: 3px;
+  }
+  @media (max-width: 560px) {
+    #catNav { height: 204px; padding-top: 73px !important; padding-bottom: 73px !important; }
+    #catNav::before { top: 72px; }
+    #catNav::after { bottom: 72px; }
+  }
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -664,7 +1032,7 @@
         </div>
     </div>
 
-    <div id="catNav" class="no-scroll overflow-x-auto whitespace-nowrap px-4 pb-2 mb-5 flex gap-3 fade-up fade-up-2"></div>
+    <div id="catNav" class="no-scroll px-4 pb-2 mb-5 fade-up fade-up-2" aria-label="Kategori menüsü"></div>
 
     <main class="px-4" id="productGrid"></main>
 
@@ -1852,7 +2220,7 @@
         const el = document.getElementById('cp-' + k);
         if (el) {
             el.classList.add('active');
-            el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            el.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'center' });
         }
     }
 
@@ -2524,7 +2892,78 @@
             section.classList.toggle('active');
         }
     }
+
+    // Profesyonel kategori çarkı: merkez odak, touch/mouse wheel ve klavye desteği.
+    (function initProfessionalCategoryWheel() {
+        const nav = document.getElementById('catNav');
+        if (!nav) return;
+        let raf = 0;
+        let wheelLock = false;
+
+        function updateWheelFocus() {
+            raf = 0;
+            const items = [...nav.querySelectorAll('.cat-pill')];
+            if (!items.length) return;
+            const center = nav.getBoundingClientRect().top + nav.clientHeight / 2;
+            let closest = null;
+            let closestDistance = Infinity;
+            items.forEach((item) => {
+                item.tabIndex = 0;
+                const box = item.getBoundingClientRect();
+                const itemCenter = box.top + box.height / 2;
+                const distance = Math.abs(center - itemCenter);
+                const ratio = Math.min(distance / 82, 1);
+                const direction = itemCenter < center ? -1 : 1;
+                item.style.setProperty('--wheel-distance', (ratio * 76).toFixed(1));
+                item.style.setProperty('--wheel-rotate', (direction * ratio * 18).toFixed(1) + 'deg');
+                item.classList.remove('wheel-focus', 'wheel-near', 'wheel-far');
+                if (distance < closestDistance) { closest = item; closestDistance = distance; }
+                if (distance < 55) item.classList.add('wheel-near');
+                else item.classList.add('wheel-far');
+            });
+            if (closest) {
+                closest.classList.remove('wheel-near', 'wheel-far');
+                closest.classList.add('wheel-focus');
+            }
+        }
+
+        function scheduleFocus() {
+            if (!raf) raf = requestAnimationFrame(updateWheelFocus);
+        }
+
+        function centerItem(item, behavior = 'smooth') {
+            if (!item) return;
+            item.scrollIntoView({ behavior, block: 'center', inline: 'nearest' });
+            setTimeout(scheduleFocus, behavior === 'smooth' ? 180 : 0);
+        }
+
+        nav.addEventListener('scroll', scheduleFocus, { passive: true });
+        nav.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            if (wheelLock) return;
+            wheelLock = true;
+            nav.scrollBy({ top: event.deltaY || event.deltaX, behavior: 'smooth' });
+            setTimeout(() => { wheelLock = false; }, 85);
+        }, { passive: false });
+        nav.addEventListener('keydown', (event) => {
+            if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp' && event.key !== 'PageDown' && event.key !== 'PageUp') return;
+            event.preventDefault();
+            const items = [...nav.querySelectorAll('.cat-pill')];
+            const current = items.findIndex(item => item.classList.contains('wheel-focus'));
+            const step = event.key === 'ArrowDown' || event.key === 'PageDown' ? 1 : -1;
+            const next = items[Math.max(0, Math.min(items.length - 1, (current < 0 ? 0 : current) + step))];
+            centerItem(next);
+            next?.focus({ preventScroll: true });
+        });
+        nav.addEventListener('click', (event) => {
+            const item = event.target.closest('.cat-pill');
+            if (item) setTimeout(() => centerItem(item), 20);
+        });
+
+        const observer = new MutationObserver(scheduleFocus);
+        observer.observe(nav, { childList: true });
+        scheduleFocus();
+    })();
 </script>
 </body>
 </html>
-.
