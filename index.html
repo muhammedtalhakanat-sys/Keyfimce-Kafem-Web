@@ -1746,6 +1746,43 @@
 @media(max-width:680px){#pageProgress{height:2px}#pageProgress>span{box-shadow:none}.product-card-image-wrap.image-ready::before{animation-duration:.58s}}
 @media(prefers-reduced-motion:reduce){#pageProgress{display:none}.product-card-image-wrap.image-ready::before,#catNav.wheel-awaiting-selection .wheel-focus::before,#bottomNav .bnav-btn.active::after{animation:none!important}}
 
+
+/* CINEMATIC WELCOME & MENU RETURN V3 */
+/* Python tarafından oluşturulan SVG, fotoğraf yüklemeden sıcak kafe dokusu sağlar. */
+#welcomeScreen{isolation:isolate;background:radial-gradient(circle at 50% 34%,#fffdfb 0%,#f9efe7 48%,#ead8ca 100%)}
+.welcome-ornament{position:absolute;inset:-9vh -18vw;z-index:1;pointer-events:none;opacity:.86;background:url('assets/keyfimce-welcome-ornament.svg') center / min(700px,94vw) auto no-repeat;mix-blend-mode:multiply;transform:translate3d(0,0,0);will-change:transform,opacity;animation:welcomeOrnamentDrift 13s ease-in-out infinite alternate}
+#welcomeScreen::before,#welcomeScreen::after{z-index:0}
+.welcome-stage{z-index:2}
+.welcome-card{overflow:hidden;background:linear-gradient(142deg,rgba(255,255,255,.79),rgba(255,247,239,.66));box-shadow:0 26px 70px rgba(99,45,26,.18),inset 0 1px 0 rgba(255,255,255,.82);animation:welcomeCinematicIn .92s cubic-bezier(.22,1,.36,1) both}
+.welcome-card::before{background:linear-gradient(125deg,rgba(255,255,255,.76),transparent 36%,rgba(184,92,56,.12) 72%)!important}
+.welcome-showcase{position:relative;isolation:isolate}
+.welcome-showcase::before{content:'';position:absolute;z-index:0;left:50%;top:48%;width:124px;height:124px;border-radius:50%;border:1px solid rgba(184,92,56,.24);background:radial-gradient(circle,rgba(255,220,188,.43) 0%,rgba(255,242,230,.12) 46%,transparent 72%);transform:translate3d(-50%,-50%,0) scale(.86);box-shadow:0 0 0 11px rgba(255,255,255,.17),0 0 42px rgba(184,92,56,.16);animation:welcomeHaloBloom 2.6s cubic-bezier(.22,1,.36,1) .22s both}
+.welcome-showcase::after{content:'';position:absolute;z-index:0;left:50%;top:48%;width:154px;height:154px;border-radius:50%;border:1px dashed rgba(184,92,56,.19);transform:translate3d(-50%,-50%,0);animation:welcomeOrbitTurn 13s linear infinite}
+.welcome-showcase>.welcome-coffee-scene,.welcome-showcase>.welcome-hookah-scene,.welcome-showcase>.welcome-orb{position:relative;z-index:1}
+.welcome-orb{filter:drop-shadow(0 14px 18px rgba(126,56,39,.16))}
+.welcome-emoji{animation:welcomeGreetingWave 2.7s cubic-bezier(.34,.08,.26,1) .38s infinite!important}
+.welcome-eyebrow{position:relative;letter-spacing:.25em!important;text-shadow:0 2px 10px rgba(184,92,56,.11)}
+.welcome-tip{position:relative;display:inline-flex;align-items:center;gap:4px}
+.welcome-tip::after{content:'···';display:inline-block;letter-spacing:2px;color:var(--rust);animation:welcomeTipDots 1.35s ease-in-out infinite}
+.welcome-progress{position:relative;overflow:hidden}
+.welcome-progress::after{content:'';position:absolute;inset:0;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),transparent);transform:translateX(-130%);animation:welcomeProgressGlint 2.8s ease-in-out .18s both;pointer-events:none}
+
+/* Menü düğmesiyle dönüş anında hedef alan hafifçe vurgulanır. */
+#catNav{scroll-margin-top:18px}
+#catNav.menu-return-focus{animation:menuReturnFocus .78s cubic-bezier(.22,1,.36,1) both}
+
+@keyframes welcomeCinematicIn{0%{opacity:0;transform:translate3d(0,34px,0) scale(.94) rotateX(7deg)}65%{opacity:1}100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotateX(0)}}
+@keyframes welcomeOrnamentDrift{0%{transform:translate3d(-10px,9px,0) rotate(-1deg);opacity:.67}100%{transform:translate3d(13px,-11px,0) rotate(1deg);opacity:.94}}
+@keyframes welcomeHaloBloom{0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.70)}100%{opacity:1;transform:translate3d(-50%,-50%,0) scale(1)}}
+@keyframes welcomeOrbitTurn{to{transform:translate3d(-50%,-50%,0) rotate(360deg)}}
+@keyframes welcomeGreetingWave{0%,100%{transform:rotate(0deg) translateY(0)}11%{transform:rotate(15deg) translateY(-2px)}22%{transform:rotate(-8deg)}34%{transform:rotate(14deg) translateY(-1px)}46%{transform:rotate(-3deg)}58%{transform:rotate(8deg)}70%{transform:rotate(0deg) translateY(0)}}
+@keyframes welcomeTipDots{0%,100%{opacity:.24;transform:translateX(-2px)}50%{opacity:1;transform:translateX(2px)}}
+@keyframes welcomeProgressGlint{0%{transform:translateX(-130%);opacity:0}18%{opacity:.8}100%{transform:translateX(440%);opacity:0}}
+@keyframes menuReturnFocus{0%{box-shadow:0 0 0 0 rgba(184,92,56,0)}40%{box-shadow:0 0 0 9px rgba(184,92,56,.18)}100%{box-shadow:0 0 0 0 rgba(184,92,56,0)}}
+
+@media(max-width:520px){.welcome-ornament{inset:-5vh -33vw;background-size:540px auto;opacity:.68}.welcome-showcase::after{width:132px;height:132px}.welcome-showcase::before{width:108px;height:108px}.welcome-card{box-shadow:0 18px 48px rgba(99,45,26,.15)}}
+@media(prefers-reduced-motion:reduce){.welcome-ornament,.welcome-showcase::before,.welcome-showcase::after,.welcome-emoji,.welcome-tip::after,.welcome-progress::after,#catNav.menu-return-focus{animation:none!important}.welcome-ornament{opacity:.46}.welcome-card{animation:none!important}}
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -1761,6 +1798,7 @@
     </button>
 
     <div id="welcomeScreen">
+        <div class="welcome-ornament" aria-hidden="true"></div>
         <div class="welcome-stage">
           <div class="welcome-card">
             <div class="welcome-showcase" aria-label="Kahve, karşılama ve nargile animasyonu">
@@ -3082,6 +3120,7 @@
     function setTab(tab) {
         document.getElementById('bnav-menu').className = 'bnav-btn' + (tab === 'menu' ? ' active' : '');
         kategoriGit(aktifKat);
+        if (tab === 'menu') window.setTimeout(scrollToMenuStart, 0);
     }
 
     function buildNav() {
@@ -4263,6 +4302,21 @@
         window.addEventListener('scroll', requestUpdate, { passive: true });
         window.addEventListener('resize', requestUpdate, { passive: true });
         requestUpdate();
+    }
+
+
+    // CINEMATIC WELCOME & MENU RETURN V3
+    function scrollToMenuStart() {
+        const target = document.getElementById('catNav') || document.getElementById('productGrid');
+        if (!target) return;
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - 18);
+        window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        target.classList.remove('menu-return-focus');
+        if (!reduceMotion) {
+            requestAnimationFrame(() => target.classList.add('menu-return-focus'));
+            window.setTimeout(() => target.classList.remove('menu-return-focus'), 840);
+        }
     }
 
     setupPremiumMotionLayer();
