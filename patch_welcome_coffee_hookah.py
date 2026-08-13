@@ -1,157 +1,191 @@
 from pathlib import Path
-import shutil
 
-ROOT = Path('/home/ubuntu/upload')
 TARGETS = [
-    ROOT / 'keyfimce-kafem-modern.html',
-    ROOT / 'github_clone' / 'index.html',
+    Path('/home/ubuntu/upload/keyfimce-kafem-modern.html'),
+    Path('/home/ubuntu/upload/github_clone/index.html'),
 ]
-ASSET_REL = Path('assets') / 'keyfimce-welcome-ornament.svg'
-ASSET_SOURCE = ROOT / ASSET_REL
-CSS_MARKER = '/* CINEMATIC WELCOME & MENU RETURN V3 */'
-JS_MARKER = '// CINEMATIC WELCOME & MENU RETURN V3'
-
-
-def make_ornament_svg() -> str:
-    """Create a lightweight, transparent decorative SVG for the welcome screen."""
-    beans = [
-        (122, 120, 18, -28, '.20'), (187, 220, 14, 34, '.14'), (80, 318, 16, 18, '.11'),
-        (529, 110, 17, 23, '.17'), (478, 234, 13, -31, '.12'), (550, 348, 19, 14, '.11'),
-        (294, 75, 11, 8, '.10'), (315, 443, 14, -17, '.10'),
-    ]
-    bean_parts = []
-    for x, y, r, rot, opacity in beans:
-        bean_parts.append(f'''<g transform="translate({x} {y}) rotate({rot})" opacity="{opacity}">
-  <ellipse cx="0" cy="0" rx="{r * .62:.1f}" ry="{r:.1f}" fill="url(#bean)"/>
-  <path d="M0 {-r * .78:.1f} C{-r * .30:.1f} {-r * .35:.1f} {r * .30:.1f} {r * .35:.1f} 0 {r * .78:.1f}" fill="none" stroke="#7E3827" stroke-width="2.4" stroke-linecap="round"/>
-</g>''')
-    sparks = [
-        (220, 105, 8, '.32'), (410, 156, 6, '.24'), (94, 212, 5, '.20'),
-        (527, 292, 8, '.24'), (382, 409, 5, '.20'), (154, 425, 7, '.18'),
-    ]
-    spark_parts = []
-    for x, y, s, opacity in sparks:
-        spark_parts.append(f'''<path d="M{x} {y-s} L{x+s*.38:.1f} {y-s*.38:.1f} L{x+s} {y} L{x+s*.38:.1f} {y+s*.38:.1f} L{x} {y+s} L{x-s*.38:.1f} {y+s*.38:.1f} L{x-s} {y} L{x-s*.38:.1f} {y-s*.38:.1f} Z" fill="#E7A16F" opacity="{opacity}"/>''')
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none">
-<defs>
-  <linearGradient id="bean" x1="-1" y1="-1" x2="1" y2="1"><stop stop-color="#F6D7BC"/><stop offset=".48" stop-color="#B76242"/><stop offset="1" stop-color="#783521"/></linearGradient>
-  <linearGradient id="steam" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#D37D55" stop-opacity="0"/><stop offset=".48" stop-color="#C26542" stop-opacity=".36"/><stop offset="1" stop-color="#D37D55" stop-opacity="0"/></linearGradient>
-  <filter id="soft"><feGaussianBlur stdDeviation="1.6"/></filter>
-</defs>
-<g filter="url(#soft)" opacity=".72">
-  <path d="M250 480 C205 405 314 360 265 278 C232 221 281 186 304 140" stroke="url(#steam)" stroke-width="10" stroke-linecap="round"/>
-  <path d="M375 493 C434 421 334 356 389 282 C431 225 373 176 406 122" stroke="url(#steam)" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="320" cy="267" r="142" stroke="#C57550" stroke-opacity=".13" stroke-width="2" stroke-dasharray="4 14"/>
-  <circle cx="320" cy="267" r="194" stroke="#E5B58C" stroke-opacity=".10" stroke-width="1.5" stroke-dasharray="3 18"/>
-</g>
-{''.join(bean_parts)}
-{''.join(spark_parts)}
-</svg>\n'''
-
+MARKER = '/* WHEEL EXPERIENCE V4 */'
 
 CSS = r'''
-
-/* CINEMATIC WELCOME & MENU RETURN V3 */
-/* Python tarafından oluşturulan SVG, fotoğraf yüklemeden sıcak kafe dokusu sağlar. */
-#welcomeScreen{isolation:isolate;background:radial-gradient(circle at 50% 34%,#fffdfb 0%,#f9efe7 48%,#ead8ca 100%)}
-.welcome-ornament{position:absolute;inset:-9vh -18vw;z-index:1;pointer-events:none;opacity:.86;background:url('assets/keyfimce-welcome-ornament.svg') center / min(700px,94vw) auto no-repeat;mix-blend-mode:multiply;transform:translate3d(0,0,0);will-change:transform,opacity;animation:welcomeOrnamentDrift 13s ease-in-out infinite alternate}
-#welcomeScreen::before,#welcomeScreen::after{z-index:0}
-.welcome-stage{z-index:2}
-.welcome-card{overflow:hidden;background:linear-gradient(142deg,rgba(255,255,255,.79),rgba(255,247,239,.66));box-shadow:0 26px 70px rgba(99,45,26,.18),inset 0 1px 0 rgba(255,255,255,.82);animation:welcomeCinematicIn .92s cubic-bezier(.22,1,.36,1) both}
-.welcome-card::before{background:linear-gradient(125deg,rgba(255,255,255,.76),transparent 36%,rgba(184,92,56,.12) 72%)!important}
-.welcome-showcase{position:relative;isolation:isolate}
-.welcome-showcase::before{content:'';position:absolute;z-index:0;left:50%;top:48%;width:124px;height:124px;border-radius:50%;border:1px solid rgba(184,92,56,.24);background:radial-gradient(circle,rgba(255,220,188,.43) 0%,rgba(255,242,230,.12) 46%,transparent 72%);transform:translate3d(-50%,-50%,0) scale(.86);box-shadow:0 0 0 11px rgba(255,255,255,.17),0 0 42px rgba(184,92,56,.16);animation:welcomeHaloBloom 2.6s cubic-bezier(.22,1,.36,1) .22s both}
-.welcome-showcase::after{content:'';position:absolute;z-index:0;left:50%;top:48%;width:154px;height:154px;border-radius:50%;border:1px dashed rgba(184,92,56,.19);transform:translate3d(-50%,-50%,0);animation:welcomeOrbitTurn 13s linear infinite}
-.welcome-showcase>.welcome-coffee-scene,.welcome-showcase>.welcome-hookah-scene,.welcome-showcase>.welcome-orb{position:relative;z-index:1}
-.welcome-orb{filter:drop-shadow(0 14px 18px rgba(126,56,39,.16))}
-.welcome-emoji{animation:welcomeGreetingWave 2.7s cubic-bezier(.34,.08,.26,1) .38s infinite!important}
-.welcome-eyebrow{position:relative;letter-spacing:.25em!important;text-shadow:0 2px 10px rgba(184,92,56,.11)}
-.welcome-tip{position:relative;display:inline-flex;align-items:center;gap:4px}
-.welcome-tip::after{content:'···';display:inline-block;letter-spacing:2px;color:var(--rust);animation:welcomeTipDots 1.35s ease-in-out infinite}
-.welcome-progress{position:relative;overflow:hidden}
-.welcome-progress::after{content:'';position:absolute;inset:0;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.78),transparent);transform:translateX(-130%);animation:welcomeProgressGlint 2.8s ease-in-out .18s both;pointer-events:none}
-
-/* Menü düğmesiyle dönüş anında hedef alan hafifçe vurgulanır. */
-#catNav{scroll-margin-top:18px}
-#catNav.menu-return-focus{animation:menuReturnFocus .78s cubic-bezier(.22,1,.36,1) both}
-
-@keyframes welcomeCinematicIn{0%{opacity:0;transform:translate3d(0,34px,0) scale(.94) rotateX(7deg)}65%{opacity:1}100%{opacity:1;transform:translate3d(0,0,0) scale(1) rotateX(0)}}
-@keyframes welcomeOrnamentDrift{0%{transform:translate3d(-10px,9px,0) rotate(-1deg);opacity:.67}100%{transform:translate3d(13px,-11px,0) rotate(1deg);opacity:.94}}
-@keyframes welcomeHaloBloom{0%{opacity:0;transform:translate3d(-50%,-50%,0) scale(.70)}100%{opacity:1;transform:translate3d(-50%,-50%,0) scale(1)}}
-@keyframes welcomeOrbitTurn{to{transform:translate3d(-50%,-50%,0) rotate(360deg)}}
-@keyframes welcomeGreetingWave{0%,100%{transform:rotate(0deg) translateY(0)}11%{transform:rotate(15deg) translateY(-2px)}22%{transform:rotate(-8deg)}34%{transform:rotate(14deg) translateY(-1px)}46%{transform:rotate(-3deg)}58%{transform:rotate(8deg)}70%{transform:rotate(0deg) translateY(0)}}
-@keyframes welcomeTipDots{0%,100%{opacity:.24;transform:translateX(-2px)}50%{opacity:1;transform:translateX(2px)}}
-@keyframes welcomeProgressGlint{0%{transform:translateX(-130%);opacity:0}18%{opacity:.8}100%{transform:translateX(440%);opacity:0}}
-@keyframes menuReturnFocus{0%{box-shadow:0 0 0 0 rgba(184,92,56,0)}40%{box-shadow:0 0 0 9px rgba(184,92,56,.18)}100%{box-shadow:0 0 0 0 rgba(184,92,56,0)}}
-
-@media(max-width:520px){.welcome-ornament{inset:-5vh -33vw;background-size:540px auto;opacity:.68}.welcome-showcase::after{width:132px;height:132px}.welcome-showcase::before{width:108px;height:108px}.welcome-card{box-shadow:0 18px 48px rgba(99,45,26,.15)}}
-@media(prefers-reduced-motion:reduce){.welcome-ornament,.welcome-showcase::before,.welcome-showcase::after,.welcome-emoji,.welcome-tip::after,.welcome-progress::after,#catNav.menu-return-focus{animation:none!important}.welcome-ornament{opacity:.46}.welcome-card{animation:none!important}}
+/* WHEEL EXPERIENCE V4 */
+/* 1 saniyelik seçimin ilerleyişini açıkça gösteren dolan merkez halkası. */
+@property --wheel-ring-progress { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+#catNav.wheel-pro-mode:not(.wheel-collapsed){
+  --wheel-gesture-tilt:0deg;
+  transform:perspective(1100px) rotateY(var(--wheel-gesture-tilt));
+  transform-style:preserve-3d;
+  transition:transform .22s cubic-bezier(.22,1,.36,1),height .34s cubic-bezier(.22,1,.36,1),padding .34s ease,opacity .25s ease,box-shadow .34s ease;
+}
+#catNav.wheel-pro-mode.wheel-dragging{transition:transform .08s linear;height:232px;}
+#catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus::before{
+  inset:-10px -16px;
+  border:2px solid rgba(184,92,56,.18);
+  background:conic-gradient(from -90deg,rgba(184,92,56,.16) 0deg,var(--wheel-ring-color, var(--rust)) var(--wheel-ring-progress),rgba(184,92,56,.12) var(--wheel-ring-progress) 360deg) border-box;
+  box-shadow:0 0 0 1px rgba(184,92,56,.10),0 0 16px rgba(184,92,56,.10);
+  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.8;
+  transform:scale(.98);
+}
+#catNav.wheel-awaiting-selection .wheel-focus::before{
+  --wheel-ring-progress:0deg;
+  border-color:transparent;
+  opacity:1;
+  animation:wheelSelectionRing 1s linear forwards;
+}
+@keyframes wheelSelectionRing{
+  0%{--wheel-ring-progress:0deg;transform:scale(.94);filter:brightness(.95)}
+  82%{--wheel-ring-progress:295deg;transform:scale(1.025);filter:brightness(1.06)}
+  100%{--wheel-ring-progress:360deg;transform:scale(1.035);filter:brightness(1.13)}
+}
+/* Sürüklemede merkez kartı öne gelir; yakın kartlar hafif yatay eksende hareket eder. */
+#catNav.wheel-pro-mode.wheel-dragging .cat-pill{filter:blur(var(--wheel-live-blur,0px)) saturate(1.03)!important;}
+#catNav.wheel-pro-mode.wheel-dragging .wheel-focus{box-shadow:0 18px 34px rgba(105,47,28,.30),0 0 0 5px rgba(184,92,56,.13);}
+/* Açık/koyu dil yönergeleri, buildNav içinden güncellenen data-lang ile çalışır. */
+#catNav[data-lang="en"].wheel-collapsed::after{content:'Click to access the menu';}
+#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::before{content:'CATEGORIES';}
+#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'Drag vertically · wait 1 sec';}
+/* Alt Menü düğmesine basıldığında sayfaya yön veren tek seferlik ışık halkası. */
+#bottomNav #bnav-menu.menu-button-ring::before{
+  content:'';position:absolute;inset:-8px;border:1.5px solid rgba(226,138,97,.72);border-radius:18px;pointer-events:none;
+  box-shadow:0 0 0 0 rgba(226,138,97,.28),0 0 16px rgba(226,138,97,.16);animation:menuButtonLightRing .92s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes menuButtonLightRing{
+  0%{opacity:0;transform:scale(.76);box-shadow:0 0 0 0 rgba(226,138,97,.38)}
+  30%{opacity:1;transform:scale(1);box-shadow:0 0 0 5px rgba(226,138,97,.16),0 0 18px rgba(226,138,97,.26)}
+  100%{opacity:0;transform:scale(1.27);box-shadow:0 0 0 13px rgba(226,138,97,0),0 0 0 rgba(226,138,97,0)}
+}
+/* Koyu temada çarktaki beyaz kenar ve açık yüzey etkileri sıcak, okunaklı tonlara çevrilir. */
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed){
+  background:linear-gradient(90deg,rgba(255,222,196,.025),transparent 20%,transparent 80%,rgba(226,138,97,.075)),radial-gradient(ellipse at 50% 50%,#4a3228 0%,#2b1d18 57%,#1e1512 100%);
+  border-color:rgba(226,138,97,.34);
+  box-shadow:inset 0 1px 0 rgba(255,221,197,.05),inset 0 24px 34px rgba(0,0,0,.19),inset 0 -24px 34px rgba(0,0,0,.23),0 16px 34px rgba(0,0,0,.34);
+}
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed)::before,
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed)::after{color:rgba(255,220,198,.62);}
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus{border-color:rgba(226,138,97,.50);box-shadow:0 13px 30px rgba(0,0,0,.33),0 0 0 4px rgba(226,138,97,.15);}
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus::before{--wheel-ring-color:#f1a67e;border-color:rgba(226,138,97,.28);box-shadow:0 0 0 1px rgba(226,138,97,.18),0 0 18px rgba(226,138,97,.16);}
+html[data-theme="dark"] #catNav.wheel-collapsed{background:linear-gradient(135deg,#3a271f,#241915);box-shadow:0 8px 22px rgba(0,0,0,.28),inset 0 0 0 1px rgba(226,138,97,.14);}
+html[data-theme="dark"] #catNav.wheel-collapsed::after{color:rgba(255,224,205,.72);}
+html[data-theme="dark"] .menu-access-hint{color:var(--muted);}
+html[data-theme="dark"] .menu-end-card{background:linear-gradient(145deg,#3a281f,#241915 72%);border-color:rgba(226,138,97,.30);box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,222,196,.04);}
+html[data-theme="dark"] .menu-end-card::before{background:radial-gradient(circle,rgba(226,138,97,.20),transparent 68%);}
+html[data-theme="dark"] .menu-end-card-copy > i{color:#f1a67e;background:rgba(226,138,97,.15);}
+html[data-theme="dark"] .menu-end-card-copy strong{color:var(--ink);}
+html[data-theme="dark"] .menu-end-card-copy span{color:var(--muted);}
+html[data-theme="dark"] .menu-end-card-actions button{color:#f1a67e;background:rgba(226,138,97,.14);}
+html[data-theme="dark"] .menu-end-card-actions button:hover{background:rgba(226,138,97,.24);}
+@media(max-width:680px){
+  #catNav.wheel-pro-mode:not(.wheel-collapsed){transform:none;}
+  #catNav.wheel-pro-mode.wheel-dragging .wheel-focus{box-shadow:0 13px 25px rgba(105,47,28,.26),0 0 0 4px rgba(184,92,56,.11);}
+}
+@media(prefers-reduced-motion:reduce){
+  #catNav.wheel-pro-mode:not(.wheel-collapsed),#catNav.wheel-pro-mode.wheel-dragging{transform:none!important;transition:none!important;}
+  #catNav.wheel-awaiting-selection .wheel-focus::before,#bottomNav #bnav-menu.menu-button-ring::before{animation:none!important;}
+}
 '''
 
-JS = r'''
 
-    // CINEMATIC WELCOME & MENU RETURN V3
-    function scrollToMenuStart() {
-        const target = document.getElementById('catNav') || document.getElementById('productGrid');
-        if (!target) return;
-        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - 18);
-        window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
-        target.classList.remove('menu-return-focus');
-        if (!reduceMotion) {
-            requestAnimationFrame(() => target.classList.add('menu-return-focus'));
-            window.setTimeout(() => target.classList.remove('menu-return-focus'), 840);
-        }
-    }
-'''
+def replace_once(text: str, old: str, new: str, label: str) -> str:
+    if old not in text:
+        raise RuntimeError(f'Beklenen bölüm bulunamadı: {label}')
+    return text.replace(old, new, 1)
 
-# Generate the same light asset for the standalone HTML and GitHub Pages tree.
-ASSET_SOURCE.parent.mkdir(parents=True, exist_ok=True)
-ASSET_SOURCE.write_text(make_ornament_svg(), encoding='utf-8')
-clone_asset = ROOT / 'github_clone' / ASSET_REL
-clone_asset.parent.mkdir(parents=True, exist_ok=True)
-shutil.copy2(ASSET_SOURCE, clone_asset)
-print(f'Generated: {ASSET_SOURCE}')
-print(f'Copied: {clone_asset}')
 
-for path in TARGETS:
-    if not path.exists():
-        raise FileNotFoundError(path)
+def patch_html(path: Path) -> None:
     html = path.read_text(encoding='utf-8')
 
-    if CSS_MARKER not in html:
-        style_marker = '\n</style>'
-        if style_marker not in html:
-            raise RuntimeError(f'Could not find style closing marker in {path}')
-        html = html.replace(style_marker, CSS + style_marker, 1)
+    if 'id="menuAccessHintText"' not in html:
+        html = replace_once(
+            html,
+            '<span>Menüye ulaşmak için tıklayınız</span>',
+            '<span id="menuAccessHintText">Menüye ulaşmak için tıklayınız</span>',
+            'sabit Menü yönergesi',
+        )
 
-    ornament_markup = '<div class="welcome-ornament" aria-hidden="true"></div>'
-    if ornament_markup not in html:
-        source = '<div id="welcomeScreen">'
-        if source not in html:
-            raise RuntimeError(f'Could not find welcome screen markup in {path}')
-        html = html.replace(source, source + '\n        ' + ornament_markup, 1)
+    if 'nav.dataset.lang = aktifDil;' not in html:
+        html = replace_once(
+            html,
+            "const nav   = document.getElementById('catNav');\n        const apKat",
+            "const nav   = document.getElementById('catNav');\n        nav.dataset.lang = aktifDil;\n        const apKat",
+            'buildNav dil verisi',
+        )
 
-    old_set_tab = '''    function setTab(tab) {
-        document.getElementById('bnav-menu').className = 'bnav-btn' + (tab === 'menu' ? ' active' : '');
-        kategoriGit(aktifKat);
-    }'''
-    new_set_tab = '''    function setTab(tab) {
-        document.getElementById('bnav-menu').className = 'bnav-btn' + (tab === 'menu' ? ' active' : '');
-        kategoriGit(aktifKat);
-        if (tab === 'menu') window.setTimeout(scrollToMenuStart, 0);
-    }'''
-    if old_set_tab in html:
-        html = html.replace(old_set_tab, new_set_tab, 1)
-    elif new_set_tab not in html:
-        raise RuntimeError(f'Could not find setTab function in {path}')
+    if "menuHint.textContent = aktifDil === 'en'" not in html:
+        html = replace_once(
+            html,
+            "document.getElementById('htmlRoot').lang = aktifDil;\n        // Tüm dinamik bileşenleri yenile",
+            "document.getElementById('htmlRoot').lang = aktifDil;\n        const menuHint = document.getElementById('menuAccessHintText');\n        if (menuHint) menuHint.textContent = aktifDil === 'en' ? 'Click to access the menu' : 'Menüye ulaşmak için tıklayınız';\n        const categoryWheel = document.getElementById('catNav');\n        if (categoryWheel) categoryWheel.dataset.lang = aktifDil;\n        // Tüm dinamik bileşenleri yenile",
+            'dil yönergesi güncellemesi',
+        )
 
-    if JS_MARKER not in html:
-        marker = '\n    setupPremiumMotionLayer();\n    setupPageProgress();\n\n</script>'
-        replacement = JS + '\n    setupPremiumMotionLayer();\n    setupPageProgress();\n\n</script>'
-        if marker not in html:
-            raise RuntimeError(f'Could not find final script marker in {path}')
-        html = html.replace(marker, replacement, 1)
+    if 'menu-button-ring' not in html.split('function scrollToMenuStart()', 1)[-1]:
+        html = replace_once(
+            html,
+            "if (!target) return;\n        const reduceMotion",
+            "if (!target) return;\n        const menuButton = document.getElementById('bnav-menu');\n        if (menuButton) {\n            menuButton.classList.remove('menu-button-ring');\n            void menuButton.offsetWidth;\n            menuButton.classList.add('menu-button-ring');\n            window.setTimeout(() => menuButton.classList.remove('menu-button-ring'), 980);\n        }\n        const reduceMotion",
+            'Menü düğmesi halka tetikleme',
+        )
+
+    old_transform = """const rotate = distance * -7;
+                const blur = absolute < .08 ? 0 : Math.min(2.2, absolute * .65);
+                const y = distance * STEP;
+                item.style.opacity = opacity.toFixed(2);
+                item.style.filter = `blur(${blur.toFixed(1)}px)`;
+                item.style.transform = `translate(-50%, -50%) translateY(${y.toFixed(1)}px) scale(${scale.toFixed(3)}) rotateX(${rotate.toFixed(1)}deg)`;"""
+    new_transform = """const rotate = distance * -7;
+                const depth = absolute < .08 ? 34 : Math.max(-38, 14 - absolute * 20);
+                const sideShift = dragging ? clamp(distance * 5.5, -15, 15) : distance * 1.35;
+                const rotateY = dragging ? clamp(distance * 2.4, -9, 9) : distance * 1.05;
+                const blur = absolute < .08 ? 0 : Math.min(2.2, absolute * .65);
+                const y = distance * STEP;
+                item.style.opacity = opacity.toFixed(2);
+                item.style.setProperty('--wheel-live-blur', `${blur.toFixed(1)}px`);
+                item.style.filter = `blur(${blur.toFixed(1)}px)`;
+                item.style.transform = `translate(-50%, -50%) translate3d(${sideShift.toFixed(1)}px, ${y.toFixed(1)}px, ${depth.toFixed(1)}px) scale(${scale.toFixed(3)}) rotateX(${rotate.toFixed(1)}deg) rotateY(${rotateY.toFixed(1)}deg)`;"""
+    if old_transform in html:
+        html = html.replace(old_transform, new_transform, 1)
+    elif 'const sideShift = dragging ? clamp(distance * 5.5' not in html:
+        raise RuntimeError('Çark 3B transform bölümü bulunamadı')
+
+    old_pointermove = """const distance = dragStartY - event.clientY;
+            if (Math.abs(distance) > 8) suppressClick = true;
+            render(dragStartIndex + distance / STEP, false);"""
+    new_pointermove = """const distance = dragStartY - event.clientY;
+            if (Math.abs(distance) > 8) suppressClick = true;
+            const liveIndex = dragStartIndex + distance / STEP;
+            nav.style.setProperty('--wheel-gesture-tilt', `${clamp((liveIndex - dragStartIndex) * -2.4, -3.2, 3.2).toFixed(2)}deg`);
+            render(liveIndex, false);"""
+    if old_pointermove in html:
+        html = html.replace(old_pointermove, new_pointermove, 1)
+    elif "const liveIndex = dragStartIndex + distance / STEP;" not in html:
+        raise RuntimeError('Çark pointermove bölümü bulunamadı')
+
+    old_end_drag = """dragging = false;
+            nav.classList.remove('wheel-dragging');
+            const nextIndex"""
+    new_end_drag = """dragging = false;
+            nav.classList.remove('wheel-dragging');
+            nav.style.setProperty('--wheel-gesture-tilt', '0deg');
+            const nextIndex"""
+    if old_end_drag in html:
+        html = html.replace(old_end_drag, new_end_drag, 1)
+    elif "nav.style.setProperty('--wheel-gesture-tilt', '0deg');" not in html:
+        raise RuntimeError('Çark pointerup bölümü bulunamadı')
+
+    if MARKER not in html:
+        if '</style>' not in html:
+            raise RuntimeError('CSS kapanış etiketi bulunamadı')
+        html = html.replace('</style>', CSS + '\n</style>', 1)
 
     path.write_text(html, encoding='utf-8')
-    print(f'Patched: {path}')
+    print(f'Güncellendi: {path}')
+
+
+for target in TARGETS:
+    if not target.exists():
+        raise FileNotFoundError(target)
+    patch_html(target)
+
+print('Çark, tema, dil ve Menü düğmesi geliştirmeleri tamamlandı.')
