@@ -1783,6 +1783,85 @@
 @media(max-width:520px){.welcome-ornament{inset:-5vh -33vw;background-size:540px auto;opacity:.68}.welcome-showcase::after{width:132px;height:132px}.welcome-showcase::before{width:108px;height:108px}.welcome-card{box-shadow:0 18px 48px rgba(99,45,26,.15)}}
 @media(prefers-reduced-motion:reduce){.welcome-ornament,.welcome-showcase::before,.welcome-showcase::after,.welcome-emoji,.welcome-tip::after,.welcome-progress::after,#catNav.menu-return-focus{animation:none!important}.welcome-ornament{opacity:.46}.welcome-card{animation:none!important}}
 
+
+/* WHEEL EXPERIENCE V4 */
+/* 1 saniyelik seçimin ilerleyişini açıkça gösteren dolan merkez halkası. */
+@property --wheel-ring-progress { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+#catNav.wheel-pro-mode:not(.wheel-collapsed){
+  --wheel-gesture-tilt:0deg;
+  transform:perspective(1100px) rotateY(var(--wheel-gesture-tilt));
+  transform-style:preserve-3d;
+  transition:transform .22s cubic-bezier(.22,1,.36,1),height .34s cubic-bezier(.22,1,.36,1),padding .34s ease,opacity .25s ease,box-shadow .34s ease;
+}
+#catNav.wheel-pro-mode.wheel-dragging{transition:transform .08s linear;height:232px;}
+#catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus::before{
+  inset:-10px -16px;
+  border:2px solid rgba(184,92,56,.18);
+  background:conic-gradient(from -90deg,rgba(184,92,56,.16) 0deg,var(--wheel-ring-color, var(--rust)) var(--wheel-ring-progress),rgba(184,92,56,.12) var(--wheel-ring-progress) 360deg) border-box;
+  box-shadow:0 0 0 1px rgba(184,92,56,.10),0 0 16px rgba(184,92,56,.10);
+  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:.8;
+  transform:scale(.98);
+}
+#catNav.wheel-awaiting-selection .wheel-focus::before{
+  --wheel-ring-progress:0deg;
+  border-color:transparent;
+  opacity:1;
+  animation:wheelSelectionRing 1s linear forwards;
+}
+@keyframes wheelSelectionRing{
+  0%{--wheel-ring-progress:0deg;transform:scale(.94);filter:brightness(.95)}
+  82%{--wheel-ring-progress:295deg;transform:scale(1.025);filter:brightness(1.06)}
+  100%{--wheel-ring-progress:360deg;transform:scale(1.035);filter:brightness(1.13)}
+}
+/* Sürüklemede merkez kartı öne gelir; yakın kartlar hafif yatay eksende hareket eder. */
+#catNav.wheel-pro-mode.wheel-dragging .cat-pill{filter:blur(var(--wheel-live-blur,0px)) saturate(1.03)!important;}
+#catNav.wheel-pro-mode.wheel-dragging .wheel-focus{box-shadow:0 18px 34px rgba(105,47,28,.30),0 0 0 5px rgba(184,92,56,.13);}
+/* Açık/koyu dil yönergeleri, buildNav içinden güncellenen data-lang ile çalışır. */
+#catNav[data-lang="en"].wheel-collapsed::after{content:'Click to access the menu';}
+#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::before{content:'CATEGORIES';}
+#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'Drag vertically · wait 1 sec';}
+/* Alt Menü düğmesine basıldığında sayfaya yön veren tek seferlik ışık halkası. */
+#bottomNav #bnav-menu.menu-button-ring::before{
+  content:'';position:absolute;inset:-8px;border:1.5px solid rgba(226,138,97,.72);border-radius:18px;pointer-events:none;
+  box-shadow:0 0 0 0 rgba(226,138,97,.28),0 0 16px rgba(226,138,97,.16);animation:menuButtonLightRing .92s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes menuButtonLightRing{
+  0%{opacity:0;transform:scale(.76);box-shadow:0 0 0 0 rgba(226,138,97,.38)}
+  30%{opacity:1;transform:scale(1);box-shadow:0 0 0 5px rgba(226,138,97,.16),0 0 18px rgba(226,138,97,.26)}
+  100%{opacity:0;transform:scale(1.27);box-shadow:0 0 0 13px rgba(226,138,97,0),0 0 0 rgba(226,138,97,0)}
+}
+/* Koyu temada çarktaki beyaz kenar ve açık yüzey etkileri sıcak, okunaklı tonlara çevrilir. */
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed){
+  background:linear-gradient(90deg,rgba(255,222,196,.025),transparent 20%,transparent 80%,rgba(226,138,97,.075)),radial-gradient(ellipse at 50% 50%,#4a3228 0%,#2b1d18 57%,#1e1512 100%);
+  border-color:rgba(226,138,97,.34);
+  box-shadow:inset 0 1px 0 rgba(255,221,197,.05),inset 0 24px 34px rgba(0,0,0,.19),inset 0 -24px 34px rgba(0,0,0,.23),0 16px 34px rgba(0,0,0,.34);
+}
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed)::before,
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed)::after{color:rgba(255,220,198,.62);}
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus{border-color:rgba(226,138,97,.50);box-shadow:0 13px 30px rgba(0,0,0,.33),0 0 0 4px rgba(226,138,97,.15);}
+html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus::before{--wheel-ring-color:#f1a67e;border-color:rgba(226,138,97,.28);box-shadow:0 0 0 1px rgba(226,138,97,.18),0 0 18px rgba(226,138,97,.16);}
+html[data-theme="dark"] #catNav.wheel-collapsed{background:linear-gradient(135deg,#3a271f,#241915);box-shadow:0 8px 22px rgba(0,0,0,.28),inset 0 0 0 1px rgba(226,138,97,.14);}
+html[data-theme="dark"] #catNav.wheel-collapsed::after{color:rgba(255,224,205,.72);}
+html[data-theme="dark"] .menu-access-hint{color:var(--muted);}
+html[data-theme="dark"] .menu-end-card{background:linear-gradient(145deg,#3a281f,#241915 72%);border-color:rgba(226,138,97,.30);box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,222,196,.04);}
+html[data-theme="dark"] .menu-end-card::before{background:radial-gradient(circle,rgba(226,138,97,.20),transparent 68%);}
+html[data-theme="dark"] .menu-end-card-copy > i{color:#f1a67e;background:rgba(226,138,97,.15);}
+html[data-theme="dark"] .menu-end-card-copy strong{color:var(--ink);}
+html[data-theme="dark"] .menu-end-card-copy span{color:var(--muted);}
+html[data-theme="dark"] .menu-end-card-actions button{color:#f1a67e;background:rgba(226,138,97,.14);}
+html[data-theme="dark"] .menu-end-card-actions button:hover{background:rgba(226,138,97,.24);}
+@media(max-width:680px){
+  #catNav.wheel-pro-mode:not(.wheel-collapsed){transform:none;}
+  #catNav.wheel-pro-mode.wheel-dragging .wheel-focus{box-shadow:0 13px 25px rgba(105,47,28,.26),0 0 0 4px rgba(184,92,56,.11);}
+}
+@media(prefers-reduced-motion:reduce){
+  #catNav.wheel-pro-mode:not(.wheel-collapsed),#catNav.wheel-pro-mode.wheel-dragging{transform:none!important;transition:none!important;}
+  #catNav.wheel-awaiting-selection .wheel-focus::before,#bottomNav #bnav-menu.menu-button-ring::before{animation:none!important;}
+}
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -1891,7 +1970,7 @@
 
     <div class="menu-access-hint" aria-hidden="true">
         <i class="fa-solid fa-arrow-down-long"></i>
-        <span>Menüye ulaşmak için tıklayınız</span>
+        <span id="menuAccessHintText">Menüye ulaşmak için tıklayınız</span>
     </div>
 
     <div id="catNav" class="no-scroll px-4 pb-2 mb-5 fade-up fade-up-2" aria-label="Kategori menüsü"></div>
@@ -2633,6 +2712,10 @@
         document.getElementById('langBtnLabel').textContent = aktifDil === 'tr' ? 'EN' : 'TR';
         // html lang attr
         document.getElementById('htmlRoot').lang = aktifDil;
+        const menuHint = document.getElementById('menuAccessHintText');
+        if (menuHint) menuHint.textContent = aktifDil === 'en' ? 'Click to access the menu' : 'Menüye ulaşmak için tıklayınız';
+        const categoryWheel = document.getElementById('catNav');
+        if (categoryWheel) categoryWheel.dataset.lang = aktifDil;
         // Tüm dinamik bileşenleri yenile
         buildNav();
         renderProducts();
@@ -3125,6 +3208,7 @@
 
     function buildNav() {
         const nav   = document.getElementById('catNav');
+        nav.dataset.lang = aktifDil;
         const apKat = document.getElementById('apKat');
         const apFil = document.getElementById('apMevcutKatFiltre');
         nav.innerHTML   = '';
@@ -4047,11 +4131,15 @@
                 const scale = absolute < .08 ? 1.06 : Math.max(.80, 1 - absolute * .10);
                 const opacity = absolute < .08 ? 1 : Math.max(.20, 1 - absolute * .24);
                 const rotate = distance * -7;
+                const depth = absolute < .08 ? 34 : Math.max(-38, 14 - absolute * 20);
+                const sideShift = dragging ? clamp(distance * 5.5, -15, 15) : distance * 1.35;
+                const rotateY = dragging ? clamp(distance * 2.4, -9, 9) : distance * 1.05;
                 const blur = absolute < .08 ? 0 : Math.min(2.2, absolute * .65);
                 const y = distance * STEP;
                 item.style.opacity = opacity.toFixed(2);
+                item.style.setProperty('--wheel-live-blur', `${blur.toFixed(1)}px`);
                 item.style.filter = `blur(${blur.toFixed(1)}px)`;
-                item.style.transform = `translate(-50%, -50%) translateY(${y.toFixed(1)}px) scale(${scale.toFixed(3)}) rotateX(${rotate.toFixed(1)}deg)`;
+                item.style.transform = `translate(-50%, -50%) translate3d(${sideShift.toFixed(1)}px, ${y.toFixed(1)}px, ${depth.toFixed(1)}px) scale(${scale.toFixed(3)}) rotateX(${rotate.toFixed(1)}deg) rotateY(${rotateY.toFixed(1)}deg)`;
                 item.style.transitionDuration = animate ? '.26s' : '0s';
                 item.classList.toggle('wheel-focus', absolute < .08);
                 item.classList.toggle('wheel-near', absolute >= .08 && absolute < 1.1);
@@ -4148,7 +4236,9 @@
             if (!dragging) return;
             const distance = dragStartY - event.clientY;
             if (Math.abs(distance) > 8) suppressClick = true;
-            render(dragStartIndex + distance / STEP, false);
+            const liveIndex = dragStartIndex + distance / STEP;
+            nav.style.setProperty('--wheel-gesture-tilt', `${clamp((liveIndex - dragStartIndex) * -2.4, -3.2, 3.2).toFixed(2)}deg`);
+            render(liveIndex, false);
             event.preventDefault();
         }, { passive: false });
 
@@ -4157,6 +4247,7 @@
             const distance = dragStartY - event.clientY;
             dragging = false;
             nav.classList.remove('wheel-dragging');
+            nav.style.setProperty('--wheel-gesture-tilt', '0deg');
             const nextIndex = Math.round(dragStartIndex + distance / STEP);
             render(nextIndex, true);
             if (Math.abs(distance) > 8) setTimeout(() => { suppressClick = false; }, 120);
@@ -4309,6 +4400,13 @@
     function scrollToMenuStart() {
         const target = document.getElementById('catNav') || document.getElementById('productGrid');
         if (!target) return;
+        const menuButton = document.getElementById('bnav-menu');
+        if (menuButton) {
+            menuButton.classList.remove('menu-button-ring');
+            void menuButton.offsetWidth;
+            menuButton.classList.add('menu-button-ring');
+            window.setTimeout(() => menuButton.classList.remove('menu-button-ring'), 980);
+        }
         const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - 18);
         window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
