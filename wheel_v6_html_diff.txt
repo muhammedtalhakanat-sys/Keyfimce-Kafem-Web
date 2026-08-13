@@ -1,0 +1,9 @@
+--- /home/ubuntu/upload/github_clone/index.html	2026-08-13 19:52:35.817541143 +0000
++++ /home/ubuntu/upload/keyfimce-kafem-modern.html	2026-08-13 19:52:35.813541152 +0000
+@@ -4721,4 +4721,4 @@
+ 
+ </script>
+ </body>
+-</html>
++</html>
+\ No newline at end of file
