@@ -10,7 +10,9 @@
           "gorsel": "https://kahhve.com/blog/wp-content/uploads/2023/03/su%CC%88t-ko%CC%88pu%CC%88rtme-2.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Foamed Milk"
+          "ad_en": "Foamed Milk",
+          "aciklama": "Yumuşak içimi ve sade lezzetiyle günün her saatine eşlik eden sıcak süt.",
+          "aciklama_en": "Warm milk with a smooth, simple taste for any time of day."
         },
         {
           "id": 2,
@@ -19,7 +21,9 @@
           "gorsel": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/qJyGEVhdS6_1024x1024.png",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Water (0.5 L)"
+          "ad_en": "Water (0.5 L)",
+          "aciklama": "Serinletici, 0,5 litrelik şişe suyu.",
+          "aciklama_en": "Refreshing 0.5 L bottled water."
         },
         {
           "id": 9992,
@@ -28,7 +32,9 @@
           "gorsel": "",
           "stoktaVar": false,
           "ekstralar": [],
-          "ad_en": "Glass of Water"
+          "ad_en": "Glass of Water",
+          "aciklama": "Yemek ve içeceklerinize eşlik eden taze servis suyu.",
+          "aciklama_en": "Freshly served water to accompany your food and drinks."
         }
       ],
       "isim_en": "🥛 Beverages"
@@ -43,7 +49,9 @@
           "gorsel": "https://menu.myqrcodemenu.com/files/products/2ad3c80a-73c2-46db-9c7e-c490475335f6bd945340-eb0a-405b-b8bf-48ff19cb5d58.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Americano"
+          "ad_en": "Americano",
+          "aciklama": "Yoğun espresso karakterini daha uzun ve dengeli bir içimle sunan klasik kahve.",
+          "aciklama_en": "A classic coffee that balances bold espresso character with a longer, smoother finish."
         },
         {
           "id": 4,
@@ -52,7 +60,9 @@
           "gorsel": "https://www.yoreselbakkal.com.tr/idea/jl/78/myassets/products/121/dibek-kahve.png?revision=1770984380",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dibek Coffee"
+          "ad_en": "Dibek Coffee",
+          "aciklama": "Geleneksel dibek aromasıyla yumuşak içimli, kendine özgü kokulu kahve.",
+          "aciklama_en": "A softly brewed coffee with the distinctive aroma of traditional dibek coffee."
         },
         {
           "id": 5,
@@ -61,7 +71,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJlRU5P9um_PY9euCxgwpLCjuXQmkWn_NPLGeX3dF5MMPvAj2g3jd2X7hy&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Doppio"
+          "ad_en": "Doppio",
+          "aciklama": "Çifte espresso shot ile hazırlanan, yoğun aromalı ve güçlü kahve deneyimi.",
+          "aciklama_en": "A bold, aromatic coffee experience made with a double espresso shot."
         },
         {
           "id": 6,
@@ -70,7 +82,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHI__x_nPAZHzyFoVxJds-Sq5qXVZYn4fdNmyr_TgLYw&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Filter Coffee"
+          "ad_en": "Filter Coffee",
+          "aciklama": "Dengeli gövdesi ve temiz bitişiyle gün boyu keyifle içilen filtre kahve.",
+          "aciklama_en": "A filter coffee with balanced body and a clean finish for all-day enjoyment."
         },
         {
           "id": 7,
@@ -79,7 +93,9 @@
           "gorsel": "https://illy.com.tr/cdn/shop/articles/illy_lungo_tarifi-kapak_8a309e66-4df6-4070-9707-b4ff4f9232ee.jpg?v=1780393544",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Lungo"
+          "ad_en": "Lungo",
+          "aciklama": "Espressonun daha uzun akışla hazırlanmış, yumuşak ve aromatik yorumu.",
+          "aciklama_en": "A smooth, aromatic interpretation of espresso brewed with a longer extraction."
         },
         {
           "id": 8,
@@ -88,7 +104,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQism_to0UYflxGz6LAhegMriXYPfsoBeSWTf-WVafeE8LOSAZOzZPbmLeu&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Menengiç Coffee"
+          "ad_en": "Menengiç Coffee",
+          "aciklama": "Kendine özgü menengiç aromasıyla yumuşak, sıcak ve nostaljik bir kahve.",
+          "aciklama_en": "A warm, nostalgic coffee with the distinctive flavour of menengiç."
         },
         {
           "id": 9,
@@ -97,7 +115,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRQeaWGGKwVWGmwuVozvyH_QI9_n_zKyySMsssesDS7wptQZ__dXifjxSk&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Ottoman Coffee"
+          "ad_en": "Ottoman Coffee",
+          "aciklama": "Baharatlı ve geleneksel notalarıyla zengin aromalı Osmanlı usulü kahve.",
+          "aciklama_en": "Ottoman-style coffee with rich, traditional and subtly spiced notes."
         },
         {
           "id": 10,
@@ -106,7 +126,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5fcRVNhmuqfr0lbvO3PmMEchZ8z9e1tRymo6kiQJVFGe2pBP2x1eNnTms&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Ristretto"
+          "ad_en": "Ristretto",
+          "aciklama": "Kısa çekimle hazırlanan, konsantre aromalı ve güçlü espresso lezzeti.",
+          "aciklama_en": "A short-pulled espresso with concentrated aroma and a powerful flavour."
         },
         {
           "id": 11,
@@ -115,7 +137,9 @@
           "gorsel": "https://st5.depositphotos.com/1510356/68037/i/950/depositphotos_680377324-stock-photo-turkish-coffee-classic-coffee-cup.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Turkish Coffee"
+          "ad_en": "Turkish Coffee",
+          "aciklama": "Bol köpüğü ve yoğun aromasıyla geleneksel Türk kahvesi keyfi.",
+          "aciklama_en": "Traditional Turkish coffee with a rich aroma and a generous crema."
         },
         {
           "id": 12,
@@ -124,7 +148,9 @@
           "gorsel": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1546000/kahve-depophotos-1546610.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Long Coffee"
+          "ad_en": "Long Coffee",
+          "aciklama": "Daha uzun içim isteyenler için dengeli ve rahat içimli kahve.",
+          "aciklama_en": "A balanced, easy-drinking coffee for those who prefer a longer cup."
         },
         {
           "id": 1782668549696,
@@ -133,7 +159,9 @@
           "gorsel": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b47bca86-9b07-4a38-a89e-0166030f19b8.__CR0,0,300,300_PT0_SX300_V1___.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Classic Instant Coffee"
+          "ad_en": "Classic Instant Coffee",
+          "aciklama": "Pratik, yumuşak ve alışıldık lezzetiyle klasik hazır kahve.",
+          "aciklama_en": "Classic instant coffee with a familiar, smooth and easy taste."
         },
         {
           "id": 99911,
@@ -142,7 +170,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cardamom Dibek Coffee"
+          "ad_en": "Cardamom Dibek Coffee",
+          "aciklama": "Dibek kahvesinin yumuşak dokusunu kakulenin ferah aromasıyla buluşturur.",
+          "aciklama_en": "Combines the soft character of dibek coffee with the refreshing aroma of cardamom."
         }
       ],
       "isim_en": "☕ Coffee"
@@ -173,7 +203,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Cafe Latte"
+          "ad_en": "Cafe Latte",
+          "aciklama": "Espresso ve sıcak sütün yumuşak uyumuyla hazırlanan klasik latte.",
+          "aciklama_en": "A classic latte made with the smooth harmony of espresso and steamed milk."
         },
         {
           "id": 14,
@@ -198,7 +230,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Cappuccino"
+          "ad_en": "Cappuccino",
+          "aciklama": "Espresso, sıcak süt ve köpüğün dengeli buluşmasıyla hazırlanan cappuccino.",
+          "aciklama_en": "A balanced cappuccino made with espresso, steamed milk and silky foam."
         },
         {
           "id": 15,
@@ -223,7 +257,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Espresso Latte Macchiato"
+          "ad_en": "Espresso Latte Macchiato",
+          "aciklama": "Sütlü dokusu ve belirgin espresso notalarıyla zarif bir kahve seçimi.",
+          "aciklama_en": "An elegant coffee choice with a milky texture and distinct espresso notes."
         },
         {
           "id": 16,
@@ -248,7 +284,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Flat White"
+          "ad_en": "Flat White",
+          "aciklama": "Yoğun espressoyu ince dokulu sütle buluşturan pürüzsüz içimli kahve.",
+          "aciklama_en": "A smooth coffee that brings bold espresso together with finely textured milk."
         },
         {
           "id": 17,
@@ -273,7 +311,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Italian Cappuccino"
+          "ad_en": "Italian Cappuccino",
+          "aciklama": "İtalyan usulü yoğun espresso ve köpüklü süt dengesiyle hazırlanır.",
+          "aciklama_en": "Prepared in Italian style with a balanced blend of bold espresso and foamy milk."
         },
         {
           "id": 18,
@@ -298,7 +338,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Italian Macchiato"
+          "ad_en": "Italian Macchiato",
+          "aciklama": "Espresso karakterini az miktarda süt köpüğüyle tamamlayan güçlü içim.",
+          "aciklama_en": "A strong espresso-led drink finished with just a touch of milk foam."
         }
       ],
       "isim_en": "🥛 Milk Coffee"
@@ -329,7 +371,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Affogato"
+          "ad_en": "Iced Affogato",
+          "aciklama": "Soğuk kahve ve tatlı dokunuşların buluştuğu, serinletici affogato yorumu.",
+          "aciklama_en": "A refreshing affogato-style creation where chilled coffee meets a sweet touch."
         },
         {
           "id": 20,
@@ -354,7 +398,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Cappuccino"
+          "ad_en": "Iced Cappuccino",
+          "aciklama": "Köpüklü süt dokusu ve espresso aromasıyla hazırlanan serin cappuccino.",
+          "aciklama_en": "A chilled cappuccino with espresso aroma and a light, foamy milk texture."
         },
         {
           "id": 21,
@@ -379,7 +425,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Chilled Coffee"
+          "ad_en": "Chilled Coffee",
+          "aciklama": "Buz gibi servis edilen, dengeli aromalı ve ferahlatıcı soğuk kahve.",
+          "aciklama_en": "An ice-cold, refreshing coffee with a balanced aromatic profile."
         },
         {
           "id": 22,
@@ -404,7 +452,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Coffee Latte"
+          "ad_en": "Iced Coffee Latte",
+          "aciklama": "Sütlü ve yumuşak içimiyle sıcak günler için ideal soğuk latte.",
+          "aciklama_en": "An ideal iced latte for warm days, with a smooth and milky finish."
         },
         {
           "id": 23,
@@ -429,7 +479,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Espresso"
+          "ad_en": "Iced Espresso",
+          "aciklama": "Yoğun espresso lezzetini buz gibi servisle sunan güçlü soğuk kahve.",
+          "aciklama_en": "A bold cold coffee that serves the intense flavour of espresso over ice."
         },
         {
           "id": 24,
@@ -454,7 +506,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Frappe"
+          "ad_en": "Iced Frappe",
+          "aciklama": "Buzlu, köpüklü ve yumuşak içimli, keyifli bir soğuk kahve klasiği.",
+          "aciklama_en": "A delightful iced coffee classic with a frothy, smooth texture."
         },
         {
           "id": 25,
@@ -479,7 +533,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Italian Cappuccino"
+          "ad_en": "Iced Italian Cappuccino",
+          "aciklama": "İtalyan cappuccino karakterini serin ve köpüklü bir yorumla sunar.",
+          "aciklama_en": "Brings Italian cappuccino character to a cool, frothy serving."
         },
         {
           "id": 26,
@@ -504,7 +560,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Latte Macchiato"
+          "ad_en": "Iced Latte Macchiato",
+          "aciklama": "Katmanlı süt ve espresso görünümüyle hafif, zarif ve serinletici.",
+          "aciklama_en": "Light, elegant and refreshing, with a layered look of milk and espresso."
         },
         {
           "id": 27,
@@ -529,7 +587,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Nitro Coffee"
+          "ad_en": "Iced Nitro Coffee",
+          "aciklama": "Yumuşak içimi ve kremsi dokusuyla modern soğuk kahve deneyimi.",
+          "aciklama_en": "A modern cold coffee experience with a creamy texture and smooth finish."
         },
         {
           "id": 28,
@@ -554,7 +614,9 @@
               "isim_en": "Vanilla Flavored"
             }
           ],
-          "ad_en": "Iced Long Coffee"
+          "ad_en": "Iced Long Coffee",
+          "aciklama": "Daha uzun içim sevenler için buzlu, dengeli ve ferah kahve.",
+          "aciklama_en": "An iced, balanced and refreshing coffee for those who prefer a longer drink."
         },
         {
           "id": 99910,
@@ -563,7 +625,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Iced Coffee with Vanilla Ice Cream"
+          "ad_en": "Iced Coffee with Vanilla Ice Cream",
+          "aciklama": "Vanilya dondurmasının tatlı dokunuşuyla zenginleşen buzlu kahve keyfi.",
+          "aciklama_en": "Iced coffee enriched with the sweet, creamy touch of vanilla ice cream."
         }
       ],
       "isim_en": "❄️ Cold Coffee"
@@ -578,7 +642,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dejavu Hookah"
+          "ad_en": "Dejavu Hookah",
+          "aciklama": "Tatlı ve ferah aroma notalarını dengeleyen, keyifli nargile harmanı.",
+          "aciklama_en": "A pleasant hookah blend that balances sweet and refreshing aromatic notes."
         },
         {
           "id": 30,
@@ -587,7 +653,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dominic Hookah"
+          "ad_en": "Dominic Hookah",
+          "aciklama": "Derin ve dengeli aromasıyla uzun sohbetlere eşlik eden özel harman.",
+          "aciklama_en": "A distinctive blend with a deep, balanced aroma for long conversations."
         },
         {
           "id": 31,
@@ -596,7 +664,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Exotica Hookah"
+          "ad_en": "Exotica Hookah",
+          "aciklama": "Egzotik meyve notalarıyla öne çıkan canlı ve aromatik nargile seçimi.",
+          "aciklama_en": "A lively, aromatic hookah choice highlighted by exotic fruit notes."
         },
         {
           "id": 32,
@@ -605,7 +675,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJq6pcQ8wVo66mBizlrkJitJEkd4PEVpO__bFSv5PSLA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Apple-Mint Hookah"
+          "ad_en": "Apple-Mint Hookah",
+          "aciklama": "Klasik elma ve ferah nane aromalarının uyumlu buluşması.",
+          "aciklama_en": "A harmonious combination of classic apple and refreshing mint aromas."
         },
         {
           "id": 33,
@@ -614,7 +686,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Lady Killer Hookah"
+          "ad_en": "Lady Killer Hookah",
+          "aciklama": "Meyvemsi ve ferah notaları bir araya getiren karakterli harman.",
+          "aciklama_en": "A characterful blend that brings together fruity and refreshing notes."
         },
         {
           "id": 34,
@@ -623,7 +697,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Love66 Hookah"
+          "ad_en": "Love66 Hookah",
+          "aciklama": "Tropik ve ferah aromaların dengesiyle öne çıkan sevilen bir harman.",
+          "aciklama_en": "A popular blend distinguished by its balance of tropical and refreshing aromas."
         },
         {
           "id": 35,
@@ -632,7 +708,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJq6pcQ8wVo66mBizlrkJitJEkd4PEVpO__bFSv5PSLA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Nakhla Hookah"
+          "ad_en": "Nakhla Hookah",
+          "aciklama": "Geleneksel nargile karakteri arayanlar için yoğun ve dengeli bir seçenek.",
+          "aciklama_en": "A rich, balanced option for those seeking a traditional hookah character."
         },
         {
           "id": 36,
@@ -641,7 +719,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Red Dream Hookah"
+          "ad_en": "Red Dream Hookah",
+          "aciklama": "Kırmızı meyve esintileriyle canlı, tatlı ve aromatik nargile harmanı.",
+          "aciklama_en": "A lively, sweet and aromatic hookah blend with red-fruit-inspired notes."
         },
         {
           "id": 37,
@@ -650,7 +730,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Gum Hookah"
+          "ad_en": "Gum Hookah",
+          "aciklama": "Kendine özgü sakız aromasıyla nostaljik ve yumuşak içimli harman.",
+          "aciklama_en": "A smooth, nostalgic blend with a distinctive gum-inspired aroma."
         },
         {
           "id": 38,
@@ -659,7 +741,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Sweet Witch Hookah"
+          "ad_en": "Sweet Witch Hookah",
+          "aciklama": "Tatlı ve meyvemsi aromaların eğlenceli uyumuyla hazırlanan özel harman.",
+          "aciklama_en": "A special blend created with the playful harmony of sweet and fruity notes."
         },
         {
           "id": 39,
@@ -668,7 +752,9 @@
           "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Green Fairy Hookah"
+          "ad_en": "Green Fairy Hookah",
+          "aciklama": "Ferah ve canlı aroma karakteriyle dikkat çeken özel nargile seçimi.",
+          "aciklama_en": "A distinctive hookah selection with a fresh and lively aromatic character."
         },
         {
           "id": 99911,
@@ -677,7 +763,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe6SN79LwE7qrSVRuX0oN10Vjw8oZgFfB_Hp8Ry5Q_Qg&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Hookah Bowl Extra"
+          "ad_en": "Hookah Bowl Extra",
+          "aciklama": "Nargile deneyimini kişiselleştirmek için ek lüle seçeneği.",
+          "aciklama_en": "An additional bowl option to personalize your hookah experience."
         },
         {
           "id": 99912,
@@ -686,7 +774,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJq6pcQ8wVo66mBizlrkJitJEkd4PEVpO__bFSv5PSLA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Al Fakher Hookah"
+          "ad_en": "Al Fakher Hookah",
+          "aciklama": "Dengeli aroması ve klasik nargile karakteriyle sevilen bir harman.",
+          "aciklama_en": "A well-liked blend with balanced aroma and a classic hookah character."
         },
         {
           "id": 99913,
@@ -695,7 +785,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJq6pcQ8wVo66mBizlrkJitJEkd4PEVpO__bFSv5PSLA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cappuccino Hookah"
+          "ad_en": "Cappuccino Hookah",
+          "aciklama": "Kahve esintili, yumuşak ve tatlı aromasıyla farklı bir nargile deneyimi.",
+          "aciklama_en": "A distinctive hookah experience with a smooth, sweet coffee-inspired aroma."
         },
         {
           "id": 99914,
@@ -704,7 +796,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJq6pcQ8wVo66mBizlrkJitJEkd4PEVpO__bFSv5PSLA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Grape-Mint Hookah"
+          "ad_en": "Grape-Mint Hookah",
+          "aciklama": "Tatlı üzüm aroması ile ferah nanenin klasik ve dengeli birleşimi.",
+          "aciklama_en": "A classic, balanced combination of sweet grape aroma and refreshing mint."
         }
       ],
       "isim_en": "💨 Hookah"
@@ -719,7 +813,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuxZSL2RAYds7i3inxaZ9A-8Fojzhoqr0p2yhwfGEKwRsu_fjR0CjIiHw&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cheesecake"
+          "ad_en": "Cheesecake",
+          "aciklama": "Kremamsı dokusu ve dengeli tatlılığıyla kahvenize eşlik eden cheesecake.",
+          "aciklama_en": "A cheesecake with a creamy texture and balanced sweetness to accompany your coffee."
         },
         {
           "id": 41,
@@ -728,7 +824,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBq-6QULvba1DWiWchEvFf5UmMu_9Gf2r6aB2deYpKzQpS4rT_dok-auQh&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cup Dessert"
+          "ad_en": "Cup Dessert",
+          "aciklama": "Katmanlı dokusu ve hafif tatlı lezzetiyle pratik bir tatlı molası.",
+          "aciklama_en": "A convenient dessert break with layered texture and a lightly sweet flavour."
         },
         {
           "id": 42,
@@ -737,7 +835,9 @@
           "gorsel": "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/86A0BE97-A721-421D-BFE4-977718FF5734/Derivates/1CDB68C5-0B63-4A92-BF27-7822F654CDCE.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Profiterole"
+          "ad_en": "Profiterole",
+          "aciklama": "Yumuşak hamuru ve çikolatalı dokunuşuyla klasik profiterol keyfi.",
+          "aciklama_en": "Classic profiterole pleasure with soft pastry and a chocolatey touch."
         },
         {
           "id": 9993,
@@ -746,7 +846,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cake"
+          "ad_en": "Cake",
+          "aciklama": "Yumuşak keki ve kremalı katmanlarıyla taze pasta keyfi.",
+          "aciklama_en": "A fresh cake experience with soft sponge and creamy layers."
         }
       ],
       "isim_en": "🍰 Dessert"
@@ -761,7 +863,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Mixed Toast"
+          "ad_en": "Mixed Toast",
+          "aciklama": "Çıtır tost ekmeğinde dengeli karışık iç harçla hazırlanan doyurucu seçenek.",
+          "aciklama_en": "A satisfying choice prepared in crisp toasted bread with a balanced mixed filling."
         },
         {
           "id": 44,
@@ -770,7 +874,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cheese Toast"
+          "ad_en": "Cheese Toast",
+          "aciklama": "Eriyen kaşar peyniriyle hazırlanan sade, sıcak ve lezzetli tost.",
+          "aciklama_en": "A simple, warm and tasty toast made with melting kashar cheese."
         },
         {
           "id": 45,
@@ -779,7 +885,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Sausage Toast"
+          "ad_en": "Sausage Toast",
+          "aciklama": "Sucuk aroması ve çıtır tost ekmeğiyle hazırlanan güçlü lezzet.",
+          "aciklama_en": "A bold toast prepared with sausage flavour and crisp toasted bread."
         }
       ],
       "isim_en": "🥪 Food"
@@ -794,7 +902,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDq-3Fy5MZj0CbuVrNFpNUuGI3hd9tzXAURclQDVM_6EMQZMd8Yr3idCWI&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Bursa Soda"
+          "ad_en": "Bursa Soda",
+          "aciklama": "Klasik gazoz lezzetiyle serinleten, hafif ve ferah bir içecek.",
+          "aciklama_en": "A light and refreshing drink with classic soda flavour."
         },
         {
           "id": 47,
@@ -803,7 +913,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZtNngyLo9Dl7uT2AxFn_anLxehTNoaxxHH_CBeYzzOJQzXcMBxCJOcWM&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Didi Bergamot"
+          "ad_en": "Didi Bergamot",
+          "aciklama": "Bergamot aromasıyla öne çıkan, soğuk servis edilen ferah çay içeceği.",
+          "aciklama_en": "A refreshing iced tea drink distinguished by bergamot aroma."
         },
         {
           "id": 48,
@@ -812,7 +924,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfpzduTh59lUTsES8EVg6SFjPoTetGGYvysNJjS7COF9YqRcIUGA4_Q2k&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Didi Lemon"
+          "ad_en": "Didi Lemon",
+          "aciklama": "Canlı limon aromasıyla serinletici ve hafif içimli soğuk çay.",
+          "aciklama_en": "A light, refreshing iced tea with a lively lemon aroma."
         },
         {
           "id": 49,
@@ -821,7 +935,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAxVeySiUia8EFVbeycNAhOqP6AOaaCVU0JsQphHRffoM6f_X9_DaGyg&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Didi Strawberry"
+          "ad_en": "Didi Strawberry",
+          "aciklama": "Çileğin tatlı aromasıyla hazırlanmış, keyifli soğuk çay seçeneği.",
+          "aciklama_en": "A delightful iced tea choice made with the sweet aroma of strawberry."
         },
         {
           "id": 50,
@@ -830,7 +946,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_19WK0KrvhlxScF8UsRCqDU52xDw7gCQxj24yeooXqH1h4Jw1EMRf6wM&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Didi Peach"
+          "ad_en": "Didi Peach",
+          "aciklama": "Şeftalinin yumuşak aromasıyla dengeli ve ferahlatıcı soğuk çay.",
+          "aciklama_en": "A balanced, refreshing iced tea with the gentle aroma of peach."
         },
         {
           "id": 51,
@@ -839,7 +957,9 @@
           "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dimes Pineapple"
+          "ad_en": "Dimes Pineapple",
+          "aciklama": "Ananas aromasıyla tropik, canlı ve serinletici meyve içeceği.",
+          "aciklama_en": "A tropical, vibrant and refreshing fruit drink with pineapple flavour."
         },
         {
           "id": 52,
@@ -848,7 +968,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3cceERI9eWklUzA3L0MG3yA390ROXUAmrH-76AfN6-W4wnUhI0BjuDv95&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dimes Mixed"
+          "ad_en": "Dimes Mixed",
+          "aciklama": "Farklı meyve aromalarını bir araya getiren renkli ve ferah içecek.",
+          "aciklama_en": "A colourful, refreshing drink that brings together a mix of fruit flavours."
         },
         {
           "id": 53,
@@ -857,7 +979,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzriHpYp4-2xYcRWtqaTfpud3YBd3D1QyuVvLjqqOaKi_DbvYBDnIQFVfv&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dimes Vişne"
+          "ad_en": "Dimes Vişne",
+          "aciklama": "Vişnenin karakterli aromasıyla tatlı-ekşi dengeli meyve içeceği.",
+          "aciklama_en": "A sweet-and-tart fruit drink with the distinctive flavour of sour cherry."
         },
         {
           "id": 54,
@@ -866,7 +990,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqS5togEQLNXp_86i_w3CKgRgnuMOgaIgaw&s",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dimes Peach"
+          "ad_en": "Dimes Peach",
+          "aciklama": "Şeftalinin yumuşak ve tatlı aromasıyla serinletici meyve içeceği.",
+          "aciklama_en": "A refreshing fruit drink with the soft, sweet aroma of peach."
         },
         {
           "id": 55,
@@ -875,7 +1001,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcpSZApZ2rJRN_JY_vBZWanOQQf2nJh3X1gfpsIU09UeEDkIG3yFyj0EGH&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Kızılay Apple"
+          "ad_en": "Kızılay Apple",
+          "aciklama": "Elma aromasıyla hafif, canlı ve ferahlatıcı maden suyu seçeneği.",
+          "aciklama_en": "A light, vibrant and refreshing mineral water with apple flavour."
         },
         {
           "id": 56,
@@ -884,7 +1012,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31R_G4VCThtPqCiQSAv0vW-X-L53ucEKGutlcp32C3VMMa1twMcYcguQ&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Kızılay Guava"
+          "ad_en": "Kızılay Guava",
+          "aciklama": "Guava aromasıyla tropik ve ferah bir maden suyu deneyimi.",
+          "aciklama_en": "A tropical and refreshing mineral water experience with guava flavour."
         },
         {
           "id": 57,
@@ -893,7 +1023,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjG6Q14SgLeCIRsxfZ8u1YYaQtyhUXnFDHsFuBtuo9aXokxyxxiLmQohNy&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Kızılay Watermelon Strawberry"
+          "ad_en": "Kızılay Watermelon Strawberry",
+          "aciklama": "Karpuz ve çileğin tatlı uyumuyla aromalı maden suyu keyfi.",
+          "aciklama_en": "Flavoured mineral water with the sweet harmony of watermelon and strawberry."
         },
         {
           "id": 58,
@@ -902,7 +1034,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR-syAVnRd0gBreSr3j97iwtm9B4ti2VKDj5yaWWCrnA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Kızılay Lemon"
+          "ad_en": "Kızılay Lemon",
+          "aciklama": "Limon aromasıyla canlı, ferah ve kolay içimli maden suyu.",
+          "aciklama_en": "A lively, refreshing and easy-drinking mineral water with lemon flavour."
         },
         {
           "id": 59,
@@ -911,7 +1045,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2QXtKHKAYM1P87dc_P3Gmng3pK_yXVql_A&s",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Kızılay Plain"
+          "ad_en": "Kızılay Plain",
+          "aciklama": "Sade ve ferah içimiyle klasik maden suyu seçeneği.",
+          "aciklama_en": "A classic plain mineral water with a crisp, refreshing taste."
         },
         {
           "id": 60,
@@ -920,7 +1056,9 @@
           "gorsel": "https://cdn.dsmcdn.com/ty1433/product/media/images/prod/QC/20240720/01/f26c508a-39bf-3f36-8eb7-f08f72895ef7/1_org_zoom.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Niğde Soda"
+          "ad_en": "Niğde Soda",
+          "aciklama": "Kendine özgü gazoz aromasıyla nostaljik ve serinletici içecek.",
+          "aciklama_en": "A nostalgic, refreshing drink with a distinctive soda flavour."
         },
         {
           "id": 61,
@@ -929,7 +1067,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfYWqcKQ89hk3evZgIHQUg7z2sLv2_04zsteplhVZvGC1nqRuenUijMNWn&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Sarıyer Orange"
+          "ad_en": "Sarıyer Orange",
+          "aciklama": "Canlı portakal aromasıyla tatlı ve ferahlatıcı gazlı içecek.",
+          "aciklama_en": "A sweet, refreshing sparkling drink with lively orange flavour."
         },
         {
           "id": 62,
@@ -938,7 +1078,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB0aj5P_80bLUIR53RkiVRqJ-Mjvw3ONORc-cYCvVOd-tmAFPYaD7ZCmuu&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Sarıyer Black Cola"
+          "ad_en": "Sarıyer Black Cola",
+          "aciklama": "Yoğun kola karakteriyle serin servis edilen klasik gazlı içecek.",
+          "aciklama_en": "A classic chilled sparkling drink with a bold cola character."
         },
         {
           "id": 63,
@@ -947,7 +1089,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQA0UVuTZJTLJDtbgcj8LYtvG6-S2NyIs4qOdPYvzIqA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Uludağ Lemonade"
+          "ad_en": "Uludağ Lemonade",
+          "aciklama": "Limonun taze ve ferah aromasıyla hazırlanan klasik limonata.",
+          "aciklama_en": "A classic lemonade prepared with fresh, refreshing lemon flavour."
         },
         {
           "id": 99918,
@@ -956,7 +1100,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Churchill"
+          "ad_en": "Churchill",
+          "aciklama": "Limon ve tuz dokunuşuyla hazırlanan ferah, canlı maden suyu karışımı.",
+          "aciklama_en": "A lively, refreshing mineral-water blend finished with lemon and a hint of salt."
         },
         {
           "id": 99919,
@@ -965,7 +1111,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSKi81c8-TYzhykhG3ofaH5T3hYeVgxItHgYsSvT8iXw&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Juss Pineapple"
+          "ad_en": "Juss Pineapple",
+          "aciklama": "Ananas aromasıyla tropik ve ferah içimli meyve içeceği.",
+          "aciklama_en": "A tropical, refreshing fruit drink with pineapple flavour."
         },
         {
           "id": 99920,
@@ -974,7 +1122,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPgi45WF5HAw51w6SS9DOOZTMpIIcQ3KvoK-nUMuQfig&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Juss Sour Cherry"
+          "ad_en": "Juss Sour Cherry",
+          "aciklama": "Vişnenin tatlı-ekşi karakterini sunan soğuk meyve içeceği.",
+          "aciklama_en": "A chilled fruit drink with the sweet-and-tart character of sour cherry."
         },
         {
           "id": 99921,
@@ -983,7 +1133,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC--jcIbhD3mNKSiWezctDlKdojDhqGUT0zJALwANkig&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Juss Peach"
+          "ad_en": "Juss Peach",
+          "aciklama": "Şeftalinin yumuşak aromasıyla hafif ve keyifli meyve içeceği.",
+          "aciklama_en": "A light, enjoyable fruit drink with the gentle aroma of peach."
         },
         {
           "id": 99922,
@@ -992,7 +1144,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Beypazari Plain Soda"
+          "ad_en": "Beypazari Plain Soda",
+          "aciklama": "Sade, keskin ve ferah içimiyle klasik maden suyu.",
+          "aciklama_en": "Classic mineral water with a crisp, refreshing taste."
         },
         {
           "id": 99923,
@@ -1001,7 +1155,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Mojitos"
+          "ad_en": "Mojitos",
+          "aciklama": "Nane ve limon esintileriyle ferah, buz gibi servis edilen içecek.",
+          "aciklama_en": "A refreshing, ice-cold drink with notes of mint and lemon."
         }
       ],
       "isim_en": "🧃 Cold Beverage"
@@ -1016,7 +1172,9 @@
           "gorsel": "https://www.okanhastanesi.com.tr/upload/mucizevi-bitki-adacayi-20200701084553.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Herbal Tea Sage"
+          "ad_en": "Herbal Tea Sage",
+          "aciklama": "Adaçayının belirgin aromasıyla sıcak ve dinlendirici bitki çayı.",
+          "aciklama_en": "A warm, soothing herbal tea with the distinctive aroma of sage."
         },
         {
           "id": 65,
@@ -1025,7 +1183,9 @@
           "gorsel": "https://png.pngtree.com/png-vector/20260221/ourlarge/pngtree-transparent-glass-cup-filled-with-herbal-tea-ginger-and-daisies-perfect-png-image_18800190.webp",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Herbal Tea Atom"
+          "ad_en": "Herbal Tea Atom",
+          "aciklama": "Baharatlı ve aromatik notalarıyla güçlü karakterli bitki çayı harmanı.",
+          "aciklama_en": "A characterful herbal blend with aromatic, subtly spiced notes."
         },
         {
           "id": 66,
@@ -1034,7 +1194,9 @@
           "gorsel": "https://www.buyukanadoluhastanesi.com/images/news/actual/Yhlamurun_Faydalari_Nelerdir_-_Buyuk_Anadolu_Hastanesi.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Herbal Tea Linden"
+          "ad_en": "Herbal Tea Linden",
+          "aciklama": "Ihlamurun yumuşak kokusuyla hafif ve sıcak bir bitki çayı.",
+          "aciklama_en": "A light, warm herbal tea with the gentle aroma of linden."
         },
         {
           "id": 67,
@@ -1043,7 +1205,9 @@
           "gorsel": "https://onlinekuruyemis.com/wp-content/uploads/2024/10/papatya-cayinin-faydalari-1.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Herbal Tea Chamomile"
+          "ad_en": "Herbal Tea Chamomile",
+          "aciklama": "Papatyanın narin aromasıyla sade ve huzurlu bir çay molası.",
+          "aciklama_en": "A simple, calming tea break with the delicate aroma of chamomile."
         },
         {
           "id": 68,
@@ -1052,7 +1216,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Apple Tea"
+          "ad_en": "Apple Tea",
+          "aciklama": "Elmanın tatlı aromasıyla sıcak ve rahat içimli meyve çayı.",
+          "aciklama_en": "A warm, easy-drinking fruit tea with the sweet aroma of apple."
         },
         {
           "id": 69,
@@ -1061,7 +1227,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Thyme Tea"
+          "ad_en": "Thyme Tea",
+          "aciklama": "Kekiğin kendine özgü aromasıyla karakterli bitki çayı seçeneği.",
+          "aciklama_en": "A characterful herbal tea with the distinctive aroma of thyme."
         },
         {
           "id": 70,
@@ -1070,7 +1238,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Kiwi Tea"
+          "ad_en": "Kiwi Tea",
+          "aciklama": "Kivinin canlı aromasıyla hafif ve keyifli meyve çayı.",
+          "aciklama_en": "A light, enjoyable fruit tea with the lively aroma of kiwi."
         },
         {
           "id": 71,
@@ -1079,7 +1249,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Rosehip Tea"
+          "ad_en": "Rosehip Tea",
+          "aciklama": "Kuşburnunun tatlı-ekşi notalarıyla sıcak ve aromatik çay.",
+          "aciklama_en": "A warm, aromatic tea with the sweet-and-tart notes of rosehip."
         },
         {
           "id": 72,
@@ -1088,7 +1260,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Lemon Tea"
+          "ad_en": "Lemon Tea",
+          "aciklama": "Limonun ferah aromasıyla sade ve taze içimli sıcak çay.",
+          "aciklama_en": "A simple hot tea with the fresh, refreshing aroma of lemon."
         },
         {
           "id": 73,
@@ -1097,7 +1271,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Mint Lemon Tea"
+          "ad_en": "Mint Lemon Tea",
+          "aciklama": "Nane ve limonun klasik uyumuyla ferah, sıcak bitki çayı.",
+          "aciklama_en": "A warm, refreshing herbal tea with the classic harmony of mint and lemon."
         },
         {
           "id": 74,
@@ -1106,7 +1282,9 @@
           "gorsel": "",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Orange Oralet Tea"
+          "ad_en": "Orange Oralet Tea",
+          "aciklama": "Portakal aromasıyla tatlı ve sıcak içimli klasik oralet çayı.",
+          "aciklama_en": "A classic warm orange drink with a sweet, familiar flavour."
         },
         {
           "id": 75,
@@ -1115,7 +1293,9 @@
           "gorsel": "https://mehtaperturk.com/wp-content/uploads/2022/04/turkish-tea.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Tea"
+          "ad_en": "Tea",
+          "aciklama": "Demli, sıcak ve günlük keyfe eşlik eden geleneksel çay.",
+          "aciklama_en": "Traditional brewed tea, served warm for everyday enjoyment."
         }
       ],
       "isim_en": "🫖 Tea"
@@ -1148,7 +1328,9 @@
               "fiyat": 0
             }
           ],
-          "ad_en": "Ice Cream Bowl"
+          "ad_en": "Ice Cream Bowl",
+          "aciklama": "Üç top dondurma seçeneğiyle serin, tatlı ve paylaşmaya uygun keyif.",
+          "aciklama_en": "A cool, sweet treat with three scoops of ice cream, perfect for sharing."
         }
       ]
     },
@@ -1163,7 +1345,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4aGsJq4qyGEJYNI0T-u9OLkWhK19Zmwvj5DoGbJQFf1G3LRlewj4x5IK&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Pistachio Milkshake"
+          "ad_en": "Pistachio Milkshake",
+          "aciklama": "Fıstık aromasıyla yoğun, soğuk ve kremsi milkshake keyfi.",
+          "aciklama_en": "A rich, chilled and creamy milkshake with pistachio flavour."
         },
         {
           "id": 9991,
@@ -1172,7 +1356,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4aGsJq4qyGEJYNI0T-u9OLkWhK19Zmwvj5DoGbJQFf1G3LRlewj4x5IK&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Cool Sugar Milkshake"
+          "ad_en": "Cool Sugar Milkshake",
+          "aciklama": "Tatlı ve serin aromasıyla eğlenceli, kremsi milkshake seçeneği.",
+          "aciklama_en": "A playful, creamy milkshake with a sweet and refreshing flavour."
         },
         {
           "id": 9992,
@@ -1181,7 +1367,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4aGsJq4qyGEJYNI0T-u9OLkWhK19Zmwvj5DoGbJQFf1G3LRlewj4x5IK&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Vanilla Milkshake"
+          "ad_en": "Vanilla Milkshake",
+          "aciklama": "Vanilyanın yumuşak aromasıyla klasik ve kremsi milkshake.",
+          "aciklama_en": "A classic, creamy milkshake with the soft flavour of vanilla."
         },
         {
           "id": 9993,
@@ -1190,7 +1378,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4aGsJq4qyGEJYNI0T-u9OLkWhK19Zmwvj5DoGbJQFf1G3LRlewj4x5IK&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Chocolate Milkshake"
+          "ad_en": "Chocolate Milkshake",
+          "aciklama": "Yoğun çikolata aromasıyla tatlı, soğuk ve kremsi bir keyif.",
+          "aciklama_en": "A sweet, chilled and creamy treat with rich chocolate flavour."
         },
         {
           "id": 9994,
@@ -1199,7 +1389,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC4aGsJq4qyGEJYNI0T-u9OLkWhK19Zmwvj5DoGbJQFf1G3LRlewj4x5IK&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Strawberry Milkshake"
+          "ad_en": "Strawberry Milkshake",
+          "aciklama": "Çileğin tatlı aromasıyla canlı ve serinletici milkshake.",
+          "aciklama_en": "A vibrant, refreshing milkshake with the sweet flavour of strawberry."
         }
       ]
     },
@@ -1214,7 +1406,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Kiwi Pineapple Mango Smoothie"
+          "ad_en": "Kiwi Pineapple Mango Smoothie",
+          "aciklama": "Kivi, ananas ve mangonun tropik uyumuyla canlı smoothie.",
+          "aciklama_en": "A vibrant smoothie with the tropical harmony of kiwi, pineapple and mango."
         },
         {
           "id": 9991,
@@ -1223,7 +1417,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Mango Pineapple Banana Smoothie"
+          "ad_en": "Mango Pineapple Banana Smoothie",
+          "aciklama": "Mango, ananas ve muzun yumuşak, tropik lezzet birleşimi.",
+          "aciklama_en": "A smooth tropical blend of mango, pineapple and banana."
         },
         {
           "id": 9992,
@@ -1232,7 +1428,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Mango Wild Berries Smoothie"
+          "ad_en": "Mango Wild Berries Smoothie",
+          "aciklama": "Mango ve orman meyvelerinin tatlı-ekşi dengesiyle hazırlanır.",
+          "aciklama_en": "Prepared with the sweet-and-tart balance of mango and wild berries."
         },
         {
           "id": 9993,
@@ -1241,7 +1439,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Banana Pineapple Smoothie"
+          "ad_en": "Banana Pineapple Smoothie",
+          "aciklama": "Muzun yumuşaklığı ve ananasın ferahlığıyla dengeli smoothie.",
+          "aciklama_en": "A balanced smoothie combining banana’s softness with pineapple’s freshness."
         },
         {
           "id": 9994,
@@ -1250,7 +1450,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Banana Pineapple Mango Smoothie"
+          "ad_en": "Banana Pineapple Mango Smoothie",
+          "aciklama": "Muz, ananas ve mangoyla yoğun aromalı tropik smoothie seçeneği.",
+          "aciklama_en": "A richly flavoured tropical smoothie with banana, pineapple and mango."
         },
         {
           "id": 9995,
@@ -1259,7 +1461,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Wild Berries Strawberry Smoothie"
+          "ad_en": "Wild Berries Strawberry Smoothie",
+          "aciklama": "Orman meyveleri ve çileğin canlı aromasıyla meyveli smoothie.",
+          "aciklama_en": "A fruity smoothie with the vibrant flavours of wild berries and strawberry."
         },
         {
           "id": 9996,
@@ -1268,7 +1472,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Orange Kiwi Strawberry Smoothie"
+          "ad_en": "Orange Kiwi Strawberry Smoothie",
+          "aciklama": "Portakal, kivi ve çileğin ferah, renkli ve canlı uyumu.",
+          "aciklama_en": "A fresh, colourful and vibrant blend of orange, kiwi and strawberry."
         },
         {
           "id": 9997,
@@ -1277,7 +1483,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Orange Wild Berries Smoothie"
+          "ad_en": "Orange Wild Berries Smoothie",
+          "aciklama": "Portakalın ferahlığını orman meyvelerinin yoğun aromasıyla buluşturur.",
+          "aciklama_en": "Brings orange freshness together with the rich aroma of wild berries."
         },
         {
           "id": 9998,
@@ -1286,7 +1494,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Strawberry Banana Smoothie"
+          "ad_en": "Strawberry Banana Smoothie",
+          "aciklama": "Çilek ve muzun sevilen, yumuşak ve tatlı smoothie birleşimi.",
+          "aciklama_en": "A beloved, smooth and sweet smoothie combination of strawberry and banana."
         },
         {
           "id": 9999,
@@ -1295,7 +1505,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeV1SiTheYM9q1T2J2AFzS5y_jztCO-Y9TUoNb2mjPwA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Strawberry Banana Pineapple Smoothie"
+          "ad_en": "Strawberry Banana Pineapple Smoothie",
+          "aciklama": "Çilek, muz ve ananasla hazırlanan tatlı ve ferah tropik smoothie.",
+          "aciklama_en": "A sweet, refreshing tropical smoothie made with strawberry, banana and pineapple."
         }
       ]
     },
@@ -1310,7 +1522,9 @@
           "gorsel": "https://st.depositphotos.com/1177973/3649/i/950/depositphotos_36492153-stock-photo-glasses-of-juice-apples-and.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Apple Carrot Juice"
+          "ad_en": "Apple Carrot Juice",
+          "aciklama": "Elma ve havucun dengeli uyumuyla taze sıkım meyve suyu.",
+          "aciklama_en": "Freshly squeezed juice with the balanced harmony of apple and carrot."
         },
         {
           "id": 9991,
@@ -1319,7 +1533,9 @@
           "gorsel": "https://www.vijesti.me/data/images/2019/02/16/00/2959715_2019021610020_5c67d121b789684e9f066b70jpeg_ls.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Apple Orange Carrot Juice"
+          "ad_en": "Apple Orange Carrot Juice",
+          "aciklama": "Elma, portakal ve havucun canlı aromalarını birleştiren taze sıkım karışım.",
+          "aciklama_en": "A fresh-squeezed blend combining the vibrant flavours of apple, orange and carrot."
         },
         {
           "id": 9992,
@@ -1328,7 +1544,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6CVtw5vinOFceV4gqY2n8Os0oTLEWXjQ89PYM7bFRcA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Apple Juice"
+          "ad_en": "Apple Juice",
+          "aciklama": "Elmanın doğal ve ferah aromasıyla hazırlanan taze sıkım meyve suyu.",
+          "aciklama_en": "Freshly squeezed apple juice with a naturally crisp, refreshing flavour."
         },
         {
           "id": 9993,
@@ -1337,7 +1555,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnOiPS2Xty2LzgrT_-rJRqu_wmJ1e0RrinefCSz-6USw&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Carrot Juice"
+          "ad_en": "Carrot Juice",
+          "aciklama": "Havucun kendine özgü aromasıyla taze sıkım, sade meyve suyu.",
+          "aciklama_en": "A simple freshly squeezed juice with the distinctive flavour of carrot."
         },
         {
           "id": 9994,
@@ -1346,7 +1566,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAEQgs60ImBsXeHcmvfrCtVXuSAW5QH0Qu87XQuUYjhA&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Orange Juice"
+          "ad_en": "Orange Juice",
+          "aciklama": "Portakalın canlı ve ferah aromasıyla taze sıkım klasik.",
+          "aciklama_en": "A freshly squeezed classic with the lively, refreshing flavour of orange."
         },
         {
           "id": 9995,
@@ -1355,7 +1577,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJNpQyI8ZsQlFlpKjUYOkCn62lpSpo8tGP_p-N-2dxRg&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Fresh Squeezed Lemonade"
+          "ad_en": "Fresh Squeezed Lemonade",
+          "aciklama": "Taze limonun ferahlığıyla hazırlanan dengeli ve serinletici limonata.",
+          "aciklama_en": "A balanced, refreshing lemonade prepared with the brightness of fresh lemon."
         }
       ]
     }
