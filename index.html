@@ -1356,6 +1356,110 @@
 @media(max-width:680px){#productGrid > .prod-card{transition:transform .2s ease-out,box-shadow .2s ease-out}#productGrid > .prod-card:hover{--px-lift:0px;--px-scale:1}#productGrid > .prod-card.touch-parallax{box-shadow:0 12px 28px rgba(67,35,22,.14)}}
 @media(prefers-reduced-motion:reduce){#productGrid > .prod-card,#productGrid > .prod-card.parallax-active{transform:none!important;transition:none!important;will-change:auto}}
 
+
+
+/* =========================================================
+   DERİNLİKLİ 3D ATMOSFER VE MASAÜSTÜ DÜZEN İYİLEŞTİRMESİ
+   ========================================================= */
+#mainHeader{isolation:isolate;overflow:hidden;perspective:1000px}
+#mainHeader>.header-ambient-3d{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;transform-style:preserve-3d}
+#mainHeader>.header-ambient-3d span{position:absolute;display:block;border-radius:50%;will-change:transform,opacity}
+.header-orbit-a{width:190px;height:190px;top:18%;left:13%;border:1px solid rgba(255,255,255,.48);background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.55),rgba(232,165,123,.08) 50%,transparent 72%);box-shadow:0 18px 42px rgba(86,40,21,.12);animation:headerOrbitA 9s ease-in-out infinite}
+.header-orbit-b{width:110px;height:110px;right:17%;bottom:15%;border:1px solid rgba(255,255,255,.38);background:radial-gradient(circle at 35% 28%,rgba(255,250,240,.68),rgba(190,99,60,.12) 55%,transparent 74%);animation:headerOrbitB 7s ease-in-out 1s infinite}
+.header-steam-a,.header-steam-b,.header-steam-c{width:7px;height:92px;border-radius:50%;border-left:2px solid rgba(255,255,255,.38);filter:blur(.2px);opacity:0;animation:headerSteam 4.8s ease-in-out infinite}
+.header-steam-a{left:43%;bottom:21%;animation-delay:.2s}.header-steam-b{left:50%;bottom:19%;animation-delay:1.55s}.header-steam-c{left:57%;bottom:23%;animation-delay:2.9s}
+#mainHeader>:not(.header-ambient-3d){z-index:3}
+#secretTrigger{transform:translateZ(24px);text-shadow:0 9px 22px rgba(58,30,18,.16)}
+@keyframes headerOrbitA{0%,100%{transform:translate3d(0,0,0) rotateX(0) rotateY(0);opacity:.62}50%{transform:translate3d(20px,-12px,22px) rotateX(8deg) rotateY(-12deg);opacity:.92}}
+@keyframes headerOrbitB{0%,100%{transform:translate3d(0,0,0) rotateY(0);opacity:.5}50%{transform:translate3d(-18px,-18px,28px) rotateY(22deg);opacity:.9}}
+@keyframes headerSteam{0%{transform:translate3d(0,18px,0) scaleX(.75);opacity:0}24%{opacity:.48}72%{opacity:.2}100%{transform:translate3d(22px,-62px,30px) rotate(8deg) scaleX(1.15);opacity:0}}
+
+#welcomeScreen{perspective:1300px;overflow:hidden}
+#welcomeScreen::before,#welcomeScreen::after{content:'';position:absolute;pointer-events:none;border-radius:50%;filter:blur(1px);will-change:transform,opacity}
+#welcomeScreen::before{width:310px;height:310px;top:-120px;left:-92px;background:radial-gradient(circle,rgba(255,255,255,.85),rgba(232,165,123,.10) 53%,transparent 72%);animation:welcomeAuraA 7s ease-in-out infinite}
+#welcomeScreen::after{width:270px;height:270px;right:-110px;bottom:-122px;background:radial-gradient(circle,rgba(255,248,238,.9),rgba(184,92,56,.12) 54%,transparent 74%);animation:welcomeAuraB 8s ease-in-out infinite}
+.welcome-stage{position:relative;z-index:2;transform-style:preserve-3d}
+.welcome-card{--welcome-rx:0deg;--welcome-ry:0deg;--welcome-z:0px;transform:perspective(1100px) rotateX(var(--welcome-rx)) rotateY(var(--welcome-ry)) translate3d(0,0,var(--welcome-z));transition:transform .32s cubic-bezier(.22,1,.36,1),box-shadow .32s ease;will-change:transform}
+.welcome-card.welcome-tilt-active{animation:none!important}.welcome-card::before{content:'';position:absolute;inset:1px;border-radius:32px;background:linear-gradient(135deg,rgba(255,255,255,.55),transparent 36%,rgba(184,92,56,.08));pointer-events:none;transform:translateZ(8px)}
+.welcome-card::after{content:'';position:absolute;inset:-22px;border:1px solid rgba(255,255,255,.34);border-radius:43px;pointer-events:none;transform:translateZ(-22px);box-shadow:0 24px 55px rgba(119,58,31,.12)}
+.welcome-orb{animation:welcomeOrbFloat 3.8s ease-in-out 1.15s infinite;will-change:transform}
+@keyframes welcomeAuraA{0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.62}50%{transform:translate3d(30px,24px,30px) scale(1.08);opacity:.94}}
+@keyframes welcomeAuraB{0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.48}50%{transform:translate3d(-28px,-18px,24px) scale(1.1);opacity:.8}}
+@keyframes welcomeOrbFloat{0%,100%{transform:translateZ(36px) rotateX(7deg) rotateY(-7deg) translateY(0)}50%{transform:translateZ(52px) rotateX(2deg) rotateY(7deg) translateY(-8px)}}
+
+.detail-hero{perspective:960px;overflow:hidden;isolation:isolate}
+.detail-hero::after{content:'';position:absolute;inset:-35%;z-index:2;pointer-events:none;background:linear-gradient(112deg,transparent 43%,rgba(255,255,255,.43) 50%,transparent 57%);transform:translate3d(-46%,0,20px) rotate(8deg);transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.detail-hero img{position:relative;z-index:1;--detail-rx:0deg;--detail-ry:0deg;transform:perspective(960px) scale(1.035) rotateX(var(--detail-rx)) rotateY(var(--detail-ry));will-change:transform;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.detail-hero.detail-parallax-active::after{transform:translate3d(46%,0,20px) rotate(8deg)}
+.detail-hero.detail-parallax-active img{transition-duration:.1s}
+
+#catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus{animation:wheelFocusBreath 2.2s ease-in-out infinite}
+@keyframes wheelFocusBreath{0%,100%{box-shadow:0 10px 26px rgba(137,59,37,.34),0 0 0 4px rgba(184,92,56,.1)}50%{box-shadow:0 15px 32px rgba(137,59,37,.42),0 0 0 8px rgba(184,92,56,.15)}}
+@media(hover:hover){.admin-stat-card{transform:perspective(700px) translateZ(0);transition:transform .22s ease,box-shadow .22s ease}.admin-stat-card:hover{transform:perspective(700px) translateY(-5px) rotateX(4deg);box-shadow:0 13px 26px rgba(64,34,20,.12)}}
+
+/* Geniş ekranlarda çarkı merkezleyen ve sayfayı dengeli yapan düzen */
+@media(min-width:700px){
+  #catNav.wheel-pro-mode{box-sizing:border-box;width:min(680px,calc(100vw - 68px));max-width:680px;margin:16px auto 24px;left:auto;right:auto}
+  #catNav.wheel-pro-mode:not(.wheel-collapsed){height:250px;padding:82px 10px!important;perspective:980px}
+  #catNav.wheel-pro-mode .cat-pill{width:min(76%,420px);max-width:420px}
+  #catNav.wheel-pro-mode:not(.wheel-collapsed)::before{top:14px}
+  #catNav.wheel-pro-mode:not(.wheel-collapsed)::after{bottom:13px}
+  #catNav.wheel-pro-mode.wheel-collapsed .cat-pill.active{width:min(82%,470px);max-width:470px}
+}
+@media(min-width:900px){
+  body{padding:0 32px 120px}
+  #mainHeader,#wifiBarWrap,.search-wrap,.menu-access-hint,#productGrid{width:min(1240px,100%)}
+  #mainHeader{min-height:340px;padding:54px 48px;border-radius:0 0 46px 46px}
+  #mainHeader h1{font-size:clamp(2.5rem,4vw,4rem)}
+  .search-wrap{margin-top:24px}
+  #productGrid{gap:22px;padding-top:8px}
+  #productGrid>.prod-card{min-height:402px}
+}
+@media(min-width:900px) and (max-width:1199px){#productGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1200px){#productGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:680px){
+  #mainHeader>.header-ambient-3d{opacity:.68}
+  .header-orbit-a{left:-12%;top:14%;transform:scale(.72)}
+  .header-orbit-b{right:-10%;bottom:8%;transform:scale(.7)}
+  .header-steam-a,.header-steam-b,.header-steam-c{opacity:0!important;animation:none}
+  .welcome-card{will-change:auto}
+  .detail-hero::after{opacity:.55}
+}
+@media(prefers-reduced-motion:reduce){
+  .header-orbit-a,.header-orbit-b,.header-steam-a,.header-steam-b,.header-steam-c,.welcome-orb,#catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus{animation:none!important}
+  #mainHeader>.header-ambient-3d{display:none}
+  .welcome-card,.detail-hero img{transform:none!important;transition:none!important}
+}
+
+
+
+/* =========================================================
+   ÜRÜN KEŞFİ VE HIZLI KULLANIM İYİLEŞTİRMELERİ
+   ========================================================= */
+.search-tools{display:flex;align-items:center;gap:8px}
+.search-tools .relative{flex:1;min-width:0}
+.search-clear{position:absolute;right:11px;top:50%;display:grid;place-items:center;width:28px;height:28px;border:0;border-radius:50%;color:var(--muted);background:transparent;transform:translateY(-50%);cursor:pointer;transition:background .2s ease,color .2s ease}
+.search-clear:hover{color:var(--rust);background:var(--rust-lt)}
+.search-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:9px 2px 0;color:var(--muted2);font-size:10px;font-weight:800;letter-spacing:.02em}
+.search-summary strong{color:var(--ink);font-size:11px}
+.search-summary .summary-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border:1px solid var(--border2);border-radius:999px;color:var(--rust);background:var(--surface2);white-space:nowrap}
+.search-empty{grid-column:1/-1;display:grid;place-items:center;min-height:220px;padding:28px;border:1px dashed var(--border2);border-radius:24px;background:var(--surface2);text-align:center}
+.search-empty i{margin-bottom:10px;color:var(--rust);font-size:30px;opacity:.75}
+.search-empty strong{display:block;color:var(--ink);font-family:'Fraunces',serif;font-size:20px}
+.search-empty span{display:block;max-width:300px;margin-top:7px;color:var(--muted);font-size:12px;line-height:1.55}
+.search-empty button{margin-top:14px;padding:9px 14px;border:1px solid var(--rust);border-radius:12px;color:#fff;background:var(--rust);font-size:11px;font-weight:900;cursor:pointer}
+.cat-pill{gap:7px!important}
+.cat-pill-label{display:inline-block;max-width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat-pill-count{display:inline-grid;place-items:center;min-width:22px;height:20px;padding:0 6px;border:1px solid rgba(184,92,56,.18);border-radius:999px;color:var(--rust);background:rgba(184,92,56,.09);font-size:9px;font-weight:900}
+.cat-pill.active .cat-pill-count{color:#fff;background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.25)}
+.product-favorite{position:absolute;top:10px;right:10px;z-index:6;display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(255,255,255,.72);border-radius:50%;color:var(--muted);background:rgba(255,255,255,.86);box-shadow:0 7px 18px rgba(43,23,14,.12);cursor:pointer;transition:transform .2s ease,color .2s ease,background .2s ease}
+.product-favorite:hover{transform:scale(1.08)}
+.product-favorite.is-favorite{color:#fff;background:var(--rust);border-color:var(--rust)}
+.product-favorite i{font-size:13px}
+html[data-theme="dark"] .product-favorite,html[data-theme="auto"] .product-favorite{background:rgba(47,32,25,.88);border-color:var(--border2);color:var(--muted)}
+html[data-theme="dark"] .product-favorite.is-favorite,html[data-theme="auto"] .product-favorite.is-favorite{color:#fff;background:var(--rust)}
+@media(max-width:560px){.search-summary{align-items:flex-start;flex-direction:column;gap:6px}.search-summary .summary-chip{align-self:flex-start}.product-favorite{width:32px;height:32px}}
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -1430,15 +1534,21 @@
 
     <!-- Arama — debounce ile -->
     <div class="px-4 mt-2 mb-5 search-wrap relative fade-up fade-up-2">
-        <div class="relative">
-            <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-base" style="color:var(--muted);"></i>
-            <input type="text"
-                   id="searchInput"
-                   oninput="debounceArama()"
-                   class="w-full rounded-2xl pl-11 pr-5 py-3 font-medium transition-all"
-                   data-i18n-placeholder="search_placeholder"
-                   placeholder="Ne aramıştınız?">
+        <div class="search-tools">
+          <div class="relative">
+              <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-base" style="color:var(--muted);"></i>
+              <input type="text"
+                     id="searchInput"
+                     oninput="debounceArama()"
+                     class="w-full rounded-2xl pl-11 pr-12 py-3 font-medium transition-all"
+                     data-i18n-placeholder="search_placeholder"
+                     placeholder="Ne aramıştınız?">
+              <button id="searchClearBtn" class="search-clear" type="button" onclick="aramaTemizle()" aria-label="Aramayı temizle" title="Aramayı temizle" hidden>
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+          </div>
         </div>
+        <div id="searchSummary" class="search-summary" aria-live="polite"></div>
     </div>
 
     <div class="menu-access-hint" aria-hidden="true">
@@ -2304,6 +2414,7 @@
 
     let aktifKat = "cat-all";
     let secilenPuan = 5;
+    let favoriUrunler = new Set(ls('kfm_favorites', []));
 
     // ══════════════════════════════════════════════════════════════
     // ── TOAST ──
@@ -2683,18 +2794,21 @@
         apKat.innerHTML = '';
         apFil.innerHTML = `<option value="hepsi">✨ ${aktifDil === 'en' ? 'All Categories' : 'Tüm Kategoriler'}</option>`;
 
+        const totalProducts = Object.values(menuData).reduce((sum, cat) => sum + ((cat && cat.urunler) ? cat.urunler.length : 0), 0);
         const allBtn = document.createElement('div');
         allBtn.className = 'cat-pill' + (aktifKat === 'cat-all' ? ' active' : '');
         allBtn.id = 'cp-cat-all';
-        allBtn.textContent = t('all_menu');
+        allBtn.innerHTML = `<span class="cat-pill-label">${escapeHtml(t('all_menu'))}</span><span class="cat-pill-count">${totalProducts}</span>`;
         allBtn.onclick = () => { setNavActive('cat-all'); kategoriGit('cat-all'); };
         nav.appendChild(allBtn);
 
         for (let k in menuData) {
             const btn = document.createElement('div');
+            const count = (menuData[k].urunler || []).length;
+            const label = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
             btn.className = 'cat-pill' + (k === aktifKat ? ' active' : '');
             btn.id = 'cp-' + k;
-            btn.textContent = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
+            btn.innerHTML = `<span class="cat-pill-label">${escapeHtml(label)}</span><span class="cat-pill-count">${count}</span>`;
             btn.onclick = () => { setNavActive(k); kategoriGit(k); };
             nav.appendChild(btn);
 
@@ -2736,6 +2850,44 @@
             .replace(/\//g, '&#x2F;');
     }
 
+    function favoriAnahtari(catKey, id) { return `${catKey}::${String(id)}`; }
+    function favoriMi(catKey, id) { return favoriUrunler.has(favoriAnahtari(catKey, id)); }
+    function favoriToggle(catKey, id) {
+        const key = favoriAnahtari(catKey, id);
+        if (favoriUrunler.has(key)) favoriUrunler.delete(key);
+        else favoriUrunler.add(key);
+        lsSave('kfm_favorites', Array.from(favoriUrunler));
+        const cardButtons = document.querySelectorAll('.product-favorite');
+        cardButtons.forEach(btn => {
+            if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${catKey}'`) && btn.getAttribute('onclick').includes(String(id))) {
+                const active = favoriMi(catKey, id);
+                btn.classList.toggle('is-favorite', active);
+                btn.setAttribute('aria-label', active ? 'Favorilerden çıkar' : 'Favorilere ekle');
+                btn.setAttribute('title', active ? 'Favorilerden çıkar' : 'Favorilere ekle');
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = `fa-${active ? 'solid' : 'regular'} fa-heart`;
+            }
+        });
+        toast(favoriMi(catKey, id) ? 'Ürün favorilere eklendi.' : 'Ürün favorilerden çıkarıldı.');
+    }
+    function updateSearchSummary(visibleCount, scopedCount, arama) {
+        const summary = document.getElementById('searchSummary');
+        const clear = document.getElementById('searchClearBtn');
+        if (!summary) return;
+        if (clear) clear.hidden = !arama;
+        const label = aktifDil === 'en' ? 'products' : 'ürün';
+        const shown = aktifDil === 'en' ? `${visibleCount} ${label} shown` : `${visibleCount} ${label} gösteriliyor`;
+        const scope = arama && scopedCount !== visibleCount ? (aktifDil === 'en' ? `of ${scopedCount}` : `${scopedCount} içinden`) : '';
+        summary.innerHTML = `<span><strong>${shown}</strong> ${scope}</span><span class="summary-chip"><i class="fa-regular fa-heart"></i> ${favoriUrunler.size} ${aktifDil === 'en' ? 'favorites' : 'favori'}</span>`;
+    }
+    function aramaTemizle() {
+        const input = document.getElementById('searchInput');
+        if (!input) return;
+        input.value = '';
+        renderProducts();
+        input.focus({ preventScroll: true });
+    }
+
     function renderProducts() {
         const grid  = document.getElementById('productGrid');
         const arama = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -2751,15 +2903,21 @@
 
         if (hideOutOfStock) list = list.filter(u => u.stoktaVar);
 
+        const categoryScopedCount = list.length;
         if (arama) {
             list = list.filter(u => {
                 const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
-                return name.toLowerCase().includes(arama);
+                const description = (aktifDil === 'en' && u.aciklama_en) ? u.aciklama_en : (u.aciklama || '');
+                const category = menuData[u.catKey] ? ((aktifDil === 'en' && menuData[u.catKey].isim_en) ? menuData[u.catKey].isim_en : menuData[u.catKey].isim) : '';
+                return [name, description, category].join(' ').toLowerCase().includes(arama);
             });
         }
         window.__renderedProducts = list;
+        updateSearchSummary(list.length, categoryScopedCount, arama);
         if (!list.length) {
-            grid.innerHTML = `<p class="text-center text-[15px] font-medium py-16" style="color:var(--muted2);">${t('no_product')}</p>`;
+            const title = arama ? (aktifDil === 'en' ? 'No matching products' : 'Eşleşen ürün bulunamadı') : t('no_product');
+            const detail = arama ? (aktifDil === 'en' ? 'Try another product, category or description.' : 'Başka bir ürün adı, kategori veya açıklama deneyin.') : (aktifDil === 'en' ? 'There are no visible products in this category.' : 'Bu kategoride gösterilecek ürün bulunmuyor.');
+            grid.innerHTML = `<div class="search-empty"><i class="fa-solid fa-mug-hot"></i><strong>${escapeHtml(title)}</strong><span>${escapeHtml(detail)}</span>${arama ? `<button type="button" onclick="aramaTemizle()">${aktifDil === 'en' ? 'Clear search' : 'Aramayı temizle'}</button>` : ''}</div>`;
             return;
         }
 
@@ -2778,6 +2936,7 @@
                 ${stokOverlay}
                 <div class="product-card-image-wrap">
                   <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}'">
+                  <button class="product-favorite${favoriMi(u.catKey, u.id) ? ' is-favorite' : ''}" type="button" onclick="event.stopPropagation();favoriToggle('${escapeHtml(u.catKey)}',${JSON.stringify(u.id)})" aria-label="${favoriMi(u.catKey, u.id) ? 'Favorilerden çıkar' : 'Favorilere ekle'}" title="${favoriMi(u.catKey, u.id) ? 'Favorilerden çıkar' : 'Favorilere ekle'}"><i class="fa-${favoriMi(u.catKey, u.id) ? 'solid' : 'regular'} fa-heart"></i></button>
                   ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
                 </div>
                 <div class="product-card-body">
@@ -2794,6 +2953,7 @@
                 </div>
               </article>`);
         });
+        setupCardParallax();
     }
 
 
@@ -2844,7 +3004,6 @@
                 if (event.pointerType === 'touch') reset();
             }, { passive: true });
         });
-        setupCardParallax();
     }
 
     function openProductDetail(index) {
@@ -3427,12 +3586,59 @@
     });
 
 
+    setupImmersive3DEnhancements();
+
     // Admin Accordion Toggle
     function toggleAdminAccordion(el) {
         const section = el.closest('.admin-accordion-section');
         if (section) {
             section.classList.toggle('active');
         }
+    }
+
+
+    function setupImmersive3DEnhancements() {
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const header = document.getElementById('mainHeader');
+        if (header && !header.querySelector('.header-ambient-3d')) {
+            header.insertAdjacentHTML('afterbegin', '<div class="header-ambient-3d" aria-hidden="true"><span class="header-orbit-a"></span><span class="header-orbit-b"></span><span class="header-steam-a"></span><span class="header-steam-b"></span><span class="header-steam-c"></span></div>');
+        }
+        if (reduceMotion) return;
+
+        const bindTilt = (element, xVar, yVar, maxY, maxX, activeClass) => {
+            if (!element || element.dataset.tiltReady === 'true') return;
+            element.dataset.tiltReady = 'true';
+            let raf = 0;
+            let px = 0;
+            let py = 0;
+            const reset = () => {
+                if (raf) cancelAnimationFrame(raf);
+                element.style.setProperty(xVar, '0deg');
+                element.style.setProperty(yVar, '0deg');
+                element.classList.remove(activeClass);
+            };
+            const update = (clientX, clientY) => {
+                const rect = element.getBoundingClientRect();
+                px = Math.max(-1, Math.min(1, ((clientX - rect.left) / rect.width) * 2 - 1));
+                py = Math.max(-1, Math.min(1, ((clientY - rect.top) / rect.height) * 2 - 1));
+                if (raf) return;
+                raf = requestAnimationFrame(() => {
+                    raf = 0;
+                    element.classList.add(activeClass);
+                    element.style.setProperty(xVar, `${(-py * maxX).toFixed(2)}deg`);
+                    element.style.setProperty(yVar, `${(px * maxY).toFixed(2)}deg`);
+                });
+            };
+            element.addEventListener('pointermove', e => update(e.clientX, e.clientY), { passive: true });
+            element.addEventListener('pointerleave', reset, { passive: true });
+            element.addEventListener('pointercancel', reset, { passive: true });
+            element.addEventListener('pointerup', e => { if (e.pointerType === 'touch') reset(); }, { passive: true });
+        };
+
+        const welcomeCard = document.querySelector('.welcome-card');
+        bindTilt(welcomeCard, '--welcome-rx', '--welcome-ry', 4.5, 3.5, 'welcome-tilt-active');
+        const detailHero = document.querySelector('.detail-hero');
+        bindTilt(detailHero, '--detail-rx', '--detail-ry', 3.2, 2.4, 'detail-parallax-active');
     }
 
     // Profesyonel sabit merkezli kategori çarkı.
