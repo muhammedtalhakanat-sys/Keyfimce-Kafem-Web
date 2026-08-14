@@ -2244,6 +2244,86 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
   .product-card-frame-art,.product-card-depth-plane,.product-card-body{transition:none!important;transform:none!important;}
 }
 
+
+/* WHEEL · DETAIL · SMART SUGGESTION V11 */
+/* Masaüstü kategori çarkı: daha geniş tutuş alanı, belirgin odak çizgisi ve okunaklı yönerge. */
+@media (min-width:700px){
+  #catNav.wheel-pro-mode{
+    width:min(860px,calc(100% - 72px))!important;max-width:860px!important;margin:20px auto 28px!important;
+  }
+  #catNav.wheel-pro-mode:not(.wheel-collapsed){
+    height:286px!important;padding:91px 18px!important;border-radius:30px;
+    background:radial-gradient(ellipse at 50% 50%,rgba(255,252,248,.95) 0%,rgba(245,220,201,.72) 49%,rgba(220,176,147,.40) 100%);
+    box-shadow:inset 0 22px 34px rgba(103,52,31,.10),inset 0 -26px 36px rgba(103,52,31,.12),0 18px 38px rgba(76,40,25,.12);
+  }
+  #catNav.wheel-pro-mode:not(.wheel-collapsed)::before{
+    content:'KATEGORİ ÇARKI';top:16px;left:50%;right:auto;width:auto;height:auto;padding:5px 12px;border:1px solid rgba(169,80,49,.15);border-radius:999px;
+    color:rgba(118,62,39,.76);background:rgba(255,250,245,.56);box-shadow:none;font-size:10px;font-weight:900;letter-spacing:.16em;line-height:1;transform:translateX(-50%);
+  }
+  #catNav.wheel-pro-mode:not(.wheel-collapsed)::after{
+    content:'↕  SÜRÜKLE  ·  MERKEZDE 1 SANİYE BEKLE';bottom:15px;left:50%;right:auto;width:max-content;max-width:calc(100% - 32px);height:auto;padding:6px 12px;
+    border:1px solid rgba(169,80,49,.14);border-radius:999px;color:rgba(116,61,39,.78);background:rgba(255,250,245,.58);box-shadow:0 6px 13px rgba(95,43,26,.07);font-size:10px;font-weight:900;letter-spacing:.065em;line-height:1.15;transform:translateX(-50%);
+  }
+  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::before{content:'CATEGORY WHEEL';}
+  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  DRAG  ·  WAIT 1 SECOND AT CENTER';}
+  #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{width:min(74%,510px);max-width:510px;min-height:62px;flex-basis:62px;border-radius:19px;font-size:14px;}
+  #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill.wheel-focus{--wheel-scale:1.10;box-shadow:0 15px 31px rgba(137,59,37,.35),0 0 0 6px rgba(184,92,56,.10);}
+  #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill:hover{filter:brightness(1.04) saturate(1.06);}
+  #catNav.wheel-pro-mode .wheel-proximity-preview{width:min(100%,520px);height:234px;}
+  .wheel-preview-item{font-size:10px;padding:5px 10px;box-shadow:0 7px 15px rgba(84,39,24,.06);}
+  #catNav.wheel-pro-mode.wheel-collapsed{
+    height:78px!important;min-height:78px!important;padding:8px 12px 19px!important;border-radius:23px;-webkit-mask-image:none;mask-image:none;
+    background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(248,225,208,.93));box-shadow:0 12px 26px rgba(91,48,29,.12),inset 0 1px 0 rgba(255,255,255,.84);
+  }
+  #catNav.wheel-pro-mode.wheel-collapsed::after{
+    content:'MENÜYÜ AÇMAK İÇİN TIKLAYIN';bottom:5px;left:50%;right:auto;width:max-content;padding:0;color:rgba(113,62,40,.76);background:transparent;box-shadow:none;font-size:10px;font-weight:900;letter-spacing:.105em;line-height:1;transform:translateX(-50%);
+  }
+  #catNav[data-lang="en"].wheel-collapsed::after{content:'CLICK TO OPEN THE MENU';}
+  #catNav.wheel-pro-mode.wheel-collapsed .cat-pill.active{width:min(84%,500px);min-height:49px;flex-basis:49px;border-radius:16px;}
+}
+@media (min-width:700px){
+  html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed){background:radial-gradient(ellipse at 50% 52%,#4d3124,#2b1b15 58%,#170e0b)!important;}
+  html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed)::before,
+  html[data-theme="dark"] #catNav.wheel-pro-mode:not(.wheel-collapsed)::after{color:rgba(255,228,208,.86);border-color:rgba(226,138,97,.22);background:rgba(44,25,18,.64);}
+  html[data-theme="dark"] #catNav.wheel-pro-mode.wheel-collapsed::after{color:rgba(255,228,208,.88);background:transparent;border:0;}
+}
+
+/* Ürün detayları: kategori ışığını koruyan 3B vitrin çerçevesi ve kısa sinematik giriş. */
+#productDetailModal .detail-modal-box{position:relative;overflow:hidden;border:1px solid color-mix(in srgb,var(--category-rim,rgba(184,92,56,.45)) 44%,transparent);box-shadow:0 28px 76px rgba(47,20,11,.28),0 0 0 1px rgba(255,255,255,.22),inset 0 1px 0 rgba(255,255,255,.56);}
+#productDetailModal .detail-modal-box::before{content:'';position:absolute;z-index:0;inset:-38%;pointer-events:none;background:radial-gradient(circle at 18% 12%,var(--category-rim,rgba(255,210,170,.34)),transparent 27%),radial-gradient(circle at 84% 88%,var(--category-glow,rgba(184,92,56,.28)),transparent 34%);filter:blur(14px);opacity:.34;}
+#productDetailModal .detail-hero{min-height:238px;background:linear-gradient(135deg,var(--category-depth,rgba(65,33,21,.54)),rgba(26,14,10,.20))!important;box-shadow:inset 0 -20px 42px rgba(22,10,6,.24);}
+#productDetailModal .detail-hero::before{opacity:.86;filter:blur(24px);}
+#productDetailModal .detail-hero-frame{position:absolute;z-index:2;inset:13px;pointer-events:none;border:1px solid color-mix(in srgb,var(--category-rim,rgba(255,219,183,.68)) 78%,transparent);border-radius:18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.13),0 0 0 5px rgba(0,0,0,.07),0 0 28px color-mix(in srgb,var(--category-glow,rgba(184,92,56,.30)) 38%,transparent);}
+#productDetailModal .detail-hero-frame::before,#productDetailModal .detail-hero-frame::after{content:'';position:absolute;width:42px;height:42px;border-color:var(--category-rim,rgba(255,219,183,.68));opacity:.9;}
+#productDetailModal .detail-hero-frame::before{left:-2px;top:-2px;border-left:3px solid;border-top:3px solid;border-radius:15px 0 0 0;}
+#productDetailModal .detail-hero-frame::after{right:-2px;bottom:-2px;border-right:3px solid;border-bottom:3px solid;border-radius:0 0 15px 0;}
+#productDetailModal .detail-hero > img{filter:saturate(1.06) contrast(1.03);transform:scale(1.015);transition:transform .65s cubic-bezier(.22,1,.36,1),filter .45s ease;}
+#productDetailModal .detail-content{position:relative;z-index:1;background:linear-gradient(164deg,rgba(255,252,248,.94),rgba(248,231,215,.91));box-shadow:inset 0 1px 0 rgba(255,255,255,.80);}
+#productDetailModal .detail-category{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid color-mix(in srgb,var(--category-rim,rgba(184,92,56,.42)) 54%,transparent);border-radius:999px;background:color-mix(in srgb,var(--category-glow,rgba(184,92,56,.14)) 17%,transparent);}
+#productDetailModal.detail-scene-refresh .detail-modal-box{animation:detailModalCinematicIn .48s cubic-bezier(.16,1,.3,1) both;}
+#productDetailModal.detail-scene-refresh .detail-hero-frame{animation:detailFrameReveal .72s cubic-bezier(.22,1,.36,1) both;}
+#productDetailModal.detail-scene-refresh .detail-hero > img{animation:detailImagePush .76s cubic-bezier(.22,1,.36,1) both;}
+@keyframes detailModalCinematicIn{from{opacity:.6;transform:translateY(18px) scale(.965) rotateX(3deg)}to{opacity:1;transform:translateY(0) scale(1) rotateX(0)}}
+@keyframes detailFrameReveal{from{opacity:0;transform:scale(.91) rotate(-1.2deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes detailImagePush{from{opacity:.18;transform:scale(1.14) translateY(10px);filter:blur(5px) saturate(1.16)}to{opacity:1;transform:scale(1.015) translateY(0);filter:saturate(1.06) contrast(1.03)}}
+html[data-theme="dark"] #productDetailModal .detail-content{background:linear-gradient(164deg,#3a251b,#241610)!important;}
+@media(max-width:680px){#productDetailModal .detail-hero{min-height:205px;}#productDetailModal .detail-hero-frame{inset:10px;border-radius:15px;}#productDetailModal .detail-modal-box{box-shadow:0 18px 48px rgba(0,0,0,.30);}}
+@media(prefers-reduced-motion:reduce){#productDetailModal.detail-scene-refresh .detail-modal-box,#productDetailModal.detail-scene-refresh .detail-hero-frame,#productDetailModal.detail-scene-refresh .detail-hero > img{animation:none!important;transform:none!important;}}
+
+/* Yeni 3B nargile render'ı CSS duman katmanını korur; yüklenemezse eski vektör nargile devreye girer. */
+.welcome-hookah-render{position:absolute;z-index:4;left:50%;bottom:-8px;width:120px;height:148px;object-fit:contain;transform:translateX(-50%) translateZ(24px) rotateY(-9deg);filter:drop-shadow(0 14px 12px rgba(73,31,17,.28)) drop-shadow(0 0 16px rgba(216,139,79,.18));animation:hookahRenderBreath 4.8s ease-in-out .4s infinite;}
+.welcome-hookah-scene .hookah-pipe{opacity:0;visibility:hidden;}
+.welcome-hookah-scene.hookah-render-missing .hookah-pipe{opacity:1;visibility:visible;}
+.welcome-hookah-scene .hookah-smoke{z-index:5;bottom:106px;height:84px;}
+@keyframes hookahRenderBreath{0%,100%{transform:translateX(-50%) translateY(0) translateZ(24px) rotateY(-9deg)}50%{transform:translateX(-50%) translateY(-4px) translateZ(34px) rotateY(4deg)}}
+@media(max-width:520px){.welcome-hookah-render{width:94px;height:120px;bottom:-4px;}.welcome-hookah-scene .hookah-smoke{bottom:88px;transform:scale(.82);transform-origin:bottom center;}}
+@media(prefers-reduced-motion:reduce){.welcome-hookah-render{animation:none!important;transform:translateX(-50%)!important;}}
+
+/* Akıllı öneride seçimin zaman penceresi görünür, fakat kartın sadeliği korunur. */
+.daily-suggestion-copy small{display:flex;align-items:center;gap:7px;}
+.daily-suggestion-time{display:inline-flex;padding:3px 6px;border:1px solid rgba(184,92,56,.15);border-radius:999px;color:var(--muted2);background:rgba(255,255,255,.48);font-size:8px;font-style:normal;letter-spacing:.04em;}
+html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255,228,208,.08);border-color:rgba(226,138,97,.20);}
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -2273,6 +2353,7 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
                 <span class="welcome-emoji">👋</span>
               </div>
               <div class="welcome-hookah-scene" aria-hidden="true">
+                <img class="welcome-hookah-render" src="hookah-welcome-3d-clean.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('hookah-render-missing')">
                 <span class="hookah-smoke"><i></i><i></i><i></i></span>
                 <span class="hookah-pipe"><span class="hookah-bowl"></span><span class="hookah-stem"></span><span class="hookah-vase"></span><span class="hookah-hose"></span></span>
               </div>
@@ -2373,6 +2454,7 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
     <div id="productDetailModal" class="modal-overlay" onclick="if(event.target===this) modalKapat('productDetailModal')">
         <div class="modal-box detail-modal-box">
             <div class="detail-hero">
+                <span class="detail-hero-frame" aria-hidden="true"></span>
                 <img id="detailImage" src="" alt="Ürün görseli">
                 <button class="detail-close" onclick="modalKapat('productDetailModal')" aria-label="Kapat">
                     <i class="fa-solid fa-xmark"></i>
@@ -3674,24 +3756,49 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
     }
 
     function getDailySuggestion() {
-        const hour = new Date().getHours();
-        const slots = hour >= 6 && hour < 11 ? {
-            key: 'morning', icon: 'fa-mug-hot', categories: ['cat-kahve', 'cat-sutlu-kahve'],
-            tr: { label: 'Günün önerisi · Sabah', detail: 'Güne keyifli bir başlangıç' },
-            en: { label: 'Today\'s pick · Morning', detail: 'A joyful start to the day' }
-        } : hour >= 11 && hour < 16 ? {
-            key: 'afternoon', icon: 'fa-glass-water', categories: ['cat-soguk', 'cat-icecek'],
-            tr: { label: 'Günün önerisi · Öğle', detail: 'Öğle molasına ferah bir eşlik' },
-            en: { label: 'Today\'s pick · Noon', detail: 'A refreshing companion for your break' }
-        } : {
-            key: 'evening', icon: 'fa-cloud', categories: ['cat-nargile', 'cat-cay', 'cat-kahve'],
-            tr: { label: 'Günün önerisi · Akşam', detail: 'Akşam keyfine özel bir seçim' },
-            en: { label: 'Today\'s pick · Evening', detail: 'A pick for an unhurried evening' }
+        // Saat + gün + 90 dakikalık zaman dilimi + son seçimler birlikte kullanılır.
+        // Böylece öneri bağlama uygun kalır, aynı ürün sayfa her yenilendiğinde tekrarlanmaz.
+        const now = new Date();
+        const minutes = now.getHours() * 60 + now.getMinutes();
+        const slotDefinitions = [
+            { start: 360, end: 510, key: 'early', icon: 'fa-sun', categories: ['cat-kahve', 'cat-sutlu-kahve'], window: '06:00–08:29', tr: { label: 'Şu anın önerisi · Erken gün', detail: 'Güne sıcak ve dengeli bir başlangıç' }, en: { label: 'For now · Early day', detail: 'A warm, balanced start to the day' } },
+            { start: 510, end: 660, key: 'morning', icon: 'fa-mug-hot', categories: ['cat-kahve', 'cat-sutlu-kahve', 'cat-kahve', 'cat-tatli'], window: '08:30–10:59', tr: { label: 'Şu anın önerisi · Sabah', detail: 'Sabah ritmine uygun seçilmiş bir eşlik' }, en: { label: 'For now · Morning', detail: 'Chosen to match the morning rhythm' } },
+            { start: 660, end: 840, key: 'lunch', icon: 'fa-utensils', categories: ['cat-yiyecek', 'cat-icecek', 'cat-yiyecek', 'cat-soguk-icecek'], window: '11:00–13:59', tr: { label: 'Şu anın önerisi · Öğle', detail: 'Öğle molası için dengeli bir tercih' }, en: { label: 'For now · Lunch', detail: 'A balanced choice for the lunch break' } },
+            { start: 840, end: 1020, key: 'afternoon', icon: 'fa-glass-water', categories: ['cat-soguk-kahve', 'cat-smoothie', 'cat-soguk-kahve', 'cat-milkshake', 'cat-tatli'], window: '14:00–16:59', tr: { label: 'Şu anın önerisi · Öğleden sonra', detail: 'Günün temposuna ferah bir ara' }, en: { label: 'For now · Afternoon', detail: 'A refreshing pause for the day' } },
+            { start: 1020, end: 1200, key: 'sunset', icon: 'fa-mug-saucer', categories: ['cat-cay', 'cat-tatli', 'cat-cay', 'cat-nargile'], window: '17:00–19:59', tr: { label: 'Şu anın önerisi · Akşamüstü', detail: 'Gün batımına keyifli bir eşlik' }, en: { label: 'For now · Sunset', detail: 'A fitting companion for the evening' } },
+            { start: 1200, end: 1380, key: 'evening', icon: 'fa-cloud', categories: ['cat-nargile', 'cat-cay', 'cat-nargile', 'cat-kahve'], window: '20:00–22:59', tr: { label: 'Şu anın önerisi · Akşam', detail: 'Akşam keyfi için özenle dengelendi' }, en: { label: 'For now · Evening', detail: 'Balanced for an unhurried evening' } }
+        ];
+        const slot = slotDefinitions.find(item => minutes >= item.start && minutes < item.end) || {
+            key: 'night', icon: 'fa-moon', categories: ['cat-cay', 'cat-kahve', 'cat-cay', 'cat-tatli'], window: '23:00–05:59',
+            tr: { label: 'Şu anın önerisi · Gece', detail: 'Gece sohbetlerine sakin bir eşlik' }, en: { label: 'For now · Night', detail: 'A calm companion for late conversations' }
         };
-        for (const catKey of slots.categories) {
-            const products = menuData[catKey]?.urunler || [];
-            const product = products.find(item => item.stoktaVar) || products[0];
-            if (product) return { ...slots, catKey, product };
+        const dateKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+        const bucket = Math.floor(minutes / 90);
+        const selectionKey = `${dateKey}-${bucket}-${slot.key}`;
+        const hash = Array.from(selectionKey).reduce((total, char) => ((total * 31) + char.charCodeAt(0)) >>> 0, 2166136261);
+        let history = [];
+        try { history = JSON.parse(localStorage.getItem('kfm_suggestion_history') || '[]'); } catch (_) { history = []; }
+        if (!Array.isArray(history)) history = [];
+        const usableCategories = slot.categories.filter(catKey => (menuData[catKey]?.urunler || []).some(item => item.stoktaVar !== false));
+        const categories = usableCategories.length ? usableCategories : Object.keys(menuData).filter(catKey => catKey !== 'cat-all' && (menuData[catKey]?.urunler || []).some(item => item.stoktaVar !== false));
+        if (!categories.length) return null;
+        for (let categoryOffset = 0; categoryOffset < categories.length; categoryOffset++) {
+            const catKey = categories[(hash + categoryOffset) % categories.length];
+            const available = (menuData[catKey]?.urunler || []).filter(item => item.stoktaVar !== false);
+            if (!available.length) continue;
+            const productKey = item => `${catKey}|${item.ad || ''}|${item.fiyat || ''}`;
+            const fresh = available.filter(item => !history.includes(productKey(item)));
+            const candidates = fresh.length ? fresh : available;
+            const product = candidates[(hash + categoryOffset * 13) % candidates.length];
+            const chosenKey = productKey(product);
+            try {
+                if (localStorage.getItem('kfm_suggestion_last_bucket') !== selectionKey) {
+                    const nextHistory = [chosenKey, ...history.filter(key => key !== chosenKey)].slice(0, 12);
+                    localStorage.setItem('kfm_suggestion_history', JSON.stringify(nextHistory));
+                    localStorage.setItem('kfm_suggestion_last_bucket', selectionKey);
+                }
+            } catch (_) { /* Tarayıcı depolaması kapalıysa seçim yine güvenle yapılır. */ }
+            return { ...slot, catKey, product };
         }
         return null;
     }
@@ -3709,7 +3816,7 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
           <section class="daily-suggestion-card" role="button" tabindex="0" aria-label="${escapeHtml(name)}" onclick="openDailySuggestion()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestion()}">
             <div class="daily-suggestion-copy">
               <div class="daily-suggestion-icon"><i class="fa-solid ${suggestion.icon}" aria-hidden="true"></i></div>
-              <div><small>${escapeHtml(langCopy.label)}</small><strong>${escapeHtml(name)}</strong><span>${escapeHtml(langCopy.detail)} · ${escapeHtml(categoryName)}</span></div>
+              <div><small>${escapeHtml(langCopy.label)} <em class="daily-suggestion-time">${escapeHtml(suggestion.window || '')}</em></small><strong>${escapeHtml(name)}</strong><span>${escapeHtml(langCopy.detail)} · ${escapeHtml(categoryName)}</span></div>
             </div>
             <span class="daily-suggestion-cta">${escapeHtml(cta)} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
           </section>`);
