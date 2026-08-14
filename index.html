@@ -2388,6 +2388,102 @@ html[data-theme="dark"] .wheel-sound-toggle:hover{background:#d98257;color:#2513
 }
 @media(prefers-reduced-motion:reduce){.wheel-sound-toggle{transition:none!important;}}
 
+
+/* PRODUCT FRAME FIT & TYPOGRAPHY V13 */
+/* Fotoğraf katmanı, metal çerçevenin iç boşluğunda kalır; görsel dışarı taşmaz. */
+:root{
+  --font-ui:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-display:'Fraunces',Georgia,serif;
+}
+body,button,input,textarea,select{font-family:var(--font-ui);font-feature-settings:'kern' 1,'liga' 1,'calt' 1;}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;letter-spacing:.003em;}
+
+/* Çerçeveye ayrılan kenar payı her ekranda aynı kalır; görsel yalnızca bu iç alanda kırpılır. */
+#productGrid > .prod-card .product-card-image-wrap{
+  position:relative!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  padding:clamp(8px,3.6%,13px)!important;
+  border-radius:20px 20px 17px 17px!important;
+  clip-path:inset(0 round 20px 20px 17px 17px);
+  background:radial-gradient(circle at 50% 17%,var(--frame-light,rgba(255,226,192,.48)),transparent 55%),linear-gradient(145deg,#4a291a,#c97848 145%)!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image{
+  position:relative!important;
+  z-index:1!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  border-radius:clamp(11px,2.6vw,16px)!important;
+  clip-path:inset(0 round clamp(11px,2.6vw,16px));
+  box-shadow:0 7px 15px rgba(45,23,14,.22);
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-frame-art{
+  inset:0!important;
+  z-index:5!important;
+  transform-origin:center!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-depth-plane{inset:clamp(8px,3.6%,13px)!important;border-radius:clamp(11px,2.6vw,16px)!important;z-index:3!important;}
+#productGrid > .prod-card .product-card-image-wrap::before{z-index:4!important;}
+#productGrid > .prod-card .product-card-image-wrap::after{z-index:4!important;}
+
+/* Zarif başlıklar + uzun ürün açıklamalarında okunaklı, dengeli kullanıcı arayüzü metni. */
+#mainHeader h1,.serif,.product-card-title,.detail-title,.daily-suggestion-copy strong,.menu-end-card-copy strong,.search-empty strong{
+  font-family:var(--font-display)!important;
+  font-optical-sizing:auto;
+  font-variation-settings:'opsz' 72;
+  letter-spacing:.006em;
+}
+.product-card-title{
+  font-size:clamp(16px,1.14vw,18px)!important;
+  font-weight:650!important;
+  line-height:1.2!important;
+  letter-spacing:.008em!important;
+}
+.product-card-category{
+  font-family:var(--font-ui)!important;
+  font-size:9px!important;
+  font-weight:800!important;
+  letter-spacing:.145em!important;
+  line-height:1.25!important;
+}
+.product-card-description{
+  font-family:var(--font-ui)!important;
+  font-size:11.5px!important;
+  font-weight:500!important;
+  line-height:1.58!important;
+  letter-spacing:.005em!important;
+}
+.product-card-price{
+  font-family:var(--font-ui)!important;
+  font-size:clamp(18px,1.35vw,20px)!important;
+  font-weight:900!important;
+  font-variant-numeric:tabular-nums lining-nums;
+  letter-spacing:-.035em!important;
+}
+.product-detail-btn,.cat-pill,.menu-end-card button,.daily-suggestion-cta,#bottomNav .bnav-btn{
+  font-family:var(--font-ui)!important;
+  font-weight:800!important;
+  letter-spacing:.015em;
+}
+.detail-title{font-size:clamp(25px,4vw,33px)!important;line-height:1.1!important;font-weight:650!important;}
+.detail-description{font-family:var(--font-ui)!important;font-size:14px!important;font-weight:500!important;line-height:1.68!important;letter-spacing:.006em;}
+@media(max-width:680px){
+  #productGrid > .prod-card .product-card-image-wrap{padding:9px!important;border-radius:18px 18px 15px 15px!important;}
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image{border-radius:12px!important;}
+  #productGrid > .prod-card .product-card-image-wrap .product-card-depth-plane{inset:9px!important;border-radius:12px!important;}
+  .product-card-title{font-size:16px!important;line-height:1.22!important;}
+  .product-card-description{font-size:11.5px!important;line-height:1.56!important;}
+}
+@media(prefers-reduced-motion:reduce){
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image{transform:none!important;}
+}
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
