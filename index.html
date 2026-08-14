@@ -3087,6 +3087,111 @@ html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-grad
 }
 @media(prefers-reduced-motion:reduce){.ap-frame-preview-art,.ap-frame-preview img{transition:none!important;}}
 
+/* KFM_V25_IMAGE_CONTRAST_FIX */
+/* Şeffaf çerçevelerin beyaz merkezleri fotoğrafı soldurmasın; dekoratif katman fotoğrafla çarpılarak birleşsin. */
+#productGrid .product-card-frame-art[data-frame-theme] {
+  mix-blend-mode: multiply !important;
+  background-color: transparent !important;
+  opacity: 1 !important;
+  z-index: 7 !important;
+}
+#productGrid .product-card-frame-art[data-frame-theme]::before,
+#productGrid .product-card-frame-art[data-frame-theme]::after {
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+  z-index: 20 !important;
+}
+#productGrid .product-card-image-wrap .product-card-image,
+.daily-pair-image {
+  filter: saturate(1.06) contrast(1.08) brightness(1.01) !important;
+}
+#productGrid .product-card-image-wrap .product-card-image[data-kfm-fit="contain"],
+#productGrid .product-card-image-wrap .product-card-image.kfm-fallback-image,
+.daily-pair-image[data-kfm-fit="contain"],
+.daily-pair-image.kfm-fallback-image {
+  filter: saturate(1.04) contrast(1.06) brightness(1) !important;
+}
+html[data-theme="dark"] #productGrid .product-card-image-wrap .product-card-image,
+html[data-theme="dark"] .daily-pair-image {
+  filter: saturate(1.08) contrast(1.1) brightness(1.04) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  #productGrid .product-card-image-wrap .product-card-image,
+  .daily-pair-image { transition: none !important; }
+}
+
+/* KFM_V25_1_IMAGE_VISIBILITY_FIX */
+/*
+   Ürün fotoğrafları çerçeve efektlerinin altında soluk kalmasın.
+   Fotoğraf katmanı net ve tam opak tutulur; dekoratif ışık yalnızca
+   çok düşük yoğunlukta çalışır. Satış dışı rozeti fotoğrafı gizlemez.
+*/
+#productGrid .product-card-image-wrap {
+  isolation: isolate !important;
+}
+#productGrid .product-card-image-wrap .product-card-image {
+  opacity: 1 !important;
+  filter: saturate(1.10) contrast(1.12) brightness(.99) !important;
+  mix-blend-mode: normal !important;
+  z-index: 1 !important;
+}
+#productGrid .product-card-image-wrap .product-card-depth-plane {
+  opacity: .20 !important;
+  mix-blend-mode: multiply !important;
+  z-index: 2 !important;
+}
+#productGrid .product-card-image-wrap::after {
+  background: linear-gradient(112deg, transparent 44%, rgba(255,255,255,.22) 50%, transparent 56%) !important;
+  opacity: 0 !important;
+}
+#productGrid > .prod-card:hover .product-card-image-wrap::after,
+#productGrid > .prod-card.parallax-active .product-card-image-wrap::after {
+  opacity: .48 !important;
+}
+#productGrid > .prod-card.is-out-of-stock {
+  opacity: 1 !important;
+}
+#productGrid > .prod-card.is-out-of-stock .product-card-image-wrap .product-card-image {
+  filter: saturate(.88) contrast(1.12) brightness(.98) !important;
+}
+#productGrid .product-card-frame-art[data-frame-theme] {
+  z-index: 7 !important;
+  opacity: 1 !important;
+  mix-blend-mode: multiply !important;
+}
+#productGrid .product-card-frame-art[data-frame-theme]::before,
+#productGrid .product-card-frame-art[data-frame-theme]::after {
+  z-index: 20 !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+html[data-theme="dark"] #productGrid .product-card-image-wrap .product-card-image {
+  filter: saturate(1.12) contrast(1.14) brightness(1.01) !important;
+}
+html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-image-wrap .product-card-image {
+  filter: saturate(.94) contrast(1.14) brightness(.98) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  #productGrid .product-card-image-wrap::after { opacity: 0 !important; }
+}
+
+
+/* KFM_V25_2_FALLBACK_CONTRAST_FIX */
+/* Fallback görsellerin açık arka planı kartın üzerinde beyaz bir blok oluşturmasın. */
+#productGrid .product-card-image[src*="product-fallback-"] {
+  mix-blend-mode: multiply !important;
+  filter: saturate(1.12) contrast(1.16) brightness(.94) !important;
+}
+/* Stok dışı görseller soluklaştırılabilir, ancak fotoğrafı gri ve görünmez hale gelmemelidir. */
+#productGrid > .prod-card.is-out-of-stock .product-card-image-wrap.image-ready .product-card-image[data-kfm-fit] {
+  opacity: 1 !important;
+  filter: saturate(.98) contrast(1.14) brightness(.98) !important;
+}
+#productGrid > .prod-card.is-out-of-stock .product-card-image-wrap.image-ready .product-card-image[src*="product-fallback-"] {
+  mix-blend-mode: multiply !important;
+  filter: saturate(1.04) contrast(1.18) brightness(.92) !important;
+}
+
 </style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
