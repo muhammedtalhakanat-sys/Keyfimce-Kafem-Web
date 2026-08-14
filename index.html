@@ -3193,6 +3193,28 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 }
 
 </style>
+<style>
+/* KFM_WELCOME_SMOKE_V27: kahve ve nargile dumanı görünürlük artışı */
+.coffee-steam,.hookah-smoke{isolation:isolate;overflow:visible!important;}
+.coffee-steam i,.hookah-smoke i{width:12px!important;border-left-width:3px!important;filter:blur(.22px)!important;}
+.coffee-steam i:nth-child(1){border-color:rgba(118,59,37,.70)!important;}
+.coffee-steam i:nth-child(2){border-color:rgba(161,80,48,.58)!important;}
+.coffee-steam i:nth-child(3){border-color:rgba(92,43,29,.54)!important;}
+.hookah-smoke i:nth-child(1){border-color:rgba(107,116,136,.68)!important;}
+.hookah-smoke i:nth-child(2){border-color:rgba(154,163,181,.60)!important;}
+.hookah-smoke i:nth-child(3){border-color:rgba(91,103,123,.56)!important;}
+.coffee-steam::before,.coffee-steam::after,.hookah-smoke::before,.hookah-smoke::after{content:'';position:absolute;bottom:2px;pointer-events:none;border-radius:50%;filter:blur(6px);opacity:.54;transform-origin:bottom center;animation:welcomeSmokeCloudV27 5.8s cubic-bezier(.28,.02,.34,1) infinite;}
+.coffee-steam::before{left:22%;width:27px;height:48px;background:radial-gradient(ellipse at 52% 78%,rgba(151,78,46,.48),rgba(193,111,72,.22) 42%,transparent 74%);}
+.coffee-steam::after{left:55%;width:24px;height:57px;background:radial-gradient(ellipse at 48% 78%,rgba(116,56,35,.42),rgba(196,119,78,.18) 42%,transparent 74%);animation-delay:2.25s;animation-duration:6.4s;}
+.hookah-smoke::before{left:29%;width:31px;height:55px;background:radial-gradient(ellipse at 50% 78%,rgba(113,122,144,.50),rgba(177,184,199,.22) 42%,transparent 75%);animation-delay:.8s;}
+.hookah-smoke::after{left:56%;width:27px;height:64px;background:radial-gradient(ellipse at 48% 78%,rgba(99,109,132,.46),rgba(188,193,205,.20) 42%,transparent 75%);animation-delay:3.05s;animation-duration:6.7s;}
+@keyframes welcomeSmokeCloudV27{0%{opacity:0;transform:translate3d(0,10px,0) scale(.62) rotate(-5deg)}20%{opacity:.72}58%{opacity:.42;transform:translate3d(7px,-28px,10px) scale(1) rotate(5deg)}100%{opacity:0;transform:translate3d(-12px,-72px,18px) scale(1.28) rotate(-11deg)}}
+.coffee-steam i:nth-child(1),.hookah-smoke i:nth-child(1){animation-duration:5.2s!important;}
+.coffee-steam i:nth-child(2),.hookah-smoke i:nth-child(2){animation-duration:6.35s!important;}
+.coffee-steam i:nth-child(3),.hookah-smoke i:nth-child(3){animation-duration:5.7s!important;}
+@media(max-width:520px){.coffee-steam::before,.coffee-steam::after,.hookah-smoke::before,.hookah-smoke::after{filter:blur(5px);}}
+@media(prefers-reduced-motion:reduce){.coffee-steam::before,.coffee-steam::after,.hookah-smoke::before,.hookah-smoke::after{animation:none!important;opacity:.34!important;transform:none!important;}.coffee-steam i,.hookah-smoke i{animation:none!important;opacity:.34!important;transform:none!important;}}
+</style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
 
