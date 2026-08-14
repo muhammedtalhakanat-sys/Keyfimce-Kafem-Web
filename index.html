@@ -1822,7 +1822,7 @@
 /* Açık/koyu dil yönergeleri, buildNav içinden güncellenen data-lang ile çalışır. */
 #catNav[data-lang="en"].wheel-collapsed::after{content:'Click to access the menu';}
 #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::before{content:'CATEGORIES';}
-#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'Drag vertically · wait 1 sec';}
+#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'Drag vertically · wait 1.5 sec';}
 /* Alt Menü düğmesine basıldığında sayfaya yön veren tek seferlik ışık halkası. */
 #bottomNav #bnav-menu.menu-button-ring::before{
   content:'';position:absolute;inset:-8px;border:1.5px solid rgba(226,138,97,.72);border-radius:18px;pointer-events:none;
@@ -2265,7 +2265,7 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
     border:1px solid rgba(169,80,49,.14);border-radius:999px;color:rgba(116,61,39,.78);background:rgba(255,250,245,.58);box-shadow:0 6px 13px rgba(95,43,26,.07);font-size:10px;font-weight:900;letter-spacing:.065em;line-height:1.15;transform:translateX(-50%);
   }
   #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::before{content:'CATEGORY WHEEL';}
-  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  DRAG  ·  WAIT 1 SECOND AT CENTER';}
+  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  DRAG  ·  WAIT 1.5 SECONDS AT CENTER';}
   #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{width:min(74%,510px);max-width:510px;min-height:62px;flex-basis:62px;border-radius:19px;font-size:14px;}
   #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill.wheel-focus{--wheel-scale:1.10;box-shadow:0 15px 31px rgba(137,59,37,.35),0 0 0 6px rgba(184,92,56,.10);}
   #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill:hover{filter:brightness(1.04) saturate(1.06);}
@@ -2323,6 +2323,70 @@ html[data-theme="dark"] #productDetailModal .detail-content{background:linear-gr
 .daily-suggestion-copy small{display:flex;align-items:center;gap:7px;}
 .daily-suggestion-time{display:inline-flex;padding:3px 6px;border:1px solid rgba(184,92,56,.15);border-radius:999px;color:var(--muted2);background:rgba(255,255,255,.48);font-size:8px;font-style:normal;letter-spacing:.04em;}
 html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255,228,208,.08);border-color:rgba(226,138,97,.20);}
+
+
+/* KFM_WHEEL_SOUND_LAYOUT_V12 */
+
+/* V12 MOBILE WELCOME SCALE REFINEMENT */
+@media(max-width:699px){
+  #welcomeScreen{overflow:hidden!important;}
+  #welcomeScreen .welcome-ornament{
+    inset:-2vh -12vw!important;
+    background-size:min(420px,108vw) auto!important;
+    background-position:center 52%!important;
+    opacity:.56!important;
+    animation:welcomeOrnamentMobileDrift 15s ease-in-out infinite alternate!important;
+  }
+}
+@media(max-width:390px){
+  #welcomeScreen .welcome-ornament{inset:2vh -10vw!important;background-size:min(360px,104vw) auto!important;opacity:.50!important;}
+}
+@keyframes welcomeOrnamentMobileDrift{from{transform:translate3d(-3px,3px,0) scale(.98)}to{transform:translate3d(3px,-3px,0) scale(1.01)}}
+@media(prefers-reduced-motion:reduce){#welcomeScreen .welcome-ornament{animation:none!important;transform:none!important;}}
+
+/* Sürükleme odaklı çark: yan taşmayı ve geçici kategori etiketlerini kaldırır. */
+#catNav.wheel-pro-mode:not(.wheel-collapsed){overflow:hidden!important;isolation:isolate;}
+#catNav.wheel-pro-mode .wheel-proximity-preview{display:none!important;}
+#catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{max-width:calc(100% - 34px)!important;overflow:hidden!important;text-overflow:ellipsis;white-space:nowrap;}
+#catNav.wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  SÜRÜKLE  ·  MERKEZDE 1,5 SN BEKLE'!important;letter-spacing:.055em!important;}
+#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  DRAG  ·  WAIT 1.5 SECONDS AT CENTER'!important;}
+.wheel-sound-toggle{position:absolute;z-index:12;right:18px;top:18px;width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(184,92,56,.22);border-radius:50%;color:var(--rust);background:rgba(255,250,246,.88);box-shadow:0 7px 18px rgba(103,49,28,.12);font-size:12px;transition:transform .2s ease,background .2s ease,color .2s ease;}
+.wheel-sound-toggle:hover{transform:translateY(-2px) scale(1.04);background:var(--rust);color:#fff9f4;}
+.wheel-sound-toggle.is-muted{color:var(--muted);background:rgba(255,255,255,.66);}
+html[data-theme="dark"] .wheel-sound-toggle{color:#ffd7bc;background:rgba(44,27,20,.82);border-color:rgba(238,161,118,.30);}
+html[data-theme="dark"] .wheel-sound-toggle:hover{background:#d98257;color:#25130d;}
+/* Karşılama sahnesi küçük ekranlarda taşmadan, kart içinde kalır. */
+.welcome-stage,.welcome-card,.welcome-showcase,.welcome-hookah-scene{box-sizing:border-box;}
+@media(max-width:699px){
+  html,body{overflow-x:clip;}
+  .welcome-stage{width:100%;max-width:100%;overflow:hidden!important;padding-inline:8px!important;}
+  .welcome-card{width:100%;max-width:100%;overflow:hidden!important;border-radius:26px!important;}
+  .welcome-showcase{width:100%;max-width:100%;overflow:hidden!important;background-position:center!important;}
+  .welcome-hookah-scene{overflow:hidden!important;clip-path:inset(0 round 18px);}
+  .welcome-hookah-render{width:78px!important;height:98px!important;bottom:0!important;filter:drop-shadow(0 8px 9px rgba(73,31,17,.24))!important;}
+  .welcome-ornament{max-width:100%!important;background-position:center!important;background-size:cover!important;}
+}
+/* Menü sonu kartı: geniş boşlukları kaldıran daha yoğun, dengeli bilgi düzeni. */
+.menu-end-card{min-height:0!important;padding:16px 18px!important;margin:22px 0 26px!important;gap:13px!important;align-items:center!important;}
+.menu-end-card-main{gap:12px!important;flex-basis:0!important;}
+.menu-end-card-copy{gap:10px!important;}
+.menu-end-card-copy > i{width:36px!important;height:36px!important;font-size:14px!important;}
+.menu-end-card-copy strong{font-size:15px!important;line-height:1.1!important;}
+.menu-end-card-copy span{font-size:11px!important;line-height:1.35!important;}
+.menu-end-card-info{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 12px!important;width:100%;}
+.menu-end-card-info li{font-size:9px!important;gap:6px!important;}
+.menu-end-card-info strong{font-size:9px!important;}
+.menu-end-card-actions{gap:8px!important;}
+.menu-end-card-actions button{min-height:36px!important;padding:8px 11px!important;font-size:10px!important;}
+@media(max-width:699px){
+  .menu-end-card{padding:14px!important;margin:18px 0 22px!important;gap:10px!important;}
+  .menu-end-card-main{gap:10px!important;}
+  .menu-end-card-info{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 8px!important;}
+  .menu-end-card-info li:last-child{grid-column:1/-1;}
+  .menu-end-card-actions{display:grid!important;grid-template-columns:1fr 1fr;width:100%;}
+  .menu-end-card-actions button{justify-content:center!important;}
+}
+@media(prefers-reduced-motion:reduce){.wheel-sound-toggle{transition:none!important;}}
 
 </style>
 </head>
@@ -4662,7 +4726,77 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
         let suppressClick = false;
         let wheelLock = false;
         let dwellTimer = null;
+        let dwellArmed = false;
         let raf = 0;
+
+
+        /* V12 — Web Audio API ile kullanıcı etkileşimine bağlı, dosyasız hafif çark sesleri. */
+        const WHEEL_DWELL_MS = 1500;
+        const WHEEL_SOUND_STORAGE_KEY = 'kfm_wheel_sound_enabled';
+        let wheelAudioContext = null;
+        let wheelSoundEnabled = (() => { try { return localStorage.getItem(WHEEL_SOUND_STORAGE_KEY) !== 'off'; } catch (_) { return true; } })();
+        let lastWheelSoundAt = 0;
+        let lastSoundFocusId = '';
+
+        function getWheelAudioContext() {
+            if (!wheelSoundEnabled) return null;
+            const AudioCtor = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtor) return null;
+            if (!wheelAudioContext) wheelAudioContext = new AudioCtor();
+            if (wheelAudioContext.state === 'suspended') wheelAudioContext.resume().catch(() => {});
+            return wheelAudioContext;
+        }
+        function playWheelTone(fromHz, toHz, duration, volume, type = 'sine') {
+            const ctx = getWheelAudioContext();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(fromHz, now);
+            osc.frequency.exponentialRampToValueAtTime(Math.max(24, toHz), now + duration);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(volume, now + Math.min(.018, duration * .32));
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+            osc.connect(gain).connect(ctx.destination);
+            osc.start(now); osc.stop(now + duration + .025);
+        }
+        function playWheelTick() {
+            const now = performance.now();
+            if (now - lastWheelSoundAt < 66) return;
+            lastWheelSoundAt = now;
+            playWheelTone(430, 330, .042, .018, 'triangle');
+        }
+        function playWheelConfirm() {
+            playWheelTone(420, 625, .09, .032, 'sine');
+            setTimeout(() => playWheelTone(625, 760, .075, .022, 'sine'), 58);
+        }
+        function ensureWheelSoundToggle() {
+            if (document.getElementById('wheelSoundToggle')) return;
+            const button = document.createElement('button');
+            button.type = 'button'; button.id = 'wheelSoundToggle'; button.className = 'wheel-sound-toggle';
+            button.setAttribute('aria-pressed', String(wheelSoundEnabled));
+            const update = () => {
+                button.classList.toggle('is-muted', !wheelSoundEnabled);
+                button.innerHTML = `<i class="fa-solid ${wheelSoundEnabled ? 'fa-volume-high' : 'fa-volume-xmark'}" aria-hidden="true"></i>`;
+                button.setAttribute('aria-label', wheelSoundEnabled ? 'Çark seslerini kapat' : 'Çark seslerini aç');
+                button.setAttribute('aria-pressed', String(wheelSoundEnabled));
+            };
+            button.addEventListener('click', event => {
+                event.preventDefault(); event.stopPropagation();
+                wheelSoundEnabled = !wheelSoundEnabled;
+                try { localStorage.setItem(WHEEL_SOUND_STORAGE_KEY, wheelSoundEnabled ? 'on' : 'off'); } catch (_) {}
+                update();
+                if (wheelSoundEnabled) playWheelConfirm();
+            });
+            nav.appendChild(button); update();
+        }
+        ensureWheelSoundToggle();
+        // Kategori değişimlerinde çark içeriği yeniden oluşturulduğunda ses denetimini koru.
+        const wheelSoundObserver = new MutationObserver(() => {
+            if (!document.getElementById('wheelSoundToggle')) ensureWheelSoundToggle();
+        });
+        wheelSoundObserver.observe(nav, { childList: true });
 
         const getItems = () => [...nav.querySelectorAll('.cat-pill')];
         const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -4683,13 +4817,14 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
             if (!item) return;
             const key = item.id.replace(/^cp-/, '');
             if (!key) return;
+            playWheelConfirm();
             kategoriGit(key);
             closeWheel();
         }
 
         function startDwell() {
             clearDwell();
-            if (dragging || nav.classList.contains('wheel-collapsed')) return;
+            if (!dwellArmed || dragging || nav.classList.contains('wheel-collapsed')) return;
             const item = getItems()[Math.round(currentIndex)];
             if (!item) return;
             nav.classList.add('wheel-awaiting-selection');
@@ -4698,7 +4833,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
                     nav.classList.add('wheel-dwell');
                     selectItem(item);
                 }
-            }, 1000);
+            }, WHEEL_DWELL_MS);
         }
 
         function render(index, animate = true) {
@@ -4719,8 +4854,8 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
                 const opacity = absolute < .08 ? 1 : Math.max(.20, 1 - absolute * .24);
                 const rotate = distance * -7;
                 const depth = absolute < .08 ? 34 : Math.max(-38, 14 - absolute * 20);
-                const sideShift = dragging ? clamp(distance * 5.5, -15, 15) : distance * 1.35;
-                const rotateY = dragging ? clamp(distance * 2.4, -9, 9) : distance * 1.05;
+                const sideShift = 0;
+                const rotateY = 0;
                 const blur = absolute < .08 ? 0 : Math.min(2.2, absolute * .65);
                 const y = distance * STEP;
                 item.style.opacity = opacity.toFixed(2);
@@ -4736,6 +4871,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
             const focusItem = items.find(item => item.classList.contains('wheel-focus'));
             if (focusItem && !nav.classList.contains('wheel-collapsed') && window.__lastWheelFocusId !== focusItem.id) {
                 window.__lastWheelFocusId = focusItem.id;
+                if (lastSoundFocusId !== focusItem.id) { playWheelTick(); lastSoundFocusId = focusItem.id; }
                 focusItem.classList.remove('category-focus-pop');
                 void focusItem.offsetWidth;
                 focusItem.classList.add('category-focus-pop');
@@ -4790,8 +4926,9 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
             nav.setAttribute('aria-expanded', 'true');
             syncWheelInteractionMode();
             currentIndex = activeIndex();
+            dwellArmed = false;
+            lastSoundFocusId = '';
             render(currentIndex, true);
-            setTimeout(centerPageOnWheel, 45);
         }
 
         function closeWheel() {
@@ -4800,6 +4937,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
             nav.setAttribute('aria-expanded', 'false');
             syncWheelInteractionMode();
             currentIndex = activeIndex();
+            dwellArmed = false;
             render(currentIndex, true);
         }
 
@@ -4807,6 +4945,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
             const items = getItems();
             if (!items.length) return;
             openWheel();
+            dwellArmed = true;
             clearDwell();
             render(Math.round(currentIndex) + direction, true);
         }
@@ -4842,6 +4981,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
             if (!rawSteps) return;
             const stepCount = Math.sign(rawSteps) * Math.min(2, Math.abs(rawSteps));
             wheelDeltaBuffer -= stepCount * WHEEL_STEP_UNIT;
+            dwellArmed = true;
             clearDwell();
             render(clamp(Math.round(currentIndex) + stepCount, 0, getItems().length - 1), true);
         }
@@ -4965,6 +5105,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
             }
             if (crossedThreshold) {
                 dragMoved = true;
+                dwellArmed = true;
                 suppressClick = true;
             }
             const liveIndex = dragStartIndex + filtered / STEP;
