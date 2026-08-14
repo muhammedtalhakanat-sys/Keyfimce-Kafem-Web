@@ -104,9 +104,9 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQism_to0UYflxGz6LAhegMriXYPfsoBeSWTf-WVafeE8LOSAZOzZPbmLeu&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Menengiç Coffee",
+          "ad_en": "Menengic Coffee",
           "aciklama": "Kendine özgü menengiç aromasıyla yumuşak, sıcak ve nostaljik bir kahve.",
-          "aciklama_en": "A warm, nostalgic coffee with the distinctive flavour of menengiç."
+          "aciklama_en": "A warm, nostalgic coffee with the distinctive flavour of menengic."
         },
         {
           "id": 9,
@@ -979,7 +979,7 @@
           "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzriHpYp4-2xYcRWtqaTfpud3YBd3D1QyuVvLjqqOaKi_DbvYBDnIQFVfv&s=10",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Dimes Vişne",
+          "ad_en": "Dimes Sour Cherry",
           "aciklama": "Vişnenin karakterli aromasıyla tatlı-ekşi dengeli meyve içeceği.",
           "aciklama_en": "A sweet-and-tart fruit drink with the distinctive flavour of sour cherry."
         },
@@ -1056,7 +1056,7 @@
           "gorsel": "https://cdn.dsmcdn.com/ty1433/product/media/images/prod/QC/20240720/01/f26c508a-39bf-3f36-8eb7-f08f72895ef7/1_org_zoom.jpg",
           "stoktaVar": true,
           "ekstralar": [],
-          "ad_en": "Niğde Soda",
+          "ad_en": "Nigde Soda",
           "aciklama": "Kendine özgü gazoz aromasıyla nostaljik ve serinletici içecek.",
           "aciklama_en": "A nostalgic, refreshing drink with a distinctive soda flavour."
         },
@@ -1313,19 +1313,23 @@
           "ekstralar": [
             {
               "isim": "Çikolata",
-              "fiyat": 0
+              "fiyat": 0,
+              "isim_en": "Chocolate"
             },
             {
               "isim": "Fıstık",
-              "fiyat": 0
+              "fiyat": 0,
+              "isim_en": "Pistachio"
             },
             {
               "isim": "çilek",
-              "fiyat": 0
+              "fiyat": 0,
+              "isim_en": "Strawberry"
             },
             {
               "isim": "vanilya",
-              "fiyat": 0
+              "fiyat": 0,
+              "isim_en": "Vanilla"
             }
           ],
           "ad_en": "Ice Cream Bowl",

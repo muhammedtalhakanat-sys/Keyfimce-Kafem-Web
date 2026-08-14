@@ -3219,6 +3219,8 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     </div>
 
 <script>
+    /* KFM_I18N_MOBILE_V16 */
+    /* KFM_I18N_MODAL_V16_1 */
     // ══════════════════════════════════════════════════════════════
     // ── AÇILIŞ ANİMASYONU ──
     // ══════════════════════════════════════════════════════════════
@@ -3263,6 +3265,21 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             all_menu: "✨ Tüm Menü",
             out_of_stock: "TÜKENDİ",
             no_product: "Ürün bulunamadı",
+            detail_btn: "Detay",
+            extra_options: "seçenek",
+            modal_close: "Kapat",
+            view_menu: "Menüyü Görüntüle",
+            theme_label: "Tema",
+            theme_auto: "Otomatik tema",
+            theme_light: "Açık tema",
+            theme_dark: "Koyu tema",
+            theme_now_dark: "şu an koyu",
+            theme_now_light: "şu an açık",
+            theme_change_hint: "Değiştirmek için tıklayın.",
+            search_clear: "Aramayı temizle",
+            category_menu_label: "Kategori menüsü",
+            wheel_sound_off: "Çark seslerini kapat",
+            wheel_sound_on: "Çark seslerini aç",
             review_nav_default: "Öneri-İstek",
             toast_wifi_copied: "📋 Şifre kopyalandı!",
             toast_wifi_updated: "✅ Wi-Fi bilgileri güncellendi",
@@ -3329,6 +3346,21 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             all_menu: "✨ Full Menu",
             out_of_stock: "SOLD OUT",
             no_product: "No products found",
+            detail_btn: "View details",
+            extra_options: "options",
+            modal_close: "Close",
+            view_menu: "View Menu",
+            theme_label: "Theme",
+            theme_auto: "Auto theme",
+            theme_light: "Light theme",
+            theme_dark: "Dark theme",
+            theme_now_dark: "currently dark",
+            theme_now_light: "currently light",
+            theme_change_hint: "Click to change.",
+            search_clear: "Clear search",
+            category_menu_label: "Category menu",
+            wheel_sound_off: "Mute wheel sounds",
+            wheel_sound_on: "Enable wheel sounds",
             review_nav_default: "Suggestions",
             toast_wifi_copied: "📋 Password copied!",
             toast_wifi_updated: "✅ Wi-Fi info updated",
@@ -3393,7 +3425,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     "Doppio": "Doppio",
     "Filtre Kahve": "Filter Coffee",
     "Lungo": "Lungo",
-    "Menengiç Kahvesi": "Menengiç Coffee",
+    "Menengiç Kahvesi": "Menengic Coffee",
     "Osmanlı Kahvesi": "Ottoman Coffee",
     "Ristretto": "Ristretto",
     "Türk Kahvesi": "Turkish Coffee",
@@ -3439,7 +3471,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     "Didi Şeftali": "Didi Peach",
     "Kızılay Limon": "Kızılay Lemon",
     "Kızılay Sade": "Kızılay Plain",
-    "Niğde Gazozu": "Niğde Soda",
+    "Niğde Gazozu": "Nigde Soda",
     "Sarıyer Portakal": "Sarıyer Orange",
     "Sarıyer Siyah Kola": "Sarıyer Black Cola",
     "Uludağ Limonata": "Uludağ Lemonade",
@@ -3458,13 +3490,68 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     "Dimes Ananas": "Dimes Pineapple",
     "Dimes Karışık": "Dimes Mixed",
     "Dimes Şeftali": "Dimes Peach",
+    "Dimes Vişne": "Dimes Sour Cherry",
     "Kızılay Elma": "Kızılay Apple",
     "Kızılay Guava": "Kızılay Guava",
     "Kızılay Karpuz Çilek": "Kızılay Watermelon Strawberry",
     "Fındık Aromalı": "Hazelnut Flavored",
     "Karamel Aromalı": "Caramel Flavored",
-    "Vanilya Aromalı": "Vanilla Flavored"
+    "Vanilya Aromalı": "Vanilla Flavored",
+    "Çikolata": "Chocolate",
+    "Fıstık": "Pistachio",
+    "çilek": "Strawberry",
+    "vanilya": "Vanilla",
+    "Vanilya": "Vanilla",
+    "Ekstra Çikolata": "Extra Chocolate",
+    "Süt": "Milk",
+    "Karamel": "Caramel",
+    "Fındık Şurubu": "Hazelnut Syrup"
 };
+
+    function localizedExtraName(extra) {
+        if (!extra) return '';
+        if (aktifDil === 'en') return extra.isim_en || translationsDict[extra.isim] || extra.isim || '';
+        return extra.isim || '';
+    }
+
+    function localizedCategoryName(category, fallback = '') {
+        if (!category) return fallback;
+        if (aktifDil === 'en') return category.isim_en || translationsDict[category.isim] || category.isim || fallback;
+        return category.isim || fallback;
+    }
+
+    function localizedProductName(product) {
+        if (!product) return '';
+        if (aktifDil === 'en') return product.ad_en || translationsDict[product.ad] || product.ad || '';
+        return product.ad || '';
+    }
+
+    function localizedProductDescription(product, fallback = '') {
+        if (!product) return fallback;
+        if (aktifDil === 'en') return product.aciklama_en || fallback;
+        return product.aciklama || fallback;
+    }
+
+    function refreshLocalizedControls() {
+        const searchClear = document.getElementById('searchClearBtn');
+        if (searchClear) {
+            searchClear.setAttribute('aria-label', t('search_clear'));
+            searchClear.title = t('search_clear');
+        }
+        const categoryWheel = document.getElementById('catNav');
+        if (categoryWheel) categoryWheel.setAttribute('aria-label', t('category_menu_label'));
+        const detailModal = document.getElementById('productDetailModal');
+        if (detailModal) {
+            const closeIcon = detailModal.querySelector('.detail-close');
+            if (closeIcon) closeIcon.setAttribute('aria-label', t('modal_close'));
+            const softAction = detailModal.querySelector('.detail-action-soft');
+            if (softAction) softAction.textContent = t('modal_close');
+            const mainAction = document.getElementById('detailMainAction');
+            if (mainAction) mainAction.innerHTML = `<i class="fa-solid fa-check"></i> ${escapeHtml(t('view_menu'))}`;
+        }
+        if (typeof temaArayuzunuGuncelle === 'function') temaArayuzunuGuncelle();
+        if (typeof window.__refreshWheelSoundToggle === 'function') window.__refreshWheelSoundToggle();
+    }
 
     function dilUygula() {
         // data-i18n elementleri
@@ -3484,10 +3571,17 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         const menuHint = document.getElementById('menuAccessHintText');
         if (menuHint) menuHint.textContent = aktifDil === 'en' ? 'Click to access the menu' : 'Menüye ulaşmak için tıklayınız';
         const categoryWheel = document.getElementById('catNav');
-        if (categoryWheel) categoryWheel.dataset.lang = aktifDil;
+        if (categoryWheel) {
+            categoryWheel.dataset.lang = aktifDil;
+            categoryWheel.setAttribute('aria-label', t('category_menu_label'));
+        }
+        refreshLocalizedControls();
         // Tüm dinamik bileşenleri yenile
         buildNav();
         renderProducts();
+        if (aktifDetayIndex !== null && document.getElementById('productDetailModal')?.classList.contains('open')) {
+            openProductDetail(aktifDetayIndex, { recordInteraction: false });
+        }
         skorGuncelle();
         if (document.getElementById('adminPanel').style.display === 'block') {
             apUrunListesiYenile();
@@ -3603,6 +3697,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     }
 
     let aktifKat = "cat-all";
+    let aktifDetayIndex = null;
     let secilenPuan = 5;
 
     // ══════════════════════════════════════════════════════════════
@@ -3640,12 +3735,12 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         const icon = document.getElementById('themeToggleIcon');
         const btn = document.getElementById('themeToggleBtn');
         if (!icon || !btn) return;
-        const names = { auto: 'Otomatik tema', light: 'Açık tema', dark: 'Koyu tema' };
+        const names = { auto: t('theme_auto'), light: t('theme_light'), dark: t('theme_dark') };
         const icons = { auto: 'fa-circle-half-stroke', light: 'fa-sun', dark: 'fa-moon' };
         icon.className = `fa-solid ${icons[temaModu]}`;
-        const durum = temaModu === 'auto' ? (uygulananTema === 'dark' ? 'şu an koyu' : 'şu an açık') : '';
-        btn.title = `Tema: ${names[temaModu]}${durum ? ` (${durum})` : ''}`;
-        btn.setAttribute('aria-label', `${names[temaModu]}${durum ? `, ${durum}` : ''}. Değiştirmek için tıklayın.`);
+        const durum = temaModu === 'auto' ? (uygulananTema === 'dark' ? t('theme_now_dark') : t('theme_now_light')) : '';
+        btn.title = `${t('theme_label')}: ${names[temaModu]}${durum ? ` (${durum})` : ''}`;
+        btn.setAttribute('aria-label', `${names[temaModu]}${durum ? `, ${durum}` : ''}. ${t('theme_change_hint')}`);
     }
 
     function temaDegistir() {
@@ -4224,10 +4319,10 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         if (!grid || !suggestion || !suggestion.product) return;
         const langCopy = suggestion[aktifDil] || suggestion.tr;
         const secondary = suggestion.secondary;
-        const primaryName = (aktifDil === 'en' && suggestion.product.ad_en) ? suggestion.product.ad_en : suggestion.product.ad;
-        const secondaryName = secondary ? ((aktifDil === 'en' && secondary.ad_en) ? secondary.ad_en : secondary.ad) : '';
-        const primaryCat = menuData[suggestion.catKey] ? ((aktifDil === 'en' && menuData[suggestion.catKey].isim_en) ? menuData[suggestion.catKey].isim_en : menuData[suggestion.catKey].isim) : 'Keyfimce';
-        const secondaryCat = secondary && menuData[secondary.catKey] ? ((aktifDil === 'en' && menuData[secondary.catKey].isim_en) ? menuData[secondary.catKey].isim_en : menuData[secondary.catKey].isim) : '';
+        const primaryName = localizedProductName(suggestion.product);
+        const secondaryName = secondary ? (localizedProductName(secondary)) : '';
+        const primaryCat = localizedCategoryName(menuData[suggestion.catKey], 'Keyfimce');
+        const secondaryCat = secondary && localizedCategoryName(menuData[secondary.catKey], '');
         const primaryImg = (suggestion.product.gorsel && suggestion.product.gorsel.trim()) ? suggestion.product.gorsel : (gorselHavuzu[suggestion.catKey] || gorselHavuzu['cat-kahve']);
         const secondaryImg = secondary ? ((secondary.gorsel && secondary.gorsel.trim()) ? secondary.gorsel : (gorselHavuzu[secondary.catKey] || gorselHavuzu['cat-kahve'])) : primaryImg;
         const cta = aktifDil === 'en' ? 'View detail' : 'Detayı gör';
@@ -4337,9 +4432,9 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         const categoryScopedCount = list.length;
         if (arama) {
             list = list.filter(u => {
-                const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
-                const description = (aktifDil === 'en' && u.aciklama_en) ? u.aciklama_en : (u.aciklama || '');
-                const category = menuData[u.catKey] ? ((aktifDil === 'en' && menuData[u.catKey].isim_en) ? menuData[u.catKey].isim_en : menuData[u.catKey].isim) : '';
+                const name = localizedProductName(u);
+                const description = localizedProductDescription(u, '');
+                const category = localizedCategoryName(menuData[u.catKey], '');
                 return [name, description, category].join(' ').toLowerCase().includes(arama);
             });
         }
@@ -4355,10 +4450,10 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         if (!arama) { renderDailySuggestion(); renderHappyHour(); }
 
         list.forEach((u, idx) => {
-            const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
-            const description = (aktifDil === 'en' && u.aciklama_en) ? u.aciklama_en : u.aciklama;
+            const name = localizedProductName(u);
+            const description = localizedProductDescription(u, '');
             const safeDescription = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
-            const categoryName = menuData[u.catKey] ? ((aktifDil === 'en' && menuData[u.catKey].isim_en) ? menuData[u.catKey].isim_en : menuData[u.catKey].isim) : '';
+            const categoryName = localizedCategoryName(menuData[u.catKey], '');
             const img = (u.gorsel && u.gorsel.trim() !== '') ? u.gorsel : (gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve']);
             const fallbackImg = gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve'];
             const extrasCount = u.ekstralar?.length || 0;
@@ -4378,11 +4473,11 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
                   <div class="product-card-category">${escapeHtml(categoryName || 'Keyfimce')}</div>
                   <h3 class="product-card-title">${highlightSearchTerm(name, arama)}</h3>
                   <p class="product-card-description">${escapeHtml(safeDescription)}</p>
-                  ${extrasCount ? `<div class="extra-pill" style="align-self:flex-start;margin-top:8px;">+${extrasCount} seçenek</div>` : ''}
+                  ${extrasCount ? `<div class="extra-pill" style="align-self:flex-start;margin-top:8px;">+${extrasCount} ${escapeHtml(t('extra_options'))}</div>` : ''}
                   <div class="product-card-footer">
                     <strong class="product-card-price">${u.fiyat}₺</strong>
                     <button class="product-detail-btn" type="button" onclick="event.stopPropagation();openProductDetail(${idx})">
-                      <i class="fa-solid fa-eye"></i><span>Detay</span>
+                      <i class="fa-solid fa-eye"></i><span>${escapeHtml(t('detail_btn'))}</span>
                     </button>
                   </div>
                 </div>
@@ -4463,14 +4558,15 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         });
     }
 
-    function openProductDetail(index) {
+    function openProductDetail(index, options = {}) {
+        aktifDetayIndex = index;
         const interactionProduct = (window.__renderedProducts || [])[index];
-        if (interactionProduct) recordDailySuggestionInteraction(interactionProduct);
+        if (interactionProduct && options.recordInteraction !== false) recordDailySuggestionInteraction(interactionProduct);
         const item = window.__renderedProducts?.[index];
         if (!item) return;
-        const name = (aktifDil === 'en' && item.ad_en) ? item.ad_en : item.ad;
-        const description = (aktifDil === 'en' && item.aciklama_en) ? item.aciklama_en : item.aciklama;
-        const categoryName = menuData[item.catKey] ? ((aktifDil === 'en' && menuData[item.catKey].isim_en) ? menuData[item.catKey].isim_en : menuData[item.catKey].isim) : '';
+        const name = localizedProductName(item);
+        const description = localizedProductDescription(item, '');
+        const categoryName = localizedCategoryName(menuData[item.catKey], '');
         const image = (item.gorsel && item.gorsel.trim() !== '') ? item.gorsel : (gorselHavuzu[item.catKey] || gorselHavuzu['cat-kahve']);
         const fallback = gorselHavuzu[item.catKey] || gorselHavuzu['cat-kahve'];
         const categoryScene = {
@@ -4509,7 +4605,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         badge.style.display = item.stoktaVar ? 'none' : 'inline-flex';
         const extras = document.getElementById('detailExtras');
         extras.innerHTML = (item.ekstralar || []).map(ex => {
-            const exName = (aktifDil === 'en' && ex.isim_en) ? ex.isim_en : ex.isim;
+            const exName = localizedExtraName(ex);
             return `<span class="extra-pill">+${escapeHtml(exName)} ${ex.fiyat}₺</span>`;
         }).join('');
         modalAc('productDetailModal');
@@ -4818,7 +4914,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         for (const catKey in menuData) {
             if (filtreKat !== 'hepsi' && filtreKat !== catKey) continue;
             (menuData[catKey].urunler || []).forEach(u => {
-                const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad; const desc = (aktifDil === 'en' && u.aciklama_en) ? u.aciklama_en : (u.aciklama || '');
+                const name = localizedProductName(u); const desc = localizedProductDescription(u, '');
                 if (aramaKel && !(name + ' ' + desc).toLowerCase().includes(aramaKel)) return;
                 if (apStokFiltresi === 'in' && !u.stoktaVar) return; if (apStokFiltresi === 'out' && u.stoktaVar) return; count++;
                 const fallback = gorselHavuzu[catKey] || gorselHavuzu['cat-kahve']; const image = u.gorsel && u.gorsel.trim() ? u.gorsel : fallback;
@@ -4877,7 +4973,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             menuData[catKey].urunler.forEach(u => {
                 const opt = document.createElement('option');
                 opt.value = u.id;
-                opt.textContent = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
+                opt.textContent = localizedProductName(u);
                 urunSelect.appendChild(opt);
             });
         }
@@ -5188,7 +5284,9 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             const update = () => {
                 button.classList.toggle('is-muted', !wheelSoundEnabled);
                 button.innerHTML = `<i class="fa-solid ${wheelSoundEnabled ? 'fa-volume-high' : 'fa-volume-xmark'}" aria-hidden="true"></i>`;
-                button.setAttribute('aria-label', wheelSoundEnabled ? 'Çark seslerini kapat' : 'Çark seslerini aç');
+                const soundLabel = wheelSoundEnabled ? t('wheel_sound_off') : t('wheel_sound_on');
+                button.setAttribute('aria-label', soundLabel);
+                button.title = soundLabel;
                 button.setAttribute('aria-pressed', String(wheelSoundEnabled));
             };
             button.addEventListener('click', event => {
@@ -5198,7 +5296,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
                 update();
                 if (wheelSoundEnabled) playWheelConfirm();
             });
-            nav.appendChild(button); update();
+            nav.appendChild(button); window.__refreshWheelSoundToggle = update; update();
         }
         ensureWheelSoundToggle();
         // Kategori değişimlerinde çark içeriği yeniden oluşturulduğunda ses denetimini koru.
@@ -5330,7 +5428,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             nav.style.touchAction = nav.classList.contains('wheel-collapsed') ? 'pan-y' : 'none';
         }
 
-        function openWheel() {
+        function openWheel(centerOnMobile = false) {
             nav.classList.remove('wheel-collapsed');
             nav.setAttribute('aria-expanded', 'true');
             syncWheelInteractionMode();
@@ -5338,6 +5436,11 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             dwellArmed = false;
             lastSoundFocusId = '';
             render(currentIndex, true);
+            if (centerOnMobile && window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    if (!nav.classList.contains('wheel-collapsed')) centerPageOnWheel();
+                }));
+            }
         }
 
         function closeWheel() {
@@ -5372,7 +5475,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             if (!nav.classList.contains('wheel-collapsed')) return;
             event.preventDefault();
             event.stopImmediatePropagation();
-            openWheel();
+            openWheel(true);
         }, true);
 
         // Sürekli mouse-wheel akışı: delta biriktirilir, tek kilit uygulanmaz.
