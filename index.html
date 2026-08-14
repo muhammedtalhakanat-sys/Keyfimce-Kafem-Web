@@ -2183,6 +2183,67 @@ html[data-theme="dark"] select:focus{outline-color:var(--rust)!important;box-sha
   .welcome-ornament{opacity:.98!important;filter:drop-shadow(0 7px 13px rgba(75,33,20,.20)) saturate(1.06)}
 }
 
+
+
+/* PRODUCT FRAME & DEPTH V10 */
+/* Ürün görsellerini sıcak metal çerçeve, kategori ışığı ve gerçek derinlik katmanlarıyla birleştirir. */
+#productGrid{perspective:1600px;perspective-origin:50% 24%;}
+#productGrid > .prod-card{
+  isolation:isolate;
+  border-color:rgba(255,247,239,.92);
+  box-shadow:0 13px 30px rgba(67,35,22,.10),0 2px 0 rgba(255,255,255,.82) inset;
+}
+#productGrid > .prod-card::before{
+  content:'';position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;
+  background:linear-gradient(118deg,transparent 29%,rgba(255,255,255,.46) 44%,transparent 57%);
+  transform:translateX(-118%);mix-blend-mode:screen;
+}
+#productGrid > .prod-card:hover::before,#productGrid > .prod-card.parallax-active::before{animation:cardFrameGlint .72s cubic-bezier(.22,1,.36,1) both;}
+@keyframes cardFrameGlint{0%{opacity:0;transform:translateX(-118%)}17%{opacity:.7}100%{opacity:0;transform:translateX(118%)}}
+.product-card-image-wrap{
+  transform-style:preserve-3d;perspective:940px;
+  background:radial-gradient(circle at 50% 18%,var(--frame-light,rgba(255,224,184,.38)),transparent 54%),linear-gradient(140deg,#402519,#d88958 148%);
+  box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 -13px 25px rgba(54,26,15,.24) inset;
+}
+.product-card-image-wrap::after{z-index:3!important;}
+.product-card-image{position:relative;z-index:1;transform:translateZ(1px)!important;}
+.product-card-depth-plane{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 10%,var(--frame-light,rgba(255,235,205,.38)),transparent 47%),linear-gradient(180deg,transparent 45%,var(--frame-glow,rgba(121,58,30,.34)) 135%);
+  mix-blend-mode:soft-light;opacity:.76;transform:translateZ(14px);transition:opacity .28s ease,transform .32s cubic-bezier(.22,1,.36,1);
+}
+.product-card-frame-art{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:url('product-frame-3d-transparent.png') center/100% 100% no-repeat;
+  filter:drop-shadow(0 4px 7px rgba(53,26,15,.33));
+  opacity:.96;transform:translateZ(30px) scale(1.008);transform-origin:center;
+  transition:filter .30s ease,transform .36s cubic-bezier(.22,1,.36,1),opacity .30s ease;
+}
+.product-card-badge{position:relative;z-index:6;}
+#productGrid > .prod-card:hover .product-card-frame-art,#productGrid > .prod-card.parallax-active .product-card-frame-art{
+  opacity:1;filter:drop-shadow(0 8px 12px var(--frame-glow,rgba(92,43,21,.38))) brightness(1.08);
+  transform:translateZ(42px) scale(1.018);
+}
+#productGrid > .prod-card:hover .product-card-depth-plane,#productGrid > .prod-card.parallax-active .product-card-depth-plane{opacity:1;transform:translateZ(20px);}
+#productGrid > .prod-card:hover .product-card-body{transform:translateZ(18px);}
+.product-card-body{position:relative;z-index:2;transition:transform .34s cubic-bezier(.22,1,.36,1);}
+#productGrid > .prod-card[data-frame-tone="cool"]{--frame-glow:rgba(65,171,220,.36);--frame-light:rgba(181,239,255,.42);}
+#productGrid > .prod-card[data-frame-tone="sweet"]{--frame-glow:rgba(231,112,151,.34);--frame-light:rgba(255,216,230,.40);}
+#productGrid > .prod-card[data-frame-tone="herbal"]{--frame-glow:rgba(76,164,118,.30);--frame-light:rgba(205,255,222,.36);}
+#productGrid > .prod-card[data-frame-tone="night"]{--frame-glow:rgba(122,94,198,.34);--frame-light:rgba(217,205,255,.38);}
+html[data-theme="dark"] #productGrid > .prod-card{border-color:rgba(235,169,118,.20);box-shadow:0 15px 32px rgba(0,0,0,.34),0 1px 0 rgba(255,227,198,.10) inset;}
+html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rgba(0,0,0,.52)) saturate(.92) brightness(.92);opacity:.88;}
+@media(max-width:680px){
+  #productGrid{perspective:none;}
+  .product-card-frame-art{opacity:.88;transform:translateZ(10px) scale(1.004);filter:drop-shadow(0 3px 5px rgba(53,26,15,.24));}
+  .product-card-depth-plane{opacity:.58;transform:none;}
+  #productGrid > .prod-card:hover::before{animation:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  #productGrid > .prod-card::before{animation:none!important;opacity:0!important;}
+  .product-card-frame-art,.product-card-depth-plane,.product-card-body{transition:none!important;transform:none!important;}
+}
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -3726,11 +3787,14 @@ html[data-theme="dark"] select:focus{outline-color:var(--rust)!important;box-sha
             const extrasCount = u.ekstralar?.length || 0;
             const stokOverlay = !u.stoktaVar ? `<div class="stok-overlay"><span class="stok-badge">${t('out_of_stock')}</span></div>` : '';
             const delay = Math.min(idx, 8) * 0.055;
+            const frameTone = ['cat-soguk'].includes(u.catKey) ? 'cool' : (['cat-tatli','cat-milkshake'].includes(u.catKey) ? 'sweet' : (['cat-smoothie','cat-meyve'].includes(u.catKey) ? 'herbal' : (u.catKey === 'cat-nargile' ? 'night' : 'warm')));
             grid.insertAdjacentHTML('beforeend', `
-              <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" style="animation-delay:${delay}s;" data-product-index="${idx}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
+              <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" style="animation-delay:${delay}s;" data-product-index="${idx}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
                 <div class="product-card-image-wrap">
                   <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}'">
+                  <span class="product-card-depth-plane" aria-hidden="true"></span>
+                  <span class="product-card-frame-art" aria-hidden="true"></span>
                   ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
                 </div>
                 <div class="product-card-body">
