@@ -3017,6 +3017,76 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
   #productGrid > .prod-card .product-card-image-wrap .product-card-image,
   .daily-pair-image { transition: none!important; }
 }
+
+/* KFM_V23_ADMIN_FRAME_MANAGER */
+/* Yönetim paneli uzun ürün listelerinde kesilmez; ana panel kendi içinde doğal olarak kayar. */
+#adminPanel{
+  overscroll-behavior:contain!important;
+  touch-action:pan-y!important;
+  scrollbar-gutter:stable;
+}
+#adminPanel .admin-accordion-section{overflow:visible;}
+#adminPanel .admin-accordion-section:not(.active){overflow:hidden;}
+#adminPanel #apMevcutUrunlerSection.active,
+#adminPanel #apMevcutUrunlerSection.active .admin-accordion-content{
+  overflow:visible!important;
+}
+#adminPanel #apMevcutUrunlerSection.active .admin-accordion-content{
+  max-height:none!important;
+  opacity:1!important;
+}
+#adminPanel #apUrunListesi{max-height:none!important;overflow:visible!important;}
+#adminPanel .admin-accordion-content{scroll-margin-top:12px;}
+
+/* Aynı kart görünümünü yönetim panelinde de gösteren çerçeveli önizleme. */
+.ap-frame-preview{
+  position:relative;isolation:isolate;overflow:hidden;display:grid;place-items:center;
+  width:100%;aspect-ratio:1/1;border:1px solid var(--border2);border-radius:18px;
+  background:radial-gradient(circle at 50% 28%,rgba(255,244,229,.92),rgba(184,92,56,.16) 70%,rgba(73,34,19,.12));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.68),0 8px 18px rgba(64,34,20,.10);
+}
+.ap-frame-preview img{
+  position:absolute;inset:8%;z-index:1;width:84%;height:84%;display:block;
+  object-fit:contain;object-position:center;border-radius:13px;
+  background:rgba(255,255,255,.12);box-shadow:0 5px 14px rgba(45,23,14,.18);
+}
+.ap-frame-preview img.ap-preview-cover{object-fit:cover;}
+.ap-frame-preview-art{
+  position:absolute;inset:0;z-index:4;pointer-events:none;background-position:center;background-repeat:no-repeat;background-size:100% 100%;
+  filter:drop-shadow(0 4px 7px rgba(53,26,15,.28));opacity:.98;
+}
+.ap-frame-preview-art::before,.ap-frame-preview-art::after{
+  content:'✧';position:absolute;z-index:5;display:grid;place-items:center;width:20px;height:20px;
+  border:1.5px solid rgba(255,247,228,.98);border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ffd9b5 58%,#7b3c22);
+  color:#6a321e;font:900 10px/1 sans-serif;box-shadow:0 2px 6px rgba(33,12,6,.55);text-shadow:0 1px 2px #fff;
+}
+.ap-frame-preview-art::before{left:7%;top:7%;}.ap-frame-preview-art::after{right:7%;bottom:7%;}
+.ap-frame-preview-art[data-frame-theme="food"]::before,.ap-frame-preview-art[data-frame-theme="food"]::after{content:'✦';color:#7f451f;background:radial-gradient(circle,#fff,#ffe0b2 58%,#a7622e);}
+.ap-frame-preview-art[data-frame-theme="cold"]::before,.ap-frame-preview-art[data-frame-theme="cold"]::after{content:'❄';color:#176c9c;background:radial-gradient(circle,#fff,#bff5ff 58%,#237ea7);}
+.ap-frame-preview-art[data-frame-theme="sweet"]::before,.ap-frame-preview-art[data-frame-theme="sweet"]::after{content:'✿';color:#a23b6b;background:radial-gradient(circle,#fff,#ffd5e7 58%,#b83c78);}
+.ap-frame-preview-art[data-frame-theme="hookah"]::before,.ap-frame-preview-art[data-frame-theme="hookah"]::after{content:'◌';color:#6a3e8f;background:radial-gradient(circle,#fff,#ead8ff 58%,#6b3c9b);}
+.ap-new-product-preview{width:min(170px,100%);margin:4px auto 2px;}
+.ap-new-product-media{display:grid;grid-template-columns:minmax(0,170px) minmax(0,1fr);gap:13px;align-items:center;padding:12px;border:1px solid var(--border2);border-radius:20px;background:var(--surface2);}
+.ap-new-product-media-copy{display:grid;gap:8px;}
+.ap-file-input{width:100%;padding:8px;border:1px dashed var(--border2);border-radius:12px;color:var(--muted);background:var(--surface);font-size:10px;font-weight:800;}
+.ap-frame-manager{display:grid;gap:12px;}
+.ap-frame-manager-card{display:grid;grid-template-columns:72px minmax(0,1fr);gap:11px;align-items:center;padding:11px;border:1px solid var(--border2);border-radius:18px;background:var(--surface);}
+.ap-frame-manager-preview{width:72px!important;height:72px!important;}
+.ap-frame-manager-fields{display:grid;gap:7px;min-width:0;}
+.ap-frame-manager-actions{display:flex;flex-wrap:wrap;gap:7px;align-items:center;}
+.ap-frame-manager-actions select{flex:1 1 150px;min-width:0;}
+.ap-frame-manager-actions button{padding:8px 10px;border-radius:11px;color:#fff;background:var(--rust);font-size:10px;font-weight:900;}
+.ap-frame-manager-note{color:var(--muted2);font-size:10px;line-height:1.45;font-weight:700;}
+html[data-theme="dark"] #adminPanel .ap-frame-manager-card,
+html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-gradient(145deg,rgba(52,33,24,.96),rgba(36,23,17,.96));}
+@media(max-width:620px){
+  .ap-new-product-media{grid-template-columns:112px minmax(0,1fr);gap:10px;padding:9px;}
+  .ap-new-product-preview{width:112px;}
+  .ap-frame-manager-card{grid-template-columns:62px minmax(0,1fr);padding:9px;}
+  .ap-frame-manager-preview{width:62px!important;height:62px!important;}
+}
+@media(prefers-reduced-motion:reduce){.ap-frame-preview-art,.ap-frame-preview img{transition:none!important;}}
+
 </style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
@@ -3497,6 +3567,18 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
     </div>
 </div>
 
+            <!-- KFM_V23: Çerçeve Kütüphanesi -->
+            <div class="admin-accordion-section glass rounded-3xl border mb-5 shadow-sm" id="apFrameManagerSection">
+    <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+        <h3 class="text-sm font-bold" style="color:var(--rust);"><i class="fa-solid fa-border-all mr-2"></i>Ürün Çerçeveleri</h3>
+        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+    </div>
+    <div class="admin-accordion-content px-5">
+        <p class="text-xs mb-4 font-medium" style="color:var(--muted);">Mevcut çerçeveleri URL veya dosya ile değiştirin. Yeni bir çerçeve ekleyip belirli bir kategoriye atadığınızda ürün kartları ve önizlemeler otomatik güncellenir.</p>
+        <div id="apFrameLibrary" class="ap-frame-manager"></div>
+    </div>
+</div>
+
             <!-- Yeni Ürün Ekle -->
             <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
     <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
@@ -3508,12 +3590,15 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
     <div class="admin-accordion-content px-5">
         
                 <div class="space-y-3">
-                    <select id="apKat" class="ap-input text-sm font-medium"></select>
+                    <select id="apKat" class="ap-input text-sm font-medium" onchange="apYeniUrunOnizlemeGuncelle()"></select>
                     <div class="grid grid-cols-2 gap-3">
                         <input type="text" id="apAd" class="ap-input text-sm font-medium" placeholder="Ürün adı">
                         <input type="number" id="apFiyat" class="ap-input text-sm font-medium" placeholder="Fiyat (TL)">
                     </div>
-                    <input type="text" id="apGorsel" class="ap-input text-sm font-medium" placeholder="Görsel URL (isteğe bağlı)">
+                    <div class="ap-new-product-media">
+                        <div class="ap-frame-preview ap-new-product-preview" id="apNewProductPreview"><img id="apNewProductPreviewImage" src="product-fallback-warm-coffee.png" alt="Ürün önizleme"><span id="apNewProductPreviewArt" class="ap-frame-preview-art" data-frame-theme="warm" aria-hidden="true"></span></div>
+                        <div class="ap-new-product-media-copy"><label style="color:var(--muted);font-size:10px;font-weight:900;">Görsel · çerçeve içinde canlı önizleme</label><input type="text" id="apGorsel" oninput="apYeniUrunOnizlemeGuncelle()" class="ap-input text-sm font-medium" placeholder="Görsel URL (isteğe bağlı)"><input id="apYeniGorselDosya" class="ap-file-input" type="file" accept="image/*" onchange="apYeniUrunDosyaSecildi(event)"><span class="ap-frame-manager-note">URL veya dosya seçin. Kategori değişince çerçeve otomatik değişir.</span></div>
+                    </div>
                     <input type="text" id="apEkstra" class="ap-input text-sm font-medium" placeholder="Ekstralar (Örn: Karamel:20, Vanilya:20)">
                     <button onclick="urunEkle()"
                             class="w-full text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-transform shadow-md mt-2"
@@ -3526,7 +3611,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
 </div>
 
             <!-- Mevcut Ürünler -->
-            <div class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
+            <div id="apMevcutUrunlerSection" class="admin-accordion-section glass  rounded-3xl border mb-5 shadow-sm">
     <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
         <h3 class="text-sm font-bold " style="color:var(--rust);">
                     <i class="fa-solid fa-boxes-stacked mr-2"></i>Mevcut Ürünler
@@ -4089,6 +4174,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         lsSave('kfm_asifre', adminSifre);
         lsSave('kfm_headerBg', headerBgUrl);
         lsSave('kfm_hizliSiparis', hizliSiparis);
+        lsSave('kfm_frame_settings', kfmFrameSettings);
         lsSave('kfm_hide_out_of_stock', hideOutOfStock);
         // GitHub ayarları mevcutsa otomatik push
         if (ghSettings.token && ghSettings.user && ghSettings.repo && ghSettings.file) {
@@ -4190,7 +4276,8 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
             wifiYedek: wifiData,
             sifreYedek: adminSifre,
             headerBgYedek: headerBgUrl,
-            hizliSiparisYedek: hizliSiparis
+            hizliSiparisYedek: hizliSiparis,
+            frameYedek: kfmFrameSettings
         };
         const icerikStr = JSON.stringify(icerik, null, 2);
         const base64Icerik = btoa(unescape(encodeURIComponent(icerikStr)));
@@ -4282,7 +4369,8 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
             menuYedek: menuData,
             wifiYedek: { ad: wifiData.ad, sifre: "********" }, // Şifreyi gizle
             headerBgYedek: headerBgUrl,
-            hizliSiparisYedek: hizliSiparis
+            hizliSiparisYedek: hizliSiparis,
+            frameYedek: kfmFrameSettings
             // Güvenlik nedeniyle admin şifresi ve GitHub token yedeğe dahil edilmedi.
         };
         const veriStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tumSistemYedek, null, 2));
@@ -4313,6 +4401,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
                     if (yuklenenVeri.headerBgYedek) headerBgUrl = yuklenenVeri.headerBgYedek;
                     headerBgUrl = yuklenenVeri.headerBgYedek || varsayilanHeaderBg;
                     if (yuklenenVeri.hizliSiparisYedek) hizliSiparis = yuklenenVeri.hizliSiparisYedek;
+                    if (yuklenenVeri.frameYedek) kfmFrameSettings = kfmCloneFrameSettings(yuklenenVeri.frameYedek);
                     saveAll();
                     buildNav();
                     renderProducts();
@@ -4320,6 +4409,8 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
                     apWifiDoldur();
                     apUrunListesiYenile();
                     apKategoriListesiYenile();
+                    apFrameLibraryYenile();
+                    apYeniUrunOnizlemeGuncelle();
                     apQuickKategorileriDoldur();
                     apQuickListesiYenile();
                     headerBgUygula();
@@ -4818,6 +4909,169 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         input.focus({ preventScroll: true });
     }
 
+
+// KFM_V23_ADMIN_FRAME_MANAGER
+// Çerçeveler localStorage + JSON/GitHub yedeğiyle yönetilir.
+const kfmDefaultFrameSettings = {
+    frames: {
+        warm:  { name: 'Sıcak / Kahve', url: 'product-frame-3d-transparent.png' },
+        cold:  { name: 'Soğuk İçecek', url: 'product-frame-cold-transparent.png' },
+        sweet: { name: 'Tatlı / Milkshake', url: 'product-frame-sweet-transparent.png' },
+        food:  { name: 'Yiyecek / Tost', url: 'product-frame-food-transparent.png' },
+        hookah:{ name: 'Nargile', url: 'product-frame-hookah-transparent.png' }
+    },
+    categoryMap: {}
+};
+function kfmCloneFrameSettings(value) {
+    const base = JSON.parse(JSON.stringify(kfmDefaultFrameSettings));
+    if (!value || typeof value !== 'object') return base;
+    if (value.frames && typeof value.frames === 'object') {
+        Object.keys(value.frames).forEach(key => {
+            const item = value.frames[key] || {};
+            base.frames[key] = { name: String(item.name || key), url: String(item.url || '') };
+        });
+    }
+    if (value.categoryMap && typeof value.categoryMap === 'object') base.categoryMap = { ...value.categoryMap };
+    return base;
+}
+let kfmFrameSettings = kfmCloneFrameSettings(ls('kfm_frame_settings', null));
+function kfmFrameThemeForProduct(product, catKey) {
+    const category = String(catKey || product?.catKey || '');
+    const mapped = kfmFrameSettings?.categoryMap?.[category];
+    if (mapped && kfmFrameSettings.frames[mapped]) return mapped;
+    return kfmV21ProductTheme(product || { catKey: category }, category);
+}
+function kfmFrameUrl(theme) {
+    const item = kfmFrameSettings?.frames?.[theme];
+    return String(item?.url || kfmDefaultFrameSettings.frames[theme]?.url || kfmDefaultFrameSettings.frames.warm.url);
+}
+function kfmFrameName(theme) {
+    return String(kfmFrameSettings?.frames?.[theme]?.name || kfmDefaultFrameSettings.frames[theme]?.name || theme);
+}
+function kfmFrameApplyToElement(element, theme) {
+    if (!element) return;
+    element.dataset.frameTheme = theme || 'warm';
+    element.style.backgroundImage = `url(${JSON.stringify(kfmFrameUrl(theme || 'warm'))})`;
+}
+function kfmApplyCustomFrameStyles(root = document) {
+    root.querySelectorAll('.product-card-frame-art, .ap-frame-preview-art').forEach(element => {
+        const theme = element.dataset.frameTheme || 'warm';
+        kfmFrameApplyToElement(element, theme);
+    });
+}
+function kfmFrameCategoryOptions(selected = '') {
+    return Object.keys(menuData).map(key => `<option value="${escapeHtml(key)}" ${key === selected ? 'selected' : ''}>${escapeHtml(menuData[key]?.isim || key)}</option>`).join('');
+}
+function kfmFrameManagerPreview(theme, id) {
+    const fallback = gorselHavuzu['cat-kahve'] || kfmV20LocalFallbacksV21.warm;
+    return `<div class="ap-frame-preview ap-frame-manager-preview" id="${id}" data-frame-theme="${escapeHtml(theme)}"><img src="${escapeHtml(fallback)}" alt="${escapeHtml(kfmFrameName(theme))}" class="ap-preview-contain"><span class="ap-frame-preview-art" data-frame-theme="${escapeHtml(theme)}"></span></div>`;
+}
+function apFrameLibraryYenile() {
+    const box = document.getElementById('apFrameLibrary');
+    if (!box) return;
+    const entries = Object.entries(kfmFrameSettings.frames || {});
+    box.innerHTML = entries.map(([theme, item]) => {
+        const assigned = Object.keys(kfmFrameSettings.categoryMap || {}).filter(key => kfmFrameSettings.categoryMap[key] === theme)[0] || '';
+        return `<div class="ap-frame-manager-card" data-frame-editor="${escapeHtml(theme)}">
+            ${kfmFrameManagerPreview(theme, `apFramePreview_${theme}`)}
+            <div class="ap-frame-manager-fields">
+              <div><strong style="color:var(--ink);font-size:12px;">${escapeHtml(item.name || theme)}</strong><span class="ap-frame-manager-note" style="display:block;">${escapeHtml(theme)}</span></div>
+              <input class="ap-input text-xs font-medium" id="apFrameUrl_${escapeHtml(theme)}" value="${escapeHtml(item.url || '')}" placeholder="Çerçeve görsel URL’si">
+              <input class="ap-file-input" type="file" accept="image/*" onchange="apFrameDosyaSecildi(event,'${escapeHtml(theme)}')">
+              <div class="ap-frame-manager-actions"><select class="ap-input text-xs font-medium" id="apFrameCat_${escapeHtml(theme)}"><option value="">Kategoriye atama yok</option>${kfmFrameCategoryOptions(assigned)}</select><button type="button" onclick="apFrameKaydet('${escapeHtml(theme)}')"><i class="fa-solid fa-check"></i> Kaydet</button></div>
+            </div></div>`;
+    }).join('') + `<div class="ap-frame-manager-card" style="grid-template-columns:1fr;">
+        <div><strong style="color:var(--rust);font-size:12px;"><i class="fa-solid fa-plus-circle mr-1"></i> Yeni çerçeve ekle</strong><p class="ap-frame-manager-note">Bir ad, görsel URL’si veya dosya seçin; ardından çerçeveyi bir kategoriye atayın.</p></div>
+        <div class="ap-frame-manager-fields"><input id="apNewFrameName" class="ap-input text-xs font-medium" placeholder="Çerçeve adı (örn. Yaz İçecekleri)"><input id="apNewFrameUrl" class="ap-input text-xs font-medium" placeholder="https://..."><input id="apNewFrameFile" class="ap-file-input" type="file" accept="image/*" onchange="apNewFrameDosyaSecildi(event)"><select id="apNewFrameCategory" class="ap-input text-xs font-medium"><option value="">Kategori seçin</option>${kfmFrameCategoryOptions()}</select><button type="button" onclick="apYeniFrameEkle()" style="padding:10px;border-radius:12px;color:#fff;background:var(--rust);font-size:11px;font-weight:900;"><i class="fa-solid fa-plus"></i> Çerçeveyi ekle ve ata</button></div>
+    </div>`;
+    window.setTimeout(() => { kfmApplyCustomFrameStyles(box); }, 0);
+}
+function apFramePreviewGuncelle(theme, url) {
+    const editor = document.querySelector(`[data-frame-editor="${CSS.escape(theme)}"]`);
+    const image = editor?.querySelector('img');
+    const art = editor?.querySelector('.ap-frame-preview-art');
+    if (art) { art.dataset.frameTheme = theme; art.style.backgroundImage = `url(${JSON.stringify(String(url || kfmFrameUrl(theme)))})`; }
+    if (image) image.onerror = () => { image.onerror = null; image.src = gorselHavuzu['cat-kahve'] || kfmV20LocalFallbacksV21.warm; };
+}
+function apFrameDosyaSecildi(event, theme) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { const input = document.getElementById(`apFrameUrl_${theme}`); if (input) { input.value = reader.result; apFramePreviewGuncelle(theme, reader.result); } };
+    reader.readAsDataURL(file);
+}
+function apNewFrameDosyaSecildi(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { const input = document.getElementById('apNewFrameUrl'); if (input) input.value = reader.result; };
+    reader.readAsDataURL(file);
+}
+function apFrameKaydet(theme) {
+    const input = document.getElementById(`apFrameUrl_${theme}`);
+    const category = document.getElementById(`apFrameCat_${theme}`)?.value || '';
+    const url = String(input?.value || '').trim();
+    if (!url) { toast('❌ Çerçeve URL’si veya dosyası gerekli.'); return; }
+    kfmFrameSettings.frames[theme] = { name: kfmFrameSettings.frames[theme]?.name || theme, url };
+    Object.keys(kfmFrameSettings.categoryMap || {}).forEach(key => { if (kfmFrameSettings.categoryMap[key] === theme && key !== category) delete kfmFrameSettings.categoryMap[key]; });
+    if (category) kfmFrameSettings.categoryMap[category] = theme;
+    saveAll();
+    apFrameLibraryYenile(); renderProducts(); apUrunListesiYenile();
+    toast('✅ Çerçeve kaydedildi ve önizlemeler güncellendi.');
+}
+function apYeniFrameEkle() {
+    const name = String(document.getElementById('apNewFrameName')?.value || '').trim();
+    const url = String(document.getElementById('apNewFrameUrl')?.value || '').trim();
+    const category = String(document.getElementById('apNewFrameCategory')?.value || '').trim();
+    if (!name || !url || !category) { toast('❌ Çerçeve adı, görseli ve kategori seçimi zorunlu.'); return; }
+    const theme = `custom-${Date.now()}`;
+    kfmFrameSettings.frames[theme] = { name, url };
+    kfmFrameSettings.categoryMap[category] = theme;
+    saveAll(); buildNav(); apFrameLibraryYenile(); renderProducts(); apUrunListesiYenile();
+    ['apNewFrameName','apNewFrameUrl','apNewFrameFile'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    const cat = document.getElementById('apNewFrameCategory'); if (cat) cat.value = '';
+    toast('✅ Yeni çerçeve eklendi ve kategoriye atandı.');
+}
+function apYeniUrunOnizlemeGuncelle() {
+    const category = document.getElementById('apKat')?.value || Object.keys(menuData)[0] || 'cat-kahve';
+    const theme = kfmFrameThemeForProduct({ catKey: category }, category);
+    const url = String(document.getElementById('apGorsel')?.value || '').trim();
+    const image = document.getElementById('apNewProductPreviewImage');
+    const art = document.getElementById('apNewProductPreviewArt');
+    const fallback = kfmV20LocalFallbacksV21[theme] || kfmV20LocalFallbacksV21.warm;
+    if (image) {
+        image.onerror = () => { image.onerror = null; image.classList.remove('ap-preview-cover'); image.src = fallback; };
+        image.src = url || fallback;
+        image.classList.toggle('ap-preview-cover', !!url);
+    }
+    if (art) { art.dataset.frameTheme = theme; art.style.backgroundImage = `url(${JSON.stringify(kfmFrameUrl(theme))})`; }
+}
+function apYeniUrunDosyaSecildi(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { const input = document.getElementById('apGorsel'); if (input) input.value = reader.result; apYeniUrunOnizlemeGuncelle(); };
+    reader.readAsDataURL(file);
+}
+function apEditorGorselOnizle(url, previewId, fallback, theme) {
+    const image = document.getElementById(previewId);
+    if (!image) return;
+    image.onerror = () => { image.onerror = null; image.classList.remove('ap-preview-cover'); image.src = fallback; };
+    const source = String(url || '').trim();
+    image.classList.toggle('ap-preview-cover', !!source);
+    image.src = source || fallback;
+    const art = image.closest('.ap-frame-preview')?.querySelector('.ap-frame-preview-art');
+    if (art) { art.dataset.frameTheme = theme || 'warm'; art.style.backgroundImage = `url(${JSON.stringify(kfmFrameUrl(theme || 'warm'))})`; }
+}
+function apUrunDosyaSecildi(event, catKey, id) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { gorselGuncelle(catKey, id, reader.result); apUrunListesiYenile(); toast('✅ Ürün görseli güncellendi.'); };
+    reader.readAsDataURL(file);
+}
+
+
     // KFM_V18_PRODUCT_FRAMES: keep decorative motifs semantically relevant to each product.
     // KFM_V20_2_THEME_FIX: explicit category first, product wording only for mixed beverage category.
     // KFM_V20_3_IMAGE_REPAIR
@@ -4847,7 +5101,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         return 'warm';
     }
     function getProductFrameTheme(product) {
-        return kfmV21ProductTheme(product, product?.catKey);
+        return kfmFrameThemeForProduct(product, product?.catKey);
     }
     function kfmV21FallbackFor(product, catKey) {
         const source = [product?.ad, product?.ad_en, product?.aciklama, product?.aciklama_en].filter(Boolean).join(' ').toLowerCase();
@@ -5007,6 +5261,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         setupPremiumMotionLayer();
         kfmV21RepairRenderedImages();
         kfmPremiumFitRenderedImages();
+        kfmApplyCustomFrameStyles(grid);
         kfmV21ScheduleImageRepair();
         setupCardImageReveal();
         setupTactileFeedback();
@@ -5310,6 +5565,8 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         apUrunListesiYenile();
         apYorumlariYenile();
         apKategoriListesiYenile();
+        apFrameLibraryYenile();
+        apYeniUrunOnizlemeGuncelle();
         apQuickKategorileriDoldur();
         apQuickListesiYenile();
         const hideBox = document.getElementById('apHideOutStock');
@@ -5345,7 +5602,8 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         const ekstralar_en = ekstralar.map(ex => ({ ...ex, isim_en: translationsDict[ex.isim] || ex.isim }));
         menuData[cat].urunler.push({ id: Date.now(), ad, ad_en, fiyat, gorsel, stoktaVar: true, ekstralar: ekstralar_en });
         saveAll();
-        ['apAd', 'apFiyat', 'apGorsel', 'apEkstra'].forEach(i => document.getElementById(i).value = '');
+        ['apAd', 'apFiyat', 'apGorsel', 'apEkstra', 'apYeniGorselDosya'].forEach(i => { const el = document.getElementById(i); if (el) el.value = ''; });
+        apYeniUrunOnizlemeGuncelle();
         apUrunListesiYenile();
         apKategoriListesiYenile();
         toast(t('toast_product_added'));
@@ -5422,10 +5680,10 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
                 const name = localizedProductName(u); const desc = localizedProductDescription(u, '');
                 if (aramaKel && !(name + ' ' + desc).toLowerCase().includes(aramaKel)) return;
                 if (apStokFiltresi === 'in' && !u.stoktaVar) return; if (apStokFiltresi === 'out' && u.stoktaVar) return; count++;
-                const fallback = gorselHavuzu[catKey] || gorselHavuzu['cat-kahve']; const image = u.gorsel && u.gorsel.trim() ? u.gorsel : fallback;
+                const frameTheme = kfmFrameThemeForProduct(u, catKey); const fallback = gorselHavuzu[catKey] || gorselHavuzu['cat-kahve']; const image = u.gorsel && u.gorsel.trim() ? u.gorsel : fallback;
                 const options = Object.keys(menuData).map(k => `<option value="${escapeHtml(k)}" ${k === catKey ? 'selected' : ''}>${escapeHtml(menuData[k].isim)}</option>`).join('');
                 const extraHtml = (u.ekstralar || []).map(ex => `<span class="extra-pill">${escapeHtml(ex.isim)} ${ex.fiyat}₺</span>`).join('');
-                box.insertAdjacentHTML('beforeend', `<article class="ap-product-editor"><div class="ap-product-head"><div class="ap-product-preview"><img id="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" onerror="this.onerror=null;this.src='${escapeHtml(fallback)}'"></div><div><div class="ap-product-title">${escapeHtml(name)}</div><div class="ap-product-category">${escapeHtml(menuData[catKey].isim)}</div><div class="ap-save-hint">Değişiklikler otomatik kaydedilir</div></div><button type="button" class="ap-stock-toggle ${u.stoktaVar ? 'on' : ''}" onclick="stokDegistir('${catKey}',${u.id})"><span class="ap-stock-dot"></span>${u.stoktaVar ? 'Stokta' : 'Stok dışı'}</button></div><div class="ap-product-fields"><div><label>Fiyat (₺)</label><input type="number" min="0" value="${u.fiyat}" onchange="fiyatGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium"></div><div><label>Kategori değiştir</label><select class="ap-input text-xs font-medium" onchange="urunKategoriDegistir('${catKey}',${u.id},this.value)">${options}</select></div><div class="ap-field-wide"><label>Görsel URL · kart önizlemesi</label><input type="text" value="${escapeHtml(u.gorsel || '')}" oninput="apGorselOnizle(this.value,'apPreview_${u.id}','${escapeHtml(fallback)}')" onchange="gorselGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="https://..."><span class="ap-preview-link"><i class="fa-solid fa-eye"></i> Görsel kartta anlık olarak önizlenir</span></div><div class="ap-field-wide"><label>Kısa açıklama · kartta görünen metin</label><textarea class="ap-input text-xs font-medium" onchange="apAciklamaGuncelle('${catKey}',${u.id},this.value)" placeholder="Ürünü kısa ve iştah açıcı şekilde anlatın...">${escapeHtml(desc)}</textarea></div></div><div class="mt-3"><label>Ekstralar</label><div class="flex flex-wrap gap-1.5">${extraHtml || '<span class="italic text-[11px]" style="color:var(--muted2);">Ekstra yok</span>'}</div></div><div class="ap-product-actions"><button type="button" onclick="urunSil('${catKey}',${u.id})" style="color:#b91c1c;background:#fef2f2;border:1px solid #fca5a5;"><i class="fa-solid fa-trash mr-1"></i>Sil</button></div></article>`);
+                box.insertAdjacentHTML('beforeend', `<article class="ap-product-editor"><div class="ap-product-head"><div class="ap-frame-preview ap-product-preview" id="apFramePreview_${u.id}" data-frame-theme="${escapeHtml(frameTheme)}"><img id="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" class="${u.gorsel && u.gorsel.trim() ? 'ap-preview-cover' : ''}" onerror="this.onerror=null;this.classList.remove('ap-preview-cover');this.src='${escapeHtml(fallback)}'"><span class="ap-frame-preview-art" data-frame-theme="${escapeHtml(frameTheme)}" aria-hidden="true"></span></div><div><div class="ap-product-title">${escapeHtml(name)}</div><div class="ap-product-category">${escapeHtml(menuData[catKey].isim)}</div><div class="ap-save-hint">Değişiklikler otomatik kaydedilir</div></div><button type="button" class="ap-stock-toggle ${u.stoktaVar ? 'on' : ''}" onclick="stokDegistir('${catKey}',${u.id})"><span class="ap-stock-dot"></span>${u.stoktaVar ? 'Stokta' : 'Stok dışı'}</button></div><div class="ap-product-fields"><div><label>Fiyat (₺)</label><input type="number" min="0" value="${u.fiyat}" onchange="fiyatGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium"></div><div><label>Kategori değiştir</label><select class="ap-input text-xs font-medium" onchange="urunKategoriDegistir('${catKey}',${u.id},this.value)">${options}</select></div><div class="ap-field-wide"><label>Görsel URL · kart önizlemesi</label><input type="text" value="${escapeHtml(u.gorsel || '')}" oninput="apEditorGorselOnizle(this.value,'apPreview_${u.id}','${escapeHtml(fallback)}','${escapeHtml(frameTheme)}')" onchange="gorselGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="https://..."><input class="ap-file-input" type="file" accept="image/*" onchange="apUrunDosyaSecildi(event,'${catKey}',${u.id})"><span class="ap-preview-link"><i class="fa-solid fa-eye"></i> Görsel ve kategori çerçevesi kartta anlık olarak önizlenir</span></div><div class="ap-field-wide"><label>Kısa açıklama · kartta görünen metin</label><textarea class="ap-input text-xs font-medium" onchange="apAciklamaGuncelle('${catKey}',${u.id},this.value)" placeholder="Ürünü kısa ve iştah açıcı şekilde anlatın...">${escapeHtml(desc)}</textarea></div></div><div class="mt-3"><label>Ekstralar</label><div class="flex flex-wrap gap-1.5">${extraHtml || '<span class="italic text-[11px]" style="color:var(--muted2);">Ekstra yok</span>'}</div></div><div class="ap-product-actions"><button type="button" onclick="urunSil('${catKey}',${u.id})" style="color:#b91c1c;background:#fef2f2;border:1px solid #fca5a5;"><i class="fa-solid fa-trash mr-1"></i>Sil</button></div></article>`);
             });
         }
         if (!count) box.innerHTML = '<div class="ap-admin-empty"><i class="fa-solid fa-filter-circle-xmark mb-2"></i><br>Bu filtreye uygun ürün bulunamadı.</div>';
@@ -5662,6 +5920,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
                 if (guncelVeri.sifreYedek) adminSifre = guncelVeri.sifreYedek;
                 if (guncelVeri.headerBgYedek) headerBgUrl = guncelVeri.headerBgYedek;
                 if (guncelVeri.hizliSiparisYedek) hizliSiparis = guncelVeri.hizliSiparisYedek;
+                if (guncelVeri.frameYedek) kfmFrameSettings = kfmCloneFrameSettings(guncelVeri.frameYedek);
                 
                 // Server IP bilgisini güncelle
                 if (guncelVeri.serverIp && guncelVeri.serverIp.ip && guncelVeri.serverIp.port) {
@@ -5676,6 +5935,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
                 lsSave('kfm_asifre', adminSifre);
                 lsSave('kfm_headerBg', headerBgUrl);
                 lsSave('kfm_hizliSiparis', hizliSiparis);
+                lsSave('kfm_frame_settings', kfmFrameSettings);
                 console.log("✓ GitHub verileri başarıyla yüklendi ve yerel depolama güncellendi.");
             } else {
                 console.warn("⚠️ GitHub verisi alınamadı (HTTP " + response.status + "), yerel veriler kullanılıyor.");
