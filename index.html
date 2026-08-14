@@ -2951,6 +2951,72 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
 @media(prefers-reduced-motion:reduce){
   #productGrid > .prod-card, #productGrid > .prod-card:hover, #productGrid > .prod-card.parallax-active { transition: none!important; }
 }
+/* KFM_V22_IMAGE_STABILITY_FIX */
+/* V21'in ortak cover kuralı farklı en-boy oranlarında zoom ve taşma oluşturabiliyordu.
+   Önce güvenli contain uygulanır; yalnızca doğal oranı uygun kullanıcı fotoğrafı cover olur. */
+#productGrid > .prod-card .product-card-image-wrap,
+.daily-pair-item .daily-pair-image-wrap {
+  overflow: hidden!important;
+  isolation: isolate!important;
+  padding: 5px!important;
+  border-radius: 22px 22px 18px 18px!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card:hover .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card.parallax-active .product-card-image-wrap .product-card-image,
+.daily-pair-image {
+  width: 100%!important;
+  height: 100%!important;
+  min-width: 0!important;
+  min-height: 0!important;
+  max-width: 100%!important;
+  max-height: 100%!important;
+  padding: 4px!important;
+  box-sizing: border-box!important;
+  object-fit: contain!important;
+  object-position: 50% 50%!important;
+  transform: none!important;
+  scale: 1!important;
+  border-radius: 14px!important;
+  background: radial-gradient(circle at 50% 34%, rgba(255,252,246,.98), rgba(239,213,186,.82))!important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.32), 0 5px 14px rgba(31,12,5,.18)!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image[data-kfm-fit="cover"],
+.daily-pair-image[data-kfm-fit="cover"] {
+  object-fit: cover!important;
+  padding: 0!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image[data-kfm-fit="contain"],
+#productGrid > .prod-card .product-card-image-wrap .product-card-image.kfm-fallback-image,
+.daily-pair-image[data-kfm-fit="contain"],
+.daily-pair-image.kfm-fallback-image {
+  object-fit: contain!important;
+  padding: 4px!important;
+}
+#productGrid .product-card-frame-art[data-frame-theme] {
+  z-index: 7!important;
+  opacity: .98!important;
+  mix-blend-mode: normal!important;
+  pointer-events: none!important;
+}
+#productGrid .product-card-frame-art[data-frame-theme]::before,
+#productGrid .product-card-frame-art[data-frame-theme]::after {
+  z-index: 20!important;
+  opacity: 1!important;
+  mix-blend-mode: normal!important;
+}
+@media (max-width: 680px) {
+  #productGrid > .prod-card .product-card-image-wrap,
+  .daily-pair-item .daily-pair-image-wrap { padding: 4px!important; border-radius: 19px 19px 16px 16px!important; }
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image,
+  .daily-pair-image { padding: 3px!important; border-radius: 13px!important; }
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image[data-kfm-fit="cover"],
+  .daily-pair-image[data-kfm-fit="cover"] { padding: 0!important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image,
+  .daily-pair-image { transition: none!important; }
+}
 </style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
@@ -4803,6 +4869,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         img.dataset.kfmFallbackApplied = 'true';
         img.onerror = null;
         img.classList.add('kfm-fallback-image');
+        img.dataset.kfmFit = 'contain';
         img.src = fallback || 'product-fallback-warm-coffee.png';
     }
     // KFM_V21_PREMIUM_PRODUCT_FIT
@@ -4811,12 +4878,18 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
         if (!img) return;
         const source = String(img.currentSrc || img.src || '');
         const isFallback = img.classList.contains('kfm-fallback-image') || source.includes('product-fallback-');
-        // Kaynak henüz yüklenmemiş olsa bile fallback görselleri ilk paint'ten itibaren contain kalır.
-        img.dataset.kfmFit = isFallback ? 'contain' : 'cover';
-        if (!img.naturalWidth || !img.naturalHeight) return;
+        // İlk paint güvenli contain ile başlar; gerçek ölçü geldiğinde yalnızca makul oranlı
+        // kullanıcı fotoğrafları çerçeveyi dolduracak kadar cover'a alınır.
+        if (!img.naturalWidth || !img.naturalHeight) {
+            img.dataset.kfmFit = isFallback ? 'contain' : 'contain';
+            return;
+        }
         const ratio = img.naturalWidth / img.naturalHeight;
+        const extremeRatio = ratio < 0.68 || ratio > 1.82;
+        const fit = isFallback || extremeRatio ? 'contain' : 'cover';
+        img.dataset.kfmFit = fit;
         img.dataset.kfmAspect = ratio.toFixed(3);
-        // Çok dikey JSON fotoğraflarında ürünün üst/alt kısmını kaybetmemek için odak noktası hafif yukarı alınır.
+        // Aşırı dikey/yatay fotoğraflarda ürünün bir kısmını kesmemek için merkeze yakın odak.
         img.style.objectPosition = ratio < 0.72 ? '50% 43%' : (ratio > 1.75 ? '50% 48%' : '50% 50%');
     }
     function kfmPremiumFitRenderedImages() {
@@ -4893,7 +4966,7 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
               <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" data-kfm-fallback="${escapeHtml(fallbackImg)}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
                 <div class="product-card-image-wrap">
-                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
+                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
                   <span class="product-card-depth-plane" aria-hidden="true"></span>
                   <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
                   ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
@@ -5536,6 +5609,43 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
     const repoAdi            = "Keyfimce-Kafem-Web";
     const jsonDosyaAdi       = "keyfimce_menu_ayarlar.json";
 
+    // KFM_V22_1_LOCAL_IMAGE_GUARD: GitHub yedeği boş bir gorsel alanı taşıyorsa,
+    // kullanıcının aynı üründe tarayıcıya kaydettiği gerçek fotoğrafı ezme.
+    const kfmLocalMenuSnapshot = (() => {
+        try {
+            const raw = localStorage.getItem('kfm_menu');
+            return raw ? JSON.parse(raw) : null;
+        } catch (_) { return null; }
+    })();
+    function kfmImageKey(product) {
+        if (!product) return '';
+        const id = String(product.id ?? '').trim();
+        const name = String(product.ad_en || product.ad || '').trim().toLocaleLowerCase('tr-TR');
+        return id ? `id:${id}` : `name:${name}`;
+    }
+    function kfmKnownBrokenRemote(product, url) {
+        const value = String(url || '').toLowerCase();
+        const name = String(product?.ad_en || product?.ad || '').toLowerCase();
+        return (name.includes('italian cappuccino') || name.includes('italian macchiato')) && value.includes('encrypted-tbn0.gstatic.com');
+    }
+    function kfmMergeUserImages(remoteMenu, localMenu) {
+        if (!remoteMenu || !localMenu) return remoteMenu;
+        const merged = JSON.parse(JSON.stringify(remoteMenu));
+        const remoteIndex = new Map();
+        Object.values(merged).forEach(cat => (cat?.urunler || []).forEach(product => {
+            remoteIndex.set(kfmImageKey(product), product);
+        }));
+        Object.values(localMenu).forEach(cat => (cat?.urunler || []).forEach(localProduct => {
+            const localImage = String(localProduct?.gorsel || '').trim();
+            if (!localImage) return;
+            const target = remoteIndex.get(kfmImageKey(localProduct));
+            if (!target) return;
+            const remoteImage = String(target.gorsel || '').trim();
+            if (!remoteImage || kfmKnownBrokenRemote(target, remoteImage)) target.gorsel = localImage;
+        }));
+        return merged;
+    }
+
     window.addEventListener("load", async () => {
         const rawUrl = `https://raw.githubusercontent.com/${githubKullaniciAdi}/${repoAdi}/main/${jsonDosyaAdi}?t=${Date.now()}`;
 
@@ -5546,8 +5656,8 @@ html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
                 const guncelVeri = await response.json();
                 console.log("GitHub verisi alındı:", guncelVeri);
                 
-                // JSON yapısını kontrol et ve ata
-                if (guncelVeri.menuYedek) menuData = guncelVeri.menuYedek;
+                // JSON menüsünü al; boş uzak görsellerde aynı ürüne ait yerel kullanıcı fotoğrafını koru.
+                if (guncelVeri.menuYedek) menuData = kfmMergeUserImages(guncelVeri.menuYedek, kfmLocalMenuSnapshot);
                 if (guncelVeri.wifiYedek) wifiData = guncelVeri.wifiYedek;
                 if (guncelVeri.sifreYedek) adminSifre = guncelVeri.sifreYedek;
                 if (guncelVeri.headerBgYedek) headerBgUrl = guncelVeri.headerBgYedek;
