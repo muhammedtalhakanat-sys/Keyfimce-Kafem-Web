@@ -2484,6 +2484,50 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   #productGrid > .prod-card .product-card-image-wrap .product-card-image{transform:none!important;}
 }
 
+
+/* KFM_MOBILE_CENTER_SMART_V14
+   Küçük ekranlarda karşılama görselini fiziksel merkeze sabitler ve yatay/dikey taşmaları engeller. */
+@media (max-width:699px){
+  html,body{width:100%;max-width:100%;overflow-x:clip!important;overscroll-behavior-x:none;}
+  #welcomeScreen{
+    width:100vw!important;max-width:100vw!important;
+    height:100svh!important;min-height:100svh!important;max-height:100svh!important;
+    overflow:clip!important;overscroll-behavior:none;
+  }
+  @supports (height:100dvh){
+    #welcomeScreen{height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;}
+  }
+  #welcomeScreen .welcome-ornament{
+    position:absolute!important;inset:auto!important;
+    left:50%!important;top:50%!important;
+    width:min(470px,132vw)!important;height:min(560px,100dvh)!important;max-width:none!important;
+    background-size:100% auto!important;background-position:center center!important;
+    transform:translate3d(-50%,-50%,0)!important;
+    opacity:.74!important;
+    animation:welcomeOrnamentMobileCentered 16s ease-in-out infinite alternate!important;
+  }
+  #welcomeScreen .welcome-stage{
+    width:min(90vw,390px)!important;max-width:90vw!important;min-height:0!important;
+    padding-inline:0!important;
+  }
+  #welcomeScreen .welcome-card{max-height:calc(100dvh - 34px)!important;overflow:hidden!important;}
+  #welcomeScreen::before{left:-132px!important;top:-132px!important;transform:scale(.78);}
+  #welcomeScreen::after{right:-128px!important;bottom:-138px!important;transform:scale(.76);}
+  body:not(.no-scroll){overscroll-behavior-y:contain;}
+}
+@media (max-width:390px){
+  #welcomeScreen .welcome-ornament{width:138vw!important;height:100dvh!important;opacity:.68!important;}
+  #welcomeScreen .welcome-stage{width:min(88vw,360px)!important;max-width:88vw!important;}
+  #welcomeScreen .welcome-card{padding:25px 20px!important;border-radius:24px!important;}
+}
+@keyframes welcomeOrnamentMobileCentered{
+  from{transform:translate3d(-50%,calc(-50% + 3px),0) scale(.975)}
+  to{transform:translate3d(-50%,calc(-50% - 3px),0) scale(1.01)}
+}
+@media (prefers-reduced-motion:reduce){
+  #welcomeScreen .welcome-ornament{animation:none!important;transform:translate3d(-50%,-50%,0)!important;}
+}
+
 </style>
 </head>
 <body style="padding-bottom: 90px;">
@@ -3915,52 +3959,102 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         return output;
     }
 
+    // KFM_SMART_SUGGESTION_V14
+    // Canlı hava verisi istemeden; gün saati, hafta tipi, mevsim hissi, stok,
+    // son öneriler ve kullanıcının incelediği kategorileri dengeli biçimde kullanır.
+    function readSuggestionList(key, fallback = []) {
+        try {
+            const value = JSON.parse(localStorage.getItem(key) || 'null');
+            return Array.isArray(value) ? value : fallback;
+        } catch (_) { return fallback; }
+    }
+
+    function productSuggestionKey(catKey, item) {
+        return `${catKey}|${item?.ad || ''}|${item?.fiyat || ''}`;
+    }
+
+    function recordDailySuggestionInteraction(product) {
+        if (!product) return;
+        const catKey = product.catKey || aktifKategori;
+        if (!catKey || catKey === 'cat-all') return;
+        const interaction = { catKey, key: productSuggestionKey(catKey, product), at: Date.now() };
+        const current = readSuggestionList('kfm_suggestion_interactions');
+        const next = [interaction, ...current.filter(item => item?.key !== interaction.key)].slice(0, 10);
+        try { localStorage.setItem('kfm_suggestion_interactions', JSON.stringify(next)); } catch (_) { /* Depolama kapalıysa öneri varsayılan dengesiyle çalışır. */ }
+    }
+
     function getDailySuggestion() {
-        // Saat + gün + 90 dakikalık zaman dilimi + son seçimler birlikte kullanılır.
-        // Böylece öneri bağlama uygun kalır, aynı ürün sayfa her yenilendiğinde tekrarlanmaz.
         const now = new Date();
         const minutes = now.getHours() * 60 + now.getMinutes();
+        const day = now.getDay();
+        const isWeekend = day === 0 || day === 6;
+        const month = now.getMonth() + 1;
+        const isWarmSeason = month >= 5 && month <= 9;
+        const isCoolSeason = month === 11 || month === 12 || month <= 2;
         const slotDefinitions = [
-            { start: 360, end: 510, key: 'early', icon: 'fa-sun', categories: ['cat-kahve', 'cat-sutlu-kahve'], window: '06:00–08:29', tr: { label: 'Şu anın önerisi · Erken gün', detail: 'Güne sıcak ve dengeli bir başlangıç' }, en: { label: 'For now · Early day', detail: 'A warm, balanced start to the day' } },
-            { start: 510, end: 660, key: 'morning', icon: 'fa-mug-hot', categories: ['cat-kahve', 'cat-sutlu-kahve', 'cat-kahve', 'cat-tatli'], window: '08:30–10:59', tr: { label: 'Şu anın önerisi · Sabah', detail: 'Sabah ritmine uygun seçilmiş bir eşlik' }, en: { label: 'For now · Morning', detail: 'Chosen to match the morning rhythm' } },
-            { start: 660, end: 840, key: 'lunch', icon: 'fa-utensils', categories: ['cat-yiyecek', 'cat-icecek', 'cat-yiyecek', 'cat-soguk-icecek'], window: '11:00–13:59', tr: { label: 'Şu anın önerisi · Öğle', detail: 'Öğle molası için dengeli bir tercih' }, en: { label: 'For now · Lunch', detail: 'A balanced choice for the lunch break' } },
-            { start: 840, end: 1020, key: 'afternoon', icon: 'fa-glass-water', categories: ['cat-soguk-kahve', 'cat-smoothie', 'cat-soguk-kahve', 'cat-milkshake', 'cat-tatli'], window: '14:00–16:59', tr: { label: 'Şu anın önerisi · Öğleden sonra', detail: 'Günün temposuna ferah bir ara' }, en: { label: 'For now · Afternoon', detail: 'A refreshing pause for the day' } },
-            { start: 1020, end: 1200, key: 'sunset', icon: 'fa-mug-saucer', categories: ['cat-cay', 'cat-tatli', 'cat-cay', 'cat-nargile'], window: '17:00–19:59', tr: { label: 'Şu anın önerisi · Akşamüstü', detail: 'Gün batımına keyifli bir eşlik' }, en: { label: 'For now · Sunset', detail: 'A fitting companion for the evening' } },
-            { start: 1200, end: 1380, key: 'evening', icon: 'fa-cloud', categories: ['cat-nargile', 'cat-cay', 'cat-nargile', 'cat-kahve'], window: '20:00–22:59', tr: { label: 'Şu anın önerisi · Akşam', detail: 'Akşam keyfi için özenle dengelendi' }, en: { label: 'For now · Evening', detail: 'Balanced for an unhurried evening' } }
+            { start: 360, end: 510, key: 'early', icon: 'fa-sun', categories: ['cat-kahve','cat-sutlu-kahve','cat-cay'], window: '06:00–08:29', tr: { label: 'Şu anın önerisi · Erken gün', detail: 'Güne sıcak ve dengeli bir başlangıç' }, en: { label: 'For now · Early day', detail: 'A warm, balanced start to the day' } },
+            { start: 510, end: 660, key: 'morning', icon: 'fa-mug-hot', categories: ['cat-kahve','cat-sutlu-kahve','cat-kahve','cat-tatli'], window: '08:30–10:59', tr: { label: 'Şu anın önerisi · Sabah', detail: 'Sabah ritmine uygun seçilmiş bir eşlik' }, en: { label: 'For now · Morning', detail: 'Chosen to match the morning rhythm' } },
+            { start: 660, end: 840, key: 'lunch', icon: 'fa-utensils', categories: ['cat-yiyecek','cat-icecek','cat-yiyecek','cat-soguk-icecek'], window: '11:00–13:59', tr: { label: 'Şu anın önerisi · Öğle', detail: 'Öğle molası için dengeli bir tercih' }, en: { label: 'For now · Lunch', detail: 'A balanced choice for the lunch break' } },
+            { start: 840, end: 1020, key: 'afternoon', icon: 'fa-glass-water', categories: ['cat-soguk-kahve','cat-smoothie','cat-soguk-kahve','cat-milkshake','cat-tatli'], window: '14:00–16:59', tr: { label: 'Şu anın önerisi · Öğleden sonra', detail: 'Günün temposuna ferah bir ara' }, en: { label: 'For now · Afternoon', detail: 'A refreshing pause for the day' } },
+            { start: 1020, end: 1200, key: 'sunset', icon: 'fa-mug-saucer', categories: ['cat-cay','cat-tatli','cat-cay','cat-nargile'], window: '17:00–19:59', tr: { label: 'Şu anın önerisi · Akşamüstü', detail: 'Gün batımına keyifli bir eşlik' }, en: { label: 'For now · Sunset', detail: 'A fitting companion for the evening' } },
+            { start: 1200, end: 1380, key: 'evening', icon: 'fa-cloud', categories: ['cat-nargile','cat-cay','cat-nargile','cat-kahve'], window: '20:00–22:59', tr: { label: 'Şu anın önerisi · Akşam', detail: 'Akşam keyfi için özenle dengelendi' }, en: { label: 'For now · Evening', detail: 'Balanced for an unhurried evening' } }
         ];
         const slot = slotDefinitions.find(item => minutes >= item.start && minutes < item.end) || {
-            key: 'night', icon: 'fa-moon', categories: ['cat-cay', 'cat-kahve', 'cat-cay', 'cat-tatli'], window: '23:00–05:59',
+            key: 'night', icon: 'fa-moon', categories: ['cat-cay','cat-kahve','cat-cay','cat-tatli'], window: '23:00–05:59',
             tr: { label: 'Şu anın önerisi · Gece', detail: 'Gece sohbetlerine sakin bir eşlik' }, en: { label: 'For now · Night', detail: 'A calm companion for late conversations' }
         };
+        const allAvailable = Object.keys(menuData).filter(catKey => catKey !== 'cat-all' && (menuData[catKey]?.urunler || []).some(item => item.stoktaVar !== false));
+        if (!allAvailable.length) return null;
+
+        const categoryWeight = new Map();
+        const addWeight = (catKey, amount) => {
+            if (!allAvailable.includes(catKey)) return;
+            categoryWeight.set(catKey, (categoryWeight.get(catKey) || 0) + amount);
+        };
+        slot.categories.forEach(catKey => addWeight(catKey, 3));
+        // Hafta sonu, brunch/atıştırmalık tarafını; hafta içi ise ritim içeceklerini dengeler.
+        (isWeekend ? ['cat-yiyecek','cat-tatli','cat-kahve'] : ['cat-kahve','cat-cay','cat-soguk-kahve']).forEach(catKey => addWeight(catKey, 1.35));
+        // Mevsim hissi gerçek hava durumu iddiası taşımaz; sıcak/soğuk sezon dengesidir.
+        (isWarmSeason ? ['cat-soguk-kahve','cat-soguk-icecek','cat-smoothie','cat-milkshake'] : isCoolSeason ? ['cat-kahve','cat-sutlu-kahve','cat-cay','cat-tatli'] : ['cat-kahve','cat-cay','cat-tatli']).forEach(catKey => addWeight(catKey, 1.05));
+        if (typeof aktifKategori === 'string' && aktifKategori !== 'cat-all') addWeight(aktifKategori, .55);
+
+        const interactions = readSuggestionList('kfm_suggestion_interactions').filter(item => item && item.catKey && (Date.now() - Number(item.at || 0)) < 1000 * 60 * 60 * 48);
+        interactions.slice(0, 4).forEach((item, index) => addWeight(item.catKey, Math.max(.35, 1.1 - index * .2)));
+
+        const rawHistory = readSuggestionList('kfm_suggestion_history');
+        const history = rawHistory.map(item => typeof item === 'string' ? { key: item, catKey: item.split('|')[0] } : item).filter(item => item && item.key);
+        const recentProductKeys = new Set(history.slice(0, 14).map(item => item.key));
+        const recentCategoryKeys = new Set(history.slice(0, 2).map(item => item.catKey).filter(Boolean));
         const dateKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-        const bucket = Math.floor(minutes / 90);
-        const selectionKey = `${dateKey}-${bucket}-${slot.key}`;
-        const hash = Array.from(selectionKey).reduce((total, char) => ((total * 31) + char.charCodeAt(0)) >>> 0, 2166136261);
-        let history = [];
-        try { history = JSON.parse(localStorage.getItem('kfm_suggestion_history') || '[]'); } catch (_) { history = []; }
-        if (!Array.isArray(history)) history = [];
-        const usableCategories = slot.categories.filter(catKey => (menuData[catKey]?.urunler || []).some(item => item.stoktaVar !== false));
-        const categories = usableCategories.length ? usableCategories : Object.keys(menuData).filter(catKey => catKey !== 'cat-all' && (menuData[catKey]?.urunler || []).some(item => item.stoktaVar !== false));
-        if (!categories.length) return null;
-        for (let categoryOffset = 0; categoryOffset < categories.length; categoryOffset++) {
-            const catKey = categories[(hash + categoryOffset) % categories.length];
-            const available = (menuData[catKey]?.urunler || []).filter(item => item.stoktaVar !== false);
-            if (!available.length) continue;
-            const productKey = item => `${catKey}|${item.ad || ''}|${item.fiyat || ''}`;
-            const fresh = available.filter(item => !history.includes(productKey(item)));
-            const candidates = fresh.length ? fresh : available;
-            const product = candidates[(hash + categoryOffset * 13) % candidates.length];
-            const chosenKey = productKey(product);
-            try {
-                if (localStorage.getItem('kfm_suggestion_last_bucket') !== selectionKey) {
-                    const nextHistory = [chosenKey, ...history.filter(key => key !== chosenKey)].slice(0, 12);
-                    localStorage.setItem('kfm_suggestion_history', JSON.stringify(nextHistory));
-                    localStorage.setItem('kfm_suggestion_last_bucket', selectionKey);
-                }
-            } catch (_) { /* Tarayıcı depolaması kapalıysa seçim yine güvenle yapılır. */ }
-            return { ...slot, catKey, product };
-        }
-        return null;
+        const bucket = Math.floor(minutes / 75);
+        const selectionKey = `${dateKey}-${bucket}-${slot.key}-${isWeekend ? 'weekend' : 'weekday'}-${isWarmSeason ? 'warm' : isCoolSeason ? 'cool' : 'mild'}`;
+        const hashFor = value => Array.from(value).reduce((total, char) => ((total * 33) ^ char.charCodeAt(0)) >>> 0, 5381);
+        const hash = hashFor(selectionKey);
+
+        const rankedCategories = allAvailable.map(catKey => {
+            const noise = (hashFor(`${selectionKey}|${catKey}`) % 1000) / 1000;
+            const repeatPenalty = recentCategoryKeys.has(catKey) ? 2.5 : 0;
+            return { catKey, score: (categoryWeight.get(catKey) || .3) + noise - repeatPenalty };
+        }).sort((a, b) => b.score - a.score);
+        const categoryPool = rankedCategories.slice(0, Math.min(3, rankedCategories.length));
+        const selectedCategory = categoryPool[hash % categoryPool.length]?.catKey || rankedCategories[0]?.catKey;
+        const available = (menuData[selectedCategory]?.urunler || []).filter(item => item.stoktaVar !== false);
+        if (!available.length) return null;
+        const fresh = available.filter(item => !recentProductKeys.has(productSuggestionKey(selectedCategory, item)));
+        const candidates = fresh.length ? fresh : available;
+        const product = candidates[(hashFor(`${selectionKey}|${selectedCategory}`) + interactions.length * 7) % candidates.length];
+        const selectedKey = productSuggestionKey(selectedCategory, product);
+        const seasonNote = isWarmSeason ? (aktifDil === 'en' ? 'seasonal cool balance' : 'mevsimsel ferahlık dengesi') : isCoolSeason ? (aktifDil === 'en' ? 'seasonal warm balance' : 'mevsimsel sıcak denge') : (isWeekend ? (aktifDil === 'en' ? 'weekend rhythm' : 'hafta sonu ritmi') : (aktifDil === 'en' ? 'daily rhythm' : 'günün ritmi'));
+        try {
+            if (localStorage.getItem('kfm_suggestion_last_bucket') !== selectionKey) {
+                const nextHistory = [{ key: selectedKey, catKey: selectedCategory, at: Date.now() }, ...history.filter(item => item.key !== selectedKey)].slice(0, 18);
+                localStorage.setItem('kfm_suggestion_history', JSON.stringify(nextHistory));
+                localStorage.setItem('kfm_suggestion_last_bucket', selectionKey);
+            }
+        } catch (_) { /* Depolama kapalıysa seçim yine güvenle yapılır. */ }
+        const copy = slot[aktifDil] || slot.tr;
+        const nextCopy = { ...copy, detail: `${copy.detail} · ${seasonNote}` };
+        return { ...slot, [aktifDil]: nextCopy, tr: aktifDil === 'tr' ? nextCopy : slot.tr, en: aktifDil === 'en' ? nextCopy : slot.en, catKey: selectedCategory, product, context: { isWeekend, isWarmSeason, isCoolSeason, interactionCount: interactions.length } };
     }
 
     function renderDailySuggestion() {
@@ -4154,6 +4248,8 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     }
 
     function openProductDetail(index) {
+        const interactionProduct = (window.__renderedProducts || [])[index];
+        if (interactionProduct) recordDailySuggestionInteraction(interactionProduct);
         const item = window.__renderedProducts?.[index];
         if (!item) return;
         const name = (aktifDil === 'en' && item.ad_en) ? item.ad_en : item.ad;
