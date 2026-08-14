@@ -2865,6 +2865,92 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   #productGrid > .prod-card .product-card-image-wrap .product-card-image,
   .daily-pair-image { transition: none!important; }
 }
+
+/* KFM_V21_PREMIUM_PRODUCT_CARDS */
+/* JSON URL'li görseller çerçeve içini doldurur; yerel fallback sanatları ürünün tamamını korur. */
+#productGrid > .prod-card .product-card-image-wrap,
+.daily-pair-item .daily-pair-image-wrap {
+  padding: clamp(6px, 1.8%, 10px)!important;
+  border-radius: 22px 22px 18px 18px!important;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255,236,207,.55), transparent 48%),
+    linear-gradient(145deg, #3a2117 0%, #8d4e32 58%, #d28658 140%)!important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.34), inset 0 -18px 25px rgba(35,14,8,.28), 0 8px 18px rgba(71,34,20,.14)!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card:hover .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card.parallax-active .product-card-image-wrap .product-card-image,
+.daily-pair-image {
+  width: 100%!important;
+  height: 100%!important;
+  min-width: 0!important;
+  min-height: 0!important;
+  max-width: none!important;
+  max-height: none!important;
+  padding: 0!important;
+  object-fit: cover!important;
+  object-position: 50% 50%!important;
+  border-radius: 15px!important;
+  background: linear-gradient(145deg, rgba(255,247,233,.96), rgba(239,210,180,.72))!important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.28), 0 5px 14px rgba(31,12,5,.22)!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image[data-kfm-fit="contain"],
+#productGrid > .prod-card .product-card-image-wrap .product-card-image.kfm-fallback-image,
+.daily-pair-image[data-kfm-fit="contain"],
+.daily-pair-image.kfm-fallback-image {
+  object-fit: contain!important;
+  padding: 5px!important;
+  background: radial-gradient(circle at 50% 38%, rgba(255,252,246,.98), rgba(239,213,186,.82))!important;
+}
+#productGrid > .prod-card {
+  border: 1px solid rgba(125,72,43,.18)!important;
+  border-radius: 24px!important;
+  background: linear-gradient(155deg, rgba(255,253,249,.98), rgba(250,239,226,.95))!important;
+  box-shadow: 0 14px 30px rgba(80,39,22,.11), 0 1px 0 rgba(255,255,255,.88) inset!important;
+  overflow: hidden!important;
+  isolation: isolate!important;
+}
+#productGrid > .prod-card:hover,
+#productGrid > .prod-card.parallax-active {
+  border-color: rgba(217,130,87,.44)!important;
+  box-shadow: 0 20px 38px rgba(80,39,22,.18), 0 0 0 1px rgba(217,130,87,.10)!important;
+}
+#productGrid > .prod-card .product-card-body { padding: 15px 16px 16px!important; }
+#productGrid > .prod-card .product-card-title { letter-spacing: .005em!important; font-weight: 750!important; }
+#productGrid > .prod-card .product-card-description { color: rgba(91,61,45,.82)!important; }
+#productGrid > .prod-card .product-card-price {
+  color: #8d3f20!important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.65);
+  font-weight: 850!important;
+}
+#productGrid > .prod-card .product-detail-btn {
+  border: 1px solid rgba(255,226,194,.5)!important;
+  box-shadow: 0 6px 13px rgba(103,46,23,.2), inset 0 1px 0 rgba(255,255,255,.18)!important;
+}
+html[data-theme="dark"] #productGrid > .prod-card {
+  background: linear-gradient(155deg, rgba(52,34,25,.98), rgba(36,22,16,.98))!important;
+  border-color: rgba(235,169,118,.24)!important;
+  box-shadow: 0 16px 34px rgba(0,0,0,.32), 0 1px 0 rgba(255,227,198,.10) inset!important;
+}
+html[data-theme="dark"] #productGrid > .prod-card .product-card-description { color: rgba(255,231,211,.75)!important; }
+html[data-theme="dark"] #productGrid > .prod-card .product-card-price { color: #ffb27f!important; text-shadow: none; }
+html[data-theme="dark"] #productGrid > .prod-card .product-card-image-wrap,
+html[data-theme="dark"] .daily-pair-item .daily-pair-image-wrap {
+  background: radial-gradient(circle at 50% 10%, rgba(255,194,138,.22), transparent 48%), linear-gradient(145deg,#24150f,#542d20 62%,#85462f 140%)!important;
+}
+@media(max-width:680px){
+  #productGrid > .prod-card .product-card-image-wrap,
+  .daily-pair-item .daily-pair-image-wrap { padding: 5px!important; border-radius: 19px 19px 16px 16px!important; }
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image,
+  .daily-pair-image { border-radius: 13px!important; }
+  #productGrid > .prod-card .product-card-body { padding: 13px 13px 14px!important; }
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image[data-kfm-fit="contain"],
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image.kfm-fallback-image,
+  .daily-pair-image[data-kfm-fit="contain"], .daily-pair-image.kfm-fallback-image { padding: 3px!important; }
+}
+@media(prefers-reduced-motion:reduce){
+  #productGrid > .prod-card, #productGrid > .prod-card:hover, #productGrid > .prod-card.parallax-active { transition: none!important; }
+}
 </style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
@@ -4584,11 +4670,11 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
           <section class="daily-pair-card" aria-label="${escapeHtml(pairLabel)}">
             <div class="daily-pair-heading"><div><small>${escapeHtml(langCopy.label)} · ${escapeHtml(suggestion.window || '')}</small><strong>${escapeHtml(pairLabel)}</strong></div><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
             <div class="daily-pair-item" data-kfm-fallback="${escapeHtml(kfmV21FallbackFor(suggestion.product, suggestion.catKey))}" role="button" tabindex="0" aria-label="${escapeHtml(primaryName)}" onclick="openDailySuggestionProduct('primary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('primary')}">
-              <img class="daily-pair-image" src="${escapeHtml(primaryImg)}" alt="${escapeHtml(primaryName)}" loading="lazy" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(kfmV21FallbackFor(suggestion.product, suggestion.catKey))}')">
+              <img class="daily-pair-image" src="${escapeHtml(primaryImg)}" alt="${escapeHtml(primaryName)}" loading="lazy" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(kfmV21FallbackFor(suggestion.product, suggestion.catKey))}')">
               <span>${escapeHtml(primaryCat)}</span><strong>${escapeHtml(primaryName)}</strong><em>${suggestion.product.fiyat}₺</em>
             </div>
             ${secondary ? `<div class="daily-pair-item" data-kfm-fallback="${escapeHtml(kfmV21FallbackFor(secondary, secondary.catKey))}" role="button" tabindex="0" aria-label="${escapeHtml(secondaryName)}" onclick="openDailySuggestionProduct('secondary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('secondary')}">
-              <img class="daily-pair-image" src="${escapeHtml(secondaryImg)}" alt="${escapeHtml(secondaryName)}" loading="lazy" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(kfmV21FallbackFor(secondary, secondary.catKey))}')">
+              <img class="daily-pair-image" src="${escapeHtml(secondaryImg)}" alt="${escapeHtml(secondaryName)}" loading="lazy" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(kfmV21FallbackFor(secondary, secondary.catKey))}')">
               <span>${escapeHtml(secondaryCat)}</span><strong>${escapeHtml(secondaryName)}</strong><em>${secondary.fiyat}₺</em>
             </div>` : `<div class="daily-pair-item"><span>${escapeHtml(primaryCat)}</span><strong>${escapeHtml(primaryName)}</strong><em>${suggestion.product.fiyat}₺</em></div>`}
             <div class="daily-pair-join"><i class="fa-solid fa-link" aria-hidden="true"></i> ${escapeHtml(pairDetail || cta)}</div>
@@ -4719,6 +4805,24 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         img.classList.add('kfm-fallback-image');
         img.src = fallback || 'product-fallback-warm-coffee.png';
     }
+    // KFM_V21_PREMIUM_PRODUCT_FIT
+    // JSON'dan gelen uzak görselleri çerçeve içini dolduracak şekilde; fallback görselleri ise kırpmadan yerleştirir.
+    function kfmPremiumFitImage(img) {
+        if (!img) return;
+        const source = String(img.currentSrc || img.src || '');
+        const isFallback = img.classList.contains('kfm-fallback-image') || source.includes('product-fallback-');
+        // Kaynak henüz yüklenmemiş olsa bile fallback görselleri ilk paint'ten itibaren contain kalır.
+        img.dataset.kfmFit = isFallback ? 'contain' : 'cover';
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        const ratio = img.naturalWidth / img.naturalHeight;
+        img.dataset.kfmAspect = ratio.toFixed(3);
+        // Çok dikey JSON fotoğraflarında ürünün üst/alt kısmını kaybetmemek için odak noktası hafif yukarı alınır.
+        img.style.objectPosition = ratio < 0.72 ? '50% 43%' : (ratio > 1.75 ? '50% 48%' : '50% 50%');
+    }
+    function kfmPremiumFitRenderedImages() {
+        document.querySelectorAll('#productGrid .product-card-image, .daily-pair-image').forEach(kfmPremiumFitImage);
+    }
+
     function kfmV21RepairRenderedImages() {
         document.querySelectorAll('#productGrid .product-card-image, .daily-pair-image').forEach((img) => {
             const card = img.closest('.prod-card, .daily-pair-item');
@@ -4726,6 +4830,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             const src = String(img.getAttribute('src') || '');
             if (/category-scene-|hookah-welcome-3d-clean/.test(src)) img.classList.add('kfm-fallback-image');
             if (img.complete && img.naturalWidth === 0) kfmHandleProductImageErrorV21(img, fallback);
+            kfmPremiumFitImage(img);
         });
     }
     function kfmV21ScheduleImageRepair() {
@@ -4788,7 +4893,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
               <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" data-kfm-fallback="${escapeHtml(fallbackImg)}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
                 <div class="product-card-image-wrap">
-                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
+                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
                   <span class="product-card-depth-plane" aria-hidden="true"></span>
                   <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
                   ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
@@ -4828,6 +4933,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         setupCardParallax();
         setupPremiumMotionLayer();
         kfmV21RepairRenderedImages();
+        kfmPremiumFitRenderedImages();
         kfmV21ScheduleImageRepair();
         setupCardImageReveal();
         setupTactileFeedback();
