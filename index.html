@@ -2292,6 +2292,156 @@ html[data-theme="dark"] .product-card-frame-art[data-frame-theme="hookah"]{
   mix-blend-mode:multiply!important;
 }
 
+
+
+
+
+/* KFM_V20_2_THEME_FIX */
+/* KFM_V20_1_PRODUCT_IMAGE_FIX */
+/* Uzak veya dikey görseller artık kartı boş bırakmaz; gerçek ürün fallback'i tam kadrajda görünür. */
+#productGrid .product-card-image-wrap,
+#productGrid .product-card-image-wrap.image-ready {
+  overflow: hidden!important;
+  isolation: isolate!important;
+}
+#productGrid .product-card-image-wrap .product-card-image,
+#productGrid .product-card-image-wrap.image-ready .product-card-image,
+#productGrid .prod-card:hover .product-card-image-wrap .product-card-image,
+#productGrid .prod-card.parallax-active .product-card-image-wrap .product-card-image,
+.daily-pair-image {
+  object-fit: contain!important;
+  object-position: center center!important;
+  transform: none!important;
+  scale: 1!important;
+  width: 100%!important;
+  height: 100%!important;
+  max-width: 100%!important;
+  max-height: 100%!important;
+  padding: 14px 20px 18px!important;
+  box-sizing: border-box!important;
+  background: transparent!important;
+}
+#productGrid .product-card-image-wrap .product-card-image {
+  opacity: 1!important;
+  filter: none!important;
+  transition: opacity .22s ease, filter .22s ease!important;
+}
+#productGrid .product-card-image-wrap .product-card-image.kfm-fallback-image {
+  object-fit: contain!important;
+  padding: 18px 28px 20px!important;
+}
+/* Çerçeve görseli dekor olarak üstte kalır; merkezdeki beyaz/opak alan fotoğrafı kapatmaz. */
+#productGrid .product-card-frame-art[data-frame-theme] {
+  z-index: 5!important;
+  mix-blend-mode: multiply!important;
+  opacity: .98!important;
+  overflow: visible!important;
+  pointer-events: none!important;
+}
+#productGrid .product-card-frame-art[data-frame-theme]::before,
+#productGrid .product-card-frame-art[data-frame-theme]::after {
+  z-index: 8!important;
+  width: 28px!important;
+  height: 28px!important;
+  font-size: 14px!important;
+  font-weight: 900!important;
+  opacity: 1!important;
+  border-width: 2px!important;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.98), rgba(255,224,187,.92) 52%, rgba(121,57,28,.86) 100%)!important;
+  filter: drop-shadow(0 2px 4px rgba(35,14,8,.55))!important;
+  text-shadow: 0 1px 2px rgba(255,255,255,.95), 0 2px 4px rgba(35,14,8,.55)!important;
+}
+#productGrid .product-card-frame-art[data-frame-theme="cold"]::before,
+#productGrid .product-card-frame-art[data-frame-theme="cold"]::after {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #bff5ff 52%, #237ea7 100%)!important;
+  color: #075375!important;
+}
+#productGrid .product-card-frame-art[data-frame-theme="sweet"]::before,
+#productGrid .product-card-frame-art[data-frame-theme="sweet"]::after {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #ffd5e7 52%, #b83c78 100%)!important;
+  color: #8f1f55!important;
+}
+#productGrid .product-card-frame-art[data-frame-theme="hookah"]::before,
+#productGrid .product-card-frame-art[data-frame-theme="hookah"]::after {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #ead8ff 52%, #6b3c9b 100%)!important;
+  color: #4c2679!important;
+}
+@media (max-width: 680px) {
+  #productGrid .product-card-frame-art[data-frame-theme]::before,
+  #productGrid .product-card-frame-art[data-frame-theme]::after { width: 23px!important; height: 23px!important; font-size: 11px!important; }
+  #productGrid .product-card-image-wrap .product-card-image,
+  #productGrid .product-card-image-wrap .product-card-image.kfm-fallback-image,
+  .daily-pair-image { padding: 12px 16px 16px!important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #productGrid .product-card-image-wrap .product-card-image { transition: none!important; }
+}
+
+/* KFM_V20_IMAGE_QUALITY */
+/* Ürün görseli artık çerçeve içinde tamamını korur; agresif cover/scale zoom kaldırılır. */
+#productGrid > .prod-card .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card:hover .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card.parallax-active .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card .product-card-image-wrap.image-ready .product-card-image{
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  background:transparent!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image{
+  opacity:1!important;
+  filter:none!important;
+  transition:opacity .28s ease,filter .28s ease!important;
+}
+#productGrid > .prod-card.is-out-of-stock .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card.is-out-of-stock .product-card-image-wrap.image-ready .product-card-image{
+  filter:grayscale(.7) saturate(.55) brightness(.86)!important;
+}
+/* Çerçeve dosyasının dekoru korunur; merkezdeki opaklık fotoğrafın önüne geçmez. */
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme]{
+  mix-blend-mode:multiply!important;
+  opacity:.98!important;
+}
+/* Köşe sembolleri PNG içeriğinden bağımsız olarak net ve temaya uygun görünür. */
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme]::before,
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme]::after{
+  content:var(--frame-symbol,'✧');
+  position:absolute;
+  z-index:2;
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  border:1px solid var(--frame-symbol-border,rgba(255,245,232,.78));
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,248,239,.92),rgba(255,219,183,.40));
+  color:var(--frame-symbol-color,#6a321e);
+  font:700 12px/1 sans-serif;
+  text-shadow:0 1px 3px rgba(255,255,255,.75),0 1px 4px rgba(64,28,16,.28);
+  box-shadow:0 2px 8px rgba(48,22,13,.20),inset 0 1px 0 rgba(255,255,255,.8);
+  opacity:.98;
+  pointer-events:none;
+}
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme]::before{left:7%;top:7%;}
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme]::after{right:7%;bottom:7%;}
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme="food"]{--frame-symbol:'✦';--frame-symbol-color:#7f451f;--frame-symbol-border:rgba(255,220,171,.92);}
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme="cold"]{--frame-symbol:'❄';--frame-symbol-color:#176c9c;--frame-symbol-border:rgba(200,244,255,.94);}
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme="sweet"]{--frame-symbol:'✿';--frame-symbol-color:#a23b6b;--frame-symbol-border:rgba(255,220,236,.94);}
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme="hookah"]{--frame-symbol:'◌';--frame-symbol-color:#6a3e8f;--frame-symbol-border:rgba(235,214,255,.94);}
+#productGrid > .prod-card .product-card-frame-art[data-frame-theme="warm"]{--frame-symbol:'✧';}
+@media(max-width:680px){
+  #productGrid > .prod-card .product-card-frame-art[data-frame-theme]::before,
+  #productGrid > .prod-card .product-card-frame-art[data-frame-theme]::after{width:20px;height:20px;font-size:10px;}
+}
+@media(prefers-reduced-motion:reduce){
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image{transition:none!important;}
+}
+
 /* WHEEL · DETAIL · SMART SUGGESTION V11 */
 /* Masaüstü kategori çarkı: daha geniş tutuş alanı, belirgin odak çizgisi ve okunaklı yönerge. */
 @media (min-width:700px){
@@ -2675,6 +2825,46 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     #productGrid > .prod-card:active, .daily-pair-item:active, button:active, .btn-primary:active, .product-detail-btn:active { transform: none !important; box-shadow: none !important; }
   }
 
+
+/* KFM_V20_3_IMAGE_VISIBILITY_FIX */
+/* Fotoğraflar kart içinde daha fazla nefes alanına sahip olur; cover/scale kaynaklı zoom kaldırılır. */
+#productGrid > .prod-card .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card:hover .product-card-image-wrap .product-card-image,
+#productGrid > .prod-card.parallax-active .product-card-image-wrap .product-card-image,
+.daily-pair-image {
+  object-fit: contain!important;
+  object-position: center center!important;
+  transform: none!important;
+  scale: 1!important;
+  padding: 23px 30px 25px!important;
+  box-sizing: border-box!important;
+}
+#productGrid > .prod-card .product-card-image-wrap .product-card-image.kfm-fallback-image,
+.daily-pair-image.kfm-fallback-image { padding: 25px 34px 27px!important; }
+/* Köşe sembolleri çerçeveden bağımsız, yüksek kontrastlı dekor katmanı olarak öne çıkar. */
+#productGrid .product-card-frame-art[data-frame-theme]::before,
+#productGrid .product-card-frame-art[data-frame-theme]::after {
+  z-index: 20!important;
+  opacity: 1!important;
+  mix-blend-mode: normal!important;
+  border: 2px solid rgba(255,247,228,.98)!important;
+  box-shadow: 0 0 0 1px rgba(78,34,16,.68), 0 3px 8px rgba(33,12,6,.72), inset 0 1px 0 rgba(255,255,255,.9)!important;
+  filter: saturate(1.18) contrast(1.08) drop-shadow(0 2px 3px rgba(28,9,4,.62))!important;
+  transform: translateZ(3px)!important;
+}
+#productGrid .product-card-frame-art[data-frame-theme] { z-index: 7!important; opacity: 1!important; }
+@media (max-width: 680px) {
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image,
+  .daily-pair-image { padding: 18px 23px 21px!important; }
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image.kfm-fallback-image,
+  .daily-pair-image.kfm-fallback-image { padding: 20px 26px 23px!important; }
+  #productGrid .product-card-frame-art[data-frame-theme]::before,
+  #productGrid .product-card-frame-art[data-frame-theme]::after { border-width: 2px!important; box-shadow: 0 0 0 1px rgba(78,34,16,.72), 0 2px 6px rgba(33,12,6,.72), inset 0 1px 0 rgba(255,255,255,.9)!important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #productGrid > .prod-card .product-card-image-wrap .product-card-image,
+  .daily-pair-image { transition: none!important; }
+}
 </style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
@@ -4385,20 +4575,20 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         const secondaryName = secondary ? (localizedProductName(secondary)) : '';
         const primaryCat = localizedCategoryName(menuData[suggestion.catKey], 'Keyfimce');
         const secondaryCat = secondary && localizedCategoryName(menuData[secondary.catKey], '');
-        const primaryImg = (suggestion.product.gorsel && suggestion.product.gorsel.trim()) ? suggestion.product.gorsel : (gorselHavuzu[suggestion.catKey] || gorselHavuzu['cat-kahve']);
-        const secondaryImg = secondary ? ((secondary.gorsel && secondary.gorsel.trim()) ? secondary.gorsel : (gorselHavuzu[secondary.catKey] || gorselHavuzu['cat-kahve'])) : primaryImg;
+        const primaryImg = kfmV21ProductImage(suggestion.product, suggestion.catKey);
+        const secondaryImg = secondary ? kfmV21ProductImage(secondary, secondary.catKey) : primaryImg;
         const cta = t('suggestion_view_detail');
         const pairLabel = t('pair_label');
         const pairDetail = t('pair_detail');
         grid.insertAdjacentHTML('beforeend', `
           <section class="daily-pair-card" aria-label="${escapeHtml(pairLabel)}">
             <div class="daily-pair-heading"><div><small>${escapeHtml(langCopy.label)} · ${escapeHtml(suggestion.window || '')}</small><strong>${escapeHtml(pairLabel)}</strong></div><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
-            <div class="daily-pair-item" role="button" tabindex="0" aria-label="${escapeHtml(primaryName)}" onclick="openDailySuggestionProduct('primary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('primary')}">
-              <img class="daily-pair-image" src="${escapeHtml(primaryImg)}" alt="${escapeHtml(primaryName)}" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(gorselHavuzu[suggestion.catKey] || gorselHavuzu['cat-kahve'])}'">
+            <div class="daily-pair-item" data-kfm-fallback="${escapeHtml(kfmV21FallbackFor(suggestion.product, suggestion.catKey))}" role="button" tabindex="0" aria-label="${escapeHtml(primaryName)}" onclick="openDailySuggestionProduct('primary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('primary')}">
+              <img class="daily-pair-image" src="${escapeHtml(primaryImg)}" alt="${escapeHtml(primaryName)}" loading="lazy" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(kfmV21FallbackFor(suggestion.product, suggestion.catKey))}')">
               <span>${escapeHtml(primaryCat)}</span><strong>${escapeHtml(primaryName)}</strong><em>${suggestion.product.fiyat}₺</em>
             </div>
-            ${secondary ? `<div class="daily-pair-item" role="button" tabindex="0" aria-label="${escapeHtml(secondaryName)}" onclick="openDailySuggestionProduct('secondary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('secondary')}">
-              <img class="daily-pair-image" src="${escapeHtml(secondaryImg)}" alt="${escapeHtml(secondaryName)}" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(gorselHavuzu[secondary.catKey] || gorselHavuzu['cat-kahve'])}'">
+            ${secondary ? `<div class="daily-pair-item" data-kfm-fallback="${escapeHtml(kfmV21FallbackFor(secondary, secondary.catKey))}" role="button" tabindex="0" aria-label="${escapeHtml(secondaryName)}" onclick="openDailySuggestionProduct('secondary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('secondary')}">
+              <img class="daily-pair-image" src="${escapeHtml(secondaryImg)}" alt="${escapeHtml(secondaryName)}" loading="lazy" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(kfmV21FallbackFor(secondary, secondary.catKey))}')">
               <span>${escapeHtml(secondaryCat)}</span><strong>${escapeHtml(secondaryName)}</strong><em>${secondary.fiyat}₺</em>
             </div>` : `<div class="daily-pair-item"><span>${escapeHtml(primaryCat)}</span><strong>${escapeHtml(primaryName)}</strong><em>${suggestion.product.fiyat}₺</em></div>`}
             <div class="daily-pair-join"><i class="fa-solid fa-link" aria-hidden="true"></i> ${escapeHtml(pairDetail || cta)}</div>
@@ -4477,14 +4667,74 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     }
 
     // KFM_V18_PRODUCT_FRAMES: keep decorative motifs semantically relevant to each product.
-    function getProductFrameTheme(product) {
-        const cat = String(product?.catKey || '').toLowerCase();
+    // KFM_V20_2_THEME_FIX: explicit category first, product wording only for mixed beverage category.
+    // KFM_V20_3_IMAGE_REPAIR
+    // Ürün kategorisi önceliklidir; özellikle cat-icecek boş/gazlı içecekleri cold olarak işler.
+    const kfmV20LocalFallbacksV21 = {
+        warm: 'product-fallback-warm-coffee.png',
+        cold: 'product-fallback-cold-drink.png',
+        sweet: 'product-fallback-sweet-dessert.png',
+        food: 'product-fallback-food-toast.png',
+        hookah: 'product-fallback-hookah.png'
+    };
+    function kfmV21ProductTheme(product, catKey) {
+        const cat = String(catKey || product?.catKey || '').trim().toLowerCase();
         const source = [product?.ad, product?.ad_en, product?.aciklama, product?.aciklama_en].filter(Boolean).join(' ').toLowerCase();
-        if (cat === 'cat-yiyecek' || /tost|toast|sandviç|sandwich|patates|pizza|burger|wrap|yiyecek|food/.test(source)) return 'food';
         if (cat === 'cat-nargile' || /nargile|hookah|shisha/.test(source)) return 'hookah';
-        if (cat === 'cat-tatli' || cat === 'cat-milkshake' || /tatlı|dessert|cake|cheesecake|brownie|waffle|milkshake|macaron/.test(source)) return 'sweet';
-        if (['cat-soguk-kahve','cat-soguk-icecek','cat-smoothie','cat-icecek'].includes(cat) || /didi|gazoz|soda|kola|cola|limonata|lemonade|iced|soğuk içecek|cold beverage|meyve suyu|fruit juice/.test(source)) return 'cold';
+        if (cat === 'cat-yiyecek') return 'food';
+        if (cat === 'cat-tatli' || cat === 'cat-milkshake') return 'sweet';
+        if (cat === 'cat-kahve' || cat === 'cat-sutlu-kahve' || cat === 'cat-cay') return 'warm';
+        if (cat === 'cat-soguk-kahve' || cat === 'cat-soguk-icecek' || cat === 'cat-smoothie') return 'cold';
+        if (cat === 'cat-icecek') {
+            if (/sıcak süt|sicak sut|warm milk|foamed milk|salep|hot chocolate|sıcak çikolata|hot beverage/.test(source)) return 'warm';
+            return 'cold';
+        }
+        if (/didi|gazoz|soda|kola|cola|limonata|lemonade|iced|soğuk içecek|cold beverage|meyve suyu|fruit juice/.test(source)) return 'cold';
+        if (/tost|toast|sandviç|sandwich|patates|pizza|burger|wrap|yiyecek|food/.test(source)) return 'food';
+        if (/tatlı|dessert|cake|cheesecake|brownie|waffle|milkshake|macaron|dondurma|ice cream/.test(source)) return 'sweet';
         return 'warm';
+    }
+    function getProductFrameTheme(product) {
+        return kfmV21ProductTheme(product, product?.catKey);
+    }
+    function kfmV21FallbackFor(product, catKey) {
+        const source = [product?.ad, product?.ad_en, product?.aciklama, product?.aciklama_en].filter(Boolean).join(' ').toLowerCase();
+        if (/italian cappuccino|italyan cappuccino|italian macchiato|italyan macchiato/.test(source)) return 'product-fallback-italian-cappuccino-clean.png';
+        const theme = kfmV21ProductTheme(product, catKey);
+        return kfmV20LocalFallbacksV21[theme] || kfmV20LocalFallbacksV21.warm;
+    }
+    function kfmV21ProductImage(product, catKey) {
+        const explicit = String(product?.gorsel || '').trim();
+        const source = [product?.ad, product?.ad_en].filter(Boolean).join(' ').toLowerCase();
+        const fallback = kfmV21FallbackFor(product, catKey);
+        // İtalyan kahvelerinde bilinen uzak görseller yerine doğrudan yerel temiz görsel kullanılır.
+        if (/italian cappuccino|italyan cappuccino|italian macchiato|italyan macchiato/.test(source)) return fallback;
+        if (!explicit || explicit.startsWith('file:') || /category-scene-|hookah-welcome-3d-clean/.test(explicit)) return fallback;
+        return explicit;
+    }
+    function kfmHandleProductImageErrorV21(img, fallback) {
+        if (!img || img.dataset.kfmFallbackApplied === 'true') return;
+        img.dataset.kfmFallbackApplied = 'true';
+        img.onerror = null;
+        img.classList.add('kfm-fallback-image');
+        img.src = fallback || 'product-fallback-warm-coffee.png';
+    }
+    function kfmV21RepairRenderedImages() {
+        document.querySelectorAll('#productGrid .product-card-image, .daily-pair-image').forEach((img) => {
+            const card = img.closest('.prod-card, .daily-pair-item');
+            const fallback = card?.dataset?.kfmFallback || 'product-fallback-warm-coffee.png';
+            const src = String(img.getAttribute('src') || '');
+            if (/category-scene-|hookah-welcome-3d-clean/.test(src)) img.classList.add('kfm-fallback-image');
+            if (img.complete && img.naturalWidth === 0) kfmHandleProductImageErrorV21(img, fallback);
+        });
+    }
+    function kfmV21ScheduleImageRepair() {
+        const repair = () => kfmV21RepairRenderedImages();
+        [450, 1100, 2200, 4200].forEach(delay => window.setTimeout(repair, delay));
+        if (!window.__kfmImageRepairObserver && 'MutationObserver' in window) {
+            window.__kfmImageRepairObserver = new MutationObserver(repair);
+            window.__kfmImageRepairObserver.observe(document.getElementById('productGrid') || document.body, { childList: true, subtree: true });
+        }
     }
 
     function renderProducts() {
@@ -4527,18 +4777,18 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             const description = localizedProductDescription(u, '');
             const safeDescription = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
             const categoryName = localizedCategoryName(menuData[u.catKey], '');
-            const img = (u.gorsel && u.gorsel.trim() !== '') ? u.gorsel : (gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve']);
-            const fallbackImg = gorselHavuzu[u.catKey] || gorselHavuzu['cat-kahve'];
+            const fallbackImg = kfmV21FallbackFor(u, u.catKey);
+            const img = kfmV21ProductImage(u, u.catKey);
             const extrasCount = u.ekstralar?.length || 0;
             const stokOverlay = !u.stoktaVar ? `<div class="stok-overlay"><span class="stok-badge">${t('out_of_stock')}</span></div>` : '';
             const delay = Math.min(idx, 8) * 0.055;
             const frameTheme = getProductFrameTheme(u);
             const frameTone = frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm')));
             grid.insertAdjacentHTML('beforeend', `
-              <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
+              <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" data-kfm-fallback="${escapeHtml(fallbackImg)}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
                 <div class="product-card-image-wrap">
-                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}'">
+                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
                   <span class="product-card-depth-plane" aria-hidden="true"></span>
                   <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
                   ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
@@ -4577,6 +4827,8 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
           </section>`);
         setupCardParallax();
         setupPremiumMotionLayer();
+        kfmV21RepairRenderedImages();
+        kfmV21ScheduleImageRepair();
         setupCardImageReveal();
         setupTactileFeedback();
         window.__refreshScrollSyncNav?.();
