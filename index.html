@@ -3344,6 +3344,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                     <button id="detailMainAction" class="detail-action-main" onclick="modalKapat('productDetailModal')">
                         <i class="fa-solid fa-check"></i> Menüyü Görüntüle
                     </button>
+                    <button id="detailCategoryAction" class="detail-action-category" type="button" onclick="detailKategoriyeGit()">
+                        <i class="fa-solid fa-layer-group"></i><span>Daha Fazla</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -3850,6 +3853,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             extra_options: "seçenek",
             modal_close: "Kapat",
             view_menu: "Menüyü Görüntüle",
+            more_category: "Daha Fazla",
             theme_label: "Tema",
             theme_auto: "Otomatik tema",
             theme_light: "Açık tema",
@@ -3939,6 +3943,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             extra_options: "options",
             modal_close: "Close",
             view_menu: "View Menu",
+            more_category: "More",
             theme_label: "Theme",
             theme_auto: "Auto theme",
             theme_light: "Light theme",
@@ -4145,6 +4150,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             if (softAction) softAction.textContent = t('modal_close');
             const mainAction = document.getElementById('detailMainAction');
             if (mainAction) mainAction.innerHTML = `<i class="fa-solid fa-check"></i> ${escapeHtml(t('view_menu'))}`;
+            if (typeof refreshDetailCategoryAction === 'function') refreshDetailCategoryAction();
         }
         if (typeof temaArayuzunuGuncelle === 'function') temaArayuzunuGuncelle();
         if (typeof window.__refreshWheelSoundToggle === 'function') window.__refreshWheelSoundToggle();
@@ -4270,7 +4276,13 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     let adminSifre  = ls('kfm_asifre', varsayilanSifre);
     let headerBgUrl = ls('kfm_headerBg', varsayilanHeaderBg);
     let hizliSiparis = ls('kfm_hizliSiparis', []);
-    let hideOutOfStock = ls('kfm_hide_out_of_stock', false);
+    const KFM_STOCK_VISIBILITY_VERSION = 26;
+    let hideOutOfStock = ls('kfm_hide_out_of_stock', true);
+    if (Number(ls('kfm_stock_visibility_version', 0)) < KFM_STOCK_VISIBILITY_VERSION) {
+        hideOutOfStock = true;
+        lsSave('kfm_hide_out_of_stock', true);
+        lsSave('kfm_stock_visibility_version', KFM_STOCK_VISIBILITY_VERSION);
+    }
     let apStokFiltresi = 'all';
 
     // GitHub ayarları (localStorage'da şifreli değil, kullanıcı kendi cihazında saklıyor)
@@ -4732,7 +4744,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         apKat.innerHTML = '';
         apFil.innerHTML = `<option value="hepsi">✨ ${aktifDil === 'en' ? 'All Categories' : 'Tüm Kategoriler'}</option>`;
 
-        const totalProducts = Object.values(menuData).reduce((sum, cat) => sum + ((cat && cat.urunler) ? cat.urunler.length : 0), 0);
+        const totalProducts = Object.values(menuData).reduce((sum, cat) => sum + ((cat && cat.urunler) ? cat.urunler.filter(item => !hideOutOfStock || item.stoktaVar !== false).length : 0), 0);
         const allBtn = document.createElement('div');
         allBtn.className = 'cat-pill' + (aktifKat === 'cat-all' ? ' active' : '');
         allBtn.id = 'cp-cat-all';
@@ -4742,7 +4754,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 
         for (let k in menuData) {
             const btn = document.createElement('div');
-            const count = (menuData[k].urunler || []).length;
+            const count = (menuData[k].urunler || []).filter(item => !hideOutOfStock || item.stoktaVar !== false).length;
             const label = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
             btn.className = 'cat-pill' + (k === aktifKat ? ' active' : '');
             btn.id = 'cp-' + k;
@@ -5476,6 +5488,54 @@ function apUrunDosyaSecildi(event, catKey, id) {
         });
     }
 
+    function refreshDetailCategoryAction() {
+        const button = document.getElementById('detailCategoryAction');
+        const modal = document.getElementById('productDetailModal');
+        if (!button || !modal) return;
+        const key = modal.dataset.categoryKey || '';
+        const category = menuData[key];
+        const categoryName = localizedCategoryName(category, aktifDil === 'en' ? 'Category' : 'Kategori');
+        const prefix = t('more_category');
+        button.innerHTML = `<i class="fa-solid fa-layer-group"></i><span>${escapeHtml(prefix)} ${escapeHtml(categoryName)}</span>`;
+        button.disabled = !key || !category;
+        button.setAttribute('aria-label', `${prefix} ${categoryName}`);
+    }
+
+    function detailKategoriyeGit() {
+        const modal = document.getElementById('productDetailModal');
+        const key = modal?.dataset?.categoryKey || '';
+        if (!key || !menuData[key]) return;
+        modalKapat('productDetailModal');
+        window.setTimeout(() => {
+            setNavActive(key);
+            kategoriGit(key);
+            const navItem = document.getElementById('cp-' + key);
+            if (navItem) navItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            window.setTimeout(() => scrollToMenuStart(), 40);
+        }, 40);
+    }
+
+    function kfmSetDetailImage(item, name) {
+        const img = document.getElementById('detailImage');
+        if (!img || !item) return;
+        const fallback = kfmV21FallbackFor(item, item.catKey);
+        const source = kfmV21ProductImage(item, item.catKey);
+        img.classList.remove('kfm-fallback-image', 'image-ready');
+        img.dataset.kfmFit = 'contain';
+        img.dataset.kfmFallbackApplied = 'false';
+        img.alt = name || '';
+        img.onerror = function() {
+            kfmHandleProductImageErrorV21(this, fallback);
+            this.onload = () => { kfmPremiumFitImage(this); this.classList.add('image-ready'); };
+            kfmPremiumFitImage(this);
+        };
+        img.onload = function() {
+            kfmPremiumFitImage(this);
+            this.classList.add('image-ready');
+        };
+        img.src = source || fallback;
+    }
+
     function openProductDetail(index, options = {}) {
         aktifDetayIndex = index;
         const interactionProduct = (window.__renderedProducts || [])[index];
@@ -5485,8 +5545,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const name = localizedProductName(item);
         const description = localizedProductDescription(item, '');
         const categoryName = localizedCategoryName(menuData[item.catKey], '');
-        const image = (item.gorsel && item.gorsel.trim() !== '') ? item.gorsel : (gorselHavuzu[item.catKey] || gorselHavuzu['cat-kahve']);
-        const fallback = gorselHavuzu[item.catKey] || gorselHavuzu['cat-kahve'];
+        const image = kfmV21ProductImage(item, item.catKey);
+        const fallback = kfmV21FallbackFor(item, item.catKey);
         const categoryScene = {
             'cat-kahve': { glow: 'rgba(165,84,41,.65)', depth: 'rgba(72,34,19,.64)', rim: 'rgba(255,205,151,.74)' },
             'cat-soguk': { glow: 'rgba(54,154,211,.58)', depth: 'rgba(11,63,113,.62)', rim: 'rgba(163,232,255,.70)' },
@@ -5508,10 +5568,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
         detailModal.classList.remove('detail-scene-refresh');
         void detailModal.offsetWidth;
         detailModal.classList.add('detail-scene-refresh');
-        document.getElementById('detailImage').src = image;
-        document.getElementById('detailImage').onerror = function() { this.onerror = null; this.src = fallback; };
-        document.getElementById('detailImage').alt = name;
+        kfmSetDetailImage(item, name);
         document.getElementById('detailCategory').textContent = categoryName || 'Keyfimce';
+        refreshDetailCategoryAction();
         document.getElementById('detailTitle').textContent = name;
         document.getElementById('detailDescription').textContent = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
         document.getElementById('detailPrice').textContent = `${item.fiyat}₺`;
@@ -6837,3 +6896,25 @@ function apUrunDosyaSecildi(event, catKey, id) {
     </script>
 </body>
 </html>
+
+/* KFM_V26_STOCK_DETAIL_CATEGORY */
+.detail-actions { display:flex; flex-wrap:wrap; align-items:stretch; gap:10px; }
+.detail-action-category {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  min-height:44px; padding:11px 14px; border:1px solid rgba(217,130,87,.30);
+  border-radius:14px; color:var(--rust); background:rgba(217,130,87,.08);
+  font:800 11px/1.2 'Plus Jakarta Sans',sans-serif; cursor:pointer;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.detail-action-category:hover { transform:translateY(-2px); background:rgba(217,130,87,.15); border-color:rgba(217,130,87,.56); box-shadow:0 8px 18px rgba(96,43,22,.14); }
+.detail-action-category:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+#productDetailModal #detailImage { opacity:1 !important; visibility:visible !important; z-index:4; }
+#productDetailModal #detailImage[data-kfm-fit="contain"] { object-fit:contain !important; }
+#productDetailModal #detailImage[data-kfm-fit="cover"] { object-fit:cover !important; }
+@media (max-width:640px) {
+  .detail-actions > button { flex:1 1 calc(50% - 5px); min-width:0; }
+  .detail-actions > .detail-action-category { flex-basis:100%; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .detail-action-category { transition:none !important; }
+}
