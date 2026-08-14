@@ -724,6 +724,19 @@
   }
 
   #catNav {
+    /* KFM_LANGUAGE_CSS_V17 */
+    --wheel-collapsed-hint: 'Menüye ulaşmak için tıklayınız';
+    --wheel-open-hint: 'Yukarı-aşağı kaydırın · merkezde 1,5 saniye bekleyin';
+    --wheel-label: 'KATEGORİLER';
+    --wheel-pro-title: 'KATEGORİ ÇARKI';
+    --wheel-pro-hint: '↕  SÜRÜKLEYİN  ·  MERKEZDE 1,5 SANİYE BEKLEYİN';
+  #catNav[data-lang="en"] {
+    --wheel-collapsed-hint: 'Click to access the menu';
+    --wheel-open-hint: 'Scroll up and down · wait 1.5 seconds at center';
+    --wheel-label: 'CATEGORIES';
+    --wheel-pro-title: 'CATEGORY WHEEL';
+    --wheel-pro-hint: '↕  DRAG  ·  WAIT 1.5 SECONDS AT CENTER';
+  }
     gap: 10px;
     padding-top: 4px;
     padding-bottom: 12px;
@@ -1001,7 +1014,7 @@
   }
   #catNav.wheel-collapsed::before { display: none; }
   #catNav.wheel-collapsed::after {
-    content: 'Menüye ulaşmak için basınız';
+    content: var(--wheel-collapsed-hint);
     display: block;
     position: absolute;
     left: 0;
@@ -1035,7 +1048,7 @@
   #catNav.wheel-collapsed::marker { display: none; }
   #catNav:not(.wheel-collapsed)::after {
     top: auto;
-    content: 'Yukarı-aşağı kaydırın · merkezde 1 sn bekleyin';
+    content: var(--wheel-open-hint);
     display: block;
     position: absolute;
     bottom: 8px;
@@ -1306,7 +1319,7 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset 0 24px 34px rgba(88,42,24,.08), inset 0 -24px 34px rgba(88,42,24,.08), 0 16px 34px rgba(76,40,25,.13);
   }
   #catNav.wheel-pro-mode:not(.wheel-collapsed)::before {
-    content: 'KATEGORİLER';
+    content: var(--wheel-label);
     top: 13px;
     left: 0;
     right: 0;
@@ -1320,7 +1333,7 @@
     text-align: center;
   }
   #catNav.wheel-pro-mode:not(.wheel-collapsed)::after {
-    content: 'Sürükleyin · 1 sn bekleyin';
+    content: var(--wheel-pro-hint);
     top: auto;
     bottom: 12px;
     left: 0;
@@ -2245,6 +2258,21 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
 }
 
 
+/* KFM_V18_PRODUCT_FRAMES · semantic product frame variants */
+.product-card-frame-art[data-frame-theme="food"]{background-image:url('product-frame-food-transparent.png');filter:drop-shadow(0 4px 7px rgba(132,74,31,.30)) saturate(.98);}
+.product-card-frame-art[data-frame-theme="cold"]{background-image:url('product-frame-cold-transparent.png');filter:drop-shadow(0 4px 8px rgba(41,132,185,.30)) saturate(1.04);}
+.product-card-frame-art[data-frame-theme="sweet"]{background-image:url('product-frame-sweet-transparent.png');filter:drop-shadow(0 4px 8px rgba(201,88,135,.28)) saturate(1.02);}
+.product-card-frame-art[data-frame-theme="hookah"]{background-image:url('product-frame-hookah-transparent.png');filter:drop-shadow(0 4px 8px rgba(91,42,96,.34)) saturate(.98);}
+#productGrid > .prod-card[data-frame-theme="food"]{--frame-glow:rgba(190,116,55,.32);--frame-light:rgba(255,224,178,.38);}
+#productGrid > .prod-card[data-frame-theme="cold"]{--frame-glow:rgba(54,157,212,.34);--frame-light:rgba(196,244,255,.44);}
+#productGrid > .prod-card[data-frame-theme="sweet"]{--frame-glow:rgba(224,102,153,.34);--frame-light:rgba(255,217,232,.44);}
+#productGrid > .prod-card[data-frame-theme="hookah"]{--frame-glow:rgba(124,77,151,.36);--frame-light:rgba(239,206,255,.34);}
+html[data-theme="dark"] .product-card-frame-art[data-frame-theme="cold"]{filter:drop-shadow(0 5px 10px rgba(0,0,0,.55)) saturate(.92) brightness(.94);}
+html[data-theme="dark"] .product-card-frame-art[data-frame-theme="sweet"]{filter:drop-shadow(0 5px 10px rgba(0,0,0,.55)) saturate(.88) brightness(.92);}
+html[data-theme="dark"] .product-card-frame-art[data-frame-theme="hookah"]{filter:drop-shadow(0 5px 10px rgba(0,0,0,.58)) saturate(.88) brightness(.90);}
+@media(max-width:680px){.product-card-frame-art[data-frame-theme="food"],.product-card-frame-art[data-frame-theme="cold"],.product-card-frame-art[data-frame-theme="sweet"],.product-card-frame-art[data-frame-theme="hookah"]{filter:drop-shadow(0 3px 6px rgba(53,26,15,.25));}}
+@media(prefers-reduced-motion:reduce){.product-card-frame-art[data-frame-theme]{transition:none!important;}}
+
 /* WHEEL · DETAIL · SMART SUGGESTION V11 */
 /* Masaüstü kategori çarkı: daha geniş tutuş alanı, belirgin odak çizgisi ve okunaklı yönerge. */
 @media (min-width:700px){
@@ -2257,15 +2285,15 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
     box-shadow:inset 0 22px 34px rgba(103,52,31,.10),inset 0 -26px 36px rgba(103,52,31,.12),0 18px 38px rgba(76,40,25,.12);
   }
   #catNav.wheel-pro-mode:not(.wheel-collapsed)::before{
-    content:'KATEGORİ ÇARKI';top:16px;left:50%;right:auto;width:auto;height:auto;padding:5px 12px;border:1px solid rgba(169,80,49,.15);border-radius:999px;
+    content:var(--wheel-pro-title);top:16px;left:50%;right:auto;width:auto;height:auto;padding:5px 12px;border:1px solid rgba(169,80,49,.15);border-radius:999px;
     color:rgba(118,62,39,.76);background:rgba(255,250,245,.56);box-shadow:none;font-size:10px;font-weight:900;letter-spacing:.16em;line-height:1;transform:translateX(-50%);
   }
   #catNav.wheel-pro-mode:not(.wheel-collapsed)::after{
-    content:'↕  SÜRÜKLE  ·  MERKEZDE 1 SANİYE BEKLE';bottom:15px;left:50%;right:auto;width:max-content;max-width:calc(100% - 32px);height:auto;padding:6px 12px;
+    content:var(--wheel-pro-hint);bottom:15px;left:50%;right:auto;width:max-content;max-width:calc(100% - 32px);height:auto;padding:6px 12px;
     border:1px solid rgba(169,80,49,.14);border-radius:999px;color:rgba(116,61,39,.78);background:rgba(255,250,245,.58);box-shadow:0 6px 13px rgba(95,43,26,.07);font-size:10px;font-weight:900;letter-spacing:.065em;line-height:1.15;transform:translateX(-50%);
   }
-  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::before{content:'CATEGORY WHEEL';}
-  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  DRAG  ·  WAIT 1.5 SECONDS AT CENTER';}
+  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::before{content:var(--wheel-pro-title);}
+  #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:var(--wheel-pro-hint);}
   #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{width:min(74%,510px);max-width:510px;min-height:62px;flex-basis:62px;border-radius:19px;font-size:14px;}
   #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill.wheel-focus{--wheel-scale:1.10;box-shadow:0 15px 31px rgba(137,59,37,.35),0 0 0 6px rgba(184,92,56,.10);}
   #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill:hover{filter:brightness(1.04) saturate(1.06);}
@@ -2276,9 +2304,9 @@ html[data-theme="dark"] .product-card-frame-art{filter:drop-shadow(0 5px 10px rg
     background:linear-gradient(135deg,rgba(255,255,255,.97),rgba(248,225,208,.93));box-shadow:0 12px 26px rgba(91,48,29,.12),inset 0 1px 0 rgba(255,255,255,.84);
   }
   #catNav.wheel-pro-mode.wheel-collapsed::after{
-    content:'MENÜYÜ AÇMAK İÇİN TIKLAYIN';bottom:5px;left:50%;right:auto;width:max-content;padding:0;color:rgba(113,62,40,.76);background:transparent;box-shadow:none;font-size:10px;font-weight:900;letter-spacing:.105em;line-height:1;transform:translateX(-50%);
+    content:var(--wheel-collapsed-hint);bottom:5px;left:50%;right:auto;width:max-content;padding:0;color:rgba(113,62,40,.76);background:transparent;box-shadow:none;font-size:10px;font-weight:900;letter-spacing:.105em;line-height:1;transform:translateX(-50%);
   }
-  #catNav[data-lang="en"].wheel-collapsed::after{content:'CLICK TO OPEN THE MENU';}
+  #catNav[data-lang="en"].wheel-collapsed::after{content:var(--wheel-collapsed-hint);}
   #catNav.wheel-pro-mode.wheel-collapsed .cat-pill.active{width:min(84%,500px);min-height:49px;flex-basis:49px;border-radius:16px;}
 }
 @media (min-width:700px){
@@ -2348,8 +2376,8 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
 #catNav.wheel-pro-mode:not(.wheel-collapsed){overflow:hidden!important;isolation:isolate;}
 #catNav.wheel-pro-mode .wheel-proximity-preview{display:none!important;}
 #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{max-width:calc(100% - 34px)!important;overflow:hidden!important;text-overflow:ellipsis;white-space:nowrap;}
-#catNav.wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  SÜRÜKLE  ·  MERKEZDE 1,5 SN BEKLE'!important;letter-spacing:.055em!important;}
-#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:'↕  DRAG  ·  WAIT 1.5 SECONDS AT CENTER'!important;}
+#catNav.wheel-pro-mode:not(.wheel-collapsed)::after{content:var(--wheel-pro-hint)!important;letter-spacing:.055em!important;}
+#catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:var(--wheel-pro-hint)!important;}
 .wheel-sound-toggle{position:absolute;z-index:12;right:18px;top:18px;width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(184,92,56,.22);border-radius:50%;color:var(--rust);background:rgba(255,250,246,.88);box-shadow:0 7px 18px rgba(103,49,28,.12);font-size:12px;transition:transform .2s ease,background .2s ease,color .2s ease;}
 .wheel-sound-toggle:hover{transform:translateY(-2px) scale(1.04);background:var(--rust);color:#fff9f4;}
 .wheel-sound-toggle.is-muted{color:var(--muted);background:rgba(255,255,255,.66);}
@@ -3220,6 +3248,8 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
 
 <script>
     /* KFM_I18N_MOBILE_V16 */
+    /* KFM_LANGUAGE_CLEANUP_V17_1 */
+    /* KFM_LANGUAGE_CLEANUP_V17 */
     /* KFM_I18N_MODAL_V16_1 */
     // ══════════════════════════════════════════════════════════════
     // ── AÇILIŞ ANİMASYONU ──
@@ -3317,7 +3347,13 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             remove_from_quick: "Kaldır",
             remove_from_quick_en: "Remove",
             no_quick_products: "Henüz hızlı sipariş ürünü yok.",
-            no_quick_products_en: "No quick order products yet."
+            no_quick_products_en: "No quick order products yet.",
+            happy_hour_title: "Mutlu Saatler",
+            happy_hour_active: "Özel teklifler şu anda aktif",
+            happy_hour_upcoming: "Yeni teklif saat 15:00'te başlar",
+            pair_label: "Mükemmel İkili",
+            pair_detail: "Birlikte daha keyifli",
+            suggestion_view_detail: "Detayı gör"
         },
         en: {
             welcome_title: "Welcome",
@@ -3398,7 +3434,13 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             remove_from_quick: "Remove",
             remove_from_quick_en: "Remove",
             no_quick_products: "No quick order products yet.",
-            no_quick_products_en: "No quick order products yet."
+            no_quick_products_en: "No quick order products yet.",
+            happy_hour_title: "Happy Hour",
+            happy_hour_active: "Special offers are live",
+            happy_hour_upcoming: "Next offer starts at 15:00",
+            pair_label: "Perfect Pair",
+            pair_detail: "Better together",
+            suggestion_view_detail: "View details"
         }
     };
 
@@ -4325,9 +4367,9 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         const secondaryCat = secondary && localizedCategoryName(menuData[secondary.catKey], '');
         const primaryImg = (suggestion.product.gorsel && suggestion.product.gorsel.trim()) ? suggestion.product.gorsel : (gorselHavuzu[suggestion.catKey] || gorselHavuzu['cat-kahve']);
         const secondaryImg = secondary ? ((secondary.gorsel && secondary.gorsel.trim()) ? secondary.gorsel : (gorselHavuzu[secondary.catKey] || gorselHavuzu['cat-kahve'])) : primaryImg;
-        const cta = aktifDil === 'en' ? 'View detail' : 'Detayı gör';
-        const pairLabel = suggestion.pairLabel?.[aktifDil] || suggestion.pairLabel?.tr || (aktifDil === 'en' ? 'Perfect Pair' : 'Mükemmel İkili');
-        const pairDetail = suggestion.pairDetail?.[aktifDil] || suggestion.pairDetail?.tr || '';
+        const cta = t('suggestion_view_detail');
+        const pairLabel = t('pair_label');
+        const pairDetail = t('pair_detail');
         grid.insertAdjacentHTML('beforeend', `
           <section class="daily-pair-card" aria-label="${escapeHtml(pairLabel)}">
             <div class="daily-pair-heading"><div><small>${escapeHtml(langCopy.label)} · ${escapeHtml(suggestion.window || '')}</small><strong>${escapeHtml(pairLabel)}</strong></div><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
@@ -4378,8 +4420,8 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         const grid = document.getElementById('productGrid');
         if (!grid || document.getElementById('happyHourCard')) return;
         const state = getHappyHourState();
-        const title = aktifDil === 'en' ? 'Happy Hour' : 'Happy Hour';
-        const detail = state.active ? (aktifDil === 'en' ? 'Special offers are live' : 'Özel teklifler şu an aktif') : (aktifDil === 'en' ? 'Next offer starts at 15:00' : 'Yeni teklif 15:00’te başlar');
+        const title = t('happy_hour_title');
+        const detail = t(state.active ? 'happy_hour_active' : 'happy_hour_upcoming');
         grid.insertAdjacentHTML('beforeend', `<section id="happyHourCard" class="happy-hour-card ${state.active ? 'is-active' : 'is-upcoming'}" aria-live="polite"><div class="happy-hour-copy"><span class="happy-hour-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span><div><strong>${title}</strong><span class="happy-hour-detail">${detail}</span></div></div><strong class="happy-hour-count" data-happy-hour-count>${formatHappyHourTime(state.target - new Date())}</strong></section>`);
         updateHappyHour();
     }
@@ -4392,7 +4434,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         card.classList.toggle('is-active', state.active);
         card.classList.toggle('is-upcoming', !state.active);
         if (count) count.textContent = formatHappyHourTime(state.target - new Date());
-        if (detail) detail.textContent = state.active ? (aktifDil === 'en' ? 'Special offers are live' : 'Özel teklifler şu an aktif') : (aktifDil === 'en' ? 'Next offer starts at 15:00' : 'Yeni teklif 15:00’te başlar');
+        if (detail) detail.textContent = t(state.active ? 'happy_hour_active' : 'happy_hour_upcoming');
     }
     if (!window.__kfmHappyHourTimer) window.__kfmHappyHourTimer = window.setInterval(updateHappyHour, 1000);
 
@@ -4412,6 +4454,17 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         input.value = '';
         renderProducts();
         input.focus({ preventScroll: true });
+    }
+
+    // KFM_V18_PRODUCT_FRAMES: keep decorative motifs semantically relevant to each product.
+    function getProductFrameTheme(product) {
+        const cat = String(product?.catKey || '').toLowerCase();
+        const source = [product?.ad, product?.ad_en, product?.aciklama, product?.aciklama_en].filter(Boolean).join(' ').toLowerCase();
+        if (cat === 'cat-yiyecek' || /tost|toast|sandviç|sandwich|patates|pizza|burger|wrap|yiyecek|food/.test(source)) return 'food';
+        if (cat === 'cat-nargile' || /nargile|hookah|shisha/.test(source)) return 'hookah';
+        if (cat === 'cat-tatli' || cat === 'cat-milkshake' || /tatlı|dessert|cake|cheesecake|brownie|waffle|milkshake|macaron/.test(source)) return 'sweet';
+        if (['cat-soguk-kahve','cat-soguk-icecek','cat-smoothie','cat-icecek'].includes(cat) || /didi|gazoz|soda|kola|cola|limonata|lemonade|iced|soğuk içecek|cold beverage|meyve suyu|fruit juice/.test(source)) return 'cold';
+        return 'warm';
     }
 
     function renderProducts() {
@@ -4459,14 +4512,15 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             const extrasCount = u.ekstralar?.length || 0;
             const stokOverlay = !u.stoktaVar ? `<div class="stok-overlay"><span class="stok-badge">${t('out_of_stock')}</span></div>` : '';
             const delay = Math.min(idx, 8) * 0.055;
-            const frameTone = ['cat-soguk'].includes(u.catKey) ? 'cool' : (['cat-tatli','cat-milkshake'].includes(u.catKey) ? 'sweet' : (['cat-smoothie','cat-meyve'].includes(u.catKey) ? 'herbal' : (u.catKey === 'cat-nargile' ? 'night' : 'warm')));
+            const frameTheme = getProductFrameTheme(u);
+            const frameTone = frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm')));
             grid.insertAdjacentHTML('beforeend', `
-              <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" style="animation-delay:${delay}s;" data-product-index="${idx}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
+              <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
                 <div class="product-card-image-wrap">
                   <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}'">
                   <span class="product-card-depth-plane" aria-hidden="true"></span>
-                  <span class="product-card-frame-art" aria-hidden="true"></span>
+                  <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
                   ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
                 </div>
                 <div class="product-card-body">
