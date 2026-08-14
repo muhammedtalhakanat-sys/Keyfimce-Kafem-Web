@@ -2528,9 +2528,109 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   #welcomeScreen .welcome-ornament{animation:none!important;transform:translate3d(-50%,-50%,0)!important;}
 }
 
+
+  /* KFM_V15_ATMOSPHERE: kategori atmosferi, 3B detay sahnesi, ikili öneri ve mikro etkileşimler */
+  body { transition: background .82s ease, background-color .82s ease; }
+  body[data-cat-tone="warm"] {
+    --atmo-a: rgba(218, 145, 73, .20); --atmo-b: rgba(184, 92, 56, .11);
+    background: radial-gradient(circle at 78% 10%, var(--atmo-a), transparent 28rem), radial-gradient(circle at 8% 44%, var(--atmo-b), transparent 25rem), linear-gradient(145deg, #f7f2ec 0%, #fffaf6 48%, #f4ebe3 100%) !important;
+  }
+  body[data-cat-tone="cool"] {
+    --atmo-a: rgba(74, 169, 220, .18); --atmo-b: rgba(78, 124, 190, .10);
+    background: radial-gradient(circle at 78% 10%, var(--atmo-a), transparent 28rem), radial-gradient(circle at 8% 44%, var(--atmo-b), transparent 25rem), linear-gradient(145deg, #eff6fa 0%, #fbfdff 48%, #eaf3f8 100%) !important;
+  }
+  body[data-cat-tone="sweet"] {
+    --atmo-a: rgba(229, 112, 151, .17); --atmo-b: rgba(246, 184, 153, .12);
+    background: radial-gradient(circle at 78% 10%, var(--atmo-a), transparent 28rem), radial-gradient(circle at 8% 44%, var(--atmo-b), transparent 25rem), linear-gradient(145deg, #fbf1f5 0%, #fffafd 48%, #f9e9ef 100%) !important;
+  }
+  body[data-cat-tone="hookah"] {
+    --atmo-a: rgba(133, 95, 189, .17); --atmo-b: rgba(78, 44, 130, .10);
+    background: radial-gradient(circle at 78% 10%, var(--atmo-a), transparent 28rem), radial-gradient(circle at 8% 44%, var(--atmo-b), transparent 25rem), linear-gradient(145deg, #f4f0fa 0%, #fcfaff 48%, #eee8f7 100%) !important;
+  }
+  html[data-theme="dark"] body[data-cat-tone="warm"], html[data-theme="auto"] body[data-cat-tone="warm"] {
+    background: radial-gradient(circle at 78% 8%, rgba(208, 127, 60, .17), transparent 28rem), radial-gradient(circle at 8% 42%, rgba(181, 86, 48, .09), transparent 25rem), linear-gradient(145deg, #160f0c, #261711 55%, #120b09) !important;
+  }
+  html[data-theme="dark"] body[data-cat-tone="cool"], html[data-theme="auto"] body[data-cat-tone="cool"] {
+    background: radial-gradient(circle at 78% 8%, rgba(54, 139, 193, .16), transparent 28rem), radial-gradient(circle at 8% 42%, rgba(52, 96, 156, .09), transparent 25rem), linear-gradient(145deg, #0d151a, #14232b 55%, #0b1014) !important;
+  }
+  html[data-theme="dark"] body[data-cat-tone="sweet"], html[data-theme="auto"] body[data-cat-tone="sweet"] {
+    background: radial-gradient(circle at 78% 8%, rgba(213, 78, 132, .15), transparent 28rem), radial-gradient(circle at 8% 42%, rgba(183, 103, 143, .08), transparent 25rem), linear-gradient(145deg, #180f15, #28151f 55%, #120a10) !important;
+  }
+  html[data-theme="dark"] body[data-cat-tone="hookah"], html[data-theme="auto"] body[data-cat-tone="hookah"] {
+    background: radial-gradient(circle at 78% 8%, rgba(122, 80, 181, .17), transparent 28rem), radial-gradient(circle at 8% 42%, rgba(85, 57, 139, .09), transparent 25rem), linear-gradient(145deg, #120d19, #21142f 55%, #0c0911) !important;
+  }
+  #kfmAtmosphereLayer {
+    position: fixed; inset: -18vmax; z-index: -1; pointer-events: none; opacity: .42;
+    background: radial-gradient(circle at 72% 18%, var(--atmo-a, rgba(218,145,73,.14)), transparent 32vmax), radial-gradient(circle at 20% 68%, var(--atmo-b, rgba(184,92,56,.08)), transparent 26vmax);
+    filter: blur(10px); transition: background .9s ease, opacity .9s ease; animation: kfmAtmosphereDrift 18s ease-in-out infinite alternate;
+  }
+  @keyframes kfmAtmosphereDrift { from { transform: translate3d(-1.2%, -1%, 0) scale(1); } to { transform: translate3d(1.4%, 1.2%, 0) scale(1.045); } }
+
+  /* Detay penceresinde kategoriye özel kesintisiz 3B sahne. */
+  #productDetailModal .detail-hero { --detail-scene-img: none; }
+  #productDetailModal .detail-hero::after {
+    background-image: var(--detail-scene-img), linear-gradient(142deg, var(--category-depth), transparent 42%, var(--category-rim) 112%);
+    background-repeat: no-repeat, no-repeat; background-position: 50% 50%, 0 0; background-size: min(88%, 470px) auto, auto;
+    opacity: .76; mix-blend-mode: screen; filter: saturate(1.05) contrast(1.03); transition: background-image .4s ease, opacity .4s ease;
+  }
+  #productDetailModal .detail-hero::before { opacity: .72; }
+  #productDetailModal .detail-hero > img { z-index: 2; }
+  #productDetailModal .detail-hero-frame, #productDetailModal .detail-close, #productDetailModal .detail-hero #detailBadge { z-index: 3; }
+  #productDetailModal.detail-scene-refresh .detail-hero::after { animation: kfmDetailSceneEnter .78s cubic-bezier(.22,1,.36,1) both; }
+  @keyframes kfmDetailSceneEnter { from { opacity: 0; transform: translate3d(-12%, 8%, 0) scale(1.28); } to { opacity: .76; transform: translate3d(-8%, 7%, 0) scale(1.12); } }
+
+  /* Önerilen ikili kartı: iki ürün aynı görsel hiyerarşisinde tutulur. */
+  .daily-pair-card { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 14px; padding: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.62); border-radius: 24px; background: linear-gradient(135deg, rgba(255,251,246,.96), rgba(247,225,207,.92)); box-shadow: 0 16px 34px rgba(107,54,29,.12), inset 0 1px 0 rgba(255,255,255,.78); isolation: isolate; animation: pairCardIn .58s cubic-bezier(.22,1,.36,1) both; }
+  .daily-pair-card::before { content: ''; position: absolute; inset: -40% 38% auto -14%; height: 180px; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(222,157,91,.24), transparent 67%); filter: blur(10px); pointer-events: none; }
+  .daily-pair-heading { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--ink); }
+  .daily-pair-heading small { display: block; color: var(--rust); font-size: 9px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+  .daily-pair-heading strong { display: block; margin-top: 2px; font-family: var(--font-display); font-size: 19px; line-height: 1.05; }
+  .daily-pair-heading i { display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 36px; border-radius: 13px; color: #fff8f0; background: linear-gradient(145deg, var(--rust), var(--gold)); box-shadow: 0 8px 16px rgba(184,92,56,.22); }
+  .daily-pair-item { min-width: 0; display: flex; flex-direction: column; gap: 7px; padding: 8px; border: 1px solid rgba(178,117,78,.18); border-radius: 17px; background: rgba(255,255,255,.54); cursor: pointer; transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+  .daily-pair-item:hover, .daily-pair-item:focus-visible { transform: translateY(-3px); border-color: rgba(184,92,56,.36); box-shadow: 0 9px 18px rgba(107,54,29,.12); outline: none; }
+  .daily-pair-image { width: 100%; height: 88px; object-fit: contain; border-radius: 13px; background: linear-gradient(145deg, rgba(255,255,255,.78), rgba(236,213,195,.38)); }
+  .daily-pair-item span { color: var(--muted2); font-size: 9px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .daily-pair-item strong { color: var(--ink); font-size: 12px; line-height: 1.15; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  .daily-pair-item em { margin-top: auto; color: var(--rust); font-size: 12px; font-style: normal; font-weight: 950; }
+  .daily-pair-join { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 7px; color: var(--muted2); font-size: 9px; font-weight: 800; }
+  .daily-pair-join::before, .daily-pair-join::after { content: ''; height: 1px; flex: 1; background: linear-gradient(90deg, transparent, rgba(184,92,56,.28), transparent); }
+  @keyframes pairCardIn { from { opacity: 0; transform: translateY(12px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  html[data-theme="dark"] .daily-pair-card, html[data-theme="auto"] .daily-pair-card { border-color: rgba(255,232,214,.14); background: linear-gradient(135deg, rgba(55,35,25,.96), rgba(38,23,17,.95)); box-shadow: 0 18px 40px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,241,227,.08); }
+  html[data-theme="dark"] .daily-pair-item, html[data-theme="auto"] .daily-pair-item { border-color: rgba(255,225,204,.12); background: rgba(255,244,231,.055); }
+  html[data-theme="dark"] .daily-pair-image, html[data-theme="auto"] .daily-pair-image { background: linear-gradient(145deg, rgba(255,245,235,.10), rgba(181,115,73,.08)); }
+
+  /* 15:00–18:00 happy hour: aktif pencere ve pencereye yaklaşan durum aynı kartta anlatılır. */
+  .happy-hour-card { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 15px; padding: 12px 14px; overflow: hidden; border: 1px solid rgba(255,221,154,.64); border-radius: 18px; color: #4b2716; background: linear-gradient(108deg, #fff0b8, #f5b66f 58%, #e98758); box-shadow: 0 12px 24px rgba(185,102,45,.17), inset 0 1px 0 rgba(255,255,255,.62); animation: happyHourPulse 2.6s ease-in-out infinite; }
+  .happy-hour-card::after { content: ''; position: absolute; top: -40%; right: -10%; width: 44%; height: 180%; border-radius: 50%; background: rgba(255,255,255,.22); filter: blur(15px); transform: rotate(18deg); pointer-events: none; }
+  .happy-hour-card.is-upcoming { background: linear-gradient(108deg, #fff3ce, #efc27d 58%, #d98d5e); }
+  .happy-hour-copy { min-width: 0; display: flex; align-items: center; gap: 10px; }
+  .happy-hour-icon { display: grid; place-items: center; width: 35px; height: 35px; flex: 0 0 35px; border-radius: 12px; color: #fff8e3; background: rgba(109,55,21,.68); box-shadow: 0 5px 12px rgba(111,52,18,.18); }
+  .happy-hour-copy strong, .happy-hour-copy span { display: block; }
+  .happy-hour-copy strong { font-size: 12px; font-weight: 950; letter-spacing: .01em; }
+  .happy-hour-copy span { margin-top: 2px; font-size: 9px; font-weight: 800; opacity: .78; }
+  .happy-hour-count { position: relative; z-index: 1; min-width: 72px; padding: 6px 8px; border-radius: 11px; color: #fff8e3; background: rgba(79,38,18,.74); font-variant-numeric: tabular-nums; text-align: center; font-size: 11px; font-weight: 950; letter-spacing: .06em; }
+  @keyframes happyHourPulse { 0%,100% { box-shadow: 0 12px 24px rgba(185,102,45,.17), inset 0 1px 0 rgba(255,255,255,.62); } 50% { box-shadow: 0 14px 30px rgba(185,102,45,.28), inset 0 1px 0 rgba(255,255,255,.72); } }
+  html[data-theme="dark"] .happy-hour-card, html[data-theme="auto"] .happy-hour-card { border-color: rgba(255,215,139,.25); color: #fff0d1; background: linear-gradient(108deg, #5e3c1d, #744126 58%, #833e2d); box-shadow: 0 13px 30px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,237,193,.12); }
+  html[data-theme="dark"] .happy-hour-card.is-upcoming, html[data-theme="auto"] .happy-hour-card.is-upcoming { background: linear-gradient(108deg, #4d371e, #624025 58%, #71382b); }
+
+  /* Mikro etkileşimler: fiziksel basma, fiyat vurgusu ve stok rozetinin yumuşak gelişi. */
+  #productGrid > .prod-card { transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease, border-color .22s ease; }
+  #productGrid > .prod-card:active, .daily-pair-item:active, button:active, .btn-primary:active, .product-detail-btn:active { transform: scale(.97) translateZ(-4px); box-shadow: 0 7px 14px rgba(73,35,20,.12); transition-duration: .1s; }
+  .product-card-price:hover, .product-card-price:focus-visible { animation: priceGlow .42s ease; }
+  @keyframes priceGlow { 0%,100% { color: var(--rust); text-shadow: none; } 50% { color: var(--gold); text-shadow: 0 0 8px rgba(217,130,87,.55); } }
+  .prod-card .product-card-badge, .prod-card .stok-badge { animation: badgeFadeIn .5s ease both; }
+  @keyframes badgeFadeIn { from { opacity: 0; transform: translateY(-4px) scale(.92); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @media (max-width: 420px) { .daily-pair-card { gap: 7px; padding: 11px; border-radius: 20px; } .daily-pair-image { height: 72px; } .daily-pair-item { padding: 7px; } .happy-hour-card { padding: 11px; } .happy-hour-count { min-width: 68px; font-size: 10px; letter-spacing: .04em; } }
+  @media (prefers-reduced-motion: reduce) {
+    body, #kfmAtmosphereLayer { transition: none !important; animation: none !important; }
+    #productDetailModal.detail-scene-refresh .detail-hero::after, .daily-pair-card, .happy-hour-card, .prod-card .product-card-badge, .prod-card .stok-badge, .product-card-price:hover, .product-card-price:focus-visible { animation: none !important; }
+    #productGrid > .prod-card, .daily-pair-item, button, .btn-primary, .product-detail-btn { transition: none !important; }
+    #productGrid > .prod-card:active, .daily-pair-item:active, button:active, .btn-primary:active, .product-detail-btn:active { transform: none !important; box-shadow: none !important; }
+  }
+
 </style>
 </head>
-<body style="padding-bottom: 90px;">
+<body id="pageBody" style="padding-bottom: 90px;">
 
     <!-- Tema ve dil kontrolleri -->
     <button id="themeToggleBtn" onclick="temaDegistir()" aria-label="Tema değiştir" title="Tema: Otomatik">
@@ -2658,6 +2758,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     <div id="productDetailModal" class="modal-overlay" onclick="if(event.target===this) modalKapat('productDetailModal')">
         <div class="modal-box detail-modal-box">
             <div class="detail-hero">
+                <span class="detail-scene-art" aria-hidden="true"></span>
                 <span class="detail-hero-frame" aria-hidden="true"></span>
                 <img id="detailImage" src="" alt="Ürün görseli">
                 <button class="detail-close" onclick="modalKapat('productDetailModal')" aria-label="Kapat">
@@ -3918,8 +4019,45 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         }
     }
 
+
+    // KFM_V15_ATMOSPHERE helpers
+    const kfmV15ToneMap = {
+        warm: new Set(['cat-kahve','cat-sutlu-kahve','cat-cay','cat-yiyecek','cat-icecek']),
+        cool: new Set(['cat-soguk-kahve','cat-soguk-icecek','cat-smoothie','cat-milkshake']),
+        sweet: new Set(['cat-tatli']),
+        hookah: new Set(['cat-nargile'])
+    };
+    function getToneForCategory(catKey) {
+        if (kfmV15ToneMap.cool.has(catKey)) return 'cool';
+        if (kfmV15ToneMap.sweet.has(catKey)) return 'sweet';
+        if (kfmV15ToneMap.hookah.has(catKey)) return 'hookah';
+        return 'warm';
+    }
+    function setCategoryAtmosphere(catKey) {
+        const body = document.getElementById('pageBody') || document.body;
+        if (!body) return;
+        body.dataset.catTone = getToneForCategory(catKey);
+        body.classList.add('kfm-atmosphere-ready');
+        if (!document.getElementById('kfmAtmosphereLayer')) {
+            const layer = document.createElement('div');
+            layer.id = 'kfmAtmosphereLayer';
+            layer.setAttribute('aria-hidden', 'true');
+            body.prepend(layer);
+        }
+    }
+    const kfmV15SceneMap = {
+        warm: "url('category-scene-warm-clean.png')",
+        cool: "url('category-scene-cool-clean.png')",
+        sweet: "url('category-scene-sweet-clean.png')",
+        hookah: "url('category-scene-sweet-clean.png')"
+    };
+    function getDetailSceneImage(catKey) {
+        return kfmV15SceneMap[getToneForCategory(catKey)] || kfmV15SceneMap.warm;
+    }
+
     function kategoriGit(k) {
         aktifKat = k;
+        setCategoryAtmosphere(k);
         setNavActive(k);
         renderProducts();
         // Kategori seçimi ürünleri yeniler; sayfanın konumu kesinlikle değiştirilmez.
@@ -4057,33 +4195,111 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         return { ...slot, [aktifDil]: nextCopy, tr: aktifDil === 'tr' ? nextCopy : slot.tr, en: aktifDil === 'en' ? nextCopy : slot.en, catKey: selectedCategory, product, context: { isWeekend, isWarmSeason, isCoolSeason, interactionCount: interactions.length } };
     }
 
+
+    function getDailySuggestionPair() {
+        const primary = getDailySuggestion();
+        if (!primary || !primary.product) return primary;
+        const complementaryMap = {
+            'cat-kahve': ['cat-tatli'], 'cat-sutlu-kahve': ['cat-tatli'], 'cat-cay': ['cat-tatli','cat-yiyecek'],
+            'cat-soguk-kahve': ['cat-yiyecek','cat-tatli'], 'cat-soguk-icecek': ['cat-yiyecek','cat-tatli'],
+            'cat-smoothie': ['cat-yiyecek','cat-tatli'], 'cat-milkshake': ['cat-tatli','cat-yiyecek'],
+            'cat-tatli': ['cat-kahve','cat-cay'], 'cat-yiyecek': ['cat-icecek','cat-kahve'],
+            'cat-icecek': ['cat-yiyecek','cat-kahve'], 'cat-nargile': ['cat-cay']
+        };
+        const candidates = (complementaryMap[primary.catKey] || ['cat-cay','cat-kahve'])
+            .flatMap(key => (menuData[key]?.urunler || []).filter(item => item.stoktaVar !== false).map(item => ({ ...item, catKey: key })));
+        if (!candidates.length) return { ...primary, secondary: null, pairLabel: { tr: 'Günün seçimi', en: 'Today’s pick' } };
+        const seed = `${new Date().toDateString()}|${primary.catKey}|${primary.product.ad}|${candidates.length}`;
+        const hash = Array.from(seed).reduce((total, char) => ((total * 33) ^ char.charCodeAt(0)) >>> 0, 5381);
+        const fresh = candidates.filter(item => productSuggestionKey(item.catKey, item) !== productSuggestionKey(primary.catKey, primary.product));
+        const pool = fresh.length ? fresh : candidates;
+        const secondary = pool[hash % pool.length];
+        return { ...primary, secondary, pairLabel: { tr: 'Mükemmel İkili', en: 'Perfect Pair' }, pairDetail: { tr: 'Birlikte daha keyifli', en: 'Better together' } };
+    }
+
     function renderDailySuggestion() {
         const grid = document.getElementById('productGrid');
-        const suggestion = getDailySuggestion();
+        const suggestion = getDailySuggestionPair();
         window.__dailySuggestion = suggestion;
-        if (!grid || !suggestion) return;
+        if (!grid || !suggestion || !suggestion.product) return;
         const langCopy = suggestion[aktifDil] || suggestion.tr;
-        const name = (aktifDil === 'en' && suggestion.product.ad_en) ? suggestion.product.ad_en : suggestion.product.ad;
-        const categoryName = menuData[suggestion.catKey] ? ((aktifDil === 'en' && menuData[suggestion.catKey].isim_en) ? menuData[suggestion.catKey].isim_en : menuData[suggestion.catKey].isim) : 'Keyfimce';
+        const secondary = suggestion.secondary;
+        const primaryName = (aktifDil === 'en' && suggestion.product.ad_en) ? suggestion.product.ad_en : suggestion.product.ad;
+        const secondaryName = secondary ? ((aktifDil === 'en' && secondary.ad_en) ? secondary.ad_en : secondary.ad) : '';
+        const primaryCat = menuData[suggestion.catKey] ? ((aktifDil === 'en' && menuData[suggestion.catKey].isim_en) ? menuData[suggestion.catKey].isim_en : menuData[suggestion.catKey].isim) : 'Keyfimce';
+        const secondaryCat = secondary && menuData[secondary.catKey] ? ((aktifDil === 'en' && menuData[secondary.catKey].isim_en) ? menuData[secondary.catKey].isim_en : menuData[secondary.catKey].isim) : '';
+        const primaryImg = (suggestion.product.gorsel && suggestion.product.gorsel.trim()) ? suggestion.product.gorsel : (gorselHavuzu[suggestion.catKey] || gorselHavuzu['cat-kahve']);
+        const secondaryImg = secondary ? ((secondary.gorsel && secondary.gorsel.trim()) ? secondary.gorsel : (gorselHavuzu[secondary.catKey] || gorselHavuzu['cat-kahve'])) : primaryImg;
         const cta = aktifDil === 'en' ? 'View detail' : 'Detayı gör';
+        const pairLabel = suggestion.pairLabel?.[aktifDil] || suggestion.pairLabel?.tr || (aktifDil === 'en' ? 'Perfect Pair' : 'Mükemmel İkili');
+        const pairDetail = suggestion.pairDetail?.[aktifDil] || suggestion.pairDetail?.tr || '';
         grid.insertAdjacentHTML('beforeend', `
-          <section class="daily-suggestion-card" role="button" tabindex="0" aria-label="${escapeHtml(name)}" onclick="openDailySuggestion()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestion()}">
-            <div class="daily-suggestion-copy">
-              <div class="daily-suggestion-icon"><i class="fa-solid ${suggestion.icon}" aria-hidden="true"></i></div>
-              <div><small>${escapeHtml(langCopy.label)} <em class="daily-suggestion-time">${escapeHtml(suggestion.window || '')}</em></small><strong>${escapeHtml(name)}</strong><span>${escapeHtml(langCopy.detail)} · ${escapeHtml(categoryName)}</span></div>
+          <section class="daily-pair-card" aria-label="${escapeHtml(pairLabel)}">
+            <div class="daily-pair-heading"><div><small>${escapeHtml(langCopy.label)} · ${escapeHtml(suggestion.window || '')}</small><strong>${escapeHtml(pairLabel)}</strong></div><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
+            <div class="daily-pair-item" role="button" tabindex="0" aria-label="${escapeHtml(primaryName)}" onclick="openDailySuggestionProduct('primary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('primary')}">
+              <img class="daily-pair-image" src="${escapeHtml(primaryImg)}" alt="${escapeHtml(primaryName)}" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(gorselHavuzu[suggestion.catKey] || gorselHavuzu['cat-kahve'])}'">
+              <span>${escapeHtml(primaryCat)}</span><strong>${escapeHtml(primaryName)}</strong><em>${suggestion.product.fiyat}₺</em>
             </div>
-            <span class="daily-suggestion-cta">${escapeHtml(cta)} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+            ${secondary ? `<div class="daily-pair-item" role="button" tabindex="0" aria-label="${escapeHtml(secondaryName)}" onclick="openDailySuggestionProduct('secondary')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openDailySuggestionProduct('secondary')}">
+              <img class="daily-pair-image" src="${escapeHtml(secondaryImg)}" alt="${escapeHtml(secondaryName)}" loading="lazy" onerror="this.onerror=null;this.src='${escapeHtml(gorselHavuzu[secondary.catKey] || gorselHavuzu['cat-kahve'])}'">
+              <span>${escapeHtml(secondaryCat)}</span><strong>${escapeHtml(secondaryName)}</strong><em>${secondary.fiyat}₺</em>
+            </div>` : `<div class="daily-pair-item"><span>${escapeHtml(primaryCat)}</span><strong>${escapeHtml(primaryName)}</strong><em>${suggestion.product.fiyat}₺</em></div>`}
+            <div class="daily-pair-join"><i class="fa-solid fa-link" aria-hidden="true"></i> ${escapeHtml(pairDetail || cta)}</div>
           </section>`);
     }
 
-    function openDailySuggestion() {
+    function openDailySuggestionProduct(which = 'primary') {
         const suggestion = window.__dailySuggestion;
         if (!suggestion) return;
+        const chosen = which === 'secondary' ? suggestion.secondary : suggestion.product;
+        const chosenCat = which === 'secondary' ? suggestion.secondary?.catKey : suggestion.catKey;
+        if (!chosen) return;
         const rendered = window.__renderedProducts;
-        window.__renderedProducts = [{ ...suggestion.product, catKey: suggestion.catKey }];
+        window.__renderedProducts = [{ ...chosen, catKey: chosenCat }];
         openProductDetail(0);
         window.__renderedProducts = rendered;
     }
+    function openDailySuggestion() { openDailySuggestionProduct('primary'); }
+
+
+    function getHappyHourState() {
+        const now = new Date();
+        const start = new Date(now); start.setHours(15, 0, 0, 0);
+        const end = new Date(now); end.setHours(18, 0, 0, 0);
+        if (now >= start && now < end) return { active: true, target: end };
+        const target = new Date(now);
+        if (now >= end) target.setDate(target.getDate() + 1);
+        target.setHours(15, 0, 0, 0);
+        return { active: false, target };
+    }
+    function formatHappyHourTime(ms) {
+        const total = Math.max(0, Math.floor(ms / 1000));
+        const h = String(Math.floor(total / 3600)).padStart(2, '0');
+        const m = String(Math.floor((total % 3600) / 60)).padStart(2, '0');
+        const s = String(total % 60).padStart(2, '0');
+        return `${h}:${m}:${s}`;
+    }
+    function renderHappyHour() {
+        const grid = document.getElementById('productGrid');
+        if (!grid || document.getElementById('happyHourCard')) return;
+        const state = getHappyHourState();
+        const title = aktifDil === 'en' ? 'Happy Hour' : 'Happy Hour';
+        const detail = state.active ? (aktifDil === 'en' ? 'Special offers are live' : 'Özel teklifler şu an aktif') : (aktifDil === 'en' ? 'Next offer starts at 15:00' : 'Yeni teklif 15:00’te başlar');
+        grid.insertAdjacentHTML('beforeend', `<section id="happyHourCard" class="happy-hour-card ${state.active ? 'is-active' : 'is-upcoming'}" aria-live="polite"><div class="happy-hour-copy"><span class="happy-hour-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span><div><strong>${title}</strong><span class="happy-hour-detail">${detail}</span></div></div><strong class="happy-hour-count" data-happy-hour-count>${formatHappyHourTime(state.target - new Date())}</strong></section>`);
+        updateHappyHour();
+    }
+    function updateHappyHour() {
+        const card = document.getElementById('happyHourCard');
+        if (!card) return;
+        const state = getHappyHourState();
+        const count = card.querySelector('[data-happy-hour-count]');
+        const detail = card.querySelector('.happy-hour-detail');
+        card.classList.toggle('is-active', state.active);
+        card.classList.toggle('is-upcoming', !state.active);
+        if (count) count.textContent = formatHappyHourTime(state.target - new Date());
+        if (detail) detail.textContent = state.active ? (aktifDil === 'en' ? 'Special offers are live' : 'Özel teklifler şu an aktif') : (aktifDil === 'en' ? 'Next offer starts at 15:00' : 'Yeni teklif 15:00’te başlar');
+    }
+    if (!window.__kfmHappyHourTimer) window.__kfmHappyHourTimer = window.setInterval(updateHappyHour, 1000);
 
     function updateSearchSummary(visibleCount, scopedCount, arama) {
         const summary = document.getElementById('searchSummary');
@@ -4136,7 +4352,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
             return;
         }
 
-        if (!arama) renderDailySuggestion();
+        if (!arama) { renderDailySuggestion(); renderHappyHour(); }
 
         list.forEach((u, idx) => {
             const name = (aktifDil === 'en' && u.ad_en) ? u.ad_en : u.ad;
@@ -4274,6 +4490,7 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         detailHero.style.setProperty('--category-glow', scene.glow);
         detailHero.style.setProperty('--category-depth', scene.depth);
         detailHero.style.setProperty('--category-rim', scene.rim);
+        detailHero.style.setProperty('--detail-scene-img', getDetailSceneImage(item.catKey));
         detailModal.classList.remove('detail-scene-refresh');
         void detailModal.offsetWidth;
         detailModal.classList.add('detail-scene-refresh');
@@ -5551,5 +5768,9 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
     setupTactileFeedback();
 
 </script>
+
+    <script>
+      window.setTimeout(() => setCategoryAtmosphere(typeof aktifKat === 'string' ? aktifKat : 'cat-all'), 0);
+    </script>
 </body>
 </html>
