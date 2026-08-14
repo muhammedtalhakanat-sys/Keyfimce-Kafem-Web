@@ -3392,8 +3392,8 @@ html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-grad
     </div>
     <div class="admin-accordion-content px-5">
         
-                <p class="text-xs mb-4 font-medium" style="color:var(--muted);">
-                    Aşağıdaki bilgileri doldurun; admin panelindeki her değişiklik GitHub'a otomatik commit edilir ve tüm cihazlarda anlık senkronizasyon sağlanır.
+                <p class="text-xs mb-4 font-medium" style="color:var(--muted);" data-i18n="gh_publish_note">
+                    Paneldeki ürün, kategori, çeviri, stok ve çerçeve değişikliklerini aynı JSON şemasını koruyarak tek düğmeyle GitHub’a kaydedin. GitHub ayarları kayıtlıysa form kaydetme işlemleri otomatik senkronizasyonu da tetikler.
                 </p>
                 <div class="space-y-3">
                     <div>
@@ -3420,10 +3420,10 @@ html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-grad
                                 style="background:#4f46e5;">
                             <i class="fa-solid fa-floppy-disk"></i> Ayarları Kaydet
                         </button>
-                        <button onclick="ghManuelPush()"
+                        <button id="ghPublishBtn" onclick="ghManuelPush()"
                                 class="py-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
                                 style="background:#eef2ff; border:1.5px solid #a5b4fc; color:#4338ca;">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> Manuel Push
+                            <i class="fa-solid fa-cloud-arrow-up"></i><span data-i18n="gh_publish_btn">GitHub JSON’a Kaydet ve Yayınla</span>
                         </button>
                     </div>
                 </div>
@@ -3778,6 +3778,8 @@ html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-grad
             toast_gh_push_ok: "✅ GitHub'a başarıyla push edildi!",
             toast_gh_push_fail: "❌ GitHub push başarısız",
             toast_gh_no_settings: "❌ Önce GitHub ayarlarını kaydedin",
+            gh_publish_btn: "GitHub JSON’a Kaydet ve Yayınla",
+            gh_publish_note: "Paneldeki ürün, kategori, çeviri, stok ve çerçeve değişikliklerini aynı JSON şemasını koruyarak tek düğmeyle GitHub’a kaydedin. GitHub ayarları kayıtlıysa form kaydetme işlemleri otomatik senkronizasyonu da tetikler.",
             quick_order: "⚡ Hızlı Sipariş",
             quick_order_en: "⚡ Quick Order",
             call_waiter: "🔔 Garson Çağır",
@@ -3865,6 +3867,8 @@ html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-grad
             toast_gh_push_ok: "✅ Successfully pushed to GitHub!",
             toast_gh_push_fail: "❌ GitHub push failed",
             toast_gh_no_settings: "❌ Please save GitHub settings first",
+            gh_publish_btn: "Save and Publish JSON to GitHub",
+            gh_publish_note: "Save product, category, translation, stock, and frame changes to GitHub with one button while preserving the existing JSON schema. Saved GitHub settings also enable automatic sync after form saves.",
             quick_order: "⚡ Quick Order",
             quick_order_en: "⚡ Quick Order",
             call_waiter: "🔔 Call Waiter",
@@ -4265,71 +4269,116 @@ html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-grad
         badge.innerHTML = `<i class="fa-solid ${ikonlar[durum] || 'fa-circle-check'}"></i> ${mesaj}`;
     }
 
-    async function githubPush() {
-        const { token, user, repo, file } = ghSettings;
-        if (!token || !user || !repo || !file) return;
+    /* KFM_V24_GITHUB_JSON_PUBLISH
+       JSON şemasını koruyan, UTF-8 güvenli ve tek seferde yayınlanan GitHub akışı. */
+    let ghPushInFlight = null;
+    let ghPushQueued = false;
 
-        ghSetStatus('saving', 'Kaydediliyor...');
+    function kfmGithubEncodeUtf8(value) {
+        const bytes = new TextEncoder().encode(value);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i += 0x8000) {
+            binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+        }
+        return btoa(binary);
+    }
 
-        const icerik = {
+    function kfmGithubDecodeUtf8(base64) {
+        const clean = String(base64 || '').replace(/\\s/g, '');
+        const binary = atob(clean);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    function kfmGithubPayloadFromState(remotePayload = {}) {
+        // Uzak JSON’daki bilinmeyen alanları koru; bilinen alanları güncel panel verisiyle değiştir.
+        return Object.assign({}, remotePayload, {
             menuYedek: menuData,
-            wifiYedek: wifiData,
-            sifreYedek: adminSifre,
+            wifiYedek: { ad: wifiData?.ad || '', sifre: '********' },
             headerBgYedek: headerBgUrl,
             hizliSiparisYedek: hizliSiparis,
             frameYedek: kfmFrameSettings
-        };
-        const icerikStr = JSON.stringify(icerik, null, 2);
-        const base64Icerik = btoa(unescape(encodeURIComponent(icerikStr)));
+        });
+    }
 
-        const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${file}`;
+    async function githubPush(options = {}) {
+        const { token, user, repo, file } = ghSettings;
+        if (!token || !user || !repo || !file) return false;
 
-        try {
-            // Mevcut dosyanın SHA'sını al (güncelleme için gerekli)
-            let sha = null;
-            const getResp = await fetch(apiUrl, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/vnd.github+json',
-                    'X-GitHub-Api-Version': '2022-11-28'
-                }
-            });
-            if (getResp.ok) {
-                const getData = await getResp.json();
-                sha = getData.sha;
-            }
-
-            // Commit gövdesi
-            const body = {
-                message: `🔄 Keyfimce Kafem otomatik güncelleme — ${new Date().toLocaleString('tr-TR')}`,
-                content: base64Icerik,
-                branch: 'main'
-            };
-            if (sha) body.sha = sha;
-
-            const putResp = await fetch(apiUrl, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/vnd.github+json',
-                    'Content-Type': 'application/json',
-                    'X-GitHub-Api-Version': '2022-11-28'
-                },
-                body: JSON.stringify(body)
-            });
-
-            if (putResp.ok) {
-                ghSetStatus('idle', 'Senkronize ✓');
-                console.log('GitHub push başarılı.');
-            } else {
-                const errData = await putResp.json().catch(() => ({}));
-                console.error('GitHub push hatası:', putResp.status, errData);
-                ghSetStatus('error', 'Push hatası!');
-            }
-        } catch (err) {
-            console.error('GitHub push exception:', err);
-            ghSetStatus('error', 'Bağlantı hatası!');
+        // Formda art arda kaydetmeye basılırsa aynı dosyaya paralel PUT gönderme.
+        if (ghPushInFlight) {
+            ghPushQueued = true;
+            if (options.manual) ghSetStatus('saving', 'Sıraya alındı...');
+            return ghPushInFlight;
         }
+
+        ghPushInFlight = (async () => {
+            ghSetStatus('saving', 'Kaydediliyor...');
+            const apiUrl = `https://api.github.com/repos/${encodeURIComponent(user)}/${encodeURIComponent(repo)}/contents/${file.split('/').map(encodeURIComponent).join('/')}`;
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/vnd.github+json',
+                'X-GitHub-Api-Version': '2022-11-28'
+            };
+
+            try {
+                // SHA ve mevcut içeriği al: böylece JSON’daki bilinmeyen alanlar ve yazım düzeni korunur.
+                let sha = null;
+                let remotePayload = {};
+                const getResp = await fetch(apiUrl, { headers });
+                if (getResp.ok) {
+                    const getData = await getResp.json();
+                    sha = getData.sha || null;
+                    if (getData.content) {
+                        try {
+                            remotePayload = JSON.parse(kfmGithubDecodeUtf8(getData.content));
+                        } catch (decodeError) {
+                            console.warn('GitHub JSON okunamadı; güncel panel verisiyle yeni gövde oluşturulacak.', decodeError);
+                        }
+                    }
+                } else if (getResp.status !== 404) {
+                    throw new Error(`GitHub dosya okuma hatası: ${getResp.status}`);
+                }
+
+                const payload = kfmGithubPayloadFromState(remotePayload);
+                const content = JSON.stringify(payload, null, 2);
+                const body = {
+                    message: `Keyfimce Kafem: menü ve çerçeve ayarlarını güncelle — ${new Date().toLocaleString('tr-TR')}`,
+                    content: kfmGithubEncodeUtf8(content),
+                    branch: 'main'
+                };
+                if (sha) body.sha = sha;
+
+                const putResp = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: { ...headers, 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                if (!putResp.ok) {
+                    const errData = await putResp.json().catch(() => ({}));
+                    console.error('GitHub push hatası:', putResp.status, errData);
+                    ghSetStatus('error', putResp.status === 409 ? 'Çakışma; tekrar deneyin' : 'Push hatası!');
+                    return false;
+                }
+
+                ghSetStatus('idle', 'Senkronize ✓');
+                console.log('GitHub JSON senkronizasyonu başarılı:', file);
+                return true;
+            } catch (err) {
+                console.error('GitHub push exception:', err);
+                ghSetStatus('error', 'Bağlantı hatası!');
+                return false;
+            } finally {
+                ghPushInFlight = null;
+                if (ghPushQueued) {
+                    ghPushQueued = false;
+                    window.setTimeout(() => githubPush(), 80);
+                }
+            }
+        })();
+
+        return ghPushInFlight;
     }
 
     function ghAyarKaydet() {
@@ -4348,17 +4397,21 @@ html[data-theme="dark"] #adminPanel .ap-new-product-media{background:linear-grad
     }
 
     async function ghManuelPush() {
-        if (!ghSettings.token || !ghSettings.user || !ghSettings.repo) {
+        if (!ghSettings.token || !ghSettings.user || !ghSettings.repo || !ghSettings.file) {
             toast(t('toast_gh_no_settings'));
             return;
         }
-        await githubPush();
-        const badge = document.getElementById('ghStatusBadge');
-        if (badge && badge.classList.contains('idle')) {
-            toast(t('toast_gh_push_ok'));
-        } else {
-            toast(t('toast_gh_push_fail'));
+        const button = document.getElementById('ghPublishBtn');
+        if (button) {
+            button.disabled = true;
+            button.classList.add('opacity-70');
         }
+        const ok = await githubPush({ manual: true });
+        if (button) {
+            button.disabled = false;
+            button.classList.remove('opacity-70');
+        }
+        toast(t(ok ? 'toast_gh_push_ok' : 'toast_gh_push_fail'));
     }
 
     // ══════════════════════════════════════════════════════════════
