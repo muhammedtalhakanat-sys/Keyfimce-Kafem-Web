@@ -5305,9 +5305,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const explicit = String(product?.gorsel || '').trim();
         const source = [product?.ad, product?.ad_en].filter(Boolean).join(' ').toLowerCase();
         const fallback = kfmV21FallbackFor(product, catKey);
-        // İtalyan kahvelerinde bilinen uzak görseller yerine doğrudan yerel temiz görsel kullanılır.
-        if (/italian cappuccino|italyan cappuccino|italian macchiato|italyan macchiato/.test(source)) return fallback;
-        if (!explicit || explicit.startsWith('file:') || /category-scene-|hookah-welcome-3d-clean/.test(explicit)) return fallback;
+        // KFM_MENU_IMAGES_V28: Doğrulanmış doğrudan URL'ler önceliklidir;
+        // boş, file: veya bilinen küçük önizleme kaynaklarında yerel fallback kullanılır.
+        if (!explicit || explicit.startsWith('file:') || /encrypted-tbn0.gstatic.com|category-scene-|hookah-welcome-3d-clean/.test(explicit)) return fallback;
         return explicit;
     }
     function kfmHandleProductImageErrorV21(img, fallback) {
