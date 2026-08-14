@@ -2273,6 +2273,25 @@ html[data-theme="dark"] .product-card-frame-art[data-frame-theme="hookah"]{filte
 @media(max-width:680px){.product-card-frame-art[data-frame-theme="food"],.product-card-frame-art[data-frame-theme="cold"],.product-card-frame-art[data-frame-theme="sweet"],.product-card-frame-art[data-frame-theme="hookah"]{filter:drop-shadow(0 3px 6px rgba(53,26,15,.25));}}
 @media(prefers-reduced-motion:reduce){.product-card-frame-art[data-frame-theme]{transition:none!important;}}
 
+
+
+/* KFM_V19_FRAME_VISIBILITY */
+/* V18 varyant PNG'lerinin beyaz merkezini blend ederek ürün fotoğrafını görünür tutar. */
+.product-card-frame-art[data-frame-theme="food"],
+.product-card-frame-art[data-frame-theme="cold"],
+.product-card-frame-art[data-frame-theme="sweet"],
+.product-card-frame-art[data-frame-theme="hookah"]{
+  mix-blend-mode:multiply!important;
+  background-color:transparent!important;
+}
+/* Koyu zeminde de beyaz/opal merkez ürün fotoğrafını örtmez; dekoratif çizgiler korunur. */
+html[data-theme="dark"] .product-card-frame-art[data-frame-theme="food"],
+html[data-theme="dark"] .product-card-frame-art[data-frame-theme="cold"],
+html[data-theme="dark"] .product-card-frame-art[data-frame-theme="sweet"],
+html[data-theme="dark"] .product-card-frame-art[data-frame-theme="hookah"]{
+  mix-blend-mode:multiply!important;
+}
+
 /* WHEEL · DETAIL · SMART SUGGESTION V11 */
 /* Masaüstü kategori çarkı: daha geniş tutuş alanı, belirgin odak çizgisi ve okunaklı yönerge. */
 @media (min-width:700px){
@@ -3682,7 +3701,8 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
         "cat-tatli": "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=400&q=80",
         "cat-cay": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80",
         "cat-soguk-icecek": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=400&q=80",
-        "cat-yiyecek": "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?auto=format&fit=crop&w=400&q=80"
+        "cat-yiyecek": "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?auto=format&fit=crop&w=400&q=80",
+        "cat-nargile": "hookah-welcome-3d-clean.png"
     };
 
     // ══════════════════════════════════════════════════════════════
