@@ -8,4 +8,4 @@
 - [x] Ana menüye müşterinin erişebileceği, masa numarası ve isteğe bağlı not alanı içeren garson çağrı arayüzü ekle.
 - [x] Garson çağrı arayüzünün Türkçe/İngilizce metinlerini, başarı-hata bildirimlerini ve hız limiti geri bildirimini tamamla.
 - [x] Müşteri çağrısı akışını, mobil görünümü ve JavaScript sözdizimini doğrula.
-- [ ] Doğrulanmış müşteri garson çağrı arayüzünü GitHub Pages ana dalına yayımla.
+- [x] Doğrulanmış müşteri garson çağrı arayüzünü GitHub Pages ana dalına yayımla.
