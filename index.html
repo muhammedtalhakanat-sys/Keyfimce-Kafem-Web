@@ -3234,10 +3234,47 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 @keyframes welcomeSmokeCloudV27{0%{opacity:0;transform:translate3d(0,10px,0) scale(.62) rotate(-5deg)}20%{opacity:.72}58%{opacity:.42;transform:translate3d(7px,-28px,10px) scale(1) rotate(5deg)}100%{opacity:0;transform:translate3d(-12px,-72px,18px) scale(1.28) rotate(-11deg)}}
 .coffee-steam i:nth-child(1),.hookah-smoke i:nth-child(1){animation-duration:5.2s!important;}
 .coffee-steam i:nth-child(2),.hookah-smoke i:nth-child(2){animation-duration:6.35s!important;}
-.coffee-steam i:nth-child(3),.hookah-smoke i:nth-child(3){animation-duration:5.7s!important;}
-@media(max-width:520px){.coffee-steam::before,.coffee-steam::after,.hookah-smoke::before,.hookah-smoke::after{filter:blur(5px);}}
-@media(prefers-reduced-motion:reduce){.coffee-steam::before,.coffee-steam::after,.hookah-smoke::before,.hookah-smoke::after{animation:none!important;opacity:.34!important;transform:none!important;}.coffee-steam i,.hookah-smoke i{animation:none!important;opacity:.34!important;transform:none!important;}}
-</style>
+	.coffee-steam i:nth-child(3),.hookah-smoke i:nth-child(3){animation-duration:5.7s!important;}
+	@media(max-width:520px){.coffee-steam::before,.coffee-steam::after,.hookah-smoke::before,.hookah-smoke::after{filter:blur(5px);}}
+	@media(prefers-reduced-motion:reduce){.coffee-steam::before,.coffee-steam::after,.hookah-smoke::before,.hookah-smoke::after{animation:none!important;opacity:.34!important;transform:none!important;}.coffee-steam i,.hookah-smoke i{animation:none!important;opacity:.34!important;transform:none!important;}}
+
+	/* KFM_WAITER_CALLER_V34 — Ziyaretçinin menüden güvenle garson çağırdığı form. */
+	button.bnav-btn{border:0;background:transparent;font:inherit;}
+	#bnav-waiter{color:var(--rust);}
+	#bnav-waiter i{filter:drop-shadow(0 4px 8px rgba(184,92,56,.24));}
+	#waiterCallModal{padding:18px;}
+	.waiter-call-modal{position:relative;overflow:hidden;width:min(100%,460px);padding:0!important;border:1px solid rgba(184,92,56,.24)!important;background:linear-gradient(145deg,rgba(255,253,250,.99),rgba(247,232,219,.98))!important;box-shadow:0 28px 80px rgba(55,25,14,.29)!important;}
+	.waiter-call-modal::before{content:'';position:absolute;z-index:0;inset:-46% -30% auto auto;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(213,115,75,.24),transparent 69%);pointer-events:none;}
+	.waiter-call-content{position:relative;z-index:1;padding:24px;}
+	.waiter-call-close{position:absolute;top:14px;right:14px;z-index:2;display:grid;place-items:center;width:36px;height:36px;padding:0;border:1px solid rgba(184,92,56,.17);border-radius:13px;color:var(--muted);background:rgba(255,255,255,.68);cursor:pointer;transition:transform .18s cubic-bezier(.22,1,.36,1),background .18s ease,color .18s ease;}
+	.waiter-call-close:hover{color:var(--rust);background:#fff;transform:rotate(4deg) scale(1.04);}
+	.waiter-call-hero{display:flex;align-items:center;gap:14px;padding-right:42px;}
+	.waiter-call-icon{display:grid;place-items:center;flex:0 0 52px;width:52px;height:52px;border:1px solid rgba(184,92,56,.20);border-radius:18px;color:#fff;background:linear-gradient(145deg,#c16b45,#8d432a);box-shadow:0 12px 24px rgba(145,61,34,.22),inset 0 1px 0 rgba(255,255,255,.22);}
+	.waiter-call-icon i{font-size:20px;}
+	.waiter-call-hero h3{margin:0;color:var(--ink);font-family:var(--font-display);font-size:22px;line-height:1.08;}
+	.waiter-call-hero p{margin:4px 0 0;color:var(--muted);font-size:11px;line-height:1.5;}
+	.waiter-call-form{display:grid;gap:13px;margin-top:20px;}
+	.waiter-call-field{display:grid;gap:7px;}
+	.waiter-call-field label{color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.015em;}
+	.waiter-call-field input,.waiter-call-field textarea{box-sizing:border-box;width:100%;border:1px solid rgba(146,80,47,.18);border-radius:15px;padding:12px 13px;color:var(--ink);font:inherit;font-size:13px;line-height:1.45;background:rgba(255,255,255,.74);box-shadow:inset 0 1px 0 rgba(255,255,255,.74);outline:none;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;}
+	.waiter-call-field textarea{min-height:76px;resize:vertical;}
+	.waiter-call-field input:focus,.waiter-call-field textarea:focus{border-color:rgba(184,92,56,.62);background:#fff;box-shadow:0 0 0 4px rgba(184,92,56,.12);}
+	.waiter-call-field small{color:var(--muted2);font-size:10px;line-height:1.45;}
+	.waiter-call-submit{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;margin-top:2px;border:0;border-radius:16px;padding:12px 16px;color:#fff;font:inherit;font-size:13px;font-weight:850;letter-spacing:.015em;background:linear-gradient(135deg,#bd633f,#873b25);box-shadow:0 12px 21px rgba(138,59,35,.23);cursor:pointer;transition:transform .18s cubic-bezier(.22,1,.36,1),box-shadow .18s ease,filter .18s ease;}
+	.waiter-call-submit:hover{filter:brightness(1.06);box-shadow:0 15px 28px rgba(138,59,35,.28);transform:translateY(-2px);}
+	.waiter-call-submit:active{transform:translateY(1px) scale(.98);}
+	.waiter-call-submit:disabled{cursor:wait;opacity:.72;transform:none;filter:saturate(.72);}
+	.waiter-call-security{display:flex;align-items:flex-start;gap:8px;margin:2px 0 0;color:var(--muted2);font-size:10px;line-height:1.45;}
+	.waiter-call-security i{margin-top:1px;color:var(--rust);}
+	html[data-theme="dark"] .waiter-call-modal{border-color:rgba(226,138,97,.30)!important;background:linear-gradient(145deg,#382319,#20130f)!important;box-shadow:0 28px 80px rgba(0,0,0,.46)!important;}
+	html[data-theme="dark"] .waiter-call-close{border-color:rgba(255,225,202,.12);color:var(--muted);background:rgba(255,255,255,.06);}
+	html[data-theme="dark"] .waiter-call-close:hover{color:var(--rust-dk);background:rgba(255,255,255,.11);}
+	html[data-theme="dark"] .waiter-call-hero h3,html[data-theme="dark"] .waiter-call-field label{color:var(--ink);}
+	html[data-theme="dark"] .waiter-call-field input,html[data-theme="dark"] .waiter-call-field textarea{border-color:rgba(255,220,194,.15);color:var(--ink);background:rgba(255,255,255,.055);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);}
+	html[data-theme="dark"] .waiter-call-field input:focus,html[data-theme="dark"] .waiter-call-field textarea:focus{border-color:rgba(217,130,87,.68);background:rgba(255,255,255,.08);box-shadow:0 0 0 4px rgba(217,130,87,.14);}
+	@media(max-width:520px){#waiterCallModal{align-items:flex-end;padding:10px;}.waiter-call-modal{width:100%;border-radius:25px 25px 20px 20px!important;}.waiter-call-content{padding:22px 18px 19px;}.waiter-call-hero h3{font-size:21px;}.waiter-call-field textarea{min-height:70px;}}
+	@media(prefers-reduced-motion:reduce){.waiter-call-modal,.waiter-call-close,.waiter-call-submit,.waiter-call-field input,.waiter-call-field textarea{animation:none!important;transition:none!important;}.waiter-call-submit:hover,.waiter-call-close:hover{transform:none!important;}}
+	</style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
 
@@ -3357,11 +3394,40 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         <div class="bnav-btn active" id="bnav-menu" onclick="setTab('menu')">
             <i class="fa-solid fa-utensils"></i><span data-i18n="nav_menu">Menü</span>
         </div>
+        <button type="button" class="bnav-btn" id="bnav-waiter" onclick="garsonCagriPenceresiAc()" aria-haspopup="dialog" aria-controls="waiterCallModal">
+            <i class="fa-solid fa-bell"></i><span data-i18n="call_waiter">Garson Çağır</span>
+        </button>
         <div class="bnav-btn" id="bnav-review" onclick="yorumModalAc()">
             <i class="fa-solid fa-star"></i>
             <span id="lblSkor">Öneri-İstek</span>
         </div>
     </nav>
+
+    <!-- Müşteri Garson Çağırma Modalı -->
+    <div id="waiterCallModal" class="modal-overlay" role="presentation" onclick="if(event.target===this) modalKapat('waiterCallModal')">
+        <section class="modal-box waiter-call-modal" role="dialog" aria-modal="true" aria-labelledby="waiterCallTitle" aria-describedby="waiterCallDescription">
+            <button type="button" class="waiter-call-close" onclick="modalKapat('waiterCallModal')" data-i18n-aria-label="modal_close" aria-label="Kapat"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <div class="waiter-call-content">
+                <div class="waiter-call-hero">
+                    <span class="waiter-call-icon" aria-hidden="true"><i class="fa-solid fa-bell-concierge"></i></span>
+                    <div><h3 id="waiterCallTitle" data-i18n="waiter_modal_title">Garson Çağır</h3><p id="waiterCallDescription" data-i18n="waiter_modal_description">Masa numaranızı yazın; çağrınız doğrudan ekibe iletilsin.</p></div>
+                </div>
+                <form id="waiterCallForm" class="waiter-call-form" onsubmit="garsonCagriFormGonder(event)" novalidate>
+                    <div class="waiter-call-field">
+                        <label for="waiterTableNumber" data-i18n="waiter_table_label">Masa numaranız</label>
+                        <input id="waiterTableNumber" name="masa_no" type="text" maxlength="32" autocomplete="off" inputmode="text" pattern="[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]+" required data-i18n-placeholder="waiter_table_placeholder" placeholder="Örn. 12 veya Teras 3" aria-describedby="waiterTableHint">
+                        <small id="waiterTableHint" data-i18n="waiter_table_hint">Masa numaranız çağrının doğru ekibe ulaşmasını sağlar.</small>
+                    </div>
+                    <div class="waiter-call-field">
+	                        <label for="waiterCallNote"><span data-i18n="waiter_note_label">Notunuz</span> <em data-i18n="waiter_optional">(isteğe bağlı)</em></label>
+                        <textarea id="waiterCallNote" name="not" maxlength="280" data-i18n-placeholder="waiter_note_placeholder" placeholder="Örn. Hesap rica ediyorum"></textarea>
+                    </div>
+                    <button id="waiterCallSubmit" type="submit" class="waiter-call-submit"><i class="fa-solid fa-bell" aria-hidden="true"></i><span data-i18n="waiter_submit">Garson Çağır</span></button>
+                    <p class="waiter-call-security"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i><span data-i18n="waiter_security_hint">Çağrılar güvenli olarak iletilir. Aynı cihazdan kısa sürede en fazla 3 çağrı gönderilebilir.</span></p>
+                </form>
+            </div>
+        </section>
+    </div>
 
     <!-- Ürün Detay Modalı -->
     <div id="productDetailModal" class="modal-overlay" onclick="if(event.target===this) modalKapat('productDetailModal')">
@@ -3936,11 +4002,24 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             gh_publish_note: "Paneldeki ürün, kategori, çeviri, stok ve çerçeve değişikliklerini aynı JSON şemasını koruyarak tek düğmeyle GitHub’a kaydedin. GitHub ayarları kayıtlıysa form kaydetme işlemleri otomatik senkronizasyonu da tetikler.",
             quick_order: "⚡ Hızlı Sipariş",
             quick_order_en: "⚡ Quick Order",
-            call_waiter: "🔔 Garson Çağır",
-            call_waiter_en: "🔔 Call Waiter",
-            waiter_called: "✅ Garson çağrıldı!",
-            waiter_called_en: "✅ Waiter called!",
-            quick_order_title: "Hızlı Sipariş Yönetimi",
+	            call_waiter: "🔔 Garson Çağır",
+	            call_waiter_en: "🔔 Call Waiter",
+	            waiter_called: "✅ Garson çağrıldı!",
+	            waiter_called_en: "✅ Waiter called!",
+	            waiter_modal_title: "Garson Çağır",
+	            waiter_modal_description: "Masa numaranızı yazın; çağrınız doğrudan ekibe iletilsin.",
+	            waiter_table_label: "Masa numaranız",
+	            waiter_table_placeholder: "Örn. 12 veya Teras 3",
+	            waiter_table_hint: "Masa numaranız çağrının doğru ekibe ulaşmasını sağlar.",
+	            waiter_note_label: "Notunuz",
+	            waiter_optional: "(isteğe bağlı)",
+	            waiter_note_placeholder: "Örn. Hesap rica ediyorum",
+	            waiter_submit: "Garson Çağır",
+	            waiter_security_hint: "Çağrılar güvenli olarak iletilir. Aynı cihazdan kısa sürede en fazla 3 çağrı gönderilebilir.",
+	            waiter_table_required: "Lütfen geçerli bir masa numarası girin.",
+	            waiter_sending: "Çağrınız gönderiliyor…",
+	            waiter_sent: "✅ Çağrınız ekibe iletildi. Garsonumuz kısa süre içinde yanınızda olacak.",
+	            quick_order_title: "Hızlı Sipariş Yönetimi",
             quick_order_title_en: "Quick Order Management",
             quick_order_desc: "En çok satan ürünleri buraya ekleyin, müşteriler kısayol olarak hızlıca sipariş verebilir.",
             quick_order_desc_en: "Add best-selling products here, customers can order quickly as shortcuts.",
@@ -4026,11 +4105,24 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             gh_publish_note: "Save product, category, translation, stock, and frame changes to GitHub with one button while preserving the existing JSON schema. Saved GitHub settings also enable automatic sync after form saves.",
             quick_order: "⚡ Quick Order",
             quick_order_en: "⚡ Quick Order",
-            call_waiter: "🔔 Call Waiter",
-            call_waiter_en: "🔔 Call Waiter",
-            waiter_called: "✅ Waiter called!",
-            waiter_called_en: "✅ Waiter called!",
-            quick_order_title: "Quick Order Management",
+	            call_waiter: "🔔 Call Waiter",
+	            call_waiter_en: "🔔 Call Waiter",
+	            waiter_called: "✅ Waiter called!",
+	            waiter_called_en: "✅ Waiter called!",
+	            waiter_modal_title: "Call a Waiter",
+	            waiter_modal_description: "Enter your table number and send your request directly to the team.",
+	            waiter_table_label: "Your table number",
+	            waiter_table_placeholder: "For example: 12 or Terrace 3",
+	            waiter_table_hint: "Your table number helps your request reach the right team.",
+	            waiter_note_label: "Your note",
+	            waiter_optional: "(optional)",
+	            waiter_note_placeholder: "For example: May I have the bill, please?",
+	            waiter_submit: "Call a Waiter",
+	            waiter_security_hint: "Requests are sent securely. A maximum of 3 requests can be sent from the same device within a short period.",
+	            waiter_table_required: "Please enter a valid table number.",
+	            waiter_sending: "Sending your request…",
+	            waiter_sent: "✅ Your request has reached the team. A waiter will be with you shortly.",
+	            quick_order_title: "Quick Order Management",
             quick_order_title_en: "Quick Order Management",
             quick_order_desc: "Add best-selling products here, customers can order quickly as shortcuts.",
             quick_order_desc_en: "Add best-selling products here, customers can order quickly as shortcuts.",
@@ -4208,10 +4300,14 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             el.textContent = t(key);
         });
         // data-i18n-placeholder elementleri
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            el.placeholder = t(key);
-        });
+	        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+	            const key = el.getAttribute('data-i18n-placeholder');
+	            el.placeholder = t(key);
+	        });
+	        document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+	            const key = el.getAttribute('data-i18n-aria-label');
+	            el.setAttribute('aria-label', t(key));
+	        });
         // Dil butonu etiketi
         document.getElementById('langBtnLabel').textContent = aktifDil === 'tr' ? 'EN' : 'TR';
         // html lang attr
@@ -5723,42 +5819,81 @@ function apUrunDosyaSecildi(event, catKey, id) {
         return `kfm-${Date.now()}-${Math.random().toString(16).slice(2)}`;
     }
 
-    async function garsonCagir(testMode = false) {
-        const masaNo = prompt(testMode ? (aktifDil === 'en' ? 'Test table number:' : 'Test için masa numarası:') : (aktifDil === 'en' ? 'Please enter your table number:' : 'Lütfen masa numaranızı girin:'));
-        if (!masaNo) return;
+	    function garsonCagriPenceresiAc() {
+	        const form = document.getElementById('waiterCallForm');
+	        const tableInput = document.getElementById('waiterTableNumber');
+	        if (form) form.reset();
+	        if (tableInput) tableInput.setCustomValidity('');
+	        modalAc('waiterCallModal');
+	        window.setTimeout(() => tableInput?.focus(), 180);
+	    }
 
-        try {
-            const relayUrl = await getWaiterRelayUrl();
-            const response = await fetch(`${relayUrl}/api/waiter-call`, {
-                method: 'POST',
-                mode: 'cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    masa_no: String(masaNo).trim(),
-                    source: testMode ? 'web-admin-test' : 'web-menu',
-                    request_id: kfmWaiterRequestId(),
-                }),
-            });
-            const data = await response.json().catch(() => ({}));
-            if (!response.ok || !data.ok) throw new Error(data.error || 'Garson çağrısı gönderilemedi.');
+	    async function garsonCagriFormGonder(event) {
+	        event.preventDefault();
+	        const tableInput = document.getElementById('waiterTableNumber');
+	        const noteInput = document.getElementById('waiterCallNote');
+	        const submitButton = document.getElementById('waiterCallSubmit');
+	        const masaNo = String(tableInput?.value || '').trim();
+	        const note = String(noteInput?.value || '').trim();
+	        const tablePattern = /^[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]{1,32}$/;
 
-            toast(testMode ? (aktifDil === 'en' ? 'Waiter test request sent.' : 'Garson çağırma test isteği gönderildi.') : (aktifDil === 'en' ? t('waiter_called_en') : t('waiter_called')));
-            console.log('Garson çağrısı relay üzerinden oluşturuldu:', data.call?.id);
+	        if (!tablePattern.test(masaNo)) {
+	            tableInput?.setCustomValidity(t('waiter_table_required'));
+	            tableInput?.reportValidity();
+	            return;
+	        }
+	        tableInput?.setCustomValidity('');
+	        if (submitButton) {
+	            submitButton.disabled = true;
+	            submitButton.setAttribute('aria-busy', 'true');
+	            submitButton.innerHTML = `<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span>${escapeHtml(t('waiter_sending'))}</span>`;
+	        }
 
-            const tarih = new Date().toLocaleString(aktifDil === 'en' ? 'en-US' : 'tr-TR');
-            const mesaj = aktifDil === 'en' ? `Table ${masaNo} is calling a waiter. Time: ${tarih}` : `Masa ${masaNo} garson çağırıyor. Saat: ${tarih}`;
-            if ('Notification' in window && Notification.permission === 'granted') {
-                new Notification('Keyfimce Kafem', { body: mesaj, icon: 'https://cdn-icons-png.flaticon.com/512/3774/3774299.png' });
-            } else if ('Notification' in window && Notification.permission !== 'denied') {
-                Notification.requestPermission().then(permission => {
-                    if (permission === 'granted') new Notification('Keyfimce Kafem', { body: mesaj, icon: 'https://cdn-icons-png.flaticon.com/512/3774/3774299.png' });
-                });
-            }
-        } catch (error) {
-            console.error('Garson çağrısı relay hatası:', error);
-            toast('⚠️ ' + (aktifDil === 'en' ? 'Waiter service is temporarily unavailable. Please try again.' : 'Garson çağrı servisine şu anda ulaşılamıyor. Lütfen tekrar deneyin.'));
-        }
-    }
+	        const sent = await garsonCagir(false, { masaNo, note });
+	        if (submitButton) {
+	            submitButton.disabled = false;
+	            submitButton.removeAttribute('aria-busy');
+	            submitButton.innerHTML = `<i class="fa-solid fa-bell" aria-hidden="true"></i><span>${escapeHtml(t('waiter_submit'))}</span>`;
+	        }
+	        if (sent) {
+	            modalKapat('waiterCallModal');
+	            document.getElementById('waiterCallForm')?.reset();
+	        }
+	    }
+
+	    async function garsonCagir(testMode = false, callDetails = null) {
+	        const promptLabel = testMode
+	            ? (aktifDil === 'en' ? 'Test table number:' : 'Test için masa numarası:')
+	            : (aktifDil === 'en' ? 'Please enter your table number:' : 'Lütfen masa numaranızı girin:');
+	        const masaNo = String(callDetails?.masaNo ?? prompt(promptLabel) ?? '').trim();
+	        const note = String(callDetails?.note ?? '').trim();
+	        if (!masaNo) return false;
+
+	        try {
+	            const relayUrl = await getWaiterRelayUrl();
+	            const response = await fetch(`${relayUrl}/api/waiter-call`, {
+	                method: 'POST',
+	                mode: 'cors',
+	                headers: { 'Content-Type': 'application/json' },
+	                body: JSON.stringify({
+	                    masa_no: masaNo,
+	                    cagri_turu: testMode ? 'test' : 'garson',
+	                    ...(note ? { not: note } : {}),
+	                    request_id: kfmWaiterRequestId(),
+	                }),
+	            });
+	            const data = await response.json().catch(() => ({}));
+	            if (!response.ok || !data.ok) throw new Error(data.error || 'Garson çağrısı gönderilemedi.');
+
+	            toast(testMode ? (aktifDil === 'en' ? 'Waiter test request sent.' : 'Garson çağırma test isteği gönderildi.') : t('waiter_sent'));
+	            console.log('Garson çağrısı relay üzerinden oluşturuldu:', data.call?.id);
+	            return true;
+	        } catch (error) {
+	            console.error('Garson çağrısı relay hatası:', error);
+	            toast('⚠️ ' + (error?.message || (aktifDil === 'en' ? 'Waiter service is temporarily unavailable. Please try again.' : 'Garson çağrı servisine şu anda ulaşılamıyor. Lütfen tekrar deneyin.')));
+	            return false;
+	        }
+	    }
 
     function yorumlariSil() {
         const onay = aktifDil === 'en' ? 'All reviews will be deleted. Are you sure?' : 'Tüm yorumlar silinecek. Emin misiniz?';
