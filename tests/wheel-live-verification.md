@@ -23,3 +23,7 @@ Canlı görünümde çark yeni doğrulama parametresiyle açıldı. Merkez kart,
 Ek son düzeltmede, yardımcı önizleme elemanının çalışma zamanında yeniden oluşturulması durduruldu; varsa doğrudan DOM'dan kaldırıldı. Merkez kartın sağa kayan ışık şeridi de devre dışı bırakıldı. Yerel önizleme adresi: `http://127.0.0.1:4173/?wheel-fix=final`.
 
 Yerel açık çark denetimi sonucu: `previewCount = 0`, merkez kartın `::after` içeriği `none`, ilk dört kategori kartının yatay merkez farkı `0 px`. Kart dönüşleri yalnızca `translateY` ve `scale` matris bileşenleri içeriyor.
+
+GitHub Pages dağıtımı: `01119f7f6db24b56767ee1aca23c12ca462b194f` commit'i `built` durumunda yayımlandı. Canlı sayfa önbellek kırıcı sorguyla açıldı: `?wheel-fix=01119f7`.
+
+Canlı açık çark ölçümü: `sourceHasFinalFix = true`, `previewCount = 0`, merkez kart `::after = none` ve ilk dört kartın yatay merkez farkı `[0, 0, 0, 0] px` olarak doğrulandı.
