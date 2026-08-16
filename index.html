@@ -2559,6 +2559,12 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
   -webkit-backface-visibility:hidden;
   will-change:transform,opacity,filter;
 }
+/* Çark merkezindeki ışık şeridi kart dışına taşmış gibi algılanabildiği için kapatıldı. */
+#catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus::after{
+  content:none!important;
+  display:none!important;
+  animation:none!important;
+}
 .wheel-sound-toggle{position:absolute;z-index:12;right:18px;top:18px;width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(184,92,56,.22);border-radius:50%;color:var(--rust);background:rgba(255,250,246,.88);box-shadow:0 7px 18px rgba(103,49,28,.12);font-size:12px;transition:transform .2s ease,background .2s ease,color .2s ease;}
 .wheel-sound-toggle:hover{transform:translateY(-2px) scale(1.04);background:var(--rust);color:#fff9f4;}
 .wheel-sound-toggle.is-muted{color:var(--muted);background:rgba(255,255,255,.66);}
@@ -6595,27 +6601,10 @@ function apUrunDosyaSecildi(event, catKey, id) {
         }
 
 
-        function updateWheelProximityPreview(items, index) {
-            let preview = nav.querySelector('.wheel-proximity-preview');
-            if (!preview) {
-                preview = document.createElement('div');
-                preview.className = 'wheel-proximity-preview';
-                preview.setAttribute('aria-hidden', 'true');
-                preview.innerHTML = '<span class="wheel-preview-item wheel-preview-item--up"><i class="fa-solid fa-chevron-up"></i><b></b></span><span class="wheel-preview-item wheel-preview-item--down"><i class="fa-solid fa-chevron-down"></i><b></b></span>';
-                nav.appendChild(preview);
-            }
-            const center = clamp(Math.round(index), 0, Math.max(0, items.length - 1));
-            const up = items[center - 1];
-            const down = items[center + 1];
-            const write = (selector, item) => {
-                const node = preview.querySelector(selector);
-                if (!node) return;
-                const label = item?.querySelector('.cat-pill-label')?.textContent || '';
-                node.querySelector('b').textContent = label;
-                node.classList.toggle('is-hidden', !label);
-            };
-            write('.wheel-preview-item--up', up);
-            write('.wheel-preview-item--down', down);
+        function updateWheelProximityPreview() {
+            // Sağ tarafa kayan geçici kategori etiketi artık kullanılmıyor.
+            // Önceki sürümden kalmışsa da yeniden belirmemesi için DOM'dan kaldırılır.
+            nav.querySelector('.wheel-proximity-preview')?.remove();
         }
 
         function scheduleRender() {
