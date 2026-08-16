@@ -5849,7 +5849,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
                     mode: 'cors',
                     credentials: 'omit',
                     cache: 'no-store',
-                    headers: { 'Content-Type': 'application/json' },
+	                    // `text/plain` CORS-safelisted olduğu için bazı ağlarda OPTIONS/preflight engellense bile çağrı doğrudan iletilebilir.
+	                    headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
                     body: JSON.stringify(requestBody),
                 });
                 // 4xx yanıtları kullanıcıya/istemciye ait olduğundan tekrar gönderilmez.
