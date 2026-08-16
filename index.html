@@ -2547,6 +2547,18 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
 #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{max-width:calc(100% - 34px)!important;overflow:hidden!important;text-overflow:ellipsis;white-space:nowrap;}
 #catNav.wheel-pro-mode:not(.wheel-collapsed)::after{content:var(--wheel-pro-hint)!important;letter-spacing:.055em!important;}
 #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:var(--wheel-pro-hint)!important;}
+/* Çark yalnızca dikey eksende hareket eder: yatay 3B dönüş/taşma kapatılır. */
+#catNav.wheel-pro-mode:not(.wheel-collapsed){
+  transform:translateZ(0)!important;
+  overflow-x:clip!important;
+  contain:layout paint;
+}
+#catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{
+  transform-origin:center center!important;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  will-change:transform,opacity,filter;
+}
 .wheel-sound-toggle{position:absolute;z-index:12;right:18px;top:18px;width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(184,92,56,.22);border-radius:50%;color:var(--rust);background:rgba(255,250,246,.88);box-shadow:0 7px 18px rgba(103,49,28,.12);font-size:12px;transition:transform .2s ease,background .2s ease,color .2s ease;}
 .wheel-sound-toggle:hover{transform:translateY(-2px) scale(1.04);background:var(--rust);color:#fff9f4;}
 .wheel-sound-toggle.is-muted{color:var(--muted);background:rgba(255,255,255,.66);}
@@ -6557,16 +6569,14 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
                 const scale = absolute < .08 ? 1.06 : Math.max(.80, 1 - absolute * .10);
                 const opacity = absolute < .08 ? 1 : Math.max(.20, 1 - absolute * .24);
-                const rotate = distance * -7;
-                const depth = absolute < .08 ? 34 : Math.max(-38, 14 - absolute * 20);
-                const sideShift = 0;
-                const rotateY = 0;
                 const blur = absolute < .08 ? 0 : Math.min(2.2, absolute * .65);
                 const y = distance * STEP;
                 item.style.opacity = opacity.toFixed(2);
                 item.style.setProperty('--wheel-live-blur', `${blur.toFixed(1)}px`);
                 item.style.filter = `blur(${blur.toFixed(1)}px)`;
-                item.style.transform = `translate(-50%, -50%) translate3d(${sideShift.toFixed(1)}px, ${y.toFixed(1)}px, ${depth.toFixed(1)}px) scale(${scale.toFixed(3)}) rotateX(${rotate.toFixed(1)}deg) rotateY(${rotateY.toFixed(1)}deg)`;
+                // Çark öğeleri yalnızca dikey eksende ilerler. Bu, sürüklemede sağa
+                // kayan/taşan 3B katman hissini kaldırırken odak ölçeğini korur.
+                item.style.transform = `translate(-50%, -50%) translateY(${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
                 item.style.transitionDuration = animate ? '.26s' : '0s';
                 item.classList.toggle('wheel-focus', absolute < .08);
                 item.classList.toggle('wheel-near', absolute >= .08 && absolute < 1.1);
@@ -6819,7 +6829,6 @@ function apUrunDosyaSecildi(event, catKey, id) {
                 suppressClick = true;
             }
             const liveIndex = dragStartIndex + filtered / STEP;
-            nav.style.setProperty('--wheel-gesture-tilt', `${clamp((liveIndex - dragStartIndex) * -2.4, -3.2, 3.2).toFixed(2)}deg`);
             render(liveIndex, false);
             lastPointerY = event.clientY;
             event.preventDefault();
