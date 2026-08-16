@@ -5793,6 +5793,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
     // KFM_WAITER_RELAY_V31 — Ziyaretçi çağrıları yalnızca HTTPS relay üzerinden iletilir.
     // Bu yapılandırma dosyası herkese açıktır; hiçbir erişim anahtarı içermez.
     const KFM_WAITER_RELAY_CONFIG = 'waiter_relay_config.json';
+    // Genel relay adresi gizli değildir; yapılandırma dosyası geçici olarak alınamazsa güvenli geri dönüş sağlar.
+    const KFM_WAITER_RELAY_FALLBACK_URL = 'https://keyfimce-rel-bicvcz2q.manus.space';
+    const KFM_WAITER_MAX_ATTEMPTS = 3;
     let kfmWaiterRelayUrlPromise = null;
 
     async function getWaiterRelayUrl() {
@@ -5809,9 +5812,39 @@ function apUrunDosyaSecildi(event, catKey, id) {
             })
             .catch(error => {
                 kfmWaiterRelayUrlPromise = null;
-                throw error;
+                console.warn('Relay yapılandırması alınamadı; canlı güvenli relay adresi kullanılacak.', error);
+                return KFM_WAITER_RELAY_FALLBACK_URL;
             });
         return kfmWaiterRelayUrlPromise;
+    }
+
+    function kfmWaiterDelay(milliseconds) {
+        return new Promise(resolve => window.setTimeout(resolve, milliseconds));
+    }
+
+    async function kfmWaiterCallPost(relayUrl, requestBody) {
+        let lastNetworkError = null;
+        for (let attempt = 1; attempt <= KFM_WAITER_MAX_ATTEMPTS; attempt += 1) {
+            try {
+                const response = await fetch(`${relayUrl}/api/waiter-call`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    credentials: 'omit',
+                    cache: 'no-store',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody),
+                });
+                // 4xx yanıtları kullanıcıya/istemciye ait olduğundan tekrar gönderilmez.
+                if (response.status < 500 || attempt === KFM_WAITER_MAX_ATTEMPTS) return response;
+                lastNetworkError = new Error(`Garson çağrı servisi geçici olarak yanıt veremedi (HTTP ${response.status}).`);
+            } catch (error) {
+                lastNetworkError = error;
+            }
+
+            // Aynı request_id tekrar kullanıldığı için ilk istek ulaştıysa relay kaydı yinelenmez.
+            await kfmWaiterDelay(450 * attempt);
+        }
+        throw lastNetworkError || new Error('Garson çağrı servisine ulaşılamadı.');
     }
 
     function kfmWaiterRequestId() {
@@ -5870,18 +5903,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        if (!masaNo) return false;
 
 	        try {
-	            const relayUrl = await getWaiterRelayUrl();
-	            const response = await fetch(`${relayUrl}/api/waiter-call`, {
-	                method: 'POST',
-	                mode: 'cors',
-	                headers: { 'Content-Type': 'application/json' },
-	                body: JSON.stringify({
-	                    masa_no: masaNo,
-	                    cagri_turu: testMode ? 'test' : 'garson',
-	                    ...(note ? { not: note } : {}),
-	                    request_id: kfmWaiterRequestId(),
-	                }),
-	            });
+            const relayUrl = await getWaiterRelayUrl();
+            const response = await kfmWaiterCallPost(relayUrl, {
+                masa_no: masaNo,
+                cagri_turu: testMode ? 'test' : 'garson',
+                ...(note ? { not: note } : {}),
+                request_id: kfmWaiterRequestId(),
+            });
 	            const data = await response.json().catch(() => ({}));
 	            if (!response.ok || !data.ok) throw new Error(data.error || 'Garson çağrısı gönderilemedi.');
 
