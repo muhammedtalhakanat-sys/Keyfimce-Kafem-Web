@@ -30,6 +30,32 @@
           pointer('pointerdown', y);
           pointer('pointermove', y - 126);
           pointer('pointerup', y - 126);
+          window.setTimeout(() => {
+            const visibleItems = [...nav.querySelectorAll('.cat-pill')]
+              .filter(item => win.getComputedStyle(item).display !== 'none');
+            const centreX = nav.getBoundingClientRect().left + nav.getBoundingClientRect().width / 2;
+            const aligned = visibleItems.every(item => {
+              const itemRect = item.getBoundingClientRect();
+              return Math.abs((itemRect.left + itemRect.width / 2) - centreX) < 1;
+            });
+            const transientLabels = nav.querySelectorAll(
+              '.wheel-proximity-preview, .wheel-preview-item, [data-wheel-transient-label]'
+            ).length;
+            const focusItem = nav.querySelector('.wheel-focus');
+            const focusAfter = focusItem ? win.getComputedStyle(focusItem, '::after') : null;
+            const noAnimatedOverlay = !focusAfter || (
+              focusAfter.content === 'none' &&
+              focusAfter.display === 'none' &&
+              focusAfter.animationName === 'none'
+            );
+            window.__wheelTest = {
+              passed: !nav.classList.contains('wheel-collapsed') && aligned && transientLabels === 0 && noAnimatedOverlay,
+              aligned,
+              transientLabels,
+              noAnimatedOverlay,
+            };
+            document.documentElement.dataset.wheelTest = window.__wheelTest.passed ? 'passed' : 'failed';
+          }, 450);
         }, 900);
       });
     </script>

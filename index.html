@@ -1510,14 +1510,8 @@
 #searchInput { transition: transform .24s cubic-bezier(.22,1,.36,1), box-shadow .24s ease, border-color .24s ease !important; }
 #searchInput:focus { transform: translateY(-1px) scale(1.008); border-color: rgba(184,92,56,.5) !important; box-shadow: 0 0 0 4px rgba(184,92,56,.12), 0 12px 26px rgba(90,44,25,.1) !important; }
 
-/* Çarkta seçili kategori için ışık taraması ve merkez vurgusu */
+/* Çark merkezinde yalnızca sabit seçili kart görünür. Yatay ışık/etiket katmanı kullanılmaz. */
 #catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus { position: absolute; overflow: hidden; }
-#catNav.wheel-pro-mode:not(.wheel-collapsed) .wheel-focus::after {
-  content: ''; position: absolute; inset: -60% -40%; pointer-events: none;
-  background: linear-gradient(112deg, transparent 43%, rgba(255,255,255,.45) 50%, transparent 57%);
-  transform: translateX(-76%) rotate(10deg); animation: wheelLightSweep 3.5s ease-in-out infinite;
-}
-@keyframes wheelLightSweep { 0%,48% { transform: translateX(-76%) rotate(10deg); opacity: 0; } 54% { opacity: .9; } 78%,100% { transform: translateX(76%) rotate(10deg); opacity: 0; } }
 
 /* Ürün kartı görseli, fiyat ve giriş sırası */
 #productGrid > .prod-card.product-entry { animation: productEntryFade .46s cubic-bezier(.22,1,.36,1) both; }
@@ -1600,13 +1594,8 @@
 #productGrid > .prod-card.parallax-active .product-card-image-wrap::after { opacity: 0; transform: translateX(-88%) rotate(10deg); }
 #productGrid > .prod-card.card-sheen-once .product-card-image-wrap::after { opacity: .92; transform: translateX(88%) rotate(10deg); transition: transform .58s cubic-bezier(.22,1,.36,1), opacity .12s ease; }
 
-/* Merkezdeki kategori değiştiğinde kısa, anlaşılır odak vurgusu. */
-#catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill.category-focus-pop { animation: categoryFocusPop .40s cubic-bezier(.22,1,.36,1) both; }
-@keyframes categoryFocusPop {
-  0% { filter: brightness(1) drop-shadow(0 0 0 rgba(184,92,56,0)); }
-  48% { filter: brightness(1.18) drop-shadow(0 8px 14px rgba(184,92,56,.26)); }
-  100% { filter: brightness(1) drop-shadow(0 0 0 rgba(184,92,56,0)); }
-}
+/* Merkez kategori, sürükleme esnasında konumunu korur; ek metin veya yatay animasyon uygulanmaz. */
+#catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill.category-focus-pop { animation: none !important; }
 
 /* Başlıktaki çok yavaş, düşük opaklıklı premium ışık lekeleri. */
 .header-ambient-3d::before,
@@ -6614,18 +6603,16 @@ function apUrunDosyaSecildi(event, catKey, id) {
             if (focusItem && !nav.classList.contains('wheel-collapsed') && window.__lastWheelFocusId !== focusItem.id) {
                 window.__lastWheelFocusId = focusItem.id;
                 if (lastSoundFocusId !== focusItem.id) { playWheelTick(); lastSoundFocusId = focusItem.id; }
-                focusItem.classList.remove('category-focus-pop');
-                void focusItem.offsetWidth;
-                focusItem.classList.add('category-focus-pop');
             }
             if (!dragging && !settling) startDwell();
         }
 
 
         function updateWheelProximityPreview() {
-            // Sağ tarafa kayan geçici kategori etiketi artık kullanılmıyor.
-            // Önceki sürümden kalmışsa da yeniden belirmemesi için DOM'dan kaldırılır.
-            nav.querySelector('.wheel-proximity-preview')?.remove();
+            // Kategori adı her zaman kartın üzerinde sabit kalır. Eski sürümlerden
+            // kalmış tüm geçici/yatay etiket düğümleri tekrar oluşsa bile temizlenir.
+            nav.querySelectorAll('.wheel-proximity-preview, .wheel-preview-item, [data-wheel-transient-label]')
+                .forEach(element => element.remove());
         }
 
         function scheduleRender() {

@@ -9,3 +9,8 @@
 - [x] Garson çağrı arayüzünün Türkçe/İngilizce metinlerini, başarı-hata bildirimlerini ve hız limiti geri bildirimini tamamla.
 - [x] Müşteri çağrısı akışını, mobil görünümü ve JavaScript sözdizimini doğrula.
 - [x] Doğrulanmış müşteri garson çağrı arayüzünü GitHub Pages ana dalına yayımla.
+
+- [x] Kategori çarkında sağa kayan menü etiketi/iz animasyonunu tespit edip kaldırmak.
+- [x] Çarkın açılma, sürükleme ve seçili kategori geçişlerinde yatay taşma oluşturmayan sabit etiketi uygulamak.
+- [x] Masaüstü ve mobil görünümde çark etkileşimini ve sayfa kaydırma davranışını doğrulamak.
+- [x] Doğrulanmış düzeltmeyi `main` dalına göndermek.
