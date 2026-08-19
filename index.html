@@ -3292,9 +3292,43 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	html[data-theme="dark"] .waiter-call-hero h3,html[data-theme="dark"] .waiter-call-field label{color:var(--ink);}
 		html[data-theme="dark"] .waiter-call-field input,html[data-theme="dark"] .waiter-call-field select,html[data-theme="dark"] .waiter-call-field textarea{border-color:rgba(255,220,194,.15);color:var(--ink);background:rgba(255,255,255,.055);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);}
 		html[data-theme="dark"] .waiter-call-field input:focus,html[data-theme="dark"] .waiter-call-field select:focus,html[data-theme="dark"] .waiter-call-field textarea:focus{border-color:rgba(217,130,87,.68);background:rgba(255,255,255,.08);box-shadow:0 0 0 4px rgba(217,130,87,.14);}
-	@media(max-width:520px){#waiterCallModal{align-items:flex-end;padding:10px;}.waiter-call-modal{width:100%;border-radius:25px 25px 20px 20px!important;}.waiter-call-content{padding:22px 18px 19px;}.waiter-call-hero h3{font-size:21px;}.waiter-call-field textarea{min-height:70px;}}
-		@media(prefers-reduced-motion:reduce){.waiter-call-modal,.waiter-call-close,.waiter-call-submit,.waiter-call-field input,.waiter-call-field select,.waiter-call-field textarea{animation:none!important;transition:none!important;}.waiter-call-submit:hover,.waiter-call-close:hover{transform:none!important;}}
-	</style>
+		@media(max-width:520px){#waiterCallModal{align-items:flex-end;padding:10px;}.waiter-call-modal{width:100%;border-radius:25px 25px 20px 20px!important;}.waiter-call-content{padding:22px 18px 19px;}.waiter-call-hero h3{font-size:21px;}.waiter-call-field textarea{min-height:70px;}}
+			@media(prefers-reduced-motion:reduce){.waiter-call-modal,.waiter-call-close,.waiter-call-submit,.waiter-call-field input,.waiter-call-field select,.waiter-call-field textarea{animation:none!important;transition:none!important;}.waiter-call-submit:hover,.waiter-call-close:hover{transform:none!important;}}
+
+		/* KFM_WELCOME_REFINEMENT_V35 — Konumu bozmayan, daha net marka ve servis hiyerarşisi. */
+		#welcomeScreen{background:radial-gradient(circle at 16% 12%,rgba(255,255,255,.86),transparent 31%),radial-gradient(circle at 88% 82%,rgba(196,100,59,.18),transparent 39%),linear-gradient(145deg,#fffaf5 0%,#f6e6d7 48%,#edd1bd 100%);}
+		.welcome-card{position:relative;max-width:560px;margin-inline:auto;padding:26px 28px 24px!important;border:1px solid rgba(255,255,255,.76);border-radius:32px!important;background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,247,239,.71))!important;box-shadow:0 30px 76px rgba(92,42,25,.19),inset 0 1px 0 rgba(255,255,255,.9)!important;}
+		.welcome-card::before{background:linear-gradient(125deg,rgba(255,255,255,.78),transparent 38%,rgba(184,92,56,.10) 75%)!important;}
+		.welcome-identity{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px;}
+		.welcome-eyebrow{display:inline-flex!important;align-items:center;gap:7px;width:max-content;max-width:100%;margin:0!important;padding:7px 10px!important;border:1px solid rgba(159,77,46,.16);border-radius:999px;color:#93482e!important;background:rgba(255,251,246,.72);box-shadow:0 4px 13px rgba(103,48,27,.07);font-size:9px!important;font-weight:900!important;letter-spacing:.14em!important;line-height:1!important;}
+		.welcome-eyebrow i{font-size:10px;color:#bd633f;}
+		.welcome-live{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:9px;font-weight:800;letter-spacing:.03em;white-space:nowrap;}
+		.welcome-live::before{content:'';width:7px;height:7px;border-radius:50%;background:#62a171;box-shadow:0 0 0 4px rgba(98,161,113,.12);}
+		.welcome-card h1{max-width:420px;margin:16px auto 8px!important;color:var(--ink)!important;font-size:clamp(1.8rem,5.6vw,2.45rem)!important;line-height:1.02!important;letter-spacing:-.035em!important;text-wrap:balance;}
+		.welcome-card > p[data-i18n="welcome_sub"]{max-width:390px;margin-inline:auto;color:var(--muted)!important;font-size:13px!important;line-height:1.55!important;text-wrap:balance;}
+		.welcome-service-note{display:flex;align-items:center;gap:9px;max-width:365px;margin:16px auto 0;padding:10px 12px;border:1px solid rgba(161,78,47,.12);border-radius:16px;text-align:left;background:rgba(255,255,255,.50);box-shadow:inset 0 1px 0 rgba(255,255,255,.72);}
+		.welcome-service-note i{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:10px;color:#fff;background:linear-gradient(145deg,#c36b46,#934329);box-shadow:0 7px 13px rgba(137,59,35,.19);font-size:12px;}
+		.welcome-service-note p{margin:0;color:var(--muted);font-size:10px;font-weight:650;line-height:1.35;}
+		.welcome-service-note strong{display:block;margin-bottom:1px;color:var(--ink);font-size:10px;font-weight:900;letter-spacing:.01em;}
+		.welcome-services{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin:14px auto 0;}
+		.welcome-service-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid rgba(151,75,46,.11);border-radius:999px;color:var(--muted);background:rgba(255,255,255,.46);font-size:9px;font-weight:800;line-height:1;}
+		.welcome-service-pill i{color:#ba603c;font-size:9px;}
+		.welcome-progress{max-width:310px!important;margin:17px auto 0!important;}
+		.welcome-tip{margin-top:9px!important;color:var(--muted2)!important;font-size:9px!important;font-weight:750!important;letter-spacing:.035em;}
+		@media (prefers-reduced-motion:no-preference){
+		  #catNav.wheel-pro-mode:not(.wheel-collapsed){animation:wheelSurfaceSettle .30s cubic-bezier(.22,1,.36,1) both;}
+		  #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill{transition:filter .16s ease,box-shadow .16s ease!important;}
+		  #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill:hover{filter:brightness(1.055) saturate(1.09);}
+		  #catNav.wheel-pro-mode:not(.wheel-collapsed) .cat-pill:active{filter:brightness(.99) saturate(1.05);}
+		}
+		@keyframes wheelSurfaceSettle{0%{opacity:.72;filter:saturate(.88) brightness(.98)}100%{opacity:1;filter:saturate(1) brightness(1)}}
+		html[data-theme="dark"] #welcomeScreen{background:radial-gradient(circle at 14% 9%,rgba(202,121,78,.17),transparent 34%),radial-gradient(circle at 88% 88%,rgba(223,165,122,.10),transparent 42%),linear-gradient(145deg,#20130f,#382116 58%,#2b1812);}
+		html[data-theme="dark"] .welcome-card{border-color:rgba(255,226,205,.12);background:linear-gradient(145deg,rgba(67,39,27,.88),rgba(39,23,17,.80))!important;box-shadow:0 30px 76px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)!important;}
+		html[data-theme="dark"] .welcome-eyebrow,html[data-theme="dark"] .welcome-service-note,html[data-theme="dark"] .welcome-service-pill{border-color:rgba(255,222,197,.12);background:rgba(255,255,255,.055);}
+		html[data-theme="dark"] .welcome-eyebrow{color:#f3bb9b!important;}
+		@media(max-width:520px){.welcome-card{padding:22px 18px 20px!important;border-radius:27px!important;}.welcome-identity{align-items:flex-start;}.welcome-live{padding-top:3px;font-size:8px;}.welcome-card h1{margin-top:14px!important;font-size:clamp(1.7rem,9vw,2.05rem)!important;}.welcome-service-note{margin-top:14px;}.welcome-services{gap:6px;margin-top:12px;}.welcome-service-pill{padding:6px 8px;}}
+		@media(prefers-reduced-motion:reduce){#catNav.wheel-pro-mode:not(.wheel-collapsed),.welcome-card{animation:none!important;}.welcome-card,.welcome-card::before,.welcome-card::after{transition:none!important;}}
+		</style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
 
@@ -3328,11 +3362,23 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <span class="hookah-pipe"><span class="hookah-bowl"></span><span class="hookah-stem"></span><span class="hookah-vase"></span><span class="hookah-hose"></span></span>
               </div>
             </div>
-            <div class="welcome-eyebrow">KEYFİMCE KAFEM</div>
-            <h1 class="serif text-3xl font-bold mt-2 mb-3" style="color:var(--rust);" data-i18n="welcome_title">Hoş Geldiniz</h1>
-            <p class="text-[15px] font-medium" style="color:var(--muted);" data-i18n="welcome_sub">Keyfimce Kafem'e hoş geldiniz.</p>
-            <div class="welcome-progress"><span></span></div>
-            <p class="welcome-tip">Menünüz hazırlanıyor</p>
+	            <div class="welcome-identity">
+	              <div class="welcome-eyebrow"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i><span data-i18n="welcome_eyebrow">KAHVE · SOHBET · KEYİF</span></div>
+	              <span class="welcome-live" data-i18n="welcome_ready">Sizin için hazır</span>
+	            </div>
+	            <h1 class="serif text-3xl font-bold mt-2 mb-3" style="color:var(--rust);" data-i18n="welcome_title">Keyfinin başladığı yer</h1>
+	            <p class="text-[15px] font-medium" style="color:var(--muted);" data-i18n="welcome_sub">Menü, misafir Wi-Fi ve garson çağrısı tek noktada.</p>
+	            <div class="welcome-service-note">
+	              <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+	              <p><strong data-i18n="welcome_note_title">Keyfimce deneyimi</strong><span data-i18n="welcome_note_text">İhtiyacınız olan her şey, birkaç dokunuş uzakta.</span></p>
+	            </div>
+	            <div class="welcome-services" aria-label="Hızlı hizmetler">
+	              <span class="welcome-service-pill"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span data-i18n="welcome_pill_menu">Menüyü keşfet</span></span>
+	              <span class="welcome-service-pill"><i class="fa-solid fa-bell-concierge" aria-hidden="true"></i><span data-i18n="welcome_pill_service">Tek dokunuşla destek</span></span>
+	              <span class="welcome-service-pill"><i class="fa-solid fa-wifi" aria-hidden="true"></i><span data-i18n="welcome_pill_wifi">Misafir Wi-Fi</span></span>
+	            </div>
+	            <div class="welcome-progress"><span></span></div>
+	            <p class="welcome-tip" data-i18n="welcome_tip">Menünüz hazırlanıyor</p>
           </div>
         </div>
     </div>
@@ -3962,9 +4008,17 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     // ── ÇEVİRİ SİSTEMİ (TR / EN) ──
     // ══════════════════════════════════════════════════════════════
     const i18n = {
-        tr: {
-            welcome_title: "Hoş Geldiniz",
-            welcome_sub: "Keyfimce Kafem'e hoş geldiniz.",
+	        tr: {
+	            welcome_eyebrow: "KAHVE · SOHBET · KEYİF",
+	            welcome_ready: "Sizin için hazır",
+	            welcome_title: "Keyfinin başladığı yer",
+	            welcome_sub: "Menü, misafir Wi-Fi ve garson çağrısı tek noktada.",
+	            welcome_note_title: "Keyfimce deneyimi",
+	            welcome_note_text: "İhtiyacınız olan her şey, birkaç dokunuş uzakta.",
+	            welcome_pill_menu: "Menüyü keşfet",
+	            welcome_pill_service: "Tek dokunuşla destek",
+	            welcome_pill_wifi: "Misafir Wi-Fi",
+	            welcome_tip: "Menünüz hazırlanıyor",
             wifi_sub: "Misafir Wi-Fi — bağlan veya şifreyi kopyala",
             wifi_title: "Misafir Wi-Fi",
             wifi_ssid_label: "Ağ Adı (SSID)",
@@ -4070,9 +4124,17 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             pair_detail: "Birlikte daha keyifli",
             suggestion_view_detail: "Detayı gör"
         },
-        en: {
-            welcome_title: "Welcome",
-            welcome_sub: "Welcome to Keyfimce Kafem.",
+	        en: {
+	            welcome_eyebrow: "COFFEE · CONVERSATION · COMFORT",
+	            welcome_ready: "Ready for you",
+	            welcome_title: "Where your moment begins",
+	            welcome_sub: "Menu, guest Wi-Fi and waiter service, in one place.",
+	            welcome_note_title: "The Keyfimce experience",
+	            welcome_note_text: "Everything you need is just a few taps away.",
+	            welcome_pill_menu: "Explore the menu",
+	            welcome_pill_service: "Service in one tap",
+	            welcome_pill_wifi: "Guest Wi-Fi",
+	            welcome_tip: "Preparing your menu",
             wifi_sub: "Guest Wi-Fi — connect or copy password",
             wifi_title: "Guest Wi-Fi",
             wifi_ssid_label: "Network Name (SSID)",
