@@ -2538,7 +2538,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
 #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:var(--wheel-pro-hint)!important;}
 /* Çark yalnızca dikey eksende hareket eder: yatay 3B dönüş/taşma kapatılır. */
 #catNav.wheel-pro-mode:not(.wheel-collapsed){
-  transform:translateZ(0)!important;
+  transform:translateZ(0);
   overflow-x:clip!important;
   contain:layout paint;
 }
@@ -2554,6 +2554,18 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
   display:none!important;
   animation:none!important;
 }
+/* Çark açılırken kutu veya sayfa yatay eksende hareket etmez: merkezden kısa bir
+   odak/parlaklık geçişi uygulanır. Otomatik sayfa kaydırması kaldırılmıştır. */
+#catNav.wheel-pro-mode.wheel-opening{
+  transform-origin:center center;
+  animation:wheelOpenBloom .26s cubic-bezier(.23,1,.32,1) both;
+}
+@keyframes wheelOpenBloom{
+  from{opacity:.84;transform:translateZ(0) scale(.985);filter:saturate(.93) brightness(.98)}
+  62%{opacity:1;transform:translateZ(0) scale(1.008);filter:saturate(1.08) brightness(1.035)}
+  to{opacity:1;transform:translateZ(0) scale(1);filter:none}
+}
+@media(prefers-reduced-motion:reduce){#catNav.wheel-pro-mode.wheel-opening{animation:none!important;transform:translateZ(0)!important;}}
 .wheel-sound-toggle{position:absolute;z-index:12;right:18px;top:18px;width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(184,92,56,.22);border-radius:50%;color:var(--rust);background:rgba(255,250,246,.88);box-shadow:0 7px 18px rgba(103,49,28,.12);font-size:12px;transition:transform .2s ease,background .2s ease,color .2s ease;}
 .wheel-sound-toggle:hover{transform:translateY(-2px) scale(1.04);background:var(--rust);color:#fff9f4;}
 .wheel-sound-toggle.is-muted{color:var(--muted);background:rgba(255,255,255,.66);}
@@ -6491,6 +6503,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         let dwellTimer = null;
         let dwellArmed = false;
         let raf = 0;
+        let wheelOpenAnimationTimer = null;
 
 
         /* V12 — Web Audio API ile kullanıcı etkileşimine bağlı, dosyasız hafif çark sesleri. */
@@ -6654,30 +6667,30 @@ function apUrunDosyaSecildi(event, catKey, id) {
             });
         }
 
-        function centerPageOnWheel() {
-            const rect = nav.getBoundingClientRect();
-            const pageTop = window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
-            const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-            window.scrollTo({ top: clamp(pageTop, 0, maxTop), behavior: 'smooth' });
-        }
-
         function syncWheelInteractionMode() {
             nav.style.touchAction = nav.classList.contains('wheel-collapsed') ? 'pan-y' : 'none';
         }
 
-        function openWheel(centerOnMobile = false) {
+        function playWheelOpenAnimation() {
+            clearTimeout(wheelOpenAnimationTimer);
+            nav.classList.remove('wheel-opening');
+            if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+            requestAnimationFrame(() => {
+                if (nav.classList.contains('wheel-collapsed')) return;
+                nav.classList.add('wheel-opening');
+                wheelOpenAnimationTimer = setTimeout(() => nav.classList.remove('wheel-opening'), 300);
+            });
+        }
+
+        function openWheel() {
             nav.classList.remove('wheel-collapsed');
             nav.setAttribute('aria-expanded', 'true');
             syncWheelInteractionMode();
             currentIndex = activeIndex();
             dwellArmed = false;
             lastSoundFocusId = '';
+            playWheelOpenAnimation();
             render(currentIndex, true);
-            if (centerOnMobile && window.matchMedia && window.matchMedia('(max-width: 767px)').matches) {
-                requestAnimationFrame(() => requestAnimationFrame(() => {
-                    if (!nav.classList.contains('wheel-collapsed')) centerPageOnWheel();
-                }));
-            }
         }
 
         function closeWheel() {
@@ -6712,7 +6725,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
             if (!nav.classList.contains('wheel-collapsed')) return;
             event.preventDefault();
             event.stopImmediatePropagation();
-            openWheel(true);
+            openWheel();
         }, true);
 
         // Sürekli mouse-wheel akışı: delta biriktirilir, tek kilit uygulanmaz.
