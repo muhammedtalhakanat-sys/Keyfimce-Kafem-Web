@@ -5800,17 +5800,21 @@ function apUrunDosyaSecildi(event, catKey, id) {
     // KFM_WAITER_RELAY_V31 — Ziyaretçi çağrıları yalnızca HTTPS relay üzerinden iletilir.
     // Bu yapılandırma dosyası herkese açıktır; hiçbir erişim anahtarı içermez.
     const KFM_WAITER_RELAY_CONFIG = 'waiter_relay_config.json';
-    // Genel relay adresi gizli değildir; yapılandırma dosyası geçici olarak alınamazsa güvenli geri dönüş sağlar.
-    const KFM_WAITER_RELAY_FALLBACK_URL = 'https://3000-i1l9af2n9sgljx03uk7ns-6e18a834.sg1.manus.computer';
-    // Kalıcı alan adı bazı ağlarda TLS hatası verirse yalnızca ikinci HTTPS hedef olarak denenir.
-    const KFM_WAITER_RELAY_SECONDARY_URL = 'https://keyfimce-rel-bicvcz2q.manus.space';
+    // Genel relay adresi gizli değildir; yapılandırma alınamasa da aynı canlı Worker'a hızla geri dönülür.
+    const KFM_WAITER_RELAY_FALLBACK_URL = 'https://keyfimce-relay.muhammedtalhakanat-d30.workers.dev';
+    const KFM_WAITER_RELAY_CONFIG_TIMEOUT_MS = 3000;
     const KFM_WAITER_MAX_ATTEMPTS = 3;
     const KFM_WAITER_TIMEOUT_MS = 8500;
     let kfmWaiterRelayUrlPromise = null;
 
     async function getWaiterRelayUrl() {
         if (kfmWaiterRelayUrlPromise) return kfmWaiterRelayUrlPromise;
-        kfmWaiterRelayUrlPromise = fetch(`${KFM_WAITER_RELAY_CONFIG}?v=${Date.now()}`, { cache: 'no-store' })
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), KFM_WAITER_RELAY_CONFIG_TIMEOUT_MS);
+        kfmWaiterRelayUrlPromise = fetch(`${KFM_WAITER_RELAY_CONFIG}?v=${Date.now()}`, {
+            cache: 'no-store',
+            signal: controller.signal,
+        })
             .then(response => {
                 if (!response.ok) throw new Error('Relay yapılandırması alınamadı.');
                 return response.json();
@@ -5824,6 +5828,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
                 kfmWaiterRelayUrlPromise = null;
                 console.warn('Relay yapılandırması alınamadı; canlı güvenli relay adresi kullanılacak.', error);
                 return KFM_WAITER_RELAY_FALLBACK_URL;
+            })
+            .finally(() => {
+                window.clearTimeout(timeoutId);
             });
         return kfmWaiterRelayUrlPromise;
     }
@@ -5833,7 +5840,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
     }
 
     function kfmWaiterRelayCandidates(primaryRelayUrl) {
-        return [...new Set([primaryRelayUrl, KFM_WAITER_RELAY_FALLBACK_URL, KFM_WAITER_RELAY_SECONDARY_URL]
+        return [...new Set([primaryRelayUrl, KFM_WAITER_RELAY_FALLBACK_URL]
             .map(url => String(url || '').trim().replace(/\/+$/, ''))
             .filter(url => /^https:\/\//i.test(url)))];
     }
