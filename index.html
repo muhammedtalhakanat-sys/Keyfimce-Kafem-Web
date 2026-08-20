@@ -2581,6 +2581,9 @@ html[data-theme="dark"] .wheel-sound-toggle:hover{background:#d98257;color:#2513
   .welcome-hookah-scene{overflow:hidden!important;clip-path:inset(0 round 18px);}
   .welcome-hookah-render{width:78px!important;height:98px!important;bottom:0!important;filter:drop-shadow(0 8px 9px rgba(73,31,17,.24))!important;}
   .welcome-ornament{max-width:100%!important;background-position:center!important;background-size:cover!important;}
+  /* Dar ekranlarda ürün detayına ve çark sesine rahatça dokunulabilsin. */
+  #productGrid > .prod-card .product-detail-btn{min-height:40px!important;padding:10px 12px!important;}
+  .wheel-sound-toggle{width:40px;height:40px;right:14px;top:14px;}
 }
 /* Menü sonu kartı: geniş boşlukları kaldıran daha yoğun, dengeli bilgi düzeni. */
 .menu-end-card{min-height:0!important;padding:16px 18px!important;margin:22px 0 26px!important;gap:13px!important;align-items:center!important;}
@@ -2600,7 +2603,7 @@ html[data-theme="dark"] .wheel-sound-toggle:hover{background:#d98257;color:#2513
   .menu-end-card-info{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 8px!important;}
   .menu-end-card-info li:last-child{grid-column:1/-1;}
   .menu-end-card-actions{display:grid!important;grid-template-columns:1fr 1fr;width:100%;}
-  .menu-end-card-actions button{justify-content:center!important;}
+  .menu-end-card-actions button{min-height:40px!important;justify-content:center!important;}
 }
 @media(prefers-reduced-motion:reduce){.wheel-sound-toggle{transition:none!important;}}
 
