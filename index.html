@@ -3344,8 +3344,30 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 		html[data-theme="dark"] .welcome-eyebrow,html[data-theme="dark"] .welcome-service-note,html[data-theme="dark"] .welcome-service-pill{border-color:rgba(255,222,197,.12);background:rgba(255,255,255,.055);}
 		html[data-theme="dark"] .welcome-eyebrow{color:#f3bb9b!important;}
 		@media(max-width:520px){.welcome-card{padding:22px 18px 20px!important;border-radius:27px!important;}.welcome-identity{align-items:flex-start;}.welcome-live{padding-top:3px;font-size:8px;}.welcome-card h1{margin-top:14px!important;font-size:clamp(1.7rem,9vw,2.05rem)!important;}.welcome-service-note{margin-top:14px;}.welcome-services{gap:6px;margin-top:12px;}.welcome-service-pill{padding:6px 8px;}}
-		@media(prefers-reduced-motion:reduce){#catNav.wheel-pro-mode:not(.wheel-collapsed),.welcome-card{animation:none!important;}.welcome-card,.welcome-card::before,.welcome-card::after{transition:none!important;}}
-		</style>
+			@media(prefers-reduced-motion:reduce){#catNav.wheel-pro-mode:not(.wheel-collapsed),.welcome-card{animation:none!important;}.welcome-card,.welcome-card::before,.welcome-card::after{transition:none!important;}}
+
+			/* KFM_V26_STOCK_DETAIL_CATEGORY */
+			.detail-actions { display:flex; flex-wrap:wrap; align-items:stretch; gap:10px; }
+			.detail-action-category {
+			  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+			  min-height:44px; padding:11px 14px; border:1px solid rgba(217,130,87,.30);
+			  border-radius:14px; color:var(--rust); background:rgba(217,130,87,.08);
+			  font:800 11px/1.2 'Plus Jakarta Sans',sans-serif; cursor:pointer;
+			  transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+			}
+			.detail-action-category:hover { transform:translateY(-2px); background:rgba(217,130,87,.15); border-color:rgba(217,130,87,.56); box-shadow:0 8px 18px rgba(96,43,22,.14); }
+			.detail-action-category:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+			#productDetailModal #detailImage { opacity:1 !important; visibility:visible !important; z-index:4; }
+			#productDetailModal #detailImage[data-kfm-fit="contain"] { object-fit:contain !important; }
+			#productDetailModal #detailImage[data-kfm-fit="cover"] { object-fit:cover !important; }
+			@media (max-width:640px) {
+			  .detail-actions > button { flex:1 1 calc(50% - 5px); min-width:0; }
+			  .detail-actions > .detail-action-category { flex-basis:100%; }
+			}
+			@media (prefers-reduced-motion:reduce) {
+			  .detail-action-category { transition:none !important; }
+			}
+			</style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
 
@@ -7267,25 +7289,3 @@ function apUrunDosyaSecildi(event, catKey, id) {
     </script>
 </body>
 </html>
-
-/* KFM_V26_STOCK_DETAIL_CATEGORY */
-.detail-actions { display:flex; flex-wrap:wrap; align-items:stretch; gap:10px; }
-.detail-action-category {
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  min-height:44px; padding:11px 14px; border:1px solid rgba(217,130,87,.30);
-  border-radius:14px; color:var(--rust); background:rgba(217,130,87,.08);
-  font:800 11px/1.2 'Plus Jakarta Sans',sans-serif; cursor:pointer;
-  transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
-}
-.detail-action-category:hover { transform:translateY(-2px); background:rgba(217,130,87,.15); border-color:rgba(217,130,87,.56); box-shadow:0 8px 18px rgba(96,43,22,.14); }
-.detail-action-category:disabled { opacity:.55; cursor:not-allowed; transform:none; }
-#productDetailModal #detailImage { opacity:1 !important; visibility:visible !important; z-index:4; }
-#productDetailModal #detailImage[data-kfm-fit="contain"] { object-fit:contain !important; }
-#productDetailModal #detailImage[data-kfm-fit="cover"] { object-fit:cover !important; }
-@media (max-width:640px) {
-  .detail-actions > button { flex:1 1 calc(50% - 5px); min-width:0; }
-  .detail-actions > .detail-action-category { flex-basis:100%; }
-}
-@media (prefers-reduced-motion:reduce) {
-  .detail-action-category { transition:none !important; }
-}
