@@ -2561,10 +2561,12 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
   animation:wheelOpenBloom .26s cubic-bezier(.23,1,.32,1) both;
 }
 @keyframes wheelOpenBloom{
-  from{opacity:.84;transform:translateZ(0) scale(.985);filter:saturate(.93) brightness(.98)}
-  62%{opacity:1;transform:translateZ(0) scale(1.008);filter:saturate(1.08) brightness(1.035)}
-  to{opacity:1;transform:translateZ(0) scale(1);filter:none}
+  from{opacity:.84;filter:saturate(.93) brightness(.98);box-shadow:0 0 0 0 rgba(184,92,56,0)}
+  62%{opacity:1;filter:saturate(1.08) brightness(1.035);box-shadow:0 0 0 6px rgba(184,92,56,.10)}
+  to{opacity:1;filter:none;box-shadow:0 0 0 0 rgba(184,92,56,0)}
 }
+/* Sayfanın üst kesiminde çarkı gerçek merkeze getirmek için yalnızca açıkken ek kaydırma alanı sağlar. */
+@media(max-width:680px){body.wheel-mobile-centering{padding-bottom:210px!important;}}
 @media(prefers-reduced-motion:reduce){#catNav.wheel-pro-mode.wheel-opening{animation:none!important;transform:translateZ(0)!important;}}
 .wheel-sound-toggle{position:absolute;z-index:12;right:18px;top:18px;width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(184,92,56,.22);border-radius:50%;color:var(--rust);background:rgba(255,250,246,.88);box-shadow:0 7px 18px rgba(103,49,28,.12);font-size:12px;transition:transform .2s ease,background .2s ease,color .2s ease;}
 .wheel-sound-toggle:hover{transform:translateY(-2px) scale(1.04);background:var(--rust);color:#fff9f4;}
@@ -6670,6 +6672,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         let dwellArmed = false;
         let raf = 0;
         let wheelOpenAnimationTimer = null;
+        let mobileWheelPositionedForOpen = false;
 
 
         /* V12 — Web Audio API ile kullanıcı etkileşimine bağlı, dosyasız hafif çark sesleri. */
@@ -6848,14 +6851,38 @@ function apUrunDosyaSecildi(event, catKey, id) {
             });
         }
 
+        function centerMobileWheelForOpen() {
+            const isMobile = window.matchMedia?.('(max-width: 680px)').matches;
+            if (!isMobile || mobileWheelPositionedForOpen) return;
+            mobileWheelPositionedForOpen = true;
+            const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+            document.body.classList.add('wheel-mobile-centering');
+            const alignOpenWheel = () => {
+                if (nav.classList.contains('wheel-collapsed')) return;
+                const box = nav.getBoundingClientRect();
+                const targetTop = Math.max(0, window.scrollY + box.top + box.height / 2 - window.innerHeight / 2);
+                if (Math.abs(targetTop - window.scrollY) >= 10) {
+                    window.scrollTo({ top: targetTop, behavior: reduceMotion ? 'auto' : 'smooth' });
+                }
+            };
+            // Açık çarkın yüksekliği kısa bir geçişle oluşur. Ölçümü geçişten sonra
+            // almak, hedefin yarım açık görünüm yerine gerçek merkeze gitmesini sağlar.
+            if (reduceMotion) alignOpenWheel();
+            else window.setTimeout(alignOpenWheel, 260);
+        }
+
         function openWheel() {
+            const wasCollapsed = nav.classList.contains('wheel-collapsed');
             nav.classList.remove('wheel-collapsed');
             nav.setAttribute('aria-expanded', 'true');
             syncWheelInteractionMode();
             currentIndex = activeIndex();
             dwellArmed = false;
             lastSoundFocusId = '';
-            playWheelOpenAnimation();
+            if (wasCollapsed) {
+                playWheelOpenAnimation();
+                centerMobileWheelForOpen();
+            }
             render(currentIndex, true);
         }
 
@@ -6866,6 +6893,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
             syncWheelInteractionMode();
             currentIndex = activeIndex();
             dwellArmed = false;
+            mobileWheelPositionedForOpen = false;
+            document.body.classList.remove('wheel-mobile-centering');
             render(currentIndex, true);
         }
 
@@ -7007,6 +7036,10 @@ function apUrunDosyaSecildi(event, catKey, id) {
         nav.addEventListener('pointerdown', (event) => {
             if (nav.classList.contains('wheel-collapsed') || settling) return;
             if (event.pointerType === 'mouse' && event.button !== 0) return;
+            // Bazı başlangıç akışlarında çark açık kalabilir. Bu durumda ilk gerçek
+            // dokunuş da yalnızca bir kez mobil ortalamayı başlatır; sürükleme boyunca
+            // tekrar kaydırma veya yatay hareket oluşmaz.
+            centerMobileWheelForOpen();
             configureDragProfile(event.pointerType);
             dragging = true;
             dragMoved = false;
@@ -7017,7 +7050,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
             resetMotionFilter();
             clearDwell();
             nav.classList.add('wheel-dragging');
-            nav.setPointerCapture?.(event.pointerId);
+            if (event.isTrusted) nav.setPointerCapture?.(event.pointerId);
             event.preventDefault();
         }, { passive: false });
 
@@ -7051,7 +7084,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
             dragging = false;
             nav.classList.remove('wheel-dragging');
             nav.style.setProperty('--wheel-gesture-tilt', '0deg');
-            if (event?.pointerId != null) nav.releasePointerCapture?.(event.pointerId);
+            if (event?.isTrusted && event.pointerId != null) nav.releasePointerCapture?.(event.pointerId);
             if (!dragMoved) {
                 render(Math.round(currentIndex), true);
                 resetMotionFilter();
