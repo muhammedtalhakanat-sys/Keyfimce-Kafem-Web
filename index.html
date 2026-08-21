@@ -6689,44 +6689,75 @@ function apUrunDosyaSecildi(event, catKey, id) {
         return merged;
     }
 
-    window.addEventListener("load", async () => {
-        const rawUrl = `https://raw.githubusercontent.com/${githubKullaniciAdi}/${repoAdi}/main/${jsonDosyaAdi}?t=${Date.now()}`;
+    const KFM_LIVE_CATALOG_CACHE_KEY = 'kfm_live_menu_catalog';
+    const KFM_LIVE_CATALOG_TIMEOUT_MS = 5500;
 
+    function kfmLiveCatalogToMenu(catalog) {
+        if (!catalog || !Array.isArray(catalog.categories) || !catalog.categories.length) return null;
+        const converted = {};
+        for (const category of catalog.categories) {
+            const categoryId = String(category?.id || '').trim();
+            const categoryName = String(category?.name || '').trim();
+            if (!categoryId || !categoryName || !Array.isArray(category.products)) continue;
+            const icon = String(category.icon || '📋').trim();
+            converted[categoryId] = {
+                isim: `${icon} ${categoryName}`.trim(),
+                urunler: category.products.map(product => ({
+                    id: String(product?.id || '').trim(),
+                    ad: String(product?.ad || '').trim(),
+                    ad_en: String(product?.ad || '').trim(),
+                    fiyat: Number(product?.fiyat || 0),
+                    gorsel: String(product?.gorsel_url || '').trim(),
+                    stoktaVar: product?.stoktaVar !== false,
+                    birim: String(product?.birim || 'adet').trim() || 'adet',
+                    ekstralar: Array.isArray(product?.ekstralar) ? product.ekstralar : [],
+                    varyantlar: Array.isArray(product?.varyantlar) ? product.varyantlar : [],
+                })).filter(product => product.id && product.ad)
+            };
+        }
+        return Object.values(converted).some(category => category.urunler.length) ? converted : null;
+    }
+
+    async function kfmCanliKatalogYukle() {
+        const relayUrl = await getWaiterRelayUrl();
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), KFM_LIVE_CATALOG_TIMEOUT_MS);
         try {
-            console.log("GitHub'dan veri çekiliyor:", rawUrl);
-            const response = await fetch(rawUrl, { cache: 'no-store' });
-            if (response.ok) {
-                const guncelVeri = await response.json();
-                console.log("GitHub verisi alındı:", guncelVeri);
-                
-                // JSON menüsünü al; boş uzak görsellerde aynı ürüne ait yerel kullanıcı fotoğrafını koru.
-                if (guncelVeri.menuYedek) menuData = kfmMergeUserImages(guncelVeri.menuYedek, kfmLocalMenuSnapshot);
-                if (guncelVeri.wifiYedek) wifiData = guncelVeri.wifiYedek;
-                if (guncelVeri.sifreYedek) adminSifre = guncelVeri.sifreYedek;
-                if (guncelVeri.headerBgYedek) headerBgUrl = guncelVeri.headerBgYedek;
-                if (guncelVeri.hizliSiparisYedek) hizliSiparis = guncelVeri.hizliSiparisYedek;
-                if (guncelVeri.frameYedek) kfmFrameSettings = kfmCloneFrameSettings(guncelVeri.frameYedek);
-                
-                // Server IP bilgisini güncelle
-                if (guncelVeri.serverIp && guncelVeri.serverIp.ip && guncelVeri.serverIp.port) {
-                    serverApiUrl = `http://${guncelVeri.serverIp.ip}:${guncelVeri.serverIp.port}`;
-                    serverIpLoaded = true;
-                    console.log('✓ Server IP GitHub\'dan güncellendi:', serverApiUrl);
-                }
-                
-                // Yerel depolamayı güncelle
-                lsSave('kfm_menu', menuData);
-                lsSave('kfm_wifi', wifiData);
-                lsSave('kfm_asifre', adminSifre);
-                lsSave('kfm_headerBg', headerBgUrl);
-                lsSave('kfm_hizliSiparis', hizliSiparis);
-                lsSave('kfm_frame_settings', kfmFrameSettings);
-                console.log("✓ GitHub verileri başarıyla yüklendi ve yerel depolama güncellendi.");
-            } else {
-                console.warn("⚠️ GitHub verisi alınamadı (HTTP " + response.status + "), yerel veriler kullanılıyor.");
-            }
+            const response = await fetch(`${relayUrl}/api/menu-catalog`, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'omit',
+                cache: 'no-store',
+                headers: { 'Accept': 'application/json' },
+                signal: controller.signal,
+            });
+            if (!response.ok) throw new Error(`Canlı katalog HTTP ${response.status}`);
+            const payload = await response.json();
+            const menu = kfmLiveCatalogToMenu(payload?.catalog);
+            if (!menu) throw new Error('Canlı katalog geçerli ve görünür ürün içermiyor.');
+            lsSave(KFM_LIVE_CATALOG_CACHE_KEY, { version: payload?.version || null, menu, cachedAt: Date.now() });
+            return { menu, version: payload?.version || null };
+        } finally {
+            window.clearTimeout(timeoutId);
+        }
+    }
+
+    window.addEventListener("load", async () => {
+        try {
+            const liveCatalog = await kfmCanliKatalogYukle();
+            menuData = kfmMergeUserImages(liveCatalog.menu, kfmLocalMenuSnapshot);
+            lsSave('kfm_menu', menuData);
+            console.info(`✓ Canlı D1 menü kataloğu (sürüm ${liveCatalog.version || '?'}) yüklendi.`);
         } catch (err) {
-            console.error("❌ GitHub entegrasyon hatası:", err);
+            const cachedCatalog = ls(KFM_LIVE_CATALOG_CACHE_KEY, null);
+            if (cachedCatalog?.menu && typeof cachedCatalog.menu === 'object') {
+                menuData = kfmMergeUserImages(cachedCatalog.menu, kfmLocalMenuSnapshot);
+                console.warn('Canlı katalog alınamadı; güvenli son katalog anlık görüntüsü kullanılıyor.', err);
+            } else {
+                // İlk çevrimdışı açılışta mevcut yerel menü, o da yoksa varsayılan menü kullanılır.
+                menuData = menuData && Object.keys(menuData).length ? menuData : varsayilanMenu;
+                console.warn('Canlı katalog alınamadı; yerel/statik menü yedeği kullanılıyor.', err);
+            }
         }
 
         // Arayüzü güncelle
