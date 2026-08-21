@@ -3383,8 +3383,34 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 			html[data-theme="dark"] .order-cart-empty{background:rgba(255,255,255,.035);}
 			html[data-theme="dark"] .order-cart-qty button{border-color:rgba(255,220,194,.17);color:#efab84;background:rgba(255,255,255,.06);}
 			@media(max-width:520px){.web-order-modal{width:100%!important;}.order-cart-list{max-height:205px;}.product-cart-btn{width:35px;height:35px;flex-basis:35px;}}
-			@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}}
-			</style>
+				@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}}
+				/* KFM_CATEGORY_PICKER_V1 — İlk kez kullanan misafirler için açık menü erişimi. */
+				.menu-category-picker{position:relative;z-index:32;margin:0 16px 18px;}
+				.category-picker-trigger{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:82px;padding:13px 15px;border:1px solid rgba(159,73,41,.3);border-radius:20px;color:var(--ink);background:linear-gradient(135deg,#fffdf9 0%,#fff1e8 100%);box-shadow:0 12px 28px rgba(100,47,25,.13);text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),box-shadow .16s ease,border-color .16s ease;}
+				.category-picker-trigger:hover{border-color:rgba(159,73,41,.52);box-shadow:0 15px 30px rgba(100,47,25,.18);transform:translateY(-2px);}
+				.category-picker-trigger:active{transform:scale(.985);}
+				.category-picker-trigger:focus-visible,.category-picker-option:focus-visible{outline:3px solid rgba(173,83,45,.48);outline-offset:3px;}
+				.category-picker-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;color:#fff;background:linear-gradient(135deg,#c56842,#873a25);box-shadow:0 8px 16px rgba(137,59,37,.24);font-size:20px;}
+				.category-picker-copy{display:grid;gap:2px;min-width:0;}
+				.category-picker-copy small{color:var(--rust);font-size:9px;font-weight:900;letter-spacing:.12em;}
+				.category-picker-copy strong{color:var(--ink);font-size:16px;line-height:1.15;font-weight:950;}
+				.category-picker-copy em{overflow:hidden;color:var(--muted);font-size:11px;font-style:normal;font-weight:700;line-height:1.25;text-overflow:ellipsis;white-space:nowrap;}
+				.category-picker-chevron{color:var(--rust);font-size:17px;transition:transform .18s cubic-bezier(.22,1,.36,1);}
+				.menu-category-picker.is-open .category-picker-chevron{transform:rotate(180deg);}
+				.category-picker-panel{display:grid;gap:10px;margin-top:8px;padding:13px;border:1px solid rgba(159,73,41,.2);border-radius:19px;background:rgba(255,253,250,.98);box-shadow:0 18px 36px rgba(73,34,20,.18);}
+				.category-picker-panel[hidden]{display:none!important;}
+				.category-picker-panel p{margin:0;color:var(--muted);font-size:11px;font-weight:800;text-align:center;}
+				.category-picker-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+				.category-picker-option{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:48px;padding:9px 10px;border:1px solid var(--border2);border-radius:13px;color:var(--ink);background:var(--surface);font-size:11px;font-weight:900;text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),background .16s ease,color .16s ease;}
+				.category-picker-option:hover,.category-picker-option[aria-pressed="true"]{border-color:var(--rust);color:#fff;background:var(--rust);transform:translateY(-1px);}
+				.category-picker-count{display:grid;place-items:center;min-width:20px;height:20px;border-radius:999px;color:inherit;background:rgba(255,255,255,.18);font-size:9px;}
+				.menu-access-hint,#catNav{display:none!important;}
+				html[data-theme="dark"] .category-picker-trigger{border-color:rgba(236,159,118,.25);background:linear-gradient(135deg,#30211b,#241915);}
+				html[data-theme="dark"] .category-picker-panel{border-color:rgba(236,159,118,.2);background:#2a1e19;}
+				html[data-theme="dark"] .category-picker-option{border-color:var(--border2);background:#33251f;}
+				@media(max-width:400px){.category-picker-options{grid-template-columns:1fr;}.category-picker-copy strong{font-size:15px;}}
+				@media(prefers-reduced-motion:reduce){.category-picker-trigger,.category-picker-chevron,.category-picker-option{transition:none!important;}}
+				</style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
 
@@ -3503,11 +3529,21 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         <div id="searchSummary" class="search-summary" aria-live="polite"></div>
     </div>
 
-    <div class="menu-access-hint" aria-hidden="true">
-        <i class="fa-solid fa-arrow-down-long"></i>
-        <span id="menuAccessHintText">Menüye ulaşmak için tıklayınız</span>
-    </div>
-
+    <section id="categoryPicker" class="menu-category-picker" aria-label="Menü kategorileri">
+        <button id="categoryPickerTrigger" class="category-picker-trigger" type="button" aria-expanded="false" aria-controls="categoryPickerPanel">
+            <span class="category-picker-icon" aria-hidden="true"><i class="fa-solid fa-bars-staggered"></i></span>
+            <span class="category-picker-copy">
+                <small id="categoryPickerEyebrow">ÜRÜNLERİ GÖRMEK İÇİN</small>
+                <strong id="categoryPickerTitle">MENÜ KATEGORİLERİ</strong>
+                <em id="categoryPickerHelp">Buraya dokunun, kahve ve diğer menüler açılır</em>
+            </span>
+            <i class="fa-solid fa-chevron-down category-picker-chevron" aria-hidden="true"></i>
+        </button>
+        <div id="categoryPickerPanel" class="category-picker-panel" hidden>
+            <p id="categoryPickerInstruction">Bir kategori seçin; ürünler hemen aşağıda gösterilir.</p>
+            <div id="categoryPickerOptions" class="category-picker-options" role="group" aria-label="Menü kategorileri"></div>
+        </div>
+    </section>
     <div id="catNav" class="no-scroll px-4 pb-2 mb-5 fade-up fade-up-2" aria-label="Kategori menüsü"></div>
 
     <main class="px-4" id="productGrid"></main>
@@ -5066,14 +5102,79 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         if (tab === 'menu') window.setTimeout(scrollToMenuStart, 0);
     }
 
+    function kategoriSeciciKapat(focusTrigger = false) {
+        const picker = document.getElementById('categoryPicker');
+        const trigger = document.getElementById('categoryPickerTrigger');
+        const panel = document.getElementById('categoryPickerPanel');
+        if (!picker || !trigger || !panel) return;
+        picker.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+        if (focusTrigger) trigger.focus();
+    }
+
+    function kategoriSeciciKur() {
+        const picker = document.getElementById('categoryPicker');
+        const trigger = document.getElementById('categoryPickerTrigger');
+        const panel = document.getElementById('categoryPickerPanel');
+        if (!picker || !trigger || !panel || picker.dataset.ready === 'true') return;
+        picker.dataset.ready = 'true';
+        trigger.addEventListener('click', () => {
+            const willOpen = panel.hidden;
+            picker.classList.toggle('is-open', willOpen);
+            panel.hidden = !willOpen;
+            trigger.setAttribute('aria-expanded', String(willOpen));
+            if (willOpen) panel.querySelector('button')?.focus();
+        });
+        document.addEventListener('click', event => {
+            if (!picker.contains(event.target)) kategoriSeciciKapat();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') kategoriSeciciKapat(true);
+        });
+    }
+
     function buildNav() {
         const nav   = document.getElementById('catNav');
+        const pickerOptions = document.getElementById('categoryPickerOptions');
+        const pickerTitle = document.getElementById('categoryPickerTitle');
+        const pickerEyebrow = document.getElementById('categoryPickerEyebrow');
+        const pickerHelp = document.getElementById('categoryPickerHelp');
+        const pickerInstruction = document.getElementById('categoryPickerInstruction');
+        kategoriSeciciKur();
         nav.dataset.lang = aktifDil;
         const apKat = document.getElementById('apKat');
         const apFil = document.getElementById('apMevcutKatFiltre');
         nav.innerHTML   = '';
+        pickerOptions.innerHTML = '';
         apKat.innerHTML = '';
         apFil.innerHTML = `<option value="hepsi">✨ ${aktifDil === 'en' ? 'All Categories' : 'Tüm Kategoriler'}</option>`;
+        if (aktifDil === 'en') {
+            pickerEyebrow.textContent = 'TO SEE PRODUCTS';
+            pickerTitle.textContent = 'MENU CATEGORIES';
+            pickerHelp.textContent = 'Tap here to open coffee and other menus';
+            pickerInstruction.textContent = 'Choose a category; products appear right below.';
+        } else {
+            pickerEyebrow.textContent = 'ÜRÜNLERİ GÖRMEK İÇİN';
+            pickerTitle.textContent = 'MENÜ KATEGORİLERİ';
+            pickerHelp.textContent = 'Buraya dokunun, kahve ve diğer menüler açılır';
+            pickerInstruction.textContent = 'Bir kategori seçin; ürünler hemen aşağıda gösterilir.';
+        }
+
+        const pickerOptionEkle = (key, label, count) => {
+            const option = document.createElement('button');
+            option.type = 'button';
+            option.className = 'category-picker-option';
+            option.dataset.categoryPickerKey = key;
+            option.setAttribute('aria-pressed', String(key === aktifKat));
+            option.innerHTML = `<span>${escapeHtml(label)}</span><span class="category-picker-count">${count}</span>`;
+            option.onclick = () => {
+                setNavActive(key);
+                kategoriGit(key);
+                kategoriSeciciKapat(true);
+            };
+            pickerOptions.appendChild(option);
+        };
 
         const totalProducts = Object.values(menuData).reduce((sum, cat) => sum + ((cat && cat.urunler) ? cat.urunler.filter(item => !hideOutOfStock || item.stoktaVar !== false).length : 0), 0);
         const allBtn = document.createElement('div');
@@ -5082,6 +5183,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         allBtn.innerHTML = `<span class="cat-pill-label">${escapeHtml(t('all_menu'))}</span><span class="cat-pill-count">${totalProducts}</span>`;
         allBtn.onclick = () => { setNavActive('cat-all'); kategoriGit('cat-all'); };
         nav.appendChild(allBtn);
+        pickerOptionEkle('cat-all', t('all_menu'), totalProducts);
 
         for (let k in menuData) {
             const btn = document.createElement('div');
@@ -5092,6 +5194,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             btn.innerHTML = `<span class="cat-pill-label">${escapeHtml(label)}</span><span class="cat-pill-count">${count}</span>`;
             btn.onclick = () => { setNavActive(k); kategoriGit(k); };
             nav.appendChild(btn);
+            pickerOptionEkle(k, label, count);
 
             const opt = document.createElement('option');
             opt.value = k;
@@ -5103,6 +5206,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 
     function setNavActive(k) {
         document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('[data-category-picker-key]').forEach(option => {
+            option.setAttribute('aria-pressed', String(option.dataset.categoryPickerKey === k));
+        });
         const el = document.getElementById('cp-' + k);
         if (el) {
             el.classList.add('active');
