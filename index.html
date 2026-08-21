@@ -2837,20 +2837,6 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   html[data-theme="dark"] .detail-pair-card, html[data-theme="auto"] .detail-pair-card { border-color: rgba(255,221,195,.17); background: linear-gradient(135deg, rgba(73,45,32,.92), rgba(39,24,18,.78)); box-shadow: inset 0 1px 0 rgba(255,241,225,.09); }
   html[data-theme="dark"] .detail-pair-thumb, html[data-theme="auto"] .detail-pair-thumb { background: rgba(255,246,235,.08); }
 
-  /* 15:00–18:00 happy hour: aktif pencere ve pencereye yaklaşan durum aynı kartta anlatılır. */
-  .happy-hour-card { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 15px; padding: 12px 14px; overflow: hidden; border: 1px solid rgba(255,221,154,.64); border-radius: 18px; color: #4b2716; background: linear-gradient(108deg, #fff0b8, #f5b66f 58%, #e98758); box-shadow: 0 12px 24px rgba(185,102,45,.17), inset 0 1px 0 rgba(255,255,255,.62); animation: happyHourPulse 2.6s ease-in-out infinite; }
-  .happy-hour-card::after { content: ''; position: absolute; top: -40%; right: -10%; width: 44%; height: 180%; border-radius: 50%; background: rgba(255,255,255,.22); filter: blur(15px); transform: rotate(18deg); pointer-events: none; }
-  .happy-hour-card.is-upcoming { background: linear-gradient(108deg, #fff3ce, #efc27d 58%, #d98d5e); }
-  .happy-hour-copy { min-width: 0; display: flex; align-items: center; gap: 10px; }
-  .happy-hour-icon { display: grid; place-items: center; width: 35px; height: 35px; flex: 0 0 35px; border-radius: 12px; color: #fff8e3; background: rgba(109,55,21,.68); box-shadow: 0 5px 12px rgba(111,52,18,.18); }
-  .happy-hour-copy strong, .happy-hour-copy span { display: block; }
-  .happy-hour-copy strong { font-size: 12px; font-weight: 950; letter-spacing: .01em; }
-  .happy-hour-copy span { margin-top: 2px; font-size: 9px; font-weight: 800; opacity: .78; }
-  .happy-hour-count { position: relative; z-index: 1; min-width: 72px; padding: 6px 8px; border-radius: 11px; color: #fff8e3; background: rgba(79,38,18,.74); font-variant-numeric: tabular-nums; text-align: center; font-size: 11px; font-weight: 950; letter-spacing: .06em; }
-  @keyframes happyHourPulse { 0%,100% { box-shadow: 0 12px 24px rgba(185,102,45,.17), inset 0 1px 0 rgba(255,255,255,.62); } 50% { box-shadow: 0 14px 30px rgba(185,102,45,.28), inset 0 1px 0 rgba(255,255,255,.72); } }
-  html[data-theme="dark"] .happy-hour-card, html[data-theme="auto"] .happy-hour-card { border-color: rgba(255,215,139,.25); color: #fff0d1; background: linear-gradient(108deg, #5e3c1d, #744126 58%, #833e2d); box-shadow: 0 13px 30px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,237,193,.12); }
-  html[data-theme="dark"] .happy-hour-card.is-upcoming, html[data-theme="auto"] .happy-hour-card.is-upcoming { background: linear-gradient(108deg, #4d371e, #624025 58%, #71382b); }
-
   /* Mikro etkileşimler: fiziksel basma, fiyat vurgusu ve stok rozetinin yumuşak gelişi. */
   #productGrid > .prod-card { transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s ease, border-color .22s ease; }
   #productGrid > .prod-card:active, .daily-pair-item:active, button:active, .btn-primary:active, .product-detail-btn:active { transform: scale(.97) translateZ(-4px); box-shadow: 0 7px 14px rgba(73,35,20,.12); transition-duration: .1s; }
@@ -2858,10 +2844,10 @@ body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-r
   @keyframes priceGlow { 0%,100% { color: var(--rust); text-shadow: none; } 50% { color: var(--gold); text-shadow: 0 0 8px rgba(217,130,87,.55); } }
   .prod-card .product-card-badge, .prod-card .stok-badge { animation: badgeFadeIn .5s ease both; }
   @keyframes badgeFadeIn { from { opacity: 0; transform: translateY(-4px) scale(.92); } to { opacity: 1; transform: translateY(0) scale(1); } }
-  @media (max-width: 420px) { .daily-pair-card { gap: 7px; padding: 11px; border-radius: 20px; } .daily-pair-image { height: 72px; } .daily-pair-item { padding: 7px; } .happy-hour-card { padding: 11px; } .happy-hour-count { min-width: 68px; font-size: 10px; letter-spacing: .04em; } }
+  @media (max-width: 420px) { .daily-pair-card { gap: 7px; padding: 11px; border-radius: 20px; } .daily-pair-image { height: 72px; } .daily-pair-item { padding: 7px; } }
   @media (prefers-reduced-motion: reduce) {
     body, #kfmAtmosphereLayer { transition: none !important; animation: none !important; }
-    #productDetailModal.detail-scene-refresh .detail-hero::after, .daily-pair-card, .happy-hour-card, .prod-card .product-card-badge, .prod-card .stok-badge, .product-card-price:hover, .product-card-price:focus-visible { animation: none !important; }
+    #productDetailModal.detail-scene-refresh .detail-hero::after, .daily-pair-card, .prod-card .product-card-badge, .prod-card .stok-badge, .product-card-price:hover, .product-card-price:focus-visible { animation: none !important; }
     #productGrid > .prod-card, .daily-pair-item, .detail-pair-open, button, .btn-primary, .product-detail-btn { transition: none !important; }
     #productGrid > .prod-card:active, .daily-pair-item:active, .detail-pair-open:active, button:active, .btn-primary:active, .product-detail-btn:active { transform: none !important; box-shadow: none !important; }
   }
@@ -4162,9 +4148,6 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             remove_from_quick_en: "Remove",
             no_quick_products: "Henüz hızlı sipariş ürünü yok.",
             no_quick_products_en: "No quick order products yet.",
-            happy_hour_title: "Mutlu Saatler",
-            happy_hour_active: "Özel teklifler şu anda aktif",
-            happy_hour_upcoming: "Yeni teklif saat 15:00'te başlar",
             pair_label: "Mükemmel İkili",
             pair_detail: "Birlikte daha keyifli",
             suggestion_view_detail: "Detayı gör"
@@ -4278,9 +4261,6 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             remove_from_quick_en: "Remove",
             no_quick_products: "No quick order products yet.",
             no_quick_products_en: "No quick order products yet.",
-            happy_hour_title: "Happy Hour",
-            happy_hour_active: "Special offers are live",
-            happy_hour_upcoming: "Next offer starts at 15:00",
             pair_label: "Perfect Pair",
             pair_detail: "Better together",
             suggestion_view_detail: "View details"
@@ -5333,45 +5313,6 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     function openDailySuggestion() { openDailySuggestionProduct('primary'); }
 
 
-    function getHappyHourState() {
-        const now = new Date();
-        const start = new Date(now); start.setHours(15, 0, 0, 0);
-        const end = new Date(now); end.setHours(18, 0, 0, 0);
-        if (now >= start && now < end) return { active: true, target: end };
-        const target = new Date(now);
-        if (now >= end) target.setDate(target.getDate() + 1);
-        target.setHours(15, 0, 0, 0);
-        return { active: false, target };
-    }
-    function formatHappyHourTime(ms) {
-        const total = Math.max(0, Math.floor(ms / 1000));
-        const h = String(Math.floor(total / 3600)).padStart(2, '0');
-        const m = String(Math.floor((total % 3600) / 60)).padStart(2, '0');
-        const s = String(total % 60).padStart(2, '0');
-        return `${h}:${m}:${s}`;
-    }
-    function renderHappyHour() {
-        const grid = document.getElementById('productGrid');
-        if (!grid || document.getElementById('happyHourCard')) return;
-        const state = getHappyHourState();
-        const title = t('happy_hour_title');
-        const detail = t(state.active ? 'happy_hour_active' : 'happy_hour_upcoming');
-        grid.insertAdjacentHTML('beforeend', `<section id="happyHourCard" class="happy-hour-card ${state.active ? 'is-active' : 'is-upcoming'}" aria-live="polite"><div class="happy-hour-copy"><span class="happy-hour-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span><div><strong>${title}</strong><span class="happy-hour-detail">${detail}</span></div></div><strong class="happy-hour-count" data-happy-hour-count>${formatHappyHourTime(state.target - new Date())}</strong></section>`);
-        updateHappyHour();
-    }
-    function updateHappyHour() {
-        const card = document.getElementById('happyHourCard');
-        if (!card) return;
-        const state = getHappyHourState();
-        const count = card.querySelector('[data-happy-hour-count]');
-        const detail = card.querySelector('.happy-hour-detail');
-        card.classList.toggle('is-active', state.active);
-        card.classList.toggle('is-upcoming', !state.active);
-        if (count) count.textContent = formatHappyHourTime(state.target - new Date());
-        if (detail) detail.textContent = t(state.active ? 'happy_hour_active' : 'happy_hour_upcoming');
-    }
-    if (!window.__kfmHappyHourTimer) window.__kfmHappyHourTimer = window.setInterval(updateHappyHour, 1000);
-
     function updateSearchSummary(visibleCount, scopedCount, arama) {
         const summary = document.getElementById('searchSummary');
         const clear = document.getElementById('searchClearBtn');
@@ -5695,7 +5636,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
             return;
         }
 
-        if (!arama) { renderDailySuggestion(); renderHappyHour(); }
+        if (!arama) { renderDailySuggestion(); }
 
         list.forEach((u, idx) => {
             const name = localizedProductName(u);
