@@ -3391,15 +3391,29 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				.category-picker-trigger:active{transform:scale(.985);}
 				.category-picker-trigger:focus-visible,.category-picker-option:focus-visible{outline:3px solid rgba(173,83,45,.48);outline-offset:3px;}
 				.category-picker-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;color:#fff;background:linear-gradient(135deg,#c56842,#873a25);box-shadow:0 8px 16px rgba(137,59,37,.24);font-size:20px;}
+				.category-picker-attention{position:relative;isolation:isolate;}
+				.category-picker-attention::after{content:'';position:absolute;right:-3px;top:-3px;width:11px;height:11px;border:2px solid #fff;border-radius:999px;background:#f2a34d;box-shadow:0 0 0 4px rgba(242,163,77,.20);}
 				.category-picker-copy{display:grid;gap:2px;min-width:0;}
 				.category-picker-copy small{color:var(--rust);font-size:9px;font-weight:900;letter-spacing:.12em;}
 				.category-picker-copy strong{color:var(--ink);font-size:16px;line-height:1.15;font-weight:950;}
 				.category-picker-copy em{overflow:hidden;color:var(--muted);font-size:11px;font-style:normal;font-weight:700;line-height:1.25;text-overflow:ellipsis;white-space:nowrap;}
+				.category-picker-tap-hint{display:inline-flex;align-items:center;gap:5px;width:max-content;margin-top:2px;padding:3px 7px;border-radius:999px;color:#8b3d27;background:rgba(197,104,66,.12);font-size:9px;font-style:normal;font-weight:950;letter-spacing:.05em;}
 				.category-picker-chevron{color:var(--rust);font-size:17px;transition:transform .18s cubic-bezier(.22,1,.36,1);}
 				.menu-category-picker.is-open .category-picker-chevron{transform:rotate(180deg);}
 				.category-picker-panel{display:grid;gap:10px;margin-top:8px;padding:13px;border:1px solid rgba(159,73,41,.2);border-radius:19px;background:rgba(255,253,250,.98);box-shadow:0 18px 36px rgba(73,34,20,.18);}
 				.category-picker-panel[hidden]{display:none!important;}
 				.category-picker-panel p{margin:0;color:var(--muted);font-size:11px;font-weight:800;text-align:center;}
+				.category-picker-search-wrap{position:relative;}
+				.category-picker-search-wrap i{position:absolute;left:13px;top:50%;z-index:1;color:var(--rust);font-size:13px;pointer-events:none;transform:translateY(-50%);}
+				.category-picker-search{width:100%;min-height:45px;padding:11px 13px 11px 37px;border:1px solid rgba(159,73,41,.26);border-radius:13px;color:var(--ink);background:var(--surface);font:inherit;font-size:12px;font-weight:750;outline:none;transition:border-color .16s ease,box-shadow .16s ease;}
+				.category-picker-search:focus{border-color:var(--rust);box-shadow:0 0 0 4px rgba(184,92,56,.13);}
+				.category-picker-search-results{display:grid;gap:7px;max-height:250px;overflow:auto;padding-right:2px;}
+				.category-picker-search-result{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;min-height:48px;padding:9px 10px;border:1px solid var(--border2);border-radius:13px;color:var(--ink);background:var(--surface);font:inherit;text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),border-color .16s ease,box-shadow .16s ease;}
+				.category-picker-search-result:hover,.category-picker-search-result:focus-visible{border-color:var(--rust);box-shadow:0 6px 14px rgba(102,46,25,.11);transform:translateY(-1px);}
+				.category-picker-search-result strong{display:block;overflow:hidden;font-size:12px;text-overflow:ellipsis;white-space:nowrap;}
+				.category-picker-search-result small{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:800;}
+				.category-picker-search-price{color:var(--rust);font-size:11px;font-weight:950;white-space:nowrap;}
+				.category-picker-search-empty{padding:10px;border:1px dashed rgba(159,73,41,.28);border-radius:12px;color:var(--muted);font-size:11px;font-weight:750;text-align:center;}
 				.category-picker-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
 				.category-picker-option{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:48px;padding:9px 10px;border:1px solid var(--border2);border-radius:13px;color:var(--ink);background:var(--surface);font-size:11px;font-weight:900;text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),background .16s ease,color .16s ease;}
 				.category-picker-option:hover,.category-picker-option[aria-pressed="true"]{border-color:var(--rust);color:#fff;background:var(--rust);transform:translateY(-1px);}
@@ -3408,8 +3422,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				html[data-theme="dark"] .category-picker-trigger{border-color:rgba(236,159,118,.25);background:linear-gradient(135deg,#30211b,#241915);}
 				html[data-theme="dark"] .category-picker-panel{border-color:rgba(236,159,118,.2);background:#2a1e19;}
 				html[data-theme="dark"] .category-picker-option{border-color:var(--border2);background:#33251f;}
+				html[data-theme="dark"] .category-picker-search,html[data-theme="dark"] .category-picker-search-result{background:#33251f;}
 				@media(max-width:400px){.category-picker-options{grid-template-columns:1fr;}.category-picker-copy strong{font-size:15px;}}
-				@media(prefers-reduced-motion:reduce){.category-picker-trigger,.category-picker-chevron,.category-picker-option{transition:none!important;}}
+				@media(prefers-reduced-motion:no-preference){.menu-category-picker.needs-attention:not(.is-open) .category-picker-icon{animation:categoryPickerPulse 1.8s cubic-bezier(.22,1,.36,1) 3;}.menu-category-picker.needs-attention:not(.is-open) .category-picker-trigger{animation:categoryPickerGlow 1.8s cubic-bezier(.22,1,.36,1) 3;}@keyframes categoryPickerPulse{0%,100%{transform:scale(1)}42%{transform:scale(1.11) rotate(-4deg)}62%{transform:scale(1.03) rotate(3deg)}}@keyframes categoryPickerGlow{0%,100%{box-shadow:0 12px 28px rgba(100,47,25,.13)}45%{box-shadow:0 15px 32px rgba(197,104,66,.31),0 0 0 5px rgba(242,163,77,.12)}}}
+				@media(prefers-reduced-motion:reduce){.category-picker-trigger,.category-picker-chevron,.category-picker-option,.category-picker-search,.category-picker-search-result{transition:none!important;}}
 				</style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
@@ -3529,18 +3545,25 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         <div id="searchSummary" class="search-summary" aria-live="polite"></div>
     </div>
 
-    <section id="categoryPicker" class="menu-category-picker" aria-label="Menü kategorileri">
+    <section id="categoryPicker" class="menu-category-picker needs-attention" aria-label="Menü kategorileri">
         <button id="categoryPickerTrigger" class="category-picker-trigger" type="button" aria-expanded="false" aria-controls="categoryPickerPanel">
-            <span class="category-picker-icon" aria-hidden="true"><i class="fa-solid fa-bars-staggered"></i></span>
+            <span class="category-picker-icon category-picker-attention" aria-hidden="true"><i class="fa-solid fa-hand-pointer"></i></span>
             <span class="category-picker-copy">
                 <small id="categoryPickerEyebrow">ÜRÜNLERİ GÖRMEK İÇİN</small>
                 <strong id="categoryPickerTitle">MENÜ KATEGORİLERİ</strong>
                 <em id="categoryPickerHelp">Buraya dokunun, kahve ve diğer menüler açılır</em>
+                <span id="categoryPickerTapHint" class="category-picker-tap-hint"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> DOKUNUN</span>
             </span>
             <i class="fa-solid fa-chevron-down category-picker-chevron" aria-hidden="true"></i>
         </button>
         <div id="categoryPickerPanel" class="category-picker-panel" hidden>
             <p id="categoryPickerInstruction">Bir kategori seçin; ürünler hemen aşağıda gösterilir.</p>
+            <label class="category-picker-search-wrap" for="categoryPickerSearch">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <input id="categoryPickerSearch" class="category-picker-search" type="search" autocomplete="off" enterkeyhint="search" placeholder="Ürün ara: latte, çay, tatlı..." aria-describedby="categoryPickerSearchStatus" aria-controls="categoryPickerSearchResults">
+            </label>
+            <p id="categoryPickerSearchStatus" class="sr-only" aria-live="polite"></p>
+            <div id="categoryPickerSearchResults" class="category-picker-search-results" hidden></div>
             <div id="categoryPickerOptions" class="category-picker-options" role="group" aria-label="Menü kategorileri"></div>
         </div>
     </section>
@@ -5106,17 +5129,84 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         const picker = document.getElementById('categoryPicker');
         const trigger = document.getElementById('categoryPickerTrigger');
         const panel = document.getElementById('categoryPickerPanel');
+        const searchInput = document.getElementById('categoryPickerSearch');
+        const searchResults = document.getElementById('categoryPickerSearchResults');
         if (!picker || !trigger || !panel) return;
         picker.classList.remove('is-open');
         trigger.setAttribute('aria-expanded', 'false');
         panel.hidden = true;
+        if (searchInput) searchInput.value = '';
+        if (searchResults) {
+            searchResults.hidden = true;
+            searchResults.innerHTML = '';
+        }
         if (focusTrigger) trigger.focus();
+    }
+
+    function kategoriUrunAramaMetni(value) {
+        return String(value || '')
+            .toLocaleLowerCase(aktifDil === 'en' ? 'en-US' : 'tr-TR')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/ı/g, 'i');
+    }
+
+    function kategoriUrunAramaSonuclariniGoster(rawQuery) {
+        const results = document.getElementById('categoryPickerSearchResults');
+        const status = document.getElementById('categoryPickerSearchStatus');
+        const options = document.getElementById('categoryPickerOptions');
+        if (!results || !status || !options) return;
+        const query = kategoriUrunAramaMetni(rawQuery).trim();
+        if (!query) {
+            results.hidden = true;
+            results.innerHTML = '';
+            options.hidden = false;
+            status.textContent = '';
+            return;
+        }
+        const matches = [];
+        Object.entries(menuData).forEach(([categoryKey, category]) => {
+            const categoryName = (aktifDil === 'en' && category.isim_en) ? category.isim_en : category.isim;
+            (category.urunler || []).forEach(product => {
+                if (hideOutOfStock && product.stoktaVar === false) return;
+                const productName = (aktifDil === 'en' && product.ad_en) ? product.ad_en : product.ad;
+                const searchable = [product.ad, product.ad_en, productName, categoryName, ...(product.ekstralar || []).map(extra => extra.isim || extra.name)].join(' ');
+                if (kategoriUrunAramaMetni(searchable).includes(query)) {
+                    matches.push({ categoryKey, categoryName, product, productName });
+                }
+            });
+        });
+        const visibleMatches = matches.slice(0, 8);
+        options.hidden = true;
+        results.hidden = false;
+        status.textContent = aktifDil === 'en'
+            ? `${matches.length} matching products found.`
+            : `${matches.length} eşleşen ürün bulundu.`;
+        if (!visibleMatches.length) {
+            results.innerHTML = `<div class="category-picker-search-empty">${aktifDil === 'en' ? 'No products found. Try another name.' : 'Ürün bulunamadı. Başka bir ad deneyin.'}</div>`;
+            return;
+        }
+        results.innerHTML = '';
+        visibleMatches.forEach(record => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'category-picker-search-result';
+            button.innerHTML = `<span><strong>${escapeHtml(record.productName)}</strong><small>${escapeHtml(record.categoryName)}</small></span><span class="category-picker-search-price">${escapeHtml(String(record.product.fiyat))}₺</span>`;
+            button.addEventListener('click', () => {
+                kategoriSeciciKapat();
+                setNavActive(record.categoryKey);
+                kategoriGit(record.categoryKey);
+                window.setTimeout(() => openProductDetail(null, { product: { ...record.product, catKey: record.categoryKey } }), 180);
+            });
+            results.appendChild(button);
+        });
     }
 
     function kategoriSeciciKur() {
         const picker = document.getElementById('categoryPicker');
         const trigger = document.getElementById('categoryPickerTrigger');
         const panel = document.getElementById('categoryPickerPanel');
+        const searchInput = document.getElementById('categoryPickerSearch');
         if (!picker || !trigger || !panel || picker.dataset.ready === 'true') return;
         picker.dataset.ready = 'true';
         trigger.addEventListener('click', () => {
@@ -5124,8 +5214,12 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             picker.classList.toggle('is-open', willOpen);
             panel.hidden = !willOpen;
             trigger.setAttribute('aria-expanded', String(willOpen));
-            if (willOpen) panel.querySelector('button')?.focus();
+            if (willOpen) {
+                picker.classList.remove('needs-attention');
+                window.requestAnimationFrame(() => searchInput?.focus());
+            }
         });
+        searchInput?.addEventListener('input', () => kategoriUrunAramaSonuclariniGoster(searchInput.value));
         document.addEventListener('click', event => {
             if (!picker.contains(event.target)) kategoriSeciciKapat();
         });
@@ -5141,6 +5235,8 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         const pickerEyebrow = document.getElementById('categoryPickerEyebrow');
         const pickerHelp = document.getElementById('categoryPickerHelp');
         const pickerInstruction = document.getElementById('categoryPickerInstruction');
+        const pickerTapHint = document.getElementById('categoryPickerTapHint');
+        const pickerSearch = document.getElementById('categoryPickerSearch');
         kategoriSeciciKur();
         nav.dataset.lang = aktifDil;
         const apKat = document.getElementById('apKat');
@@ -5154,12 +5250,19 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             pickerTitle.textContent = 'MENU CATEGORIES';
             pickerHelp.textContent = 'Tap here to open coffee and other menus';
             pickerInstruction.textContent = 'Choose a category; products appear right below.';
+            pickerTapHint.innerHTML = '<i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> TAP HERE';
+            pickerSearch.placeholder = 'Search products: latte, tea, dessert...';
+            pickerSearch.setAttribute('aria-label', 'Search menu products');
         } else {
             pickerEyebrow.textContent = 'ÜRÜNLERİ GÖRMEK İÇİN';
             pickerTitle.textContent = 'MENÜ KATEGORİLERİ';
             pickerHelp.textContent = 'Buraya dokunun, kahve ve diğer menüler açılır';
             pickerInstruction.textContent = 'Bir kategori seçin; ürünler hemen aşağıda gösterilir.';
+            pickerTapHint.innerHTML = '<i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> DOKUNUN';
+            pickerSearch.placeholder = 'Ürün ara: latte, çay, tatlı...';
+            pickerSearch.setAttribute('aria-label', 'Menüde ürün ara');
         }
+        if (pickerSearch?.value) kategoriUrunAramaSonuclariniGoster(pickerSearch.value);
 
         const pickerOptionEkle = (key, label, count) => {
             const option = document.createElement('button');
@@ -5317,7 +5420,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 
     function recordDailySuggestionInteraction(product) {
         if (!product) return;
-        const catKey = product.catKey || aktifKategori;
+        const catKey = product.catKey || aktifKat;
         if (!catKey || catKey === 'cat-all') return;
         const interaction = { catKey, key: productSuggestionKey(catKey, product), at: Date.now() };
         const current = readSuggestionList('kfm_suggestion_interactions');
