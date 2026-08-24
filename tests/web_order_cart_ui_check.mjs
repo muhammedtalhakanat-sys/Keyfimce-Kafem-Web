@@ -17,6 +17,12 @@ const requiredContracts = [
   "toast(testMode ? (aktifDil === 'en' ? 'Waiter test request sent.' : 'Garson çağırma test isteği gönderildi.') : t('waiter_sent'));",
   'fa-hand waiter-call-nav-icon',
   '#bottomNav #bnav-waiter .waiter-call-nav-icon',
+  'function oneriIstekPenceresiAc()',
+  '<option value="oneri">Öneri / İstek</option>',
+  'id="detailGallery" class="detail-gallery" hidden',
+  'galeri_gorselleri: Array.isArray(product?.galeri_gorselleri)',
+  '#productDetailModal .detail-content { min-height:0; overflow-y:auto;',
+  'max-height:calc(100dvh - 24px)',
 ];
 
 for (const contract of requiredContracts) {

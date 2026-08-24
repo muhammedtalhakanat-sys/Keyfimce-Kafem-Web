@@ -1225,6 +1225,17 @@
   .detail-action-main, .detail-action-soft { flex: 1; min-height: 44px; border-radius: 13px; font-size: 12px; font-weight: 800; cursor: pointer; }
   .detail-action-main { border: 0; background: var(--rust); color: #fff; box-shadow: 0 7px 17px rgba(184,92,56,.22); }
   .detail-action-soft { border: 1px solid var(--border2); background: var(--surface2); color: var(--muted); }
+  #productDetailModal { padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+  #productDetailModal .detail-modal-box { display:flex; flex-direction:column; width:min(100%, 540px); max-height:calc(100dvh - 24px); overflow:hidden; }
+  #productDetailModal .detail-content { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-bottom:max(20px, env(safe-area-inset-bottom)); }
+  .detail-gallery { display:flex; gap:8px; overflow-x:auto; padding:12px 0 2px; scrollbar-width:thin; }
+  .detail-gallery[hidden] { display:none; }
+  .detail-gallery-thumb { flex:0 0 56px; width:56px; height:56px; padding:0; overflow:hidden; border:2px solid transparent; border-radius:12px; background:var(--surface2); cursor:pointer; }
+  .detail-gallery-thumb.is-active { border-color:var(--rust); box-shadow:0 0 0 3px rgba(184,92,56,.13); }
+  .detail-gallery-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  #productDetailModal .detail-actions { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); position:sticky; bottom:0; z-index:2; padding-top:12px; padding-bottom:4px; background:linear-gradient(180deg,rgba(255,253,251,0),var(--surface) 26%); }
+  #productDetailModal .detail-actions > * { min-width:0; }
+  #productDetailModal #detailAddToCart, #productDetailModal #detailCategoryAction { grid-column:span 1; }
 
   html[data-theme="dark"] {
     --bg: #15100e; --surface: #241a16; --surface2: #2c201b; --border: rgba(255,235,222,.13); --border2: rgba(255,235,222,.22);
@@ -3595,10 +3606,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         <button type="button" class="bnav-btn" id="bnav-order" onclick="webSiparisPenceresiAc()" aria-haspopup="dialog" aria-controls="webOrderModal">
             <i class="fa-solid fa-bag-shopping"></i><span>Sipariş</span><b id="orderCartBadge" class="order-cart-badge" hidden>0</b>
         </button>
-        <div class="bnav-btn" id="bnav-review" onclick="yorumModalAc()">
+        <button type="button" class="bnav-btn" id="bnav-review" onclick="oneriIstekPenceresiAc()" aria-haspopup="dialog" aria-controls="waiterCallModal">
             <i class="fa-solid fa-star"></i>
             <span id="lblSkor">Öneri-İstek</span>
-        </div>
+        </button>
     </nav>
 
     <!-- Müşteri Garson Çağırma Modalı -->
@@ -3619,9 +3630,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	                    <div class="waiter-call-field">
 	                        <label for="waiterCallType" data-i18n="waiter_type_label">Çağrı türü</label>
 	                        <select id="waiterCallType" name="cagri_turu" aria-describedby="waiterCallTypeHint">
-	                            <option value="genel" data-i18n="waiter_type_general">Genel çağrı</option>
-	                            <option value="siparis" data-i18n="waiter_type_order">Sipariş</option>
-	                            <option value="hesap" data-i18n="waiter_type_bill">Hesap</option>
+                            <option value="genel" data-i18n="waiter_type_general">Genel çağrı</option>
+                            <option value="siparis" data-i18n="waiter_type_order">Sipariş</option>
+                            <option value="hesap" data-i18n="waiter_type_bill">Hesap</option>
+                            <option value="oneri">Öneri / İstek</option>
 	                        </select>
 	                        <small id="waiterCallTypeHint" data-i18n="waiter_type_hint">İhtiyacınızı seçin; ekibimiz daha hızlı yardımcı olsun.</small>
 	                    </div>
@@ -3679,10 +3691,11 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 </button>
                 <span id="detailBadge" class="product-card-badge" style="display:none;"></span>
             </div>
-            <div class="detail-content">
+    <div class="detail-content">
                 <div id="detailCategory" class="detail-category"></div>
                 <h2 id="detailTitle" class="detail-title"></h2>
                 <p id="detailDescription" class="detail-description"></p>
+                <div id="detailGallery" class="detail-gallery" hidden aria-label="Ürün görselleri"></div>
                 <div id="detailExtras" class="detail-extras"></div>
                 <div class="detail-meta">
                     <strong id="detailPrice" class="detail-price"></strong>
@@ -6157,6 +6170,18 @@ function apUrunDosyaSecildi(event, catKey, id) {
         void detailModal.offsetWidth;
         detailModal.classList.add('detail-scene-refresh');
         kfmSetDetailImage(item, name);
+        const gallery = document.getElementById('detailGallery');
+        const galleryImages = [...new Set([image, ...(Array.isArray(item.galeri_gorselleri) ? item.galeri_gorselleri : [])]
+            .filter(url => typeof url === 'string' && /^https:\/\//.test(url)))];
+        if (gallery) {
+            gallery.hidden = galleryImages.length < 2;
+            gallery.innerHTML = galleryImages.map((url, galleryIndex) => `<button type="button" class="detail-gallery-thumb ${galleryIndex === 0 ? 'is-active' : ''}" aria-label="${galleryIndex + 1}. görsel"><img src="${escapeHtml(url)}" alt="${escapeHtml(name)} ${galleryIndex + 1}" loading="lazy"></button>`).join('');
+            gallery.querySelectorAll('.detail-gallery-thumb').forEach((button, galleryIndex) => button.addEventListener('click', () => {
+                const imageElement = document.getElementById('detailImage');
+                if (imageElement) imageElement.src = galleryImages[galleryIndex];
+                gallery.querySelectorAll('.detail-gallery-thumb').forEach((thumb, index) => thumb.classList.toggle('is-active', index === galleryIndex));
+            }));
+        }
         document.getElementById('detailCategory').textContent = categoryName || 'Keyfimce';
         refreshDetailCategoryAction();
         document.getElementById('detailTitle').textContent = name;
@@ -6188,6 +6213,14 @@ function apUrunDosyaSecildi(event, catKey, id) {
     // ── YORUM & EMAILJS ──
     // ══════════════════════════════════════════════════════════════
     function yorumModalAc() { modalAc('yorumModal'); }
+
+    function oneriIstekPenceresiAc() {
+        const callType = document.getElementById('waiterCallType');
+        const note = document.getElementById('waiterCallNote');
+        if (callType) callType.value = 'oneri';
+        if (note && !note.value.trim()) note.placeholder = 'Örn. Menüye şu ürünü ekleyebilir misiniz?';
+        garsonCagriPenceresiAc();
+    }
 
     function setPuan(r) {
         secilenPuan = r;
@@ -6943,6 +6976,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
                     ad_en: String(product?.ad || '').trim(),
                     fiyat: Number(product?.fiyat || 0),
                     gorsel: String(product?.gorsel_url || '').trim(),
+                    galeri_gorselleri: Array.isArray(product?.galeri_gorselleri) ? product.galeri_gorselleri.filter(url => typeof url === 'string' && /^https:\/\//.test(url)) : [],
                     stoktaVar: product?.stoktaVar !== false,
                     birim: String(product?.birim || 'adet').trim() || 'adet',
                     ekstralar: Array.isArray(product?.ekstralar) ? product.ekstralar : [],
