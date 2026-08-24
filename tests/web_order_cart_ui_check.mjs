@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const source = fs.readFileSync(path.join(here, '..', 'index.html'), 'utf8');
+
+const requiredContracts = [
+  'id="toast" role="status" aria-live="polite" aria-atomic="true"',
+  'id="orderCartList" class="order-cart-list" role="list" aria-live="polite"',
+  'function kfmOrderCartChange(index, delta)',
+  'toast(`✓ ${item.name} sepetten çıkarıldı.`);',
+  'toast(`✓ ${item.name} adedi ${item.quantity} oldu.`);',
+  'aria-label="${escapeHtml(item.name)} adedini azalt"',
+  'aria-label="${escapeHtml(item.name)} adedini artır"',
+  'width:34px;height:34px',
+  "toast(testMode ? (aktifDil === 'en' ? 'Waiter test request sent.' : 'Garson çağırma test isteği gönderildi.') : t('waiter_sent'));",
+];
+
+for (const contract of requiredContracts) {
+  if (!source.includes(contract)) {
+    throw new Error(`Eksik web sipariş UX sözleşmesi: ${contract}`);
+  }
+}
+
+const inlineScripts = [...source.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
+  .map((match) => match[1])
+  .filter((script) => script.trim());
+
+for (const [index, script] of inlineScripts.entries()) {
+  try {
+    new Function(script);
+  } catch (error) {
+    throw new Error(`Gömülü betik ${index + 1} ayrıştırılamadı: ${error.message}`);
+  }
+}
+
+console.log(`${inlineScripts.length} gömülü betik ayrıştırıldı; sepet miktar denetimleri ve erişilebilir toast sözleşmeleri doğrulandı.`);

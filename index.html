@@ -3381,15 +3381,19 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 			.order-cart-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 12px;background:rgba(255,255,255,.82);}
 			.order-cart-row strong{display:block;overflow:hidden;color:var(--ink);font-size:12px;line-height:1.25;text-overflow:ellipsis;white-space:nowrap;}
 			.order-cart-row small{display:block;margin-top:3px;color:var(--muted2);font-size:10px;font-weight:700;}
-			.order-cart-qty{display:flex;align-items:center;gap:5px;}
-			.order-cart-qty button{display:grid;place-items:center;width:27px;height:27px;border:1px solid rgba(146,80,47,.18);border-radius:9px;color:var(--rust);background:#fff;font:900 15px/1 inherit;cursor:pointer;}
-			.order-cart-qty output{min-width:18px;color:var(--ink);font-size:12px;font-weight:900;text-align:center;}
+			.order-cart-qty{display:flex;align-items:center;gap:6px;padding:3px;border:1px solid rgba(146,80,47,.13);border-radius:13px;background:rgba(255,247,240,.72);}
+			.order-cart-qty button{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(146,80,47,.2);border-radius:10px;color:var(--rust);background:#fff;font:900 18px/1 inherit;cursor:pointer;transition:transform .14s cubic-bezier(.22,1,.36,1),background .14s ease,color .14s ease;}
+			.order-cart-qty button:hover{color:#fff;background:var(--rust);}
+			.order-cart-qty button:active{transform:scale(.93);}
+			.order-cart-qty button:focus-visible{outline:3px solid rgba(184,92,56,.3);outline-offset:2px;}
+			.order-cart-qty output{min-width:26px;color:var(--ink);font-size:13px;font-weight:900;text-align:center;}
 			.order-cart-total{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;color:var(--ink);background:linear-gradient(135deg,rgba(255,247,240,.94),rgba(249,229,215,.9));font-size:12px;font-weight:900;}
 			.order-cart-total strong{color:var(--rust);font-size:15px;}
 			html[data-theme="dark"] .order-cart-panel{border-color:rgba(255,220,194,.14);background:rgba(255,255,255,.035);}
 			html[data-theme="dark"] .order-cart-row{background:rgba(255,255,255,.045);}
 			html[data-theme="dark"] .order-cart-empty{background:rgba(255,255,255,.035);}
-			html[data-theme="dark"] .order-cart-qty button{border-color:rgba(255,220,194,.17);color:#efab84;background:rgba(255,255,255,.06);}
+				html[data-theme="dark"] .order-cart-qty{border-color:rgba(255,220,194,.13);background:rgba(255,255,255,.035);}
+				html[data-theme="dark"] .order-cart-qty button{border-color:rgba(255,220,194,.17);color:#efab84;background:rgba(255,255,255,.06);}
 			@media(max-width:520px){.web-order-modal{width:100%!important;}.order-cart-list{max-height:205px;}.product-cart-btn{width:35px;height:35px;flex-basis:35px;}}
 				@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}}
 				/* KFM_CATEGORY_PICKER_V1 — İlk kez kullanan misafirler için açık menü erişimi. */
@@ -3489,7 +3493,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         </div>
     </div>
 
-    <div id="toast"></div>
+    <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <header id="mainHeader">
         <h1 id="secretTrigger"
@@ -3642,7 +3646,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <form id="webOrderForm" class="waiter-call-form" onsubmit="webSiparisFormGonder(event)" novalidate>
                     <div class="order-cart-panel" aria-live="polite">
                         <div class="order-cart-panel-head"><span>Seçtiğiniz ürünler</span><span id="orderCartCount">0 ürün</span></div>
-                        <div id="orderCartList" class="order-cart-list"></div>
+                        <div id="orderCartList" class="order-cart-list" role="list" aria-live="polite" aria-relevant="additions text"></div>
                         <div class="order-cart-total"><span>Tahmini toplam</span><strong id="orderCartTotal">0,00 ₺</strong></div>
                     </div>
                     <div class="waiter-call-field">
@@ -4712,13 +4716,14 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     // ══════════════════════════════════════════════════════════════
     // ── TOAST ──
     // ══════════════════════════════════════════════════════════════
-    function toast(msg, dur = 2500) {
-        const el = document.getElementById('toast');
-        el.textContent = msg;
-        el.classList.add('show');
-        clearTimeout(el._t);
-        el._t = setTimeout(() => el.classList.remove('show'), dur);
-    }
+	    function toast(msg, dur = 2500) {
+	        const el = document.getElementById('toast');
+	        if (!el) return;
+	        el.textContent = String(msg || '');
+	        el.classList.add('show');
+	        clearTimeout(el._t);
+	        el._t = setTimeout(() => el.classList.remove('show'), dur);
+	    }
 
     function modalAc(id)   { document.getElementById(id).classList.add('open'); }
     function modalKapat(id){ document.getElementById(id).classList.remove('open'); }
@@ -6347,7 +6352,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        if (existing) existing.quantity = Math.min(99, existing.quantity + 1);
 	        else kfmOrderCart.push({ productKey, name, unitPrice, quantity: 1 });
 	        kfmRenderOrderCart();
-	        toast(`✓ ${escapeHtml(name)} sepete eklendi.`);
+	        toast(`✓ ${name} sepete eklendi.`);
 	    }
 
 	    function kfmGorunenUrunuSepeteEkle(index) {
@@ -6360,10 +6365,21 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
 	    function kfmOrderCartChange(index, delta) {
 	        const item = kfmOrderCart[index];
-	        if (!item) return;
-	        item.quantity = Math.max(0, Math.min(99, item.quantity + delta));
-	        if (!item.quantity) kfmOrderCart.splice(index, 1);
+	        if (!item || !Number.isInteger(delta) || !delta) return;
+	        const nextQuantity = Math.max(0, Math.min(99, item.quantity + delta));
+	        if (nextQuantity === item.quantity) {
+	            toast('Bu üründen en fazla 99 adet ekleyebilirsiniz.');
+	            return;
+	        }
+	        item.quantity = nextQuantity;
+	        if (!item.quantity) {
+	            kfmOrderCart.splice(index, 1);
+	            kfmRenderOrderCart();
+	            toast(`✓ ${item.name} sepetten çıkarıldı.`);
+	            return;
+	        }
 	        kfmRenderOrderCart();
+	        toast(`✓ ${item.name} adedi ${item.quantity} oldu.`);
 	    }
 
 	    function kfmRenderOrderCart() {
@@ -6384,12 +6400,12 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            return;
 	        }
 	        list.innerHTML = kfmOrderCart.map((item, index) => `
-	            <div class="order-cart-row">
+	            <div class="order-cart-row" role="listitem">
 	                <div><strong>${escapeHtml(item.name)}</strong><small>${kfmFormatOrderTotal(item.unitPrice)} × ${item.quantity} · ${kfmFormatOrderTotal(item.unitPrice * item.quantity)}</small></div>
-	                <div class="order-cart-qty" aria-label="${escapeHtml(item.name)} adedi">
-	                    <button type="button" onclick="kfmOrderCartChange(${index},-1)" aria-label="${escapeHtml(item.name)} adedini azalt">−</button>
-	                    <output>${item.quantity}</output>
-	                    <button type="button" onclick="kfmOrderCartChange(${index},1)" aria-label="${escapeHtml(item.name)} adedini artır">+</button>
+	                <div class="order-cart-qty" role="group" aria-label="${escapeHtml(item.name)} miktarı">
+	                    <button type="button" onclick="kfmOrderCartChange(${index},-1)" aria-label="${escapeHtml(item.name)} adedini azalt" title="Bir azalt">−</button>
+	                    <output aria-label="${item.quantity} adet">${item.quantity}</output>
+	                    <button type="button" onclick="kfmOrderCartChange(${index},1)" aria-label="${escapeHtml(item.name)} adedini artır" title="Bir artır">+</button>
 	                </div>
 	            </div>`).join('');
 	    }
