@@ -1221,6 +1221,17 @@
   .detail-stock { color: #41805a; font-size: 11px; font-weight: 800; }
   .detail-stock.out { color: #a34c3a; }
   .detail-extras { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+  .detail-variants { margin-top:15px; padding:12px; border:1px solid rgba(184,92,56,.18); border-radius:15px; background:linear-gradient(145deg,rgba(184,92,56,.09),rgba(255,255,255,.48)); }
+  .detail-variants[hidden] { display:none; }
+  .detail-variants-head { display:flex; align-items:baseline; justify-content:space-between; gap:10px; color:var(--ink); }
+  .detail-variants-head strong { font-size:12px; font-weight:900; }
+  .detail-variants-head span { color:var(--muted2); font-size:10px; font-weight:750; text-align:right; }
+  .detail-variant-options { display:grid; gap:7px; margin-top:10px; }
+  .detail-variant-option { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:39px; padding:8px 10px; border:1px solid rgba(117,70,44,.14); border-radius:11px; background:rgba(255,255,255,.62); color:var(--ink); cursor:pointer; }
+  .detail-variant-option:has(input:checked) { border-color:rgba(184,92,56,.54); background:rgba(184,92,56,.13); box-shadow:0 0 0 2px rgba(184,92,56,.08); }
+  .detail-variant-option input { width:17px; height:17px; accent-color:var(--rust); }
+  .detail-variant-option-main { display:flex; align-items:center; gap:9px; min-width:0; font-size:12px; font-weight:800; }
+  .detail-variant-option-price { flex:0 0 auto; color:var(--rust-dk); font-size:11px; font-weight:900; }
   .detail-actions { display: flex; gap: 9px; margin-top: 19px; }
   .detail-action-main, .detail-action-soft { flex: 1; min-height: 44px; border-radius: 13px; font-size: 12px; font-weight: 800; cursor: pointer; }
   .detail-action-main { border: 0; background: var(--rust); color: #fff; box-shadow: 0 7px 17px rgba(184,92,56,.22); }
@@ -3697,6 +3708,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <p id="detailDescription" class="detail-description"></p>
                 <div id="detailGallery" class="detail-gallery" hidden aria-label="Ürün görselleri"></div>
                 <div id="detailExtras" class="detail-extras"></div>
+                <section id="detailVariants" class="detail-variants" hidden aria-live="polite">
+                    <div class="detail-variants-head"><strong>Alt seçenekler</strong><span>Birden fazla seçebilirsiniz</span></div>
+                    <div id="detailVariantOptions" class="detail-variant-options"></div>
+                </section>
                 <div class="detail-meta">
                     <strong id="detailPrice" class="detail-price"></strong>
                     <span id="detailStock" class="detail-stock"></span>
@@ -6198,6 +6213,35 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const exName = localizedExtraName(ex);
             return `<span class="extra-pill">+${escapeHtml(exName)} ${ex.fiyat}₺</span>`;
 	        }).join('');
+	        const variants = kfmOrderProductVariants(item);
+	        const variantsSection = document.getElementById('detailVariants');
+	        const variantOptions = document.getElementById('detailVariantOptions');
+	        window.__activeDetailVariantNames = [];
+	        if (variantsSection && variantOptions) {
+	            variantsSection.hidden = variants.length === 0;
+	            variantOptions.innerHTML = '';
+	            variants.forEach(variant => {
+	                const option = document.createElement('label');
+	                option.className = 'detail-variant-option';
+	                const checkbox = document.createElement('input');
+	                checkbox.type = 'checkbox';
+	                checkbox.value = variant.isim;
+	                checkbox.setAttribute('aria-label', `${variant.isim} alt seçeneğini ekle`);
+	                checkbox.addEventListener('change', () => {
+	                    window.__activeDetailVariantNames = [...variantOptions.querySelectorAll('input:checked')]
+	                        .map(input => String(input.value || '').trim())
+	                        .filter(Boolean);
+	                });
+	                const main = document.createElement('span');
+	                main.className = 'detail-variant-option-main';
+	                main.append(checkbox, document.createTextNode(variant.isim));
+	                const price = document.createElement('span');
+	                price.className = 'detail-variant-option-price';
+	                price.textContent = variant.ek_fiyat ? `+${variant.ek_fiyat}₺` : 'Dahil';
+	                option.append(main, price);
+	                variantOptions.appendChild(option);
+	            });
+	        }
 	        const addToCartButton = document.getElementById('detailAddToCart');
 	        if (addToCartButton) {
 	            addToCartButton.disabled = !item.stoktaVar;
@@ -6367,35 +6411,64 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 2 }).format(amountInKurus / 100);
 	    }
 
-	    function kfmOrderProductKey(product, name, unitPrice) {
-	        return String(product?.id || product?.kod || `${name}__${unitPrice}`);
+	    function kfmOrderProductKey(product, name, unitPrice, variantNames = []) {
+	        const variantsKey = [...new Set(variantNames.map(name => String(name || '').trim()).filter(Boolean))].sort().join('|');
+	        return `${String(product?.id || product?.kod || `${name}__${unitPrice}`)}__${variantsKey}`;
 	    }
 
-	    function kfmAddProductToOrder(product) {
+	    function kfmOrderProductVariants(product) {
+	        const seen = new Set();
+	        return (Array.isArray(product?.varyantlar) ? product.varyantlar : [])
+	            .map(variant => ({
+	                isim: String(variant?.isim || '').trim(),
+	                ek_fiyat: Math.max(0, Math.round(Number(variant?.ek_fiyat || 0))),
+	            }))
+	            .filter(variant => variant.isim && variant.isim.length <= 72 && !seen.has(variant.isim) && seen.add(variant.isim));
+	    }
+
+	    function kfmSelectedOrderVariants(product, selectedNames = []) {
+	        const requested = new Set((Array.isArray(selectedNames) ? selectedNames : [])
+	            .map(name => String(name || '').trim())
+	            .filter(Boolean));
+	        return kfmOrderProductVariants(product).filter(variant => requested.has(variant.isim));
+	    }
+
+	    function kfmAddProductToOrder(product, selectedNames = []) {
 	        if (!product || !product.stoktaVar) {
 	            toast('⚠️ Bu ürün şu anda siparişe eklenemiyor.');
 	            return;
 	        }
-	        const name = localizedProductName(product).trim();
-	        const unitPrice = Math.round(Number(product.fiyat) * 100);
-	        if (!name || !Number.isSafeInteger(unitPrice) || unitPrice < 0) {
+	        const productName = localizedProductName(product).trim();
+	        const baseUnitPrice = Math.round(Number(product.fiyat) * 100);
+	        const selectedVariants = kfmSelectedOrderVariants(product, selectedNames);
+	        const variantAmount = selectedVariants.reduce((sum, variant) => sum + variant.ek_fiyat, 0) * 100;
+	        const unitPrice = baseUnitPrice + variantAmount;
+	        const variantNames = selectedVariants.map(variant => variant.isim);
+	        const name = `${productName}${variantNames.length ? ` (${variantNames.join(', ')})` : ''}`;
+	        if (!productName || !Number.isSafeInteger(unitPrice) || unitPrice < 0) {
 	            toast('⚠️ Ürün bilgisi siparişe uygun değil.');
 	            return;
 	        }
-	        const productKey = kfmOrderProductKey(product, name, unitPrice);
+	        const productKey = kfmOrderProductKey(product, productName, baseUnitPrice, variantNames);
 	        const existing = kfmOrderCart.find(item => item.productKey === productKey);
 	        if (existing) existing.quantity = Math.min(99, existing.quantity + 1);
-	        else kfmOrderCart.push({ productKey, name, unitPrice, quantity: 1 });
+	        else kfmOrderCart.push({ productKey, productName, name, unitPrice, quantity: 1, alt_secenekler: variantNames });
 	        kfmRenderOrderCart();
 	        toast(`✓ ${name} sepete eklendi.`);
 	    }
 
 	    function kfmGorunenUrunuSepeteEkle(index) {
-	        kfmAddProductToOrder(window.__renderedProducts?.[index]);
+	        const product = window.__renderedProducts?.[index];
+	        if (kfmOrderProductVariants(product).length) {
+	            openProductDetail(index);
+	            toast('Alt seçenekleri seçip ürünü sepetinize ekleyin.');
+	            return;
+	        }
+	        kfmAddProductToOrder(product);
 	    }
 
 	    function kfmAktifUrunuSepeteEkle() {
-	        kfmAddProductToOrder(window.__activeDetailProduct);
+	        kfmAddProductToOrder(window.__activeDetailProduct, window.__activeDetailVariantNames || []);
 	    }
 
 	    function kfmOrderCartChange(index, delta) {
@@ -6470,7 +6543,12 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            masa_no: masaNo,
 	            ...(note ? { not: note } : {}),
 	            request_id: kfmWaiterRequestId(),
-	            items: kfmOrderCart.map(item => ({ urun_adi: item.name, miktar: item.quantity, birim_fiyat: item.unitPrice })),
+	            items: kfmOrderCart.map(item => ({
+	                urun_adi: item.productName || item.name,
+	                miktar: item.quantity,
+	                birim_fiyat: item.unitPrice,
+	                alt_secenekler: Array.isArray(item.alt_secenekler) ? item.alt_secenekler : [],
+	            })),
 	        };
 	        if (submitButton) {
 	            submitButton.disabled = true;

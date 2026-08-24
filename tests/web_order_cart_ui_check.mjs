@@ -21,6 +21,11 @@ const requiredContracts = [
   '<option value="oneri">Öneri / İstek</option>',
   'id="detailGallery" class="detail-gallery" hidden',
   'galeri_gorselleri: Array.isArray(product?.galeri_gorselleri)',
+  'id="detailVariants" class="detail-variants" hidden',
+  'function kfmOrderProductVariants(product)',
+  'function kfmSelectedOrderVariants(product, selectedNames = [])',
+  'alt_secenekler: Array.isArray(item.alt_secenekler)',
+  'Alt seçenekleri seçip ürünü sepetinize ekleyin.',
   '#productDetailModal .detail-content { min-height:0; overflow-y:auto;',
   'max-height:calc(100dvh - 24px)',
 ];
