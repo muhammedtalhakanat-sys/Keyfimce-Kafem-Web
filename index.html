@@ -3247,6 +3247,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 #bottomNav .bnav-btn{min-height:48px;padding:5px 4px!important;gap:2px!important;font-size:9px!important;}
 #bottomNav .bnav-btn i{font-size:17px!important;}
 #bottomNav #bnav-waiter{justify-content:center;color:var(--rust);font-size:10px!important;font-weight:950!important;letter-spacing:.025em;}
+#bottomNav #bnav-waiter .waiter-call-nav-icon{display:block;font-size:16px!important;line-height:1;opacity:.92;transform:translateY(-1px);}
 #bottomNav #bnav-waiter span{display:flex;align-items:center;min-height:24px;}
 @media(min-width:700px){#bottomNav{min-height:60px!important;padding:5px 8px!important;}#bottomNav .bnav-btn{min-height:46px!important;}}
 
@@ -3588,6 +3589,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             <i class="fa-solid fa-utensils"></i><span data-i18n="nav_menu">Menü</span>
         </div>
         <button type="button" class="bnav-btn" id="bnav-waiter" onclick="garsonCagriPenceresiAc()" aria-haspopup="dialog" aria-controls="waiterCallModal">
+            <i class="fa-solid fa-hand waiter-call-nav-icon" aria-hidden="true"></i>
             <span data-i18n="call_waiter">Garson Çağır</span>
         </button>
         <button type="button" class="bnav-btn" id="bnav-order" onclick="webSiparisPenceresiAc()" aria-haspopup="dialog" aria-controls="webOrderModal">

@@ -15,6 +15,8 @@ const requiredContracts = [
   'aria-label="${escapeHtml(item.name)} adedini artır"',
   'width:34px;height:34px',
   "toast(testMode ? (aktifDil === 'en' ? 'Waiter test request sent.' : 'Garson çağırma test isteği gönderildi.') : t('waiter_sent'));",
+  'fa-hand waiter-call-nav-icon',
+  '#bottomNav #bnav-waiter .waiter-call-nav-icon',
 ];
 
 for (const contract of requiredContracts) {
