@@ -3242,6 +3242,14 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
   filter: saturate(1.04) contrast(1.18) brightness(.92) !important;
 }
 
+/* KFM_COMPACT_ACTION_NAV — Alt eylemler daha az yer kaplar; dokunma hedefleri korunur. */
+#bottomNav{min-height:64px!important;padding:6px 5px!important;}
+#bottomNav .bnav-btn{min-height:48px;padding:5px 4px!important;gap:2px!important;font-size:9px!important;}
+#bottomNav .bnav-btn i{font-size:17px!important;}
+#bottomNav #bnav-waiter{justify-content:center;color:var(--rust);font-size:10px!important;font-weight:950!important;letter-spacing:.025em;}
+#bottomNav #bnav-waiter span{display:flex;align-items:center;min-height:24px;}
+@media(min-width:700px){#bottomNav{min-height:60px!important;padding:5px 8px!important;}#bottomNav .bnav-btn{min-height:46px!important;}}
+
 </style>
 <style>
 /* KFM_WELCOME_SMOKE_V27: kahve ve nargile dumanı görünürlük artışı */
@@ -3576,7 +3584,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             <i class="fa-solid fa-utensils"></i><span data-i18n="nav_menu">Menü</span>
         </div>
         <button type="button" class="bnav-btn" id="bnav-waiter" onclick="garsonCagriPenceresiAc()" aria-haspopup="dialog" aria-controls="waiterCallModal">
-            <i class="fa-solid fa-bell"></i><span data-i18n="call_waiter">Garson Çağır</span>
+            <span data-i18n="call_waiter">Garson Çağır</span>
         </button>
         <button type="button" class="bnav-btn" id="bnav-order" onclick="webSiparisPenceresiAc()" aria-haspopup="dialog" aria-controls="webOrderModal">
             <i class="fa-solid fa-bag-shopping"></i><span>Sipariş</span><b id="orderCartBadge" class="order-cart-badge" hidden>0</b>
@@ -4238,8 +4246,8 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             gh_publish_note: "Paneldeki ürün, kategori, çeviri, stok ve çerçeve değişikliklerini aynı JSON şemasını koruyarak tek düğmeyle GitHub’a kaydedin. GitHub ayarları kayıtlıysa form kaydetme işlemleri otomatik senkronizasyonu da tetikler.",
             quick_order: "⚡ Hızlı Sipariş",
             quick_order_en: "⚡ Quick Order",
-	            call_waiter: "🔔 Garson Çağır",
-	            call_waiter_en: "🔔 Call Waiter",
+	            call_waiter: "Garson Çağır",
+	            call_waiter_en: "Call Waiter",
 	            waiter_called: "✅ Garson çağrıldı!",
 	            waiter_called_en: "✅ Waiter called!",
 	            waiter_modal_title: "Garson Çağır",
@@ -4351,8 +4359,8 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             gh_publish_note: "Save product, category, translation, stock, and frame changes to GitHub with one button while preserving the existing JSON schema. Saved GitHub settings also enable automatic sync after form saves.",
             quick_order: "⚡ Quick Order",
             quick_order_en: "⚡ Quick Order",
-	            call_waiter: "🔔 Call Waiter",
-	            call_waiter_en: "🔔 Call Waiter",
+	            call_waiter: "Call Waiter",
+	            call_waiter_en: "Call Waiter",
 	            waiter_called: "✅ Waiter called!",
 	            waiter_called_en: "✅ Waiter called!",
 	            waiter_modal_title: "Call a Waiter",
