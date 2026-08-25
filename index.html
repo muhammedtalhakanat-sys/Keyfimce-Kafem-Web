@@ -2571,7 +2571,7 @@ html[data-theme="dark"] .daily-suggestion-time{color:#f6cfb8;background:rgba(255
 #catNav[data-lang="en"].wheel-pro-mode:not(.wheel-collapsed)::after{content:var(--wheel-pro-hint)!important;}
 /* Çark yalnızca dikey eksende hareket eder: yatay 3B dönüş/taşma kapatılır. */
 #catNav.wheel-pro-mode:not(.wheel-collapsed){
-  transform:translateZ(0);
+  transform:translateZ(0)!important;
   overflow-x:clip!important;
   contain:layout paint;
 }
@@ -3421,15 +3421,26 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 			.order-cart-qty button:active{transform:scale(.93);}
 			.order-cart-qty button:focus-visible{outline:3px solid rgba(184,92,56,.3);outline-offset:2px;}
 			.order-cart-qty output{min-width:26px;color:var(--ink);font-size:13px;font-weight:900;text-align:center;}
-			.order-cart-total{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;color:var(--ink);background:linear-gradient(135deg,rgba(255,247,240,.94),rgba(249,229,215,.9));font-size:12px;font-weight:900;}
-			.order-cart-total strong{color:var(--rust);font-size:15px;}
-			html[data-theme="dark"] .order-cart-panel{border-color:rgba(255,220,194,.14);background:rgba(255,255,255,.035);}
+				.order-cart-total{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;color:var(--ink);background:linear-gradient(135deg,rgba(255,247,240,.94),rgba(249,229,215,.9));font-size:12px;font-weight:900;}
+				.order-cart-total strong{color:var(--rust);font-size:15px;}
+				.order-status-message{min-height:20px;margin:9px 0 0;padding:8px 10px;border-radius:12px;color:var(--muted);background:rgba(146,80,47,.07);font-size:11px;font-weight:750;line-height:1.4;}
+				.order-status-message[data-mode="ready"],.order-status-message[data-mode="success"]{color:#226a43;background:#e7f6ec;}
+				.order-status-message[data-mode="loading"]{color:#8a5100;background:#fff4da;}
+				.order-status-message[data-mode="error"]{color:#a34c3a;background:#ffe8e5;}
+				.order-cart-quick-go{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom) + 84px);z-index:70;display:none;align-items:center;gap:10px;max-width:calc(100vw - 32px);padding:10px 13px;border:1px solid rgba(255,255,255,.76);border-radius:17px;color:#fff;background:linear-gradient(135deg,#bc6945,#873b25);box-shadow:0 14px 28px rgba(104,47,28,.3);font-family:'Plus Jakarta Sans',sans-serif;text-align:left;cursor:pointer;}
+				.order-cart-quick-go.is-visible{display:flex;animation:cartQuickGoIn .22s cubic-bezier(.22,1,.36,1) both;}
+				.order-cart-quick-go i{font-size:18px;}
+				.order-cart-quick-go span{display:grid;gap:1px;min-width:0;}
+				.order-cart-quick-go small{font-size:9px;font-weight:800;opacity:.82;}
+				.order-cart-quick-go strong{overflow:hidden;font-size:11px;font-weight:950;text-overflow:ellipsis;white-space:nowrap;}
+				@keyframes cartQuickGoIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+				html[data-theme="dark"] .order-cart-panel{border-color:rgba(255,220,194,.14);background:rgba(255,255,255,.035);}
 			html[data-theme="dark"] .order-cart-row{background:rgba(255,255,255,.045);}
 			html[data-theme="dark"] .order-cart-empty{background:rgba(255,255,255,.035);}
 				html[data-theme="dark"] .order-cart-qty{border-color:rgba(255,220,194,.13);background:rgba(255,255,255,.035);}
 				html[data-theme="dark"] .order-cart-qty button{border-color:rgba(255,220,194,.17);color:#efab84;background:rgba(255,255,255,.06);}
-			@media(max-width:520px){.web-order-modal{width:100%!important;}.order-cart-list{max-height:205px;}.product-cart-btn{width:35px;height:35px;flex-basis:35px;}}
-				@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}}
+				@media(max-width:520px){.web-order-modal{width:100%!important;}.order-cart-list{max-height:205px;}.product-cart-btn{width:35px;height:35px;flex-basis:35px;}.order-cart-quick-go{bottom:calc(env(safe-area-inset-bottom) + 78px);right:12px;}}
+				@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}.order-cart-quick-go.is-visible{animation:none!important;}}
 				/* KFM_CATEGORY_PICKER_V1 — İlk kez kullanan misafirler için açık menü erişimi. */
 				.menu-category-picker{position:relative;z-index:32;margin:0 16px 18px;}
 				.category-picker-trigger{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:82px;padding:13px 15px;border:1px solid rgba(159,73,41,.3);border-radius:20px;color:var(--ink);background:linear-gradient(135deg,#fffdf9 0%,#fff1e8 100%);box-shadow:0 12px 28px rgba(100,47,25,.13);text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),box-shadow .16s ease,border-color .16s ease;}
@@ -3633,6 +3644,11 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             <span id="lblSkor">Öneri-İstek</span>
         </button>
     </nav>
+    <button id="orderCartQuickGo" class="order-cart-quick-go" type="button" onclick="webSiparisPenceresiAc()" hidden aria-label="Sepete git">
+        <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+        <span><small>Sepetiniz hazır</small><strong id="orderCartQuickGoLabel">0 ürün · 0,00 ₺</strong></span>
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </button>
 
     <!-- Müşteri Garson Çağırma Modalı -->
     <div id="waiterCallModal" class="modal-overlay" role="presentation" onclick="if(event.target===this) modalKapat('waiterCallModal')">
@@ -3685,6 +3701,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                         <div id="orderCartList" class="order-cart-list" role="list" aria-live="polite" aria-relevant="additions text"></div>
                         <div class="order-cart-total"><span>Tahmini toplam</span><strong id="orderCartTotal">0,00 ₺</strong></div>
                     </div>
+                    <p id="orderStatusMessage" role="status" aria-live="polite" aria-atomic="true" class="order-status-message" data-mode="idle">Sepetinizdeki ürünleri ve masa bilginizi kontrol edin.</p>
                     <div class="waiter-call-field">
                         <label for="orderTableNumber">Masa numaranız</label>
                         <input id="orderTableNumber" name="masa_no" type="text" maxlength="32" autocomplete="off" inputmode="text" pattern="[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]+" required placeholder="Örn. 12 veya Teras 3" aria-describedby="orderTableHint">
@@ -6611,7 +6628,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        kfmAddProductToOrder(window.__activeDetailProduct, window.__activeDetailVariantSelections || []);
 	    }
 
-	    function kfmOrderCartChange(index, delta) {
+		    function kfmOrderCartChange(index, delta) {
 	        const item = kfmOrderCart[index];
 	        if (!item || !Number.isInteger(delta) || !delta) return;
 	        const nextQuantity = Math.max(0, Math.min(99, item.quantity + delta));
@@ -6626,23 +6643,42 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            toast(`✓ ${item.name} sepetten çıkarıldı.`);
 	            return;
 	        }
-	        kfmRenderOrderCart();
-	        toast(`✓ ${item.name} adedi ${item.quantity} oldu.`);
-	    }
+		        kfmRenderOrderCart();
+		        toast(`✓ ${item.name} adedi ${item.quantity} oldu.`);
+		    }
 
-	    function kfmRenderOrderCart() {
+		    function kfmOrderStatusGuncelle(message, mode = 'idle') {
+		        const status = document.getElementById('orderStatusMessage');
+		        if (!status) return;
+		        status.textContent = String(message || '');
+		        status.dataset.mode = mode;
+		    }
+
+		    function kfmRenderOrderCart() {
 	        const list = document.getElementById('orderCartList');
 	        const count = kfmOrderCart.reduce((sum, item) => sum + item.quantity, 0);
 	        const total = kfmOrderCart.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0);
 	        const badge = document.getElementById('orderCartBadge');
 	        const countLabel = document.getElementById('orderCartCount');
-	        const totalLabel = document.getElementById('orderCartTotal');
-	        const submit = document.getElementById('webOrderSubmit');
-	        if (badge) { badge.hidden = count === 0; badge.textContent = count > 99 ? '99+' : String(count); }
-	        if (countLabel) countLabel.textContent = `${count} ürün`;
-	        if (totalLabel) totalLabel.textContent = kfmFormatOrderTotal(total);
-	        if (submit) submit.disabled = count === 0;
-	        if (!list) return;
+		        const totalLabel = document.getElementById('orderCartTotal');
+		        const submit = document.getElementById('webOrderSubmit');
+		        const quickGo = document.getElementById('orderCartQuickGo');
+		        const quickGoLabel = document.getElementById('orderCartQuickGoLabel');
+		        if (badge) { badge.hidden = count === 0; badge.textContent = count > 99 ? '99+' : String(count); }
+		        if (countLabel) countLabel.textContent = `${count} ürün`;
+		        if (totalLabel) totalLabel.textContent = kfmFormatOrderTotal(total);
+		        if (submit) submit.disabled = count === 0;
+		        if (quickGo) {
+		            quickGo.hidden = count === 0;
+		            quickGo.classList.toggle('is-visible', count > 0);
+		            quickGo.setAttribute('aria-label', count ? `${count} ürün, ${kfmFormatOrderTotal(total)}. Sepete git.` : 'Sepete git');
+		        }
+		        if (quickGoLabel) quickGoLabel.textContent = `${count} ürün · ${kfmFormatOrderTotal(total)}`;
+		        kfmOrderStatusGuncelle(
+		            count ? `${count} ürün seçildi. Tahmini toplam ${kfmFormatOrderTotal(total)}.` : 'Sepetiniz boş. Menüden ürün seçebilirsiniz.',
+		            count ? 'ready' : 'idle',
+		        );
+		        if (!list) return;
 	        if (!kfmOrderCart.length) {
 	            list.innerHTML = '<div class="order-cart-empty"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><br>Ürün kartındaki <strong>+</strong> simgesiyle veya ürün detayından sepetinize ürün ekleyebilirsiniz.</div>';
 	            return;
@@ -6658,10 +6694,14 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            </div>`).join('');
 	    }
 
-	    function webSiparisPenceresiAc() {
-	        kfmRenderOrderCart();
-	        modalAc('webOrderModal');
-	        window.setTimeout(() => document.getElementById('orderTableNumber')?.focus(), 180);
+		    function webSiparisPenceresiAc() {
+		        kfmRenderOrderCart();
+		        modalAc('webOrderModal');
+		        kfmOrderStatusGuncelle(
+		            kfmOrderCart.length ? 'Sepetiniz hazır. Masa numaranızı yazıp siparişinizi iletebilirsiniz.' : 'Önce menüden ürün ekleyin; sepetiniz burada görünecek.',
+		            kfmOrderCart.length ? 'ready' : 'idle',
+		        );
+		        window.setTimeout(() => document.getElementById('orderTableNumber')?.focus(), 180);
 	    }
 
 	    async function webSiparisFormGonder(event) {
@@ -6691,24 +6731,27 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                alt_secenek_gruplari: Array.isArray(item.alt_secenek_gruplari) ? item.alt_secenek_gruplari : [],
 	            })),
 	        };
-	        if (submitButton) {
-	            submitButton.disabled = true;
-	            submitButton.setAttribute('aria-busy', 'true');
-	            submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span>Sipariş iletiliyor…</span>';
-	        }
-	        try {
+		        if (submitButton) {
+		            submitButton.disabled = true;
+		            submitButton.setAttribute('aria-busy', 'true');
+		            submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span>Sipariş iletiliyor…</span>';
+		        }
+		        kfmOrderStatusGuncelle('Sipariş iletiliyor…', 'loading');
+		        try {
 	            const relayUrl = await getWaiterRelayUrl();
 	            const response = await kfmOrderPost(relayUrl, payload);
 	            const data = await response.json().catch(() => ({}));
 	            if (!response.ok || !data.ok) throw new Error(data.error || 'Sipariş gönderilemedi.');
-	            kfmOrderCart = [];
-	            kfmRenderOrderCart();
-	            document.getElementById('webOrderForm')?.reset();
-	            modalKapat('webOrderModal');
+		            kfmOrderCart = [];
+		            kfmRenderOrderCart();
+		            document.getElementById('webOrderForm')?.reset();
+		            kfmOrderStatusGuncelle('Siparişiniz ekibe iletildi. Afiyet olsun!', 'success');
+		            modalKapat('webOrderModal');
 	            toast('✓ Siparişiniz ekibe iletildi. Afiyet olsun!');
-	        } catch (error) {
-	            console.error('Web sipariş relay hatası:', error);
-	            const isNetworkError = /networkerror|failed to fetch|abort/i.test(String(error?.message || ''));
+		        } catch (error) {
+		            console.error('Web sipariş relay hatası:', error);
+		            const isNetworkError = /networkerror|failed to fetch|abort/i.test(String(error?.message || ''));
+		            kfmOrderStatusGuncelle('Sipariş şu anda iletilemedi. Bağlantınızı kontrol edip tekrar deneyin.', 'error');
 	            toast('⚠️ ' + (isNetworkError ? 'Sipariş servisine ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.' : (error?.message || 'Sipariş şu anda iletilemedi. Lütfen tekrar deneyin.')));
 	        } finally {
 	            if (submitButton) {

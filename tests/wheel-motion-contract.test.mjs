@@ -17,7 +17,7 @@ assert.match(
 
 assert.match(
   html,
-  /function updateWheelProximityPreview\(\) \{\n            \/\/ Sağ tarafa kayan geçici kategori etiketi artık kullanılmıyor\.\n            \/\/ Önceki sürümden kalmışsa da yeniden belirmemesi için DOM'dan kaldırılır\.\n            nav\.querySelector\('\.wheel-proximity-preview'\)\?\.remove\(\);\n        \}/,
+  /function updateWheelProximityPreview\(\) \{[\s\S]*?nav\.querySelectorAll\('\.wheel-proximity-preview, \.wheel-preview-item, \[data-wheel-transient-label\]'\)[\s\S]*?\.forEach\(element => element\.remove\(\)\);[\s\S]*?\}/,
   'Geçici yakınlık etiketi çalışma zamanında da yeniden oluşturulmamalıdır.'
 );
 

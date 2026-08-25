@@ -8,6 +8,12 @@ const source = fs.readFileSync(path.join(here, '..', 'index.html'), 'utf8');
 const requiredContracts = [
   'id="toast" role="status" aria-live="polite" aria-atomic="true"',
   'id="orderCartList" class="order-cart-list" role="list" aria-live="polite"',
+  'id="orderStatusMessage" role="status" aria-live="polite" aria-atomic="true"',
+  'id="orderCartQuickGo" class="order-cart-quick-go" type="button"',
+  'function kfmOrderStatusGuncelle(message, mode = \'idle\')',
+  'kfmOrderStatusGuncelle(\'Siparişiniz ekibe iletildi.',
+  'kfmOrderStatusGuncelle(\'Sipariş iletiliyor…\', \'loading\')',
+  'kfmOrderStatusGuncelle(\'Sipariş şu anda iletilemedi.',
   'function kfmOrderCartChange(index, delta)',
   'toast(`✓ ${item.name} sepetten çıkarıldı.`);',
   'toast(`✓ ${item.name} adedi ${item.quantity} oldu.`);',
