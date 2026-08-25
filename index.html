@@ -1220,6 +1220,10 @@
   .detail-price { color: var(--rust-dk); font-size: 25px; font-weight: 900; letter-spacing: -.04em; }
   .detail-stock { color: #41805a; font-size: 11px; font-weight: 800; }
   .detail-stock.out { color: #a34c3a; }
+  .detail-stock.warning { color: #a85e00; }
+  .product-card-stock-warning { position:absolute; z-index:4; top:10px; left:10px; display:inline-flex; align-items:center; gap:5px; max-width:calc(100% - 20px); padding:5px 8px; border:1px solid rgba(168,94,0,.3); border-radius:999px; color:#8a5100; background:rgba(255,244,218,.96); box-shadow:0 5px 14px rgba(123,72,6,.15); font-size:9px; font-weight:900; letter-spacing:.03em; }
+  .detail-variant-selection-counter { color:#8a5100; font-size:9px; font-weight:900; }
+  .detail-variant-selection-counter.is-full { color:#a34c3a; }
   .detail-extras { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
   .detail-variants { margin-top:15px; padding:12px; border:1px solid rgba(184,92,56,.18); border-radius:15px; background:linear-gradient(145deg,rgba(184,92,56,.09),rgba(255,255,255,.48)); }
   .detail-variants[hidden] { display:none; }
@@ -5967,6 +5971,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const img = kfmV21ProductImage(u, u.catKey);
             const extrasCount = u.ekstralar?.length || 0;
             const stokOverlay = !u.stoktaVar ? `<div class="stok-overlay"><span class="stok-badge">${t('out_of_stock')}</span></div>` : '';
+            const stokUyariRozeti = u.stoktaVar && u.stokUyari ? `<span class="product-card-stock-warning"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>${aktifDil === 'en' ? 'Low stock' : 'Stok eşiğinde'}</span>` : '';
             const delay = Math.min(idx, 8) * 0.055;
             const frameTheme = getProductFrameTheme(u);
             const frameTone = frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm')));
@@ -5974,10 +5979,11 @@ function apUrunDosyaSecildi(event, catKey, id) {
               <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" data-kfm-fallback="${escapeHtml(fallbackImg)}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
                 <div class="product-card-image-wrap">
-                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
-                  <span class="product-card-depth-plane" aria-hidden="true"></span>
-                  <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
-                  ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
+	                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
+	                  <span class="product-card-depth-plane" aria-hidden="true"></span>
+	                  <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
+	                  ${stokUyariRozeti}
+	                  ${!u.stoktaVar ? `<span class="product-card-badge">${t('out_of_stock')}</span>` : ''}
                 </div>
                 <div class="product-card-body">
                   <div class="product-card-category">${escapeHtml(categoryName || 'Keyfimce')}</div>
@@ -6208,8 +6214,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
         document.getElementById('detailDescription').textContent = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
         document.getElementById('detailPrice').textContent = `${item.fiyat}₺`;
         const stock = document.getElementById('detailStock');
-        stock.textContent = item.stoktaVar ? (aktifDil === 'en' ? 'Available' : 'Stokta mevcut') : t('out_of_stock');
+        stock.textContent = !item.stoktaVar ? t('out_of_stock') : (item.stokUyari ? (aktifDil === 'en' ? 'Low stock' : 'Stok eşiğinde') : (aktifDil === 'en' ? 'Available' : 'Stokta mevcut'));
         stock.classList.toggle('out', !item.stoktaVar);
+        stock.classList.toggle('warning', item.stoktaVar && item.stokUyari);
         const badge = document.getElementById('detailBadge');
         badge.textContent = t('out_of_stock');
         badge.style.display = item.stoktaVar ? 'none' : 'inline-flex';
@@ -6231,6 +6238,16 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    .map(input => ({ isim: String(input.dataset.variantName || '').trim(), grup: String(input.dataset.variantGroup || '').trim() }))
 	                    .filter(selection => selection.isim && selection.grup);
 	                window.__activeDetailVariantNames = window.__activeDetailVariantSelections.map(selection => selection.isim);
+	                variantOptions.querySelectorAll('[data-variant-selection-counter]').forEach(counter => {
+	                    const groupName = String(counter.dataset.variantSelectionCounter || '');
+	                    const limit = Number(counter.dataset.selectionLimit || 0);
+	                    if (!groupName || !limit) return;
+	                    const selected = [...variantOptions.querySelectorAll('input:checked')]
+	                        .filter(input => input.dataset.variantGroup === groupName).length;
+	                    const remaining = Math.max(0, limit - selected);
+	                    counter.textContent = remaining ? `${selected}/${limit} seçildi · ${remaining} kaldı` : `${selected}/${limit} seçildi · Limit doldu`;
+	                    counter.classList.toggle('is-full', remaining === 0);
+	                });
 	            };
 			            kfmOrderVariantGroups(variants).forEach(group => {
 	                const groupEl = document.createElement('section');
@@ -6242,6 +6259,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                const rule = document.createElement('small');
 	                rule.textContent = `${group.zorunlu ? 'Seçim gerekli' : 'İsteğe bağlı'} · ${group.secim_tipi === 'tekli' ? 'Tek seçim' : (group.max_secim ? `En fazla ${group.max_secim} seçim` : 'Birden fazla seçilebilir')}`;
 	                title.append(titleText, rule);
+	                if (group.max_secim) {
+	                    const counter = document.createElement('small');
+	                    counter.className = 'detail-variant-selection-counter';
+	                    counter.dataset.variantSelectionCounter = group.grup;
+	                    counter.dataset.selectionLimit = String(group.max_secim);
+	                    title.appendChild(counter);
+	                }
 	                groupEl.appendChild(title);
 			                group.varyantlar.forEach(variant => {
 			                    const option = document.createElement('label');
@@ -6277,6 +6301,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                });
 	                variantOptions.appendChild(groupEl);
 	            });
+	            selectionsSync();
 	        }
 	        const addToCartButton = document.getElementById('detailAddToCart');
 	        if (addToCartButton) {
@@ -7157,6 +7182,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
                     gorsel: String(product?.gorsel_url || '').trim(),
                     galeri_gorselleri: Array.isArray(product?.galeri_gorselleri) ? product.galeri_gorselleri.filter(url => typeof url === 'string' && /^https:\/\//.test(url)) : [],
                     stoktaVar: product?.stoktaVar !== false,
+                    stokUyari: product?.stok_uyari === true,
                     birim: String(product?.birim || 'adet').trim() || 'adet',
                     ekstralar: Array.isArray(product?.ekstralar) ? product.ekstralar : [],
                     varyantlar: Array.isArray(product?.varyantlar) ? product.varyantlar : [],
