@@ -75,6 +75,11 @@ const requiredContracts = [
   'function kfmStatikMenuGorselleriniYukle()',
   "fetch(jsonDosyaAdi, { cache: 'no-store'",
   'kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu)',
+  'data-image-state="loading" aria-busy="true"',
+  'function setupCardImageReveal()',
+  'wrap.dataset.imageState = \'ready\';',
+  'wrap.setAttribute(\'aria-busy\', \'false\');',
+  'kfmImageSkeleton',
 ];
 
 for (const contract of requiredContracts) {

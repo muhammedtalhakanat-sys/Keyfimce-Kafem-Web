@@ -2349,6 +2349,14 @@ html[data-theme="dark"] .product-card-frame-art[data-frame-theme="hookah"]{
   filter: none!important;
   transition: opacity .22s ease, filter .22s ease!important;
 }
+#productGrid .product-card-image-wrap[data-image-state="loading"] {
+  background: linear-gradient(105deg, rgba(255,255,255,.08) 25%, rgba(255,255,255,.32) 42%, rgba(255,255,255,.08) 60%);
+  background-size: 220% 100%;
+  animation: kfmImageSkeleton 1.15s linear infinite;
+}
+#productGrid .product-card-image-wrap[data-image-state="loading"] .product-card-image { opacity: .28!important; }
+@keyframes kfmImageSkeleton { from { background-position: 180% 0; } to { background-position: -40% 0; } }
+@media(prefers-reduced-motion:reduce){#productGrid .product-card-image-wrap[data-image-state="loading"]{animation:none;background-position:50% 0;}}
 #productGrid .product-card-image-wrap .product-card-image.kfm-fallback-image {
   object-fit: contain!important;
   padding: 18px 28px 20px!important;
@@ -6101,8 +6109,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
             grid.insertAdjacentHTML('beforeend', `
               <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" data-kfm-fallback="${escapeHtml(fallbackImg)}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
-                <div class="product-card-image-wrap">
-	                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
+                                <div class="product-card-image-wrap" data-image-state="loading" aria-busy="true">
+		                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
+
 	                  <span class="product-card-depth-plane" aria-hidden="true"></span>
 	                  <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
 	                  ${stokUyariRozeti}
@@ -8054,6 +8063,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
             if (!wrap) return;
             const reveal = () => {
                 wrap.classList.remove('image-ready');
+                wrap.dataset.imageState = 'ready';
+                wrap.setAttribute('aria-busy', 'false');
                 if (!reduceMotion) void wrap.offsetWidth;
                 wrap.classList.add('image-ready');
             };
