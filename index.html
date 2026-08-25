@@ -6232,7 +6232,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    .filter(selection => selection.isim && selection.grup);
 	                window.__activeDetailVariantNames = window.__activeDetailVariantSelections.map(selection => selection.isim);
 	            };
-	            kfmOrderVariantGroups(variants).forEach(group => {
+			            kfmOrderVariantGroups(variants).forEach(group => {
 	                const groupEl = document.createElement('section');
 	                groupEl.className = 'detail-variant-group';
 	                const title = document.createElement('div');
@@ -6243,20 +6243,22 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                rule.textContent = `${group.zorunlu ? 'Seçim gerekli' : 'İsteğe bağlı'} · ${group.secim_tipi === 'tekli' ? 'Tek seçim' : 'Birden fazla seçilebilir'}`;
 	                title.append(titleText, rule);
 	                groupEl.appendChild(title);
-	                group.varyantlar.forEach(variant => {
-	                    const option = document.createElement('label');
-	                    option.className = 'detail-variant-option';
-	                    const input = document.createElement('input');
+			                group.varyantlar.forEach(variant => {
+			                    const option = document.createElement('label');
+			                    option.className = 'detail-variant-option';
+			                    option.classList.toggle('is-unavailable', !variant.stokta_var);
+			                    const input = document.createElement('input');
 	                    input.type = group.secim_tipi === 'tekli' ? 'radio' : 'checkbox';
 	                    input.name = `variant-${group.grup}`;
 	                    input.value = kfmOrderVariantKey(variant);
 	                    input.dataset.variantName = variant.isim;
-	                    input.dataset.variantGroup = variant.grup;
-	                    input.setAttribute('aria-label', `${variant.isim} alt seçeneğini ekle`);
+			                    input.dataset.variantGroup = variant.grup;
+			                    input.setAttribute('aria-label', `${variant.isim} alt seçeneğini ekle`);
+			                    input.disabled = !variant.stokta_var;
 	                    input.addEventListener('change', selectionsSync);
 	                    const main = document.createElement('span');
 	                    main.className = 'detail-variant-option-main';
-	                    main.append(input, document.createTextNode(variant.isim));
+			                    main.append(input, document.createTextNode(variant.stokta_var ? variant.isim : `${variant.isim} (Stokta yok)`));
 	                    const price = document.createElement('span');
 	                    price.className = 'detail-variant-option-price';
 	                    price.textContent = variant.ek_fiyat ? `+${variant.ek_fiyat}₺` : 'Dahil';
@@ -6440,15 +6442,17 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        return `${String(product?.id || product?.kod || `${name}__${unitPrice}`)}__${variantsKey}`;
 	    }
 
-	    function kfmOrderProductVariants(product) {
+			    function kfmOrderProductVariants(product) {
 	        const seen = new Set();
 	        return (Array.isArray(product?.varyantlar) ? product.varyantlar : [])
 	            .map(variant => ({
 	                isim: String(variant?.isim || '').trim(),
 	                ek_fiyat: Math.max(0, Math.round(Number(variant?.ek_fiyat || 0))),
-	                grup: String(variant?.grup || 'Alt seçenekler').trim().slice(0, 48) || 'Alt seçenekler',
-	                zorunlu: variant?.zorunlu === true,
-	                secim_tipi: String(variant?.secim_tipi || '').toLowerCase() === 'tekli' ? 'tekli' : 'coklu',
+			                grup: String(variant?.grup || 'Alt seçenekler').trim().slice(0, 48) || 'Alt seçenekler',
+			                grup_sira: Math.max(0, Math.min(999, Math.round(Number(variant?.grup_sira || 0)))),
+			                zorunlu: variant?.zorunlu === true,
+			                secim_tipi: String(variant?.secim_tipi || '').toLowerCase() === 'tekli' ? 'tekli' : 'coklu',
+			                stokta_var: variant?.stokta_var !== false,
 	            }))
 	            .filter(variant => variant.isim && variant.isim.length <= 72 && !seen.has(kfmOrderVariantKey(variant)) && seen.add(kfmOrderVariantKey(variant)));
 	    }
@@ -6458,39 +6462,51 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	    }
 
 	    function kfmOrderVariantGroups(variants) {
-	        const groups = new Map();
-	        variants.forEach(variant => {
-	            const group = groups.get(variant.grup) || { grup: variant.grup, zorunlu: false, secim_tipi: 'coklu', varyantlar: [] };
+			        const groups = new Map();
+			        variants.forEach(variant => {
+			            const group = groups.get(variant.grup) || { grup: variant.grup, grup_sira: variant.grup_sira, zorunlu: false, secim_tipi: 'coklu', varyantlar: [] };
+			            group.grup_sira = Math.min(group.grup_sira, variant.grup_sira);
 	            group.zorunlu ||= variant.zorunlu;
 	            if (variant.secim_tipi === 'tekli') group.secim_tipi = 'tekli';
 	            group.varyantlar.push(variant);
 	            groups.set(variant.grup, group);
 	        });
-	        return [...groups.values()];
+			        return [...groups.values()].sort((a, b) => a.grup_sira - b.grup_sira || a.grup.localeCompare(b.grup, 'tr'));
 	    }
 
 	    function kfmSelectedOrderVariants(product, selectedNames = []) {
 	        const requested = new Set((Array.isArray(selectedNames) ? selectedNames : [])
 	            .map(name => typeof name === 'object' ? kfmOrderVariantKey(name) : String(name || '').trim())
 	            .filter(Boolean));
-	        return kfmOrderProductVariants(product).filter(variant => requested.has(kfmOrderVariantKey(variant)) || requested.has(variant.isim));
+			        return kfmOrderProductVariants(product).filter(variant => variant.stokta_var && (requested.has(kfmOrderVariantKey(variant)) || requested.has(variant.isim)));
 	    }
 
-	    function kfmMissingRequiredVariantGroups(product, selectedNames = []) {
+			    function kfmMissingRequiredVariantGroups(product, selectedNames = []) {
 	        const selectedKeys = new Set(kfmSelectedOrderVariants(product, selectedNames).map(kfmOrderVariantKey));
 	        return kfmOrderVariantGroups(kfmOrderProductVariants(product))
 	            .filter(group => group.zorunlu && !group.varyantlar.some(variant => selectedKeys.has(kfmOrderVariantKey(variant))))
-	            .map(group => group.grup);
-	    }
+			            .map(group => group.grup);
+			    }
+
+			    function kfmUnavailableRequiredVariantGroups(product) {
+			        return kfmOrderVariantGroups(kfmOrderProductVariants(product))
+			            .filter(group => group.zorunlu && !group.varyantlar.some(variant => variant.stokta_var))
+			            .map(group => group.grup);
+			    }
 
 	    function kfmAddProductToOrder(product, selectedNames = []) {
 	        if (!product || !product.stoktaVar) {
 	            toast('⚠️ Bu ürün şu anda siparişe eklenemiyor.');
 	            return;
 	        }
-	        const productName = localizedProductName(product).trim();
-	        const baseUnitPrice = Math.round(Number(product.fiyat) * 100);
-	        const missingGroups = kfmMissingRequiredVariantGroups(product, selectedNames);
+			        const productName = localizedProductName(product).trim();
+			        const baseUnitPrice = Math.round(Number(product.fiyat) * 100);
+			        const unavailableGroups = kfmUnavailableRequiredVariantGroups(product);
+			        if (unavailableGroups.length) {
+			            toast(`⚠️ Stokta seçenek yok: ${unavailableGroups.join(', ')}`);
+			            return;
+			        }
+			        const missingGroups = kfmMissingRequiredVariantGroups(product, selectedNames);
 	        if (missingGroups.length) {
 	            toast(`⚠️ Önce seçin: ${missingGroups.join(', ')}`);
 	            return;
