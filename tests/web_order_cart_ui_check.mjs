@@ -59,6 +59,18 @@ const requiredContracts = [
   'Alt seçenekleri seçip ürünü sepetinize ekleyin.',
   '#productDetailModal .detail-content { min-height:0; overflow-y:auto;',
   'max-height:calc(100dvh - 24px)',
+  'https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js',
+  'Masa QR Kodları',
+  'id="apQrTableNumber"',
+  'id="apTableQrOutput"',
+  'function kfmMasaParametresiniUygula()',
+  'function kfmMasaQrUrl(masa)',
+  'function kfmMasaQrOlustur()',
+  'function kfmMasaQrIndir()',
+  'function kfmMasaQrYazdir()',
+  "url.searchParams.set('masa', masa);",
+  "['orderTableNumber', 'waiterTableNumber']",
+  'kfmMasaParametresiniUygula();',
 ];
 
 for (const contract of requiredContracts) {

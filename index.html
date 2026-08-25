@@ -13,6 +13,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script type="text/javascript">
   (function() {
     emailjs.init("eO2J01-bhivAHbgA7");
@@ -4175,6 +4176,34 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     </div>
 </div>
 
+            <!-- Masa QR Kodları -->
+            <div class="admin-accordion-section glass rounded-3xl border mb-5 shadow-sm" style="border-color:rgba(184,92,56,.28); background:rgba(255,248,243,.78);">
+                <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-bold" style="color:var(--rust);"><i class="fa-solid fa-qrcode mr-2"></i>Masa QR Kodları</h3>
+                        <i class="fa-solid fa-chevron-down chevron text-xs" style="color:var(--muted2);"></i>
+                    </div>
+                </div>
+                <div class="admin-accordion-content px-5">
+                    <p class="text-xs mb-4 font-medium" style="color:var(--muted);">Masa adını girin. Oluşan QR kod okutulduğunda menü açılır ve sipariş/garson çağrısı formunda masa bilgisi otomatik gelir.</p>
+                    <label class="text-xs block mb-1.5 font-bold" style="color:var(--muted);" for="apQrTableNumber">Masa adı veya numarası</label>
+                    <div class="flex gap-2">
+                        <input id="apQrTableNumber" class="ap-input text-sm font-medium flex-1" maxlength="32" placeholder="Örn. Teras 3" autocomplete="off">
+                        <button type="button" onclick="kfmMasaQrOlustur()" class="px-4 rounded-xl text-xs font-bold text-white" style="background:var(--rust);"><i class="fa-solid fa-qrcode"></i> Oluştur</button>
+                    </div>
+                    <p id="apQrStatus" class="text-xs mt-2" role="status" aria-live="polite" style="color:var(--muted);"></p>
+                    <div id="apTableQrOutput" hidden class="mt-4 rounded-2xl border p-4 text-center" style="border-color:var(--border2); background:#fff;">
+                        <p id="apQrTableLabel" class="text-sm font-bold mb-3" style="color:var(--ink);"></p>
+                        <div id="apTableQrCanvas" class="inline-flex rounded-xl p-3" style="background:#fff;"></div>
+                        <p id="apQrUrlText" class="text-[10px] mt-3 break-all" style="color:var(--muted);"></p>
+                        <div class="flex justify-center gap-2 mt-3">
+                            <button type="button" onclick="kfmMasaQrIndir()" class="px-3 py-2 rounded-xl text-xs font-bold" style="background:#eef4ef; color:#316e49;"><i class="fa-solid fa-download"></i> PNG indir</button>
+                            <button type="button" onclick="kfmMasaQrYazdir()" class="px-3 py-2 rounded-xl text-xs font-bold" style="background:#f5eee9; color:#5d4037;"><i class="fa-solid fa-print"></i> Yazdır</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Hızlı Sipariş Yönetimi -->
             <div class="admin-accordion-section glass  rounded-3xl border shadow-sm" style="border-color:rgba(245, 158, 11, 0.4); background:rgba(255, 251, 235, 0.7);">
     <div class="admin-accordion-header p-5" onclick="toggleAdminAccordion(this)">
@@ -5102,6 +5131,79 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     function wifiBaglan() {
         if (navigator.clipboard) navigator.clipboard.writeText(wifiData.sifre).catch(() => {});
         toast('📋 ' + (aktifDil === 'en' ? 'Password copied! Connect via Wi-Fi settings.' : 'Şifre kopyalandı! Cihazınızın Wi-Fi ayarlarından ağa bağlanabilirsiniz.'), 3500);
+    }
+
+    const KFM_TABLE_NAME_PATTERN = /^[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]{1,32}$/;
+
+    function kfmMasaParametresiniUygula() {
+        const masa = String(new URLSearchParams(window.location.search).get('masa') || '').trim();
+        if (!masa || !KFM_TABLE_NAME_PATTERN.test(masa)) return;
+        ['orderTableNumber', 'waiterTableNumber'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) input.value = masa;
+        });
+        document.documentElement.dataset.kfmMasa = masa;
+    }
+
+    function kfmMasaQrUrl(masa) {
+        const url = new URL(window.location.href);
+        url.hash = '';
+        url.searchParams.set('masa', masa);
+        return url.toString();
+    }
+
+    function kfmMasaQrOlustur() {
+        const input = document.getElementById('apQrTableNumber');
+        const status = document.getElementById('apQrStatus');
+        const masa = String(input?.value || '').trim();
+        if (!KFM_TABLE_NAME_PATTERN.test(masa)) {
+            status.textContent = 'Masa adı 1–32 karakter olmalı; yalnız harf, sayı, boşluk, tire ve alt çizgi kullanılabilir.';
+            status.style.color = '#b42318';
+            return;
+        }
+        if (typeof QRCode === 'undefined') {
+            status.textContent = 'QR kod kütüphanesi yüklenemedi. İnternet bağlantısını kontrol edip tekrar deneyin.';
+            status.style.color = '#b42318';
+            return;
+        }
+        const url = kfmMasaQrUrl(masa);
+        const canvas = document.getElementById('apTableQrCanvas');
+        canvas.replaceChildren();
+        new QRCode(canvas, { text: url, width: 240, height: 240, colorDark: '#2c1a12', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+        document.getElementById('apQrTableLabel').textContent = `Masa ${masa}`;
+        document.getElementById('apQrUrlText').textContent = url;
+        document.getElementById('apTableQrOutput').hidden = false;
+        status.textContent = 'QR kod hazır. İndirerek masaya koyabilir veya yazdırabilirsiniz.';
+        status.style.color = '#316e49';
+    }
+
+    function kfmMasaQrGorselUrl() {
+        const container = document.getElementById('apTableQrCanvas');
+        const canvas = container?.querySelector('canvas');
+        const image = container?.querySelector('img');
+        return canvas?.toDataURL('image/png') || image?.src || '';
+    }
+
+    function kfmMasaQrIndir() {
+        const imageUrl = kfmMasaQrGorselUrl();
+        const label = String(document.getElementById('apQrTableLabel')?.textContent || 'masa').replace(/[^A-Za-z0-9ÇĞİÖŞÜçğıöşü_-]+/g, '-');
+        if (!imageUrl) return toast('⚠️ Önce bir masa QR kodu oluşturun.');
+        const anchor = document.createElement('a');
+        anchor.href = imageUrl;
+        anchor.download = `keyfimce-${label.toLocaleLowerCase('tr-TR')}-qr.png`;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+    }
+
+    function kfmMasaQrYazdir() {
+        const imageUrl = kfmMasaQrGorselUrl();
+        const label = String(document.getElementById('apQrTableLabel')?.textContent || '').trim();
+        if (!imageUrl || !label) return toast('⚠️ Önce bir masa QR kodu oluşturun.');
+        const popup = window.open('', '_blank', 'noopener,noreferrer,width=420,height=540');
+        if (!popup) return toast('⚠️ Yazdırma penceresi engellendi. Tarayıcı açılır pencere izni verin.');
+        popup.document.write(`<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>${label} QR</title><style>body{font-family:Arial,sans-serif;text-align:center;padding:28px;color:#2c1a12}img{width:280px;height:280px}p{font-size:16px;font-weight:700}</style></head><body><p>${label}</p><img src="${imageUrl}" alt="${label} QR kodu"><p>Menüyü açmak ve sipariş vermek için okutun</p><script>window.onload=()=>window.print()<\/script></body></html>`);
+        popup.document.close();
     }
 
     function wifiKaydet() {
@@ -7301,6 +7403,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         skorGuncelle();
         wifiEkraniGuncelle();
         dilUygula();
+        kfmMasaParametresiniUygula();
         
         // Gizli sekme veya ilk yükleme için ekstra kontrol
         if (Object.keys(menuData).length === 0) {
