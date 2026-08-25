@@ -71,6 +71,10 @@ const requiredContracts = [
   "url.searchParams.set('masa', masa);",
   "['orderTableNumber', 'waiterTableNumber']",
   'kfmMasaParametresiniUygula();',
+  'function kfmStaticInternetGorselleriniUygula(remoteMenu, staticMenu)',
+  'function kfmStatikMenuGorselleriniYukle()',
+  "fetch(jsonDosyaAdi, { cache: 'no-store'",
+  'kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu)',
 ];
 
 for (const contract of requiredContracts) {

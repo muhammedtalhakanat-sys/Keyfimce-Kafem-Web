@@ -7321,6 +7321,37 @@ function apUrunDosyaSecildi(event, catKey, id) {
         return merged;
     }
 
+    function kfmStaticImageKey(product) {
+        const raw = String(product?.ad_en || product?.ad || '').trim().toLocaleLowerCase('tr-TR');
+        return raw.replace(/\s+/g, ' ').replace(/[()]/g, '').trim();
+    }
+    function kfmStaticInternetGorselleriniUygula(remoteMenu, staticMenu) {
+        if (!remoteMenu || !staticMenu) return remoteMenu;
+        const merged = JSON.parse(JSON.stringify(remoteMenu));
+        const staticByName = new Map();
+        Object.values(staticMenu).forEach(category => (category?.urunler || []).forEach(product => {
+            const image = String(product?.gorsel || '').trim();
+            if (image.startsWith('https://')) staticByName.set(kfmStaticImageKey(product), image);
+        }));
+        Object.values(merged).forEach(category => (category?.urunler || []).forEach(product => {
+            const current = String(product?.gorsel || '').trim();
+            const fallback = staticByName.get(kfmStaticImageKey(product));
+            if (fallback && (!current || kfmKnownBrokenRemote(product, current))) product.gorsel = fallback;
+        }));
+        return merged;
+    }
+    async function kfmStatikMenuGorselleriniYukle() {
+        try {
+            const response = await fetch(jsonDosyaAdi, { cache: 'no-store', headers: { Accept: 'application/json' } });
+            if (!response.ok) throw new Error(`Statik menü HTTP ${response.status}`);
+            const payload = await response.json();
+            return payload?.menuYedek && typeof payload.menuYedek === 'object' ? payload.menuYedek : null;
+        } catch (error) {
+            console.warn('Statik ürün görselleri okunamadı; tarayıcı yedeği kullanılacak.', error);
+            return null;
+        }
+    }
+
     const KFM_LIVE_CATALOG_CACHE_KEY = 'kfm_live_menu_catalog';
     const KFM_LIVE_CATALOG_TIMEOUT_MS = 5500;
 
@@ -7379,15 +7410,16 @@ function apUrunDosyaSecildi(event, catKey, id) {
     }
 
     window.addEventListener("load", async () => {
+        const staticImageMenu = await kfmStatikMenuGorselleriniYukle();
         try {
             const liveCatalog = await kfmCanliKatalogYukle();
-            menuData = kfmMergeUserImages(liveCatalog.menu, kfmLocalMenuSnapshot);
+            menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
             lsSave('kfm_menu', menuData);
             console.info(`✓ Canlı D1 menü kataloğu (sürüm ${liveCatalog.version || '?'}) yüklendi.`);
         } catch (err) {
             const cachedCatalog = ls(KFM_LIVE_CATALOG_CACHE_KEY, null);
             if (cachedCatalog?.menu && typeof cachedCatalog.menu === 'object') {
-                menuData = kfmMergeUserImages(cachedCatalog.menu, kfmLocalMenuSnapshot);
+                menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(cachedCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
                 console.warn('Canlı katalog alınamadı; güvenli son katalog anlık görüntüsü kullanılıyor.', err);
             } else {
                 // İlk çevrimdışı açılışta mevcut yerel menü, o da yoksa varsayılan menü kullanılır.
