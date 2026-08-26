@@ -9,6 +9,7 @@ class LiveMenuSettingsContractTests(unittest.TestCase):
         self.assertIn("function kfmCanliMenuAyarlariniNormalizeEt", source)
         self.assertIn("featured_category_id", source)
         self.assertIn("remoteMenuAnnouncement", source)
+        self.assertIn("#remoteMenuAnnouncement[hidden]{display:none!important}", source)
         self.assertIn("kfmCanliMenuAyarlariniUygula(liveCatalog.settings)", source)
         self.assertIn("kfmCanliMenuAyarlariniUygula(cachedCatalog.settings)", source)
         self.assertIn("/^cat-[a-z0-9][a-z0-9_-]{0,47}$/.test(featured)", source)
