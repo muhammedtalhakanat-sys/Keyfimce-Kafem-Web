@@ -5533,7 +5533,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             trigger.setAttribute('aria-expanded', String(willOpen));
             if (willOpen) {
                 picker.classList.remove('needs-attention');
-                window.requestAnimationFrame(() => searchInput?.focus());
+                // Menü açılışı ekran klavyesini tetiklemez. Arama alanı yalnız kullanıcı dokunursa odaklanır.
             }
         });
         searchInput?.addEventListener('input', () => kategoriUrunAramaSonuclariniGoster(searchInput.value));
