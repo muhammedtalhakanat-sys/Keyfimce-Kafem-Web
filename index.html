@@ -243,6 +243,15 @@
     color: #382014;
     font-size: 14px;
   }
+  #cartAddToast .cart-add-toast-icon.is-bouncing {
+    animation: kfmCartIconBounce .28s cubic-bezier(.23, 1, .32, 1) both;
+  }
+  @keyframes kfmCartIconBounce {
+    0% { transform: translateY(0) scale(1); }
+    42% { transform: translateY(-4px) scale(1.24); }
+    72% { transform: translateY(1px) scale(.96); }
+    100% { transform: translateY(0) scale(1); }
+  }
   #cartAddToast .cart-add-toast-copy { min-width: 0; line-height: 1.2; }
   #cartAddToast .cart-add-toast-title { display: block; font-size: 12px; font-weight: 800; letter-spacing: .02em; }
   #cartAddToast .cart-add-toast-product {
@@ -256,6 +265,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     #cartAddToast, #cartAddToast.is-visible { transition: none; transform: none; }
+    #cartAddToast .cart-add-toast-icon.is-bouncing { animation: none; }
   }
 
   .wifi-bar {
@@ -3601,7 +3611,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 
     <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
     <div id="cartAddToast" role="status" aria-live="polite" aria-atomic="true">
-      <i class="fa-solid fa-check cart-add-toast-icon" aria-hidden="true"></i>
+      <i id="cartAddToastIcon" class="fa-solid fa-bag-shopping cart-add-toast-icon" aria-hidden="true"></i>
       <span class="cart-add-toast-copy"><strong class="cart-add-toast-title">Sepete eklendi</strong><span id="cartAddToastProduct" class="cart-add-toast-product"></span></span>
     </div>
 
@@ -4885,9 +4895,18 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             label.textContent = count > 1
                 ? `${name} · ${count} adet sepette`
                 : name;
+            kfmCartIconBounce();
             el.classList.add('is-visible');
             clearTimeout(el._t);
             el._t = setTimeout(() => el.classList.remove('is-visible'), 2800);
+        }
+
+        function kfmCartIconBounce() {
+            const icon = document.getElementById('cartAddToastIcon');
+            if (!icon || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            icon.classList.remove('is-bouncing');
+            void icon.offsetWidth;
+            icon.classList.add('is-bouncing');
         }
 
     function modalAc(id)   { document.getElementById(id).classList.add('open'); }
