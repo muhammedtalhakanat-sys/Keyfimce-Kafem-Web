@@ -3623,6 +3623,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
       <span class="cart-add-toast-copy"><strong class="cart-add-toast-title">Sepete eklendi</strong><span id="cartAddToastProduct" class="cart-add-toast-product"></span></span>
     </div>
 
+    <style>
+      #remoteMenuAnnouncement{display:flex;align-items:center;gap:10px;width:min(1180px,calc(100% - 32px));margin:14px auto -3px;padding:11px 14px;border:1px solid rgba(184,92,56,.25);border-radius:16px;color:var(--ink);background:linear-gradient(110deg,rgba(255,250,244,.96),rgba(255,239,224,.92));box-shadow:0 9px 22px rgba(96,48,26,.08);font-size:12px;font-weight:750;line-height:1.45}.remote-menu-announcement-icon{display:grid;flex:0 0 30px;place-items:center;width:30px;height:30px;border-radius:10px;color:#fff;background:var(--rust)}.cat-pill.remote-featured{border-color:var(--rust)!important;box-shadow:0 0 0 3px rgba(184,92,56,.11),0 8px 18px rgba(126,59,30,.13)}.cat-pill.remote-featured .cat-pill-label::after{content:'ÖNE ÇIKAN';display:inline-block;margin-left:6px;padding:2px 5px;border-radius:999px;color:#fff;background:var(--rust);font-size:7px;font-weight:900;letter-spacing:.07em;vertical-align:middle}.category-picker-option.remote-featured{border-color:rgba(184,92,56,.55);background:rgba(255,244,235,.94)}html[data-theme="dark"] #remoteMenuAnnouncement{color:var(--ink);border-color:rgba(226,138,97,.31);background:linear-gradient(110deg,rgba(50,34,27,.97),rgba(63,39,29,.95))}@media(max-width:620px){#remoteMenuAnnouncement{width:calc(100% - 24px);margin-top:11px;font-size:11px}}
+    </style>
+
     <header id="mainHeader">
         <h1 id="secretTrigger"
             class="serif text-center transition-transform active:scale-95"
@@ -3652,6 +3656,11 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             </a>
         </div>
     </header>
+
+    <aside id="remoteMenuAnnouncement" role="status" aria-live="polite" hidden>
+        <span class="remote-menu-announcement-icon"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i></span>
+        <span id="remoteMenuAnnouncementText"></span>
+    </aside>
 
     <div class="px-4 mt-5 mb-4 fade-up fade-up-1" id="wifiBarWrap">
         <div class="wifi-bar glass" onclick="wifiModalAc()">
@@ -5545,7 +5554,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         const pickerOptionEkle = (key, label, count) => {
             const option = document.createElement('button');
             option.type = 'button';
-            option.className = 'category-picker-option';
+            option.className = 'category-picker-option' + (window.kfmLiveMenuSettings?.featured_category_id === key ? ' remote-featured' : '');
             option.dataset.categoryPickerKey = key;
             option.setAttribute('aria-pressed', String(key === aktifKat));
             option.innerHTML = `<span>${escapeHtml(label)}</span><span class="category-picker-count">${count}</span>`;
@@ -5570,7 +5579,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             const btn = document.createElement('div');
             const count = (menuData[k].urunler || []).filter(item => !hideOutOfStock || item.stoktaVar !== false).length;
             const label = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
-            btn.className = 'cat-pill' + (k === aktifKat ? ' active' : '');
+            btn.className = 'cat-pill' + (k === aktifKat ? ' active' : '') + (window.kfmLiveMenuSettings?.featured_category_id === k ? ' remote-featured' : '');
             btn.id = 'cp-' + k;
             btn.innerHTML = `<span class="cat-pill-label">${escapeHtml(label)}</span><span class="cat-pill-count">${count}</span>`;
             btn.onclick = () => { setNavActive(k); kategoriGit(k); };
@@ -7499,6 +7508,38 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
     const KFM_LIVE_CATALOG_CACHE_KEY = 'kfm_live_menu_catalog';
     const KFM_LIVE_CATALOG_TIMEOUT_MS = 5500;
+    const KFM_LIVE_MENU_SETTINGS_DEFAULTS = Object.freeze({ schema_version: 1, theme_mode: 'auto', featured_category_id: '', announcement: '' });
+    window.kfmLiveMenuSettings = { ...KFM_LIVE_MENU_SETTINGS_DEFAULTS };
+
+    function kfmCanliMenuAyarlariniNormalizeEt(input) {
+        const source = input && typeof input === 'object' && !Array.isArray(input) ? input : {};
+        const theme = ['auto', 'light', 'dark'].includes(String(source.theme_mode || '').trim().toLowerCase())
+            ? String(source.theme_mode).trim().toLowerCase() : 'auto';
+        const featured = String(source.featured_category_id || '').trim();
+        const announcement = String(source.announcement || '').trim().replace(/\s+/g, ' ').slice(0, 180);
+        return {
+            schema_version: 1,
+            theme_mode: theme,
+            featured_category_id: /^cat-[a-z0-9][a-z0-9_-]{0,47}$/.test(featured) ? featured : '',
+            announcement,
+        };
+    }
+
+    function kfmCanliMenuAyarlariniUygula(input) {
+        const settings = kfmCanliMenuAyarlariniNormalizeEt(input);
+        window.kfmLiveMenuSettings = settings;
+        const announcement = document.getElementById('remoteMenuAnnouncement');
+        const announcementText = document.getElementById('remoteMenuAnnouncementText');
+        if (announcement && announcementText) {
+            announcementText.textContent = settings.announcement;
+            announcement.hidden = !settings.announcement;
+        }
+        if (!localStorage.getItem(TEMA_KEY)) {
+            temaModu = settings.theme_mode;
+            temaArayuzunuGuncelle();
+        }
+        return settings;
+    }
 
     function kfmLiveCatalogToMenu(catalog) {
         if (!catalog || !Array.isArray(catalog.categories) || !catalog.categories.length) return null;
@@ -7547,8 +7588,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const payload = await response.json();
             const menu = kfmLiveCatalogToMenu(payload?.catalog);
             if (!menu) throw new Error('Canlı katalog geçerli ve görünür ürün içermiyor.');
-            lsSave(KFM_LIVE_CATALOG_CACHE_KEY, { version: payload?.version || null, menu, cachedAt: Date.now() });
-            return { menu, version: payload?.version || null };
+            const settings = kfmCanliMenuAyarlariniNormalizeEt(payload?.web_settings);
+            lsSave(KFM_LIVE_CATALOG_CACHE_KEY, { version: payload?.version || null, menu, settings, cachedAt: Date.now() });
+            return { menu, version: payload?.version || null, settings };
         } finally {
             window.clearTimeout(timeoutId);
         }
@@ -7559,16 +7601,19 @@ function apUrunDosyaSecildi(event, catKey, id) {
         try {
             const liveCatalog = await kfmCanliKatalogYukle();
             menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
+            kfmCanliMenuAyarlariniUygula(liveCatalog.settings);
             lsSave('kfm_menu', menuData);
-            console.info(`✓ Canlı D1 menü kataloğu (sürüm ${liveCatalog.version || '?'}) yüklendi.`);
+            console.info(`✓ Canlı D1 menü ve görünüm ayarları (sürüm ${liveCatalog.version || '?'}) yüklendi.`);
         } catch (err) {
             const cachedCatalog = ls(KFM_LIVE_CATALOG_CACHE_KEY, null);
             if (cachedCatalog?.menu && typeof cachedCatalog.menu === 'object') {
                 menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(cachedCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
+                kfmCanliMenuAyarlariniUygula(cachedCatalog.settings);
                 console.warn('Canlı katalog alınamadı; güvenli son katalog anlık görüntüsü kullanılıyor.', err);
             } else {
                 // İlk çevrimdışı açılışta mevcut yerel menü, o da yoksa varsayılan menü kullanılır.
                 menuData = menuData && Object.keys(menuData).length ? menuData : varsayilanMenu;
+                kfmCanliMenuAyarlariniUygula(KFM_LIVE_MENU_SETTINGS_DEFAULTS);
                 console.warn('Canlı katalog alınamadı; yerel/statik menü yedeği kullanılıyor.', err);
             }
         }
