@@ -3472,18 +3472,26 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 			  .detail-action-category { transition:none !important; }
 			}
 			/* KFM_WEB_ORDER_V1 — Menünün içinden seçilen ürünlerin güvenli sipariş sepeti. */
-			#bnav-order{color:var(--rust);}
-			.order-cart-badge{position:absolute;top:1px;right:calc(50% - 19px);display:grid;place-items:center;min-width:16px;height:16px;padding:0 4px;border:2px solid var(--surface);border-radius:999px;color:#fff;background:#a84b2e;font-size:9px;font-weight:900;line-height:1;box-shadow:0 4px 9px rgba(113,47,27,.22);}
-			.order-cart-badge[hidden]{display:none!important;}
-			.product-cart-btn{display:inline-grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border:1px solid rgba(184,92,56,.22);border-radius:13px;color:var(--rust);background:rgba(184,92,56,.08);cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),background .16s ease,color .16s ease;}
-			.product-cart-btn:hover{color:#fff;background:var(--rust);transform:translateY(-2px);}
-			.web-order-modal{width:min(100%,520px)!important;}
-			.order-cart-panel{overflow:hidden;border:1px solid rgba(146,80,47,.16);border-radius:18px;background:rgba(255,255,255,.53);}
-			.order-cart-panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 13px 9px;border-bottom:1px solid rgba(146,80,47,.12);color:var(--ink);font-size:11px;font-weight:900;}
-			.order-cart-panel-head span{color:var(--muted2);font-size:10px;font-weight:750;}
-			.order-cart-list{display:grid;gap:1px;max-height:236px;overflow:auto;background:rgba(146,80,47,.08);}
-			.order-cart-empty{padding:18px 14px;color:var(--muted2);background:rgba(255,255,255,.55);font-size:11px;line-height:1.45;text-align:center;}
-			.order-cart-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 12px;background:rgba(255,255,255,.82);}
+				#bnav-order{color:var(--rust);}
+				.order-cart-badge{position:absolute;top:1px;right:calc(50% - 19px);display:grid;place-items:center;min-width:16px;height:16px;padding:0 4px;border:2px solid var(--surface);border-radius:999px;color:#fff;background:#a84b2e;font-size:9px;font-weight:900;line-height:1;box-shadow:0 4px 9px rgba(113,47,27,.22);}
+				.order-cart-badge.is-count-pulsing{color:#3d220f;background:#efb15d;animation:kfmCartBadgePulse .28s cubic-bezier(.23,1,.32,1) both;}
+				@keyframes kfmCartBadgePulse{0%{transform:scale(1)}44%{transform:scale(1.32)}74%{transform:scale(.96)}100%{transform:scale(1)}}
+				.order-cart-badge[hidden]{display:none!important;}
+				.product-cart-btn{display:inline-grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border:1px solid rgba(184,92,56,.22);border-radius:13px;color:var(--rust);background:rgba(184,92,56,.08);cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),background .16s ease,color .16s ease;}
+				.product-cart-btn:hover{color:#fff;background:var(--rust);transform:translateY(-2px);}
+				.web-order-modal{width:min(100%,520px)!important;}
+				.order-cart-panel{position:relative;overflow:hidden;border:1px solid rgba(146,80,47,.16);border-radius:18px;background:rgba(255,255,255,.53);}
+				.order-cart-panel::after{position:absolute;inset:0;z-index:2;display:grid;place-items:center;content:'✓ Siparişiniz iletildi';color:#145c35;background:rgba(232,249,237,.94);font-size:14px;font-weight:900;letter-spacing:.01em;opacity:0;pointer-events:none;transition:opacity .18s cubic-bezier(.23,1,.32,1);}
+				.order-cart-panel.is-order-success{border-color:rgba(43,132,79,.48);animation:kfmOrderPanelSuccess .44s cubic-bezier(.23,1,.32,1) both;}
+				.order-cart-panel.is-order-success::after{opacity:1;}
+				@keyframes kfmOrderPanelSuccess{0%{transform:scale(1)}42%{transform:scale(1.018)}72%{transform:scale(.994)}100%{transform:scale(1)}}
+				.order-cart-panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 13px 9px;border-bottom:1px solid rgba(146,80,47,.12);color:var(--ink);font-size:11px;font-weight:900;}
+				.order-cart-panel-head span{color:var(--muted2);font-size:10px;font-weight:750;}
+				.order-cart-list{display:grid;gap:1px;max-height:236px;overflow:auto;background:rgba(146,80,47,.08);}
+				.order-cart-empty{padding:18px 14px;color:var(--muted2);background:rgba(255,255,255,.55);font-size:11px;line-height:1.45;text-align:center;}
+				.order-cart-list.is-empty-transition .order-cart-empty{animation:kfmCartEmptyIn .24s cubic-bezier(.23,1,.32,1) both;}
+				@keyframes kfmCartEmptyIn{from{opacity:0;transform:translateY(7px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+				.order-cart-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 12px;background:rgba(255,255,255,.82);}
 			.order-cart-row strong{display:block;overflow:hidden;color:var(--ink);font-size:12px;line-height:1.25;text-overflow:ellipsis;white-space:nowrap;}
 			.order-cart-row small{display:block;margin-top:3px;color:var(--muted2);font-size:10px;font-weight:700;}
 			.order-cart-qty{display:flex;align-items:center;gap:6px;padding:3px;border:1px solid rgba(146,80,47,.13);border-radius:13px;background:rgba(255,247,240,.72);}
@@ -3511,7 +3519,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				html[data-theme="dark"] .order-cart-qty{border-color:rgba(255,220,194,.13);background:rgba(255,255,255,.035);}
 				html[data-theme="dark"] .order-cart-qty button{border-color:rgba(255,220,194,.17);color:#efab84;background:rgba(255,255,255,.06);}
 				@media(max-width:520px){.web-order-modal{width:100%!important;}.order-cart-list{max-height:205px;}.product-cart-btn{width:35px;height:35px;flex-basis:35px;}.order-cart-quick-go{bottom:calc(env(safe-area-inset-bottom) + 78px);right:12px;}}
-				@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}.order-cart-quick-go.is-visible{animation:none!important;}}
+				@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}.order-cart-quick-go.is-visible,.order-cart-badge.is-count-pulsing,.order-cart-panel.is-order-success,.order-cart-list.is-empty-transition .order-cart-empty{animation:none!important;}.order-cart-panel::after{transition:none!important;}}
 				/* KFM_CATEGORY_PICKER_V1 — İlk kez kullanan misafirler için açık menü erişimi. */
 				.menu-category-picker{position:relative;z-index:32;margin:0 16px 18px;}
 				.category-picker-trigger{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:82px;padding:13px 15px;border:1px solid rgba(159,73,41,.3);border-radius:20px;color:var(--ink);background:linear-gradient(135deg,#fffdf9 0%,#fff1e8 100%);box-shadow:0 12px 28px rgba(100,47,25,.13);text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),box-shadow .16s ease,border-color .16s ease;}
@@ -6809,12 +6817,23 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            productKey, productName, name, unitPrice, quantity: 1,
 	            alt_secenekler: variantNames,
 	            alt_secenek_gruplari: selectedVariants.map(variant => ({ isim: variant.isim, grup: variant.grup })),
-	        });
-	        kfmRenderOrderCart();
-	        kfmCartAddToast(name, existing ? existing.quantity : 1);
-	    }
+		});
+		kfmRenderOrderCart();
+		kfmOrderBadgePulse();
+		kfmCartAddToast(name, existing ? existing.quantity : 1);
+	}
 
-	    function kfmGorunenUrunuSepeteEkle(index) {
+        function kfmOrderBadgePulse() {
+            const badge = document.getElementById('orderCartBadge');
+            if (!badge || badge.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            badge.classList.remove('is-count-pulsing');
+            void badge.offsetWidth;
+            badge.classList.add('is-count-pulsing');
+            clearTimeout(badge._pulseTimer);
+            badge._pulseTimer = setTimeout(() => badge.classList.remove('is-count-pulsing'), 320);
+        }
+
+	function kfmGorunenUrunuSepeteEkle(index) {
 	        const product = window.__renderedProducts?.[index];
 	        if (kfmOrderProductVariants(product).length) {
 	            openProductDetail(index);
@@ -6878,12 +6897,17 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		            count ? `${count} ürün seçildi. Tahmini toplam ${kfmFormatOrderTotal(total)}.` : 'Sepetiniz boş. Menüden ürün seçebilirsiniz.',
 		            count ? 'ready' : 'idle',
 		        );
-		        if (!list) return;
-	        if (!kfmOrderCart.length) {
-	            list.innerHTML = '<div class="order-cart-empty"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><br>Ürün kartındaki <strong>+</strong> simgesiyle veya ürün detayından sepetinize ürün ekleyebilirsiniz.</div>';
-	            return;
-	        }
-	        list.innerHTML = kfmOrderCart.map((item, index) => `
+		if (!list) return;
+		if (!kfmOrderCart.length) {
+			list.innerHTML = '<div class="order-cart-empty"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><br>Ürün kartındaki <strong>+</strong> simgesiyle veya ürün detayından sepetinize ürün ekleyebilirsiniz.</div>';
+			const wasFilled = list.dataset.cartState === 'filled';
+			list.dataset.cartState = 'empty';
+			if (wasFilled) kfmOrderCartEmptyTransition(list);
+			return;
+		}
+		list.dataset.cartState = 'filled';
+		list.classList.remove('is-empty-transition');
+		list.innerHTML = kfmOrderCart.map((item, index) => `
 	            <div class="order-cart-row" role="listitem">
 	                <div><strong>${escapeHtml(item.name)}</strong><small>${kfmFormatOrderTotal(item.unitPrice)} × ${item.quantity} · ${kfmFormatOrderTotal(item.unitPrice * item.quantity)}</small></div>
 	                <div class="order-cart-qty" role="group" aria-label="${escapeHtml(item.name)} miktarı">
@@ -6892,9 +6916,31 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    <button type="button" onclick="kfmOrderCartChange(${index},1)" aria-label="${escapeHtml(item.name)} adedini artır" title="Bir artır">+</button>
 	                </div>
 	            </div>`).join('');
-	    }
+	}
 
-		    function webSiparisPenceresiAc() {
+        function kfmOrderCartEmptyTransition(list) {
+            if (!list || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            list.classList.remove('is-empty-transition');
+            void list.offsetWidth;
+            list.classList.add('is-empty-transition');
+            clearTimeout(list._emptyTransitionTimer);
+            list._emptyTransitionTimer = setTimeout(() => list.classList.remove('is-empty-transition'), 280);
+        }
+
+        function kfmOrderSuccessAnimation() {
+            const panel = document.querySelector('.order-cart-panel');
+            if (!panel) return Promise.resolve();
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            panel.classList.remove('is-order-success');
+            if (!reducedMotion) void panel.offsetWidth;
+            panel.classList.add('is-order-success');
+            return new Promise(resolve => setTimeout(() => {
+                panel.classList.remove('is-order-success');
+                resolve();
+            }, reducedMotion ? 0 : 520));
+        }
+
+	function webSiparisPenceresiAc() {
 		        kfmRenderOrderCart();
 		        modalAc('webOrderModal');
 		        kfmOrderStatusGuncelle(
@@ -6942,11 +6988,12 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            const response = await kfmOrderPost(relayUrl, payload);
 	            const data = await response.json().catch(() => ({}));
 	            if (!response.ok || !data.ok) throw new Error(data.error || 'Sipariş gönderilemedi.');
-		            kfmOrderCart = [];
-		            kfmRenderOrderCart();
-		            document.getElementById('webOrderForm')?.reset();
-		            kfmOrderStatusGuncelle('Siparişiniz ekibe iletildi. Afiyet olsun!', 'success');
-		            modalKapat('webOrderModal');
+			kfmOrderStatusGuncelle('Siparişiniz ekibe iletildi. Afiyet olsun!', 'success');
+			await kfmOrderSuccessAnimation();
+			kfmOrderCart = [];
+			kfmRenderOrderCart();
+			document.getElementById('webOrderForm')?.reset();
+			modalKapat('webOrderModal');
 	            toast('✓ Siparişiniz ekibe iletildi. Afiyet olsun!');
 		        } catch (error) {
 		            console.error('Web sipariş relay hatası:', error);
