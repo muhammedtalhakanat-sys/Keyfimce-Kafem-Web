@@ -206,6 +206,58 @@
     transform: translateX(-50%) translateY(0);
   }
 
+  /* Ürün sepete eklendiğinde yalnızca başarılı işlemler için sağ üst geri bildirim. */
+  #cartAddToast {
+    position: fixed;
+    top: max(16px, calc(env(safe-area-inset-top) + 12px));
+    right: 16px;
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    width: min(340px, calc(100vw - 32px));
+    min-height: 58px;
+    padding: 11px 14px 11px 12px;
+    border: 1px solid rgba(255, 232, 201, .56);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(61, 35, 23, .97), rgba(111, 61, 35, .95));
+    color: #fffaf4;
+    box-shadow: 0 14px 34px rgba(47, 24, 13, .28), 0 2px 8px rgba(0, 0, 0, .16);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(18px, -8px, 0) scale(.98);
+    transition: opacity .22s cubic-bezier(.23, 1, .32, 1), transform .22s cubic-bezier(.23, 1, .32, 1);
+  }
+  #cartAddToast.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  #cartAddToast .cart-add-toast-icon {
+    display: grid;
+    flex: 0 0 31px;
+    width: 31px;
+    height: 31px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e9ae67;
+    color: #382014;
+    font-size: 14px;
+  }
+  #cartAddToast .cart-add-toast-copy { min-width: 0; line-height: 1.2; }
+  #cartAddToast .cart-add-toast-title { display: block; font-size: 12px; font-weight: 800; letter-spacing: .02em; }
+  #cartAddToast .cart-add-toast-product {
+    display: block;
+    margin-top: 3px;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #cartAddToast, #cartAddToast.is-visible { transition: none; transform: none; }
+  }
+
   .wifi-bar {
     display: flex;
     align-items: center;
@@ -3548,6 +3600,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     </div>
 
     <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div id="cartAddToast" role="status" aria-live="polite" aria-atomic="true">
+      <i class="fa-solid fa-check cart-add-toast-icon" aria-hidden="true"></i>
+      <span class="cart-add-toast-copy"><strong class="cart-add-toast-title">Sepete eklendi</strong><span id="cartAddToastProduct" class="cart-add-toast-product"></span></span>
+    </div>
 
     <header id="mainHeader">
         <h1 id="secretTrigger"
@@ -4819,6 +4875,20 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	        clearTimeout(el._t);
 	        el._t = setTimeout(() => el.classList.remove('show'), dur);
 	    }
+
+        function kfmCartAddToast(productName, quantity) {
+            const el = document.getElementById('cartAddToast');
+            const label = document.getElementById('cartAddToastProduct');
+            if (!el || !label) return;
+            const count = Math.max(1, Number(quantity) || 1);
+            const name = String(productName || (aktifDil === 'en' ? 'Product' : 'Ürün'));
+            label.textContent = count > 1
+                ? `${name} · ${count} adet sepette`
+                : name;
+            el.classList.add('is-visible');
+            clearTimeout(el._t);
+            el._t = setTimeout(() => el.classList.remove('is-visible'), 2800);
+        }
 
     function modalAc(id)   { document.getElementById(id).classList.add('open'); }
     function modalKapat(id){ document.getElementById(id).classList.remove('open'); }
@@ -6722,7 +6792,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            alt_secenek_gruplari: selectedVariants.map(variant => ({ isim: variant.isim, grup: variant.grup })),
 	        });
 	        kfmRenderOrderCart();
-	        toast(`✓ ${name} sepete eklendi.`);
+	        kfmCartAddToast(name, existing ? existing.quantity : 1);
 	    }
 
 	    function kfmGorunenUrunuSepeteEkle(index) {

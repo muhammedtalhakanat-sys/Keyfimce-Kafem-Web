@@ -7,6 +7,14 @@ const source = fs.readFileSync(path.join(here, '..', 'index.html'), 'utf8');
 
 const requiredContracts = [
   'id="toast" role="status" aria-live="polite" aria-atomic="true"',
+  'id="cartAddToast" role="status" aria-live="polite" aria-atomic="true"',
+  'id="cartAddToastProduct" class="cart-add-toast-product"',
+  '#cartAddToast.is-visible',
+  'function kfmCartAddToast(productName, quantity)',
+  "el.classList.add('is-visible');",
+  "el._t = setTimeout(() => el.classList.remove('is-visible'), 2800);",
+  'kfmCartAddToast(name, existing ? existing.quantity : 1);',
+  '@media (prefers-reduced-motion: reduce)',
   'id="orderCartList" class="order-cart-list" role="list" aria-live="polite"',
   'id="orderStatusMessage" role="status" aria-live="polite" aria-atomic="true"',
   'id="orderCartQuickGo" class="order-cart-quick-go" type="button"',
