@@ -7537,6 +7537,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
     }
 
     const KFM_LIVE_CATALOG_CACHE_KEY = 'kfm_live_menu_catalog';
+    const KFM_LIVE_CATALOG_CLIENT_BUILD = '2026.09.01-image-sync.13';
     const KFM_LIVE_CATALOG_TIMEOUT_MS = 5500;
     const KFM_LIVE_MENU_SETTINGS_DEFAULTS = Object.freeze({ schema_version: 1, theme_mode: 'auto', featured_category_id: '', announcement: '' });
     window.kfmLiveMenuSettings = { ...KFM_LIVE_MENU_SETTINGS_DEFAULTS };
@@ -7606,7 +7607,12 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const controller = new AbortController();
         const timeoutId = window.setTimeout(() => controller.abort(), KFM_LIVE_CATALOG_TIMEOUT_MS);
         try {
-            const response = await fetch(`${relayUrl}/api/menu-catalog`, {
+            // Worker yanıtı no-store olsa bile aradaki CDN/proxy eski anahtarı tutabilir;
+            // her açılışta istemci sürümü ve zaman damgası ile katalog anahtarını yenile.
+            const catalogUrl = new URL(`${relayUrl}/api/menu-catalog`);
+            catalogUrl.searchParams.set('client_build', KFM_LIVE_CATALOG_CLIENT_BUILD);
+            catalogUrl.searchParams.set('t', String(Date.now()));
+            const response = await fetch(catalogUrl.toString(), {
                 method: 'GET',
                 mode: 'cors',
                 credentials: 'omit',
@@ -7619,7 +7625,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const menu = kfmLiveCatalogToMenu(payload?.catalog);
             if (!menu) throw new Error('Canlı katalog geçerli ve görünür ürün içermiyor.');
             const settings = kfmCanliMenuAyarlariniNormalizeEt(payload?.web_settings);
-            lsSave(KFM_LIVE_CATALOG_CACHE_KEY, { version: payload?.version || null, menu, settings, cachedAt: Date.now() });
+            // Canlı yanıt başarılıysa eski offline snapshot’ı önce sil; yalnız güncel
+            // sürümün güvenli yedeğini sonraki çevrimdışı açılış için sakla.
+            lsSave(KFM_LIVE_CATALOG_CACHE_KEY, { version: payload?.version || null, menu, settings, cachedAt: Date.now(), client_build: KFM_LIVE_CATALOG_CLIENT_BUILD });
             return { menu, version: payload?.version || null, settings };
         } finally {
             window.clearTimeout(timeoutId);
