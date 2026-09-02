@@ -1,1597 +1,1940 @@
 {
   "menuYedek": {
-    "cat-icecek": {
-      "isim": "🥛 İçecek",
+    "cat-dondurma": {
+      "isim": "📋 DONDURMA",
       "urunler": [
         {
-          "id": 1,
-          "ad": "Sıcak Süt",
-          "fiyat": 50,
-          "gorsel": "https://kahhve.com/blog/wp-content/uploads/2023/03/su%CC%88t-ko%CC%88pu%CC%88rtme-2.jpg",
+          "id": "p-101",
+          "ad": "DONDURMA KASESİ (ÜÇ TOP)",
+          "ad_en": "DONDURMA KASESİ (ÜÇ TOP)",
+          "fiyat": 100,
+          "gorsel": "https://images.unsplash.com/photo-1565004602745-718e1b0d44f8?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Foamed Milk",
-          "aciklama": "Yumuşak içimi ve sade lezzetiyle günün her saatine eşlik eden sıcak süt.",
-          "aciklama_en": "Warm milk with a smooth, simple taste for any time of day."
-        },
-        {
-          "id": 2,
-          "ad": "Su (0.5 L)",
-          "fiyat": 15,
-          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Water (0.5 L)",
-          "aciklama": "Serinletici, 0,5 litrelik şişe suyu.",
-          "aciklama_en": "Refreshing 0.5 L bottled water."
-        },
-        {
-          "id": 9992,
-          "ad": "Bardak Su",
-          "fiyat": 5,
-          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": false,
-          "ekstralar": [],
-          "ad_en": "Glass of Water",
-          "aciklama": "Yemek ve içeceklerinize eşlik eden taze servis suyu.",
-          "aciklama_en": "Freshly served water to accompany your food and drinks."
+          "varyantlar": [
+            {
+              "isim": "ÇİKOLATA",
+              "ek_fiyat": 0,
+              "grup": "Alt seçenekler",
+              "grup_sira": 0,
+              "zorunlu": false,
+              "secim_tipi": "coklu",
+              "grup_max_secim": 0,
+              "stokta_var": true,
+              "stok_uyari": false,
+              "stok_miktar": null,
+              "stok_birim": "adet"
+            },
+            {
+              "isim": "ANTEP FISTIK",
+              "ek_fiyat": 0,
+              "grup": "Alt seçenekler",
+              "grup_sira": 0,
+              "zorunlu": false,
+              "secim_tipi": "coklu",
+              "grup_max_secim": 0,
+              "stokta_var": true,
+              "stok_uyari": false,
+              "stok_miktar": null,
+              "stok_birim": "adet"
+            },
+            {
+              "isim": "ÇİLEK",
+              "ek_fiyat": 0,
+              "grup": "Alt seçenekler",
+              "grup_sira": 0,
+              "zorunlu": false,
+              "secim_tipi": "coklu",
+              "grup_max_secim": 0,
+              "stokta_var": true,
+              "stok_uyari": false,
+              "stok_miktar": null,
+              "stok_birim": "adet"
+            },
+            {
+              "isim": "VANİLYA",
+              "ek_fiyat": 0,
+              "grup": "Alt seçenekler",
+              "grup_sira": 0,
+              "zorunlu": false,
+              "secim_tipi": "coklu",
+              "grup_max_secim": 0,
+              "stokta_var": true,
+              "stok_uyari": false,
+              "stok_miktar": null,
+              "stok_birim": "adet"
+            }
+          ]
         }
-      ],
-      "isim_en": "🥛 Beverages"
+      ]
     },
     "cat-kahve": {
-      "isim": "☕ Kahve",
+      "isim": "☕ KAHVE",
       "urunler": [
         {
-          "id": 3,
-          "ad": "Americano",
+          "id": "p-73",
+          "ad": "AMERİCANO",
+          "ad_en": "AMERİCANO",
           "fiyat": 100,
           "gorsel": "https://menu.myqrcodemenu.com/files/products/2ad3c80a-73c2-46db-9c7e-c490475335f6bd945340-eb0a-405b-b8bf-48ff19cb5d58.jpg",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Americano",
-          "aciklama": "Yoğun espresso karakterini daha uzun ve dengeli bir içimle sunan klasik kahve.",
-          "aciklama_en": "A classic coffee that balances bold espresso character with a longer, smoother finish."
+          "varyantlar": []
         },
         {
-          "id": 4,
-          "ad": "Dibek Kahvesi",
+          "id": "p-72",
+          "ad": "DOPPİO",
+          "ad_en": "DOPPİO",
+          "fiyat": 100,
+          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-30",
+          "ad": "DİBEK KAHVESİ",
+          "ad_en": "DİBEK KAHVESİ",
           "fiyat": 100,
           "gorsel": "https://www.yoreselbakkal.com.tr/idea/jl/78/myassets/products/121/dibek-kahve.png?revision=1770984380",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Dibek Coffee",
-          "aciklama": "Geleneksel dibek aromasıyla yumuşak içimli, kendine özgü kokulu kahve.",
-          "aciklama_en": "A softly brewed coffee with the distinctive aroma of traditional dibek coffee."
+          "varyantlar": []
         },
         {
-          "id": 5,
-          "ad": "Doppio",
+          "id": "p-74",
+          "ad": "FİLTRE KAHVE",
+          "ad_en": "FİLTRE KAHVE",
           "fiyat": 100,
           "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Doppio",
-          "aciklama": "Çifte espresso shot ile hazırlanan, yoğun aromalı ve güçlü kahve deneyimi.",
-          "aciklama_en": "A bold, aromatic coffee experience made with a double espresso shot."
+          "varyantlar": []
         },
         {
-          "id": 6,
-          "ad": "Filtre Kahve",
-          "fiyat": 100,
-          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Filter Coffee",
-          "aciklama": "Dengeli gövdesi ve temiz bitişiyle gün boyu keyifle içilen filtre kahve.",
-          "aciklama_en": "A filter coffee with balanced body and a clean finish for all-day enjoyment."
-        },
-        {
-          "id": 7,
-          "ad": "Lungo",
-          "fiyat": 100,
-          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Lungo",
-          "aciklama": "Espressonun daha uzun akışla hazırlanmış, yumuşak ve aromatik yorumu.",
-          "aciklama_en": "A smooth, aromatic interpretation of espresso brewed with a longer extraction."
-        },
-        {
-          "id": 8,
-          "ad": "Menengiç Kahvesi",
+          "id": "p-98",
+          "ad": "KAKULE DİBEK KAHVESİ",
+          "ad_en": "KAKULE DİBEK KAHVESİ",
           "fiyat": 100,
           "gorsel": "https://images.unsplash.com/photo-1576685880864-50b3b35f1c55?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "fincan",
           "ekstralar": [],
-          "ad_en": "Menengic Coffee",
-          "aciklama": "Kendine özgü menengiç aromasıyla yumuşak, sıcak ve nostaljik bir kahve.",
-          "aciklama_en": "A warm, nostalgic coffee with the distinctive flavour of menengic."
+          "varyantlar": []
         },
         {
-          "id": 9,
-          "ad": "Osmanlı Kahvesi",
-          "fiyat": 100,
-          "gorsel": "https://images.unsplash.com/photo-1576685880864-50b3b35f1c55?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Ottoman Coffee",
-          "aciklama": "Baharatlı ve geleneksel notalarıyla zengin aromalı Osmanlı usulü kahve.",
-          "aciklama_en": "Ottoman-style coffee with rich, traditional and subtly spiced notes."
-        },
-        {
-          "id": 10,
-          "ad": "Ristretto",
-          "fiyat": 100,
-          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Ristretto",
-          "aciklama": "Kısa çekimle hazırlanan, konsantre aromalı ve güçlü espresso lezzeti.",
-          "aciklama_en": "A short-pulled espresso with concentrated aroma and a powerful flavour."
-        },
-        {
-          "id": 11,
-          "ad": "Türk Kahvesi",
-          "fiyat": 70,
-          "gorsel": "https://st5.depositphotos.com/1510356/68037/i/950/depositphotos_680377324-stock-photo-turkish-coffee-classic-coffee-cup.jpg",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Turkish Coffee",
-          "aciklama": "Bol köpüğü ve yoğun aromasıyla geleneksel Türk kahvesi keyfi.",
-          "aciklama_en": "Traditional Turkish coffee with a rich aroma and a generous crema."
-        },
-        {
-          "id": 12,
-          "ad": "Uzun Kahve",
-          "fiyat": 100,
-          "gorsel": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1546000/kahve-depophotos-1546610.jpg",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Long Coffee",
-          "aciklama": "Daha uzun içim isteyenler için dengeli ve rahat içimli kahve.",
-          "aciklama_en": "A balanced, easy-drinking coffee for those who prefer a longer cup."
-        },
-        {
-          "id": 1782668549696,
-          "ad": "Klasik Hazır Kahve",
+          "id": "p-97",
+          "ad": "KLASİK HAZIR KAHVE",
+          "ad_en": "KLASİK HAZIR KAHVE",
           "fiyat": 50,
           "gorsel": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b47bca86-9b07-4a38-a89e-0166030f19b8.__CR0,0,300,300_PT0_SX300_V1___.jpg",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Classic Instant Coffee",
-          "aciklama": "Pratik, yumuşak ve alışıldık lezzetiyle klasik hazır kahve.",
-          "aciklama_en": "Classic instant coffee with a familiar, smooth and easy taste."
+          "varyantlar": []
         },
         {
-          "id": 99911,
-          "ad": "Kakule Dibek Kahvesi",
+          "id": "p-70",
+          "ad": "LUNGO",
+          "ad_en": "LUNGO",
+          "fiyat": 100,
+          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-16",
+          "ad": "MENENGİÇ KAHVESİ",
+          "ad_en": "MENENGİÇ KAHVESİ",
           "fiyat": 100,
           "gorsel": "https://images.unsplash.com/photo-1576685880864-50b3b35f1c55?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "fincan",
           "ekstralar": [],
-          "ad_en": "Cardamom Dibek Coffee",
-          "aciklama": "Dibek kahvesinin yumuşak dokusunu kakulenin ferah aromasıyla buluşturur.",
-          "aciklama_en": "Combines the soft character of dibek coffee with the refreshing aroma of cardamom."
-        }
-      ],
-      "isim_en": "☕ Coffee"
-    },
-    "cat-sutlu-kahve": {
-      "isim": "🥛 Sütlü Kahve",
-      "urunler": [
-        {
-          "id": 13,
-          "ad": "Cafe Latte",
-          "fiyat": 150,
-          "gorsel": "https://images.unsplash.com/photo-1661685249316-a06e692e1cb2?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Cafe Latte",
-          "aciklama": "Espresso ve sıcak sütün yumuşak uyumuyla hazırlanan klasik latte.",
-          "aciklama_en": "A classic latte made with the smooth harmony of espresso and steamed milk."
+          "varyantlar": []
         },
         {
-          "id": 14,
-          "ad": "Cappuccino",
-          "fiyat": 150,
+          "id": "p-18",
+          "ad": "OSMANLI KAHVESİ",
+          "ad_en": "OSMANLI KAHVESİ",
+          "fiyat": 100,
+          "gorsel": "https://images.unsplash.com/photo-1576685880864-50b3b35f1c55?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-68",
+          "ad": "RİSTRETTO",
+          "ad_en": "RİSTRETTO",
+          "fiyat": 100,
           "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Cappuccino",
-          "aciklama": "Espresso, sıcak süt ve köpüğün dengeli buluşmasıyla hazırlanan cappuccino.",
-          "aciklama_en": "A balanced cappuccino made with espresso, steamed milk and silky foam."
-        },
-        {
-          "id": 15,
-          "ad": "Espresso Latte Macchiato",
-          "fiyat": 150,
-          "gorsel": "https://www.texanerin.com/content/uploads/2024/01/easy-espresso-macchiato-photo.jpg",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Espresso Latte Macchiato",
-          "aciklama": "Sütlü dokusu ve belirgin espresso notalarıyla zarif bir kahve seçimi.",
-          "aciklama_en": "An elegant coffee choice with a milky texture and distinct espresso notes."
-        },
-        {
-          "id": 16,
-          "ad": "Flat White",
-          "fiyat": 150,
-          "gorsel": "https://yemeksozluk.com/uploads/2024/09/Flat-White12.jpg",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Flat White",
-          "aciklama": "Yoğun espressoyu ince dokulu sütle buluşturan pürüzsüz içimli kahve.",
-          "aciklama_en": "A smooth coffee that brings bold espresso together with finely textured milk."
-        },
-        {
-          "id": 17,
-          "ad": "Italian Cappuccino",
-          "fiyat": 150,
-          "gorsel": "https://images.unsplash.com/photo-1661685249316-a06e692e1cb2?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Italian Cappuccino",
-          "aciklama": "İtalyan usulü yoğun espresso ve köpüklü süt dengesiyle hazırlanır.",
-          "aciklama_en": "Prepared in Italian style with a balanced blend of bold espresso and foamy milk."
-        },
-        {
-          "id": 18,
-          "ad": "Italian Macchiato",
-          "fiyat": 150,
-          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Italian Macchiato",
-          "aciklama": "Espresso karakterini az miktarda süt köpüğüyle tamamlayan güçlü içim.",
-          "aciklama_en": "A strong espresso-led drink finished with just a touch of milk foam."
-        }
-      ],
-      "isim_en": "🥛 Milk Coffee"
-    },
-    "cat-soguk-kahve": {
-      "isim": "❄️ Soğuk Kahve",
-      "urunler": [
-        {
-          "id": 19,
-          "ad": "Soğuk Affa Gato",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Affogato",
-          "aciklama": "Soğuk kahve ve tatlı dokunuşların buluştuğu, serinletici affogato yorumu.",
-          "aciklama_en": "A refreshing affogato-style creation where chilled coffee meets a sweet touch."
-        },
-        {
-          "id": 20,
-          "ad": "Soğuk Cappuccino",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Cappuccino",
-          "aciklama": "Köpüklü süt dokusu ve espresso aromasıyla hazırlanan serin cappuccino.",
-          "aciklama_en": "A chilled cappuccino with espresso aroma and a light, foamy milk texture."
-        },
-        {
-          "id": 21,
-          "ad": "Soğuk Chilled Coffe",
-          "fiyat": 170,
-          "gorsel": "https://c8.alamy.com/comp/2BR57KH/pouring-cold-coffee-into-tall-glass-with-ice-cubes-on-light-grey-background-refreshment-drink-vertical-format-closeup-2BR57KH.jpg",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Chilled Coffee",
-          "aciklama": "Buz gibi servis edilen, dengeli aromalı ve ferahlatıcı soğuk kahve.",
-          "aciklama_en": "An ice-cold, refreshing coffee with a balanced aromatic profile."
-        },
-        {
-          "id": 22,
-          "ad": "Soğuk Coffe Latte",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Coffee Latte",
-          "aciklama": "Sütlü ve yumuşak içimiyle sıcak günler için ideal soğuk latte.",
-          "aciklama_en": "An ideal iced latte for warm days, with a smooth and milky finish."
-        },
-        {
-          "id": 23,
-          "ad": "Soğuk Espresso",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Espresso",
-          "aciklama": "Yoğun espresso lezzetini buz gibi servisle sunan güçlü soğuk kahve.",
-          "aciklama_en": "A bold cold coffee that serves the intense flavour of espresso over ice."
-        },
-        {
-          "id": 24,
-          "ad": "Soğuk Frappe",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1642647391072-6a2416f048e5?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Frappe",
-          "aciklama": "Buzlu, köpüklü ve yumuşak içimli, keyifli bir soğuk kahve klasiği.",
-          "aciklama_en": "A delightful iced coffee classic with a frothy, smooth texture."
-        },
-        {
-          "id": 25,
-          "ad": "Soğuk Italian Cappuccino",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Italian Cappuccino",
-          "aciklama": "İtalyan cappuccino karakterini serin ve köpüklü bir yorumla sunar.",
-          "aciklama_en": "Brings Italian cappuccino character to a cool, frothy serving."
-        },
-        {
-          "id": 26,
-          "ad": "Soğuk Latte Macchiato",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Latte Macchiato",
-          "aciklama": "Katmanlı süt ve espresso görünümüyle hafif, zarif ve serinletici.",
-          "aciklama_en": "Light, elegant and refreshing, with a layered look of milk and espresso."
-        },
-        {
-          "id": 27,
-          "ad": "Soğuk Nitro Coffe",
-          "fiyat": 170,
-          "gorsel": "https://nitrokahve.com/cdn/shop/articles/nitro3.jpg?v=1735304243",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Nitro Coffee",
-          "aciklama": "Yumuşak içimi ve kremsi dokusuyla modern soğuk kahve deneyimi.",
-          "aciklama_en": "A modern cold coffee experience with a creamy texture and smooth finish."
-        },
-        {
-          "id": 28,
-          "ad": "Soğuk Uzun Kahve",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Fındık Aromalı",
-              "fiyat": 10,
-              "isim_en": "Hazelnut Flavored"
-            },
-            {
-              "isim": "Karamel Aromalı",
-              "fiyat": 10,
-              "isim_en": "Caramel Flavored"
-            },
-            {
-              "isim": "Vanilya Aromalı",
-              "fiyat": 10,
-              "isim_en": "Vanilla Flavored"
-            }
-          ],
-          "ad_en": "Iced Long Coffee",
-          "aciklama": "Daha uzun içim sevenler için buzlu, dengeli ve ferah kahve.",
-          "aciklama_en": "An iced, balanced and refreshing coffee for those who prefer a longer drink."
-        },
-        {
-          "id": 99910,
-          "ad": "Vanilya Dondurmalı Soğuk Kahve",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Iced Coffee with Vanilla Ice Cream",
-          "aciklama": "Vanilya dondurmasının tatlı dokunuşuyla zenginleşen buzlu kahve keyfi.",
-          "aciklama_en": "Iced coffee enriched with the sweet, creamy touch of vanilla ice cream."
-        }
-      ],
-      "isim_en": "❄️ Cold Coffee"
-    },
-    "cat-nargile": {
-      "isim": "💨 Nargile",
-      "urunler": [
-        {
-          "id": 29,
-          "ad": "Dejavu Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Dejavu Hookah",
-          "aciklama": "Tatlı ve ferah aroma notalarını dengeleyen, keyifli nargile harmanı.",
-          "aciklama_en": "A pleasant hookah blend that balances sweet and refreshing aromatic notes."
+          "varyantlar": []
         },
         {
-          "id": 30,
-          "ad": "Dominik Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "id": "p-2",
+          "ad": "TÜRK KAHVESİ",
+          "ad_en": "TÜRK KAHVESİ",
+          "fiyat": 70,
+          "gorsel": "https://st5.depositphotos.com/1510356/68037/i/950/depositphotos_680377324-stock-photo-turkish-coffee-classic-coffee-cup.jpg",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "fincan",
           "ekstralar": [],
-          "ad_en": "Dominic Hookah",
-          "aciklama": "Derin ve dengeli aromasıyla uzun sohbetlere eşlik eden özel harman.",
-          "aciklama_en": "A distinctive blend with a deep, balanced aroma for long conversations."
+          "varyantlar": []
         },
         {
-          "id": 31,
-          "ad": "Ezgotica Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Exotica Hookah",
-          "aciklama": "Egzotik meyve notalarıyla öne çıkan canlı ve aromatik nargile seçimi.",
-          "aciklama_en": "A lively, aromatic hookah choice highlighted by exotic fruit notes."
-        },
-        {
-          "id": 32,
-          "ad": "Elma-Nane Nargile",
-          "fiyat": 350,
-          "gorsel": "https://images.unsplash.com/photo-1635547821500-77542481940c?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Apple-Mint Hookah",
-          "aciklama": "Klasik elma ve ferah nane aromalarının uyumlu buluşması.",
-          "aciklama_en": "A harmonious combination of classic apple and refreshing mint aromas."
-        },
-        {
-          "id": 33,
-          "ad": "Laddy Killer Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Lady Killer Hookah",
-          "aciklama": "Meyvemsi ve ferah notaları bir araya getiren karakterli harman.",
-          "aciklama_en": "A characterful blend that brings together fruity and refreshing notes."
-        },
-        {
-          "id": 34,
-          "ad": "Love66 Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Love66 Hookah",
-          "aciklama": "Tropik ve ferah aromaların dengesiyle öne çıkan sevilen bir harman.",
-          "aciklama_en": "A popular blend distinguished by its balance of tropical and refreshing aromas."
-        },
-        {
-          "id": 35,
-          "ad": "Nakhla Nargile",
-          "fiyat": 350,
-          "gorsel": "https://images.unsplash.com/photo-1574238752695-675b86d49267?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Nakhla Hookah",
-          "aciklama": "Geleneksel nargile karakteri arayanlar için yoğun ve dengeli bir seçenek.",
-          "aciklama_en": "A rich, balanced option for those seeking a traditional hookah character."
-        },
-        {
-          "id": 36,
-          "ad": "Red Dream Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Red Dream Hookah",
-          "aciklama": "Kırmızı meyve esintileriyle canlı, tatlı ve aromatik nargile harmanı.",
-          "aciklama_en": "A lively, sweet and aromatic hookah blend with red-fruit-inspired notes."
-        },
-        {
-          "id": 37,
-          "ad": "Sakız Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Gum Hookah",
-          "aciklama": "Kendine özgü sakız aromasıyla nostaljik ve yumuşak içimli harman.",
-          "aciklama_en": "A smooth, nostalgic blend with a distinctive gum-inspired aroma."
-        },
-        {
-          "id": 38,
-          "ad": "Tatlı Cadı Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Sweet Witch Hookah",
-          "aciklama": "Tatlı ve meyvemsi aromaların eğlenceli uyumuyla hazırlanan özel harman.",
-          "aciklama_en": "A special blend created with the playful harmony of sweet and fruity notes."
-        },
-        {
-          "id": 39,
-          "ad": "Yeşil Peri Nargile",
-          "fiyat": 350,
-          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Green Fairy Hookah",
-          "aciklama": "Ferah ve canlı aroma karakteriyle dikkat çeken özel nargile seçimi.",
-          "aciklama_en": "A distinctive hookah selection with a fresh and lively aromatic character."
-        },
-        {
-          "id": 99911,
-          "ad": "Nargile Lüle Extra",
-          "fiyat": 200,
-          "gorsel": "https://images.unsplash.com/photo-1574751749605-0f1e41b6cf67?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Hookah Bowl Extra",
-          "aciklama": "Nargile deneyimini kişiselleştirmek için ek lüle seçeneği.",
-          "aciklama_en": "An additional bowl option to personalize your hookah experience."
-        },
-        {
-          "id": 99912,
-          "ad": "Al Fakher Nargile",
-          "fiyat": 350,
-          "gorsel": "https://images.unsplash.com/photo-1574751749605-0f1e41b6cf67?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Al Fakher Hookah",
-          "aciklama": "Dengeli aroması ve klasik nargile karakteriyle sevilen bir harman.",
-          "aciklama_en": "A well-liked blend with balanced aroma and a classic hookah character."
-        },
-        {
-          "id": 99913,
-          "ad": "Cappuccino Nargile",
-          "fiyat": 350,
-          "gorsel": "https://images.unsplash.com/photo-1574238752695-675b86d49267?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Cappuccino Hookah",
-          "aciklama": "Kahve esintili, yumuşak ve tatlı aromasıyla farklı bir nargile deneyimi.",
-          "aciklama_en": "A distinctive hookah experience with a smooth, sweet coffee-inspired aroma."
-        },
-        {
-          "id": 99914,
-          "ad": "Üzüm-Nane Nargile",
-          "fiyat": 350,
-          "gorsel": "https://images.unsplash.com/photo-1635547821500-77542481940c?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Grape-Mint Hookah",
-          "aciklama": "Tatlı üzüm aroması ile ferah nanenin klasik ve dengeli birleşimi.",
-          "aciklama_en": "A classic, balanced combination of sweet grape aroma and refreshing mint."
-        }
-      ],
-      "isim_en": "💨 Hookah"
-    },
-    "cat-tatli": {
-      "isim": "🍰 Tatlı",
-      "urunler": [
-        {
-          "id": 40,
-          "ad": "Chees Kek",
-          "fiyat": 140,
-          "gorsel": "https://images.unsplash.com/photo-1650147880857-95b822f65ff9?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Cheesecake",
-          "aciklama": "Kremamsı dokusu ve dengeli tatlılığıyla kahvenize eşlik eden cheesecake.",
-          "aciklama_en": "A cheesecake with a creamy texture and balanced sweetness to accompany your coffee."
-        },
-        {
-          "id": 41,
-          "ad": "Cup Tatlı",
-          "fiyat": 140,
-          "gorsel": "https://images.unsplash.com/photo-1565004602745-718e1b0d44f8?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Cup Dessert",
-          "aciklama": "Katmanlı dokusu ve hafif tatlı lezzetiyle pratik bir tatlı molası.",
-          "aciklama_en": "A convenient dessert break with layered texture and a lightly sweet flavour."
-        },
-        {
-          "id": 42,
-          "ad": "Profiterol",
-          "fiyat": 140,
-          "gorsel": "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/86A0BE97-A721-421D-BFE4-977718FF5734/Derivates/1CDB68C5-0B63-4A92-BF27-7822F654CDCE.jpg",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Profiterole",
-          "aciklama": "Yumuşak hamuru ve çikolatalı dokunuşuyla klasik profiterol keyfi.",
-          "aciklama_en": "Classic profiterole pleasure with soft pastry and a chocolatey touch."
-        },
-        {
-          "id": 9993,
-          "ad": "Yaş Pasta",
-          "fiyat": 140,
-          "gorsel": "https://images.unsplash.com/photo-1708175313814-679cb8e90d2e?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Cake",
-          "aciklama": "Yumuşak keki ve kremalı katmanlarıyla taze pasta keyfi.",
-          "aciklama_en": "A fresh cake experience with soft sponge and creamy layers."
-        }
-      ],
-      "isim_en": "🍰 Dessert"
-    },
-    "cat-yiyecek": {
-      "isim": "🥪 Yiyecek",
-      "urunler": [
-        {
-          "id": 43,
-          "ad": "Tost Karışık",
-          "fiyat": 140,
-          "gorsel": "https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Mixed Toast",
-          "aciklama": "Çıtır tost ekmeğinde dengeli karışık iç harçla hazırlanan doyurucu seçenek.",
-          "aciklama_en": "A satisfying choice prepared in crisp toasted bread with a balanced mixed filling."
-        },
-        {
-          "id": 44,
-          "ad": "Tost Kaşar",
+          "id": "p-71",
+          "ad": "UZUN KAHVE",
+          "ad_en": "UZUN KAHVE",
           "fiyat": 100,
-          "gorsel": "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1546000/kahve-depophotos-1546610.jpg",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Cheese Toast",
-          "aciklama": "Eriyen kaşar peyniriyle hazırlanan sade, sıcak ve lezzetli tost.",
-          "aciklama_en": "A simple, warm and tasty toast made with melting kashar cheese."
-        },
-        {
-          "id": 45,
-          "ad": "Tost Sucuk",
-          "fiyat": 120,
-          "gorsel": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Sausage Toast",
-          "aciklama": "Sucuk aroması ve çıtır tost ekmeğiyle hazırlanan güçlü lezzet.",
-          "aciklama_en": "A bold toast prepared with sausage flavour and crisp toasted bread."
-        }
-      ],
-      "isim_en": "🥪 Food"
-    },
-    "cat-soguk-icecek": {
-      "isim": "🧃 Soğuk İçecek",
-      "urunler": [
-        {
-          "id": 46,
-          "ad": "Bursa Gazozu",
-          "fiyat": 40,
-          "gorsel": "https://images.unsplash.com/photo-1741461540180-312d6e29687b?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Bursa Soda",
-          "aciklama": "Klasik gazoz lezzetiyle serinleten, hafif ve ferah bir içecek.",
-          "aciklama_en": "A light and refreshing drink with classic soda flavour."
-        },
-        {
-          "id": 47,
-          "ad": "Didi Bergamot",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Didi Bergamot",
-          "aciklama": "Bergamot aromasıyla öne çıkan, soğuk servis edilen ferah çay içeceği.",
-          "aciklama_en": "A refreshing iced tea drink distinguished by bergamot aroma."
-        },
-        {
-          "id": 48,
-          "ad": "Didi Limon",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Didi Lemon",
-          "aciklama": "Canlı limon aromasıyla serinletici ve hafif içimli soğuk çay.",
-          "aciklama_en": "A light, refreshing iced tea with a lively lemon aroma."
-        },
-        {
-          "id": 49,
-          "ad": "Didi Çilek",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Didi Strawberry",
-          "aciklama": "Çileğin tatlı aromasıyla hazırlanmış, keyifli soğuk çay seçeneği.",
-          "aciklama_en": "A delightful iced tea choice made with the sweet aroma of strawberry."
-        },
-        {
-          "id": 50,
-          "ad": "Didi Şeftali",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Didi Peach",
-          "aciklama": "Şeftalinin yumuşak aromasıyla dengeli ve ferahlatıcı soğuk çay.",
-          "aciklama_en": "A balanced, refreshing iced tea with the gentle aroma of peach."
-        },
-        {
-          "id": 51,
-          "ad": "Dimes Ananas",
-          "fiyat": 50,
-          "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Dimes Pineapple",
-          "aciklama": "Ananas aromasıyla tropik, canlı ve serinletici meyve içeceği.",
-          "aciklama_en": "A tropical, vibrant and refreshing fruit drink with pineapple flavour."
-        },
-        {
-          "id": 52,
-          "ad": "Dimes Karışık",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Dimes Mixed",
-          "aciklama": "Farklı meyve aromalarını bir araya getiren renkli ve ferah içecek.",
-          "aciklama_en": "A colourful, refreshing drink that brings together a mix of fruit flavours."
-        },
-        {
-          "id": 53,
-          "ad": "Dimes Vişne",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Dimes Sour Cherry",
-          "aciklama": "Vişnenin karakterli aromasıyla tatlı-ekşi dengeli meyve içeceği.",
-          "aciklama_en": "A sweet-and-tart fruit drink with the distinctive flavour of sour cherry."
-        },
-        {
-          "id": 54,
-          "ad": "Dimes Şeftali",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Dimes Peach",
-          "aciklama": "Şeftalinin yumuşak ve tatlı aromasıyla serinletici meyve içeceği.",
-          "aciklama_en": "A refreshing fruit drink with the soft, sweet aroma of peach."
-        },
-        {
-          "id": 55,
-          "ad": "Kızılay Elma",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Kızılay Apple",
-          "aciklama": "Elma aromasıyla hafif, canlı ve ferahlatıcı maden suyu seçeneği.",
-          "aciklama_en": "A light, vibrant and refreshing mineral water with apple flavour."
-        },
-        {
-          "id": 56,
-          "ad": "Kızılay Guava",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Kızılay Guava",
-          "aciklama": "Guava aromasıyla tropik ve ferah bir maden suyu deneyimi.",
-          "aciklama_en": "A tropical and refreshing mineral water experience with guava flavour."
-        },
-        {
-          "id": 57,
-          "ad": "Kızılay Karpuz Çilek",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Kızılay Watermelon Strawberry",
-          "aciklama": "Karpuz ve çileğin tatlı uyumuyla aromalı maden suyu keyfi.",
-          "aciklama_en": "Flavoured mineral water with the sweet harmony of watermelon and strawberry."
-        },
-        {
-          "id": 58,
-          "ad": "Kızılay Limon",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Kızılay Lemon",
-          "aciklama": "Limon aromasıyla canlı, ferah ve kolay içimli maden suyu.",
-          "aciklama_en": "A lively, refreshing and easy-drinking mineral water with lemon flavour."
-        },
-        {
-          "id": 59,
-          "ad": "Kızılay Sade",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Kızılay Plain",
-          "aciklama": "Sade ve ferah içimiyle klasik maden suyu seçeneği.",
-          "aciklama_en": "A classic plain mineral water with a crisp, refreshing taste."
-        },
-        {
-          "id": 60,
-          "ad": "Niğde Gazozu",
-          "fiyat": 40,
-          "gorsel": "https://cdn.dsmcdn.com/ty1433/product/media/images/prod/QC/20240720/01/f26c508a-39bf-3f36-8eb7-f08f72895ef7/1_org_zoom.jpg",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Nigde Soda",
-          "aciklama": "Kendine özgü gazoz aromasıyla nostaljik ve serinletici içecek.",
-          "aciklama_en": "A nostalgic, refreshing drink with a distinctive soda flavour."
-        },
-        {
-          "id": 61,
-          "ad": "Sarıyer Portakal",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Sarıyer Orange",
-          "aciklama": "Canlı portakal aromasıyla tatlı ve ferahlatıcı gazlı içecek.",
-          "aciklama_en": "A sweet, refreshing sparkling drink with lively orange flavour."
-        },
-        {
-          "id": 62,
-          "ad": "Sarıyer Siyah Kola",
-          "fiyat": 50,
-          "gorsel": "https://images.unsplash.com/photo-1741461540180-312d6e29687b?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Sarıyer Black Cola",
-          "aciklama": "Yoğun kola karakteriyle serin servis edilen klasik gazlı içecek.",
-          "aciklama_en": "A classic chilled sparkling drink with a bold cola character."
-        },
-        {
-          "id": 63,
-          "ad": "Uludağ Limonata",
-          "fiyat": 45,
-          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Uludağ Lemonade",
-          "aciklama": "Limonun taze ve ferah aromasıyla hazırlanan klasik limonata.",
-          "aciklama_en": "A classic lemonade prepared with fresh, refreshing lemon flavour."
-        },
-        {
-          "id": 99918,
-          "ad": "Churchill",
-          "fiyat": 60,
-          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Churchill",
-          "aciklama": "Limon ve tuz dokunuşuyla hazırlanan ferah, canlı maden suyu karışımı.",
-          "aciklama_en": "A lively, refreshing mineral-water blend finished with lemon and a hint of salt."
-        },
-        {
-          "id": 99919,
-          "ad": "Juss Ananas",
-          "fiyat": 40,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Juss Pineapple",
-          "aciklama": "Ananas aromasıyla tropik ve ferah içimli meyve içeceği.",
-          "aciklama_en": "A tropical, refreshing fruit drink with pineapple flavour."
-        },
-        {
-          "id": 99920,
-          "ad": "Juss Vişne",
-          "fiyat": 40,
-          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Juss Sour Cherry",
-          "aciklama": "Vişnenin tatlı-ekşi karakterini sunan soğuk meyve içeceği.",
-          "aciklama_en": "A chilled fruit drink with the sweet-and-tart character of sour cherry."
-        },
-        {
-          "id": 99921,
-          "ad": "Juss Şeftali",
-          "fiyat": 40,
-          "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Juss Peach",
-          "aciklama": "Şeftalinin yumuşak aromasıyla hafif ve keyifli meyve içeceği.",
-          "aciklama_en": "A light, enjoyable fruit drink with the gentle aroma of peach."
-        },
-        {
-          "id": 99922,
-          "ad": "Beypazarı Sade",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Beypazari Plain Soda",
-          "aciklama": "Sade, keskin ve ferah içimiyle klasik maden suyu.",
-          "aciklama_en": "Classic mineral water with a crisp, refreshing taste."
-        },
-        {
-          "id": 99923,
-          "ad": "Mujitos",
-          "fiyat": 170,
-          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Mojitos",
-          "aciklama": "Nane ve limon esintileriyle ferah, buz gibi servis edilen içecek.",
-          "aciklama_en": "A refreshing, ice-cold drink with notes of mint and lemon."
-        }
-      ],
-      "isim_en": "🧃 Cold Beverage"
-    },
-    "cat-cay": {
-      "isim": "🫖 Çay",
-      "urunler": [
-        {
-          "id": 64,
-          "ad": "Bitki Çayı Adaçayı",
-          "fiyat": 100,
-          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Herbal Tea Sage",
-          "aciklama": "Adaçayının belirgin aromasıyla sıcak ve dinlendirici bitki çayı.",
-          "aciklama_en": "A warm, soothing herbal tea with the distinctive aroma of sage."
-        },
-        {
-          "id": 65,
-          "ad": "Bitki Çayı Atom",
-          "fiyat": 200,
-          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Herbal Tea Atom",
-          "aciklama": "Baharatlı ve aromatik notalarıyla güçlü karakterli bitki çayı harmanı.",
-          "aciklama_en": "A characterful herbal blend with aromatic, subtly spiced notes."
-        },
-        {
-          "id": 66,
-          "ad": "Bitki Çayı Ihlamur",
-          "fiyat": 100,
-          "gorsel": "https://www.buyukanadoluhastanesi.com/images/news/actual/Yhlamurun_Faydalari_Nelerdir_-_Buyuk_Anadolu_Hastanesi.jpg",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Herbal Tea Linden",
-          "aciklama": "Ihlamurun yumuşak kokusuyla hafif ve sıcak bir bitki çayı.",
-          "aciklama_en": "A light, warm herbal tea with the gentle aroma of linden."
-        },
-        {
-          "id": 67,
-          "ad": "Bitki Çayı Papatya",
-          "fiyat": 100,
-          "gorsel": "https://onlinekuruyemis.com/wp-content/uploads/2024/10/papatya-cayinin-faydalari-1.jpg",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Herbal Tea Chamomile",
-          "aciklama": "Papatyanın narin aromasıyla sade ve huzurlu bir çay molası.",
-          "aciklama_en": "A simple, calming tea break with the delicate aroma of chamomile."
-        },
-        {
-          "id": 68,
-          "ad": "Elma Çay",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1643067077447-78239a403a18?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Apple Tea",
-          "aciklama": "Elmanın tatlı aromasıyla sıcak ve rahat içimli meyve çayı.",
-          "aciklama_en": "A warm, easy-drinking fruit tea with the sweet aroma of apple."
-        },
-        {
-          "id": 69,
-          "ad": "Kekik Çay",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Thyme Tea",
-          "aciklama": "Kekiğin kendine özgü aromasıyla karakterli bitki çayı seçeneği.",
-          "aciklama_en": "A characterful herbal tea with the distinctive aroma of thyme."
-        },
-        {
-          "id": 70,
-          "ad": "Kivi Çay",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1643067077447-78239a403a18?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Kiwi Tea",
-          "aciklama": "Kivinin canlı aromasıyla hafif ve keyifli meyve çayı.",
-          "aciklama_en": "A light, enjoyable fruit tea with the lively aroma of kiwi."
-        },
-        {
-          "id": 71,
-          "ad": "Kuşburnu Çay",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1643067077447-78239a403a18?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Rosehip Tea",
-          "aciklama": "Kuşburnunun tatlı-ekşi notalarıyla sıcak ve aromatik çay.",
-          "aciklama_en": "A warm, aromatic tea with the sweet-and-tart notes of rosehip."
-        },
-        {
-          "id": 72,
-          "ad": "Limon Çay",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1637216789852-d2c6d5de6f68?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Lemon Tea",
-          "aciklama": "Limonun ferah aromasıyla sade ve taze içimli sıcak çay.",
-          "aciklama_en": "A simple hot tea with the fresh, refreshing aroma of lemon."
-        },
-        {
-          "id": 73,
-          "ad": "Nane Limon Çay",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Mint Lemon Tea",
-          "aciklama": "Nane ve limonun klasik uyumuyla ferah, sıcak bitki çayı.",
-          "aciklama_en": "A warm, refreshing herbal tea with the classic harmony of mint and lemon."
-        },
-        {
-          "id": 74,
-          "ad": "Oralet Portakal Çay",
-          "fiyat": 30,
-          "gorsel": "https://images.unsplash.com/photo-1637216789852-d2c6d5de6f68?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Orange Oralet Tea",
-          "aciklama": "Portakal aromasıyla tatlı ve sıcak içimli klasik oralet çayı.",
-          "aciklama_en": "A classic warm orange drink with a sweet, familiar flavour."
-        },
-        {
-          "id": 75,
-          "ad": "Çay",
-          "fiyat": 20,
-          "gorsel": "https://mehtaperturk.com/wp-content/uploads/2022/04/turkish-tea.jpg",
-          "stoktaVar": true,
-          "ekstralar": [],
-          "ad_en": "Tea",
-          "aciklama": "Demli, sıcak ve günlük keyfe eşlik eden geleneksel çay.",
-          "aciklama_en": "Traditional brewed tea, served warm for everyday enjoyment."
-        }
-      ],
-      "isim_en": "🫖 Tea"
-    },
-    "cat-dondurma": {
-      "isim": "🍦 Dondurma",
-      "isim_en": "🍦 Ice Cream",
-      "urunler": [
-        {
-          "id": 9990,
-          "ad": "Dondurma Kasesi Üç Top",
-          "fiyat": 100,
-          "gorsel": "https://images.unsplash.com/photo-1565004602745-718e1b0d44f8?w=1200&auto=format&fit=crop&q=85",
-          "stoktaVar": true,
-          "ekstralar": [
-            {
-              "isim": "Çikolata",
-              "fiyat": 0,
-              "isim_en": "Chocolate"
-            },
-            {
-              "isim": "Fıstık",
-              "fiyat": 0,
-              "isim_en": "Pistachio"
-            },
-            {
-              "isim": "çilek",
-              "fiyat": 0,
-              "isim_en": "Strawberry"
-            },
-            {
-              "isim": "vanilya",
-              "fiyat": 0,
-              "isim_en": "Vanilla"
-            }
-          ],
-          "ad_en": "Ice Cream Bowl",
-          "aciklama": "Üç top dondurma seçeneğiyle serin, tatlı ve paylaşmaya uygun keyif.",
-          "aciklama_en": "A cool, sweet treat with three scoops of ice cream, perfect for sharing."
+          "varyantlar": []
         }
       ]
     },
     "cat-milkshake": {
-      "isim": "🥤 Milkshake",
-      "isim_en": "🥤 Milkshake",
+      "isim": "📋 MİLKSHAKE",
       "urunler": [
         {
-          "id": 9990,
-          "ad": "Milkshake Fıstık",
+          "id": "p-110",
+          "ad": "MİLKSHAKE FISTIK",
+          "ad_en": "MİLKSHAKE FISTIK",
           "fiyat": 170,
           "gorsel": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Pistachio Milkshake",
-          "aciklama": "Fıstık aromasıyla yoğun, soğuk ve kremsi milkshake keyfi.",
-          "aciklama_en": "A rich, chilled and creamy milkshake with pistachio flavour."
+          "varyantlar": []
         },
         {
-          "id": 9991,
-          "ad": "Milkshake Serin Şeker",
+          "id": "p-112",
+          "ad": "MİLKSHAKE SERİN ŞEKER",
+          "ad_en": "MİLKSHAKE SERİN ŞEKER",
           "fiyat": 170,
           "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Cool Sugar Milkshake",
-          "aciklama": "Tatlı ve serin aromasıyla eğlenceli, kremsi milkshake seçeneği.",
-          "aciklama_en": "A playful, creamy milkshake with a sweet and refreshing flavour."
+          "varyantlar": []
         },
         {
-          "id": 9992,
-          "ad": "Milkshake Vanilya",
+          "id": "p-111",
+          "ad": "MİLKSHAKE VANİLYA",
+          "ad_en": "MİLKSHAKE VANİLYA",
           "fiyat": 170,
           "gorsel": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Vanilla Milkshake",
-          "aciklama": "Vanilyanın yumuşak aromasıyla klasik ve kremsi milkshake.",
-          "aciklama_en": "A classic, creamy milkshake with the soft flavour of vanilla."
+          "varyantlar": []
         },
         {
-          "id": 9993,
-          "ad": "Milkshake Çikolata",
+          "id": "p-104",
+          "ad": "MİLKSHAKE ÇİKOLATA",
+          "ad_en": "MİLKSHAKE ÇİKOLATA",
           "fiyat": 170,
           "gorsel": "https://images.unsplash.com/photo-1642589077626-95702d0b9322?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Chocolate Milkshake",
-          "aciklama": "Yoğun çikolata aromasıyla tatlı, soğuk ve kremsi bir keyif.",
-          "aciklama_en": "A sweet, chilled and creamy treat with rich chocolate flavour."
+          "varyantlar": []
         },
         {
-          "id": 9994,
-          "ad": "Milkshake Çilek",
+          "id": "p-109",
+          "ad": "MİLKSHAKE ÇİLEK",
+          "ad_en": "MİLKSHAKE ÇİLEK",
           "fiyat": 170,
           "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Strawberry Milkshake",
-          "aciklama": "Çileğin tatlı aromasıyla canlı ve serinletici milkshake.",
-          "aciklama_en": "A vibrant, refreshing milkshake with the sweet flavour of strawberry."
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-nargile": {
+      "isim": "📋 NARGİLE",
+      "urunler": [
+        {
+          "id": "p-130",
+          "ad": "AL FAKHER NARGİLE",
+          "ad_en": "AL FAKHER NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://images.unsplash.com/photo-1574751749605-0f1e41b6cf67?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-133",
+          "ad": "CAPPUCCİNO NARGİLE",
+          "ad_en": "CAPPUCCİNO NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://images.unsplash.com/photo-1574238752695-675b86d49267?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": [
+            {
+              "isim": "SÜTLÜ-KAHVELİ",
+              "ek_fiyat": 50,
+              "grup": "Alt seçenekler",
+              "grup_sira": 0,
+              "zorunlu": false,
+              "secim_tipi": "coklu",
+              "grup_max_secim": 0,
+              "stokta_var": true,
+              "stok_uyari": false,
+              "stok_miktar": null,
+              "stok_birim": "adet"
+            }
+          ]
+        },
+        {
+          "id": "p-64",
+          "ad": "DEJAVU NARGİLE",
+          "ad_en": "DEJAVU NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": [
+            {
+              "isim": "BUZLU MARPUÇ",
+              "ek_fiyat": 0,
+              "grup": "Alt seçenekler",
+              "grup_sira": 0,
+              "zorunlu": false,
+              "secim_tipi": "coklu",
+              "grup_max_secim": 0,
+              "stokta_var": true,
+              "stok_uyari": false,
+              "stok_miktar": null,
+              "stok_birim": "adet"
+            }
+          ]
+        },
+        {
+          "id": "p-94",
+          "ad": "DOMİNİK NARGİLE",
+          "ad_en": "DOMİNİK NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-67",
+          "ad": "EGZOTİCA NARGİLE",
+          "ad_en": "EGZOTİCA NARGİLE",
+          "fiyat": 350,
+          "gorsel": "",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-92",
+          "ad": "ELMA-NANE NARGİLE",
+          "ad_en": "ELMA-NANE NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://images.unsplash.com/photo-1635547821500-77542481940c?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-93",
+          "ad": "LADDY KİLLER NARGİLE",
+          "ad_en": "LADDY KİLLER NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-95",
+          "ad": "LOVE66 NARGİLE",
+          "ad_en": "LOVE66 NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-91",
+          "ad": "NAKHLA NARGİLE",
+          "ad_en": "NAKHLA NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://images.unsplash.com/photo-1574238752695-675b86d49267?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-99",
+          "ad": "NARGİLE LÜLE EXTRA",
+          "ad_en": "NARGİLE LÜLE EXTRA",
+          "fiyat": 200,
+          "gorsel": "https://images.unsplash.com/photo-1574751749605-0f1e41b6cf67?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-65",
+          "ad": "RED DREAM NARGİLE",
+          "ad_en": "RED DREAM NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-66",
+          "ad": "SAKIZ NARGİLE",
+          "ad_en": "SAKIZ NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-14",
+          "ad": "TATLI CADI NARGİLE",
+          "ad_en": "TATLI CADI NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-37",
+          "ad": "YEŞİL PERİ NARGİLE",
+          "ad_en": "YEŞİL PERİ NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://image.made-in-china.com/202f0j00VwPhAjicPnuy/Wholesale-Hookah-Medium-Size-Stainless-Steel-Shisha-Hookah-with-Factory-Price.webp",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-132",
+          "ad": "ÜZÜM-NANE NARGİLE",
+          "ad_en": "ÜZÜM-NANE NARGİLE",
+          "fiyat": 350,
+          "gorsel": "https://images.unsplash.com/photo-1635547821500-77542481940c?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
         }
       ]
     },
     "cat-smoothie": {
-      "isim": "🍹 Smoothie",
-      "isim_en": "🍹 Smoothie",
+      "isim": "📋 SMOOTHİE",
       "urunler": [
         {
-          "id": 9990,
-          "ad": "Kivi Ananas Mango Smoothie",
+          "id": "p-127",
+          "ad": "KİVİ ANANAS MANGO MUZ",
+          "ad_en": "KİVİ ANANAS MANGO MUZ",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Kiwi Pineapple Mango Smoothie",
-          "aciklama": "Kivi, ananas ve mangonun tropik uyumuyla canlı smoothie.",
-          "aciklama_en": "A vibrant smoothie with the tropical harmony of kiwi, pineapple and mango."
+          "varyantlar": []
         },
         {
-          "id": 9991,
-          "ad": "Mango Ananas Muz Smoothie",
+          "id": "p-123",
+          "ad": "MANGO ANANAS MUZ",
+          "ad_en": "MANGO ANANAS MUZ",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Mango Pineapple Banana Smoothie",
-          "aciklama": "Mango, ananas ve muzun yumuşak, tropik lezzet birleşimi.",
-          "aciklama_en": "A smooth tropical blend of mango, pineapple and banana."
+          "varyantlar": []
         },
         {
-          "id": 9992,
-          "ad": "Mango Orman Meyveleri Smoothie",
+          "id": "p-120",
+          "ad": "MANGO ORMAN MEYVESİ",
+          "ad_en": "MANGO ORMAN MEYVESİ",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Mango Wild Berries Smoothie",
-          "aciklama": "Mango ve orman meyvelerinin tatlı-ekşi dengesiyle hazırlanır.",
-          "aciklama_en": "Prepared with the sweet-and-tart balance of mango and wild berries."
+          "varyantlar": []
         },
         {
-          "id": 9993,
-          "ad": "Muz Ananas Smoothie",
+          "id": "p-122",
+          "ad": "MUZ ANANAS",
+          "ad_en": "MUZ ANANAS",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Banana Pineapple Smoothie",
-          "aciklama": "Muzun yumuşaklığı ve ananasın ferahlığıyla dengeli smoothie.",
-          "aciklama_en": "A balanced smoothie combining banana’s softness with pineapple’s freshness."
+          "varyantlar": []
         },
         {
-          "id": 9994,
-          "ad": "Muz Ananas Mango Smoothie",
+          "id": "p-126",
+          "ad": "MUZ ANANAS MANGO",
+          "ad_en": "MUZ ANANAS MANGO",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Banana Pineapple Mango Smoothie",
-          "aciklama": "Muz, ananas ve mangoyla yoğun aromalı tropik smoothie seçeneği.",
-          "aciklama_en": "A richly flavoured tropical smoothie with banana, pineapple and mango."
+          "varyantlar": []
         },
         {
-          "id": 9995,
-          "ad": "Orman Meyvesi Çilek Smoothie",
+          "id": "p-124",
+          "ad": "ORMAN MEYVESİ ÇİLEK MUZ",
+          "ad_en": "ORMAN MEYVESİ ÇİLEK MUZ",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Wild Berries Strawberry Smoothie",
-          "aciklama": "Orman meyveleri ve çileğin canlı aromasıyla meyveli smoothie.",
-          "aciklama_en": "A fruity smoothie with the vibrant flavours of wild berries and strawberry."
+          "varyantlar": []
         },
         {
-          "id": 9996,
-          "ad": "Portakal Kivi Çilek Smoothie",
+          "id": "p-125",
+          "ad": "PORTAKAL KİVİ ÇİLEK",
+          "ad_en": "PORTAKAL KİVİ ÇİLEK",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Orange Kiwi Strawberry Smoothie",
-          "aciklama": "Portakal, kivi ve çileğin ferah, renkli ve canlı uyumu.",
-          "aciklama_en": "A fresh, colourful and vibrant blend of orange, kiwi and strawberry."
+          "varyantlar": []
         },
         {
-          "id": 9997,
-          "ad": "Portakal Orman Meyveleri Smoothie",
+          "id": "p-128",
+          "ad": "PORTAKAL ORMAN MEYVESİ MUZ",
+          "ad_en": "PORTAKAL ORMAN MEYVESİ MUZ",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Orange Wild Berries Smoothie",
-          "aciklama": "Portakalın ferahlığını orman meyvelerinin yoğun aromasıyla buluşturur.",
-          "aciklama_en": "Brings orange freshness together with the rich aroma of wild berries."
+          "varyantlar": []
         },
         {
-          "id": 9998,
-          "ad": "Çilek Muz Smoothie",
+          "id": "p-119",
+          "ad": "ÇİLEK MUZ",
+          "ad_en": "ÇİLEK MUZ",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Strawberry Banana Smoothie",
-          "aciklama": "Çilek ve muzun sevilen, yumuşak ve tatlı smoothie birleşimi.",
-          "aciklama_en": "A beloved, smooth and sweet smoothie combination of strawberry and banana."
+          "varyantlar": []
         },
         {
-          "id": 9999,
-          "ad": "Çilek Muz Ananas Smoothie",
+          "id": "p-121",
+          "ad": "ÇİLEK MUZ ANANAS",
+          "ad_en": "ÇİLEK MUZ ANANAS",
           "fiyat": 175,
-          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9ocv83C6vhaRvPXY_lLtkt05n4vHV1L5s_pp72XydHw&s=10",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Strawberry Banana Pineapple Smoothie",
-          "aciklama": "Çilek, muz ve ananasla hazırlanan tatlı ve ferah tropik smoothie.",
-          "aciklama_en": "A sweet, refreshing tropical smoothie made with strawberry, banana and pineapple."
+          "varyantlar": []
         }
       ]
     },
-    "cat-meyve-suyu": {
-      "isim": "🍊 Taze Sıkım Meyve Suyu",
-      "isim_en": "🍊 Fresh Squeezed Fruit Juice",
+    "cat-soguk-kahve": {
+      "isim": "❄️ SOĞUK KAHVE",
       "urunler": [
         {
-          "id": 9990,
-          "ad": "Elma Havuç Suyu",
+          "id": "p-86",
+          "ad": "SOĞUK CAPPUCCINO",
+          "ad_en": "SOĞUK CAPPUCCINO",
+          "fiyat": 170,
+          "gorsel": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": [
+            {
+              "isim": "FINDIK AROMASI",
+              "ek_fiyat": 10,
+              "grup": "Alt seçenekler",
+              "grup_sira": 0,
+              "zorunlu": false,
+              "secim_tipi": "coklu",
+              "grup_max_secim": 0,
+              "stokta_var": true,
+              "stok_uyari": false,
+              "stok_miktar": null,
+              "stok_birim": "adet"
+            }
+          ]
+        },
+        {
+          "id": "p-83",
+          "ad": "SOĞUK CHİLLED COFFE",
+          "ad_en": "SOĞUK CHİLLED COFFE",
+          "fiyat": 170,
+          "gorsel": "https://c8.alamy.com/comp/2BR57KH/pouring-cold-coffee-into-tall-glass-with-ice-cubes-on-light-grey-background-refreshment-drink-vertical-format-closeup-2BR57KH.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-89",
+          "ad": "SOĞUK COFFE LATTE",
+          "ad_en": "SOĞUK COFFE LATTE",
+          "fiyat": 170,
+          "gorsel": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-81",
+          "ad": "SOĞUK ESPRESSO",
+          "ad_en": "SOĞUK ESPRESSO",
+          "fiyat": 170,
+          "gorsel": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-90",
+          "ad": "SOĞUK FRAPPE",
+          "ad_en": "SOĞUK FRAPPE",
+          "fiyat": 170,
+          "gorsel": "https://images.unsplash.com/photo-1642647391072-6a2416f048e5?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-88",
+          "ad": "SOĞUK LATTE MACCİATO",
+          "ad_en": "SOĞUK LATTE MACCİATO",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUe9tNw4yeH6QmHgM6AA6qrAfJ2i4CgVyiuRSon1b9hA&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-84",
+          "ad": "SOĞUK NİTRA COFFE",
+          "ad_en": "SOĞUK NİTRA COFFE",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPq8h6380dFYmI8F6t80qoMKI2p8cgb5LyQBtyjFXOew&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-82",
+          "ad": "SOĞUK UZUN KAHVE",
+          "ad_en": "SOĞUK UZUN KAHVE",
+          "fiyat": 170,
+          "gorsel": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-87",
+          "ad": "SOĞUK İTALİAN CAPPUCCINO",
+          "ad_en": "SOĞUK İTALİAN CAPPUCCINO",
+          "fiyat": 170,
+          "gorsel": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-85",
+          "ad": "VANİLYA DONDURMALI AFFA GATO",
+          "ad_en": "VANİLYA DONDURMALI AFFA GATO",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNLWO8GkV6lFjcAbCeF5aPsoCX2wnIYfstxOn7fQuxXQ&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-soguk-icecek": {
+      "isim": "📋 SOĞUK İÇECEK",
+      "urunler": [
+        {
+          "id": "p-134",
+          "ad": "AYRAN 200ML",
+          "ad_en": "AYRAN 200ML",
+          "fiyat": 20,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxt0oNYRvLvwKTEaXV1Th-NijY8oy1O_TOxRZO_EhU8g&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 22,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-129",
+          "ad": "BEYPAZARI SADE",
+          "ad_en": "BEYPAZARI SADE",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 15,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-62",
+          "ad": "BURSA GAZOZU",
+          "ad_en": "BURSA GAZOZU",
+          "fiyat": 40,
+          "gorsel": "https://images.unsplash.com/photo-1741461540180-312d6e29687b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 9,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-102",
+          "ad": "CHURCHİLL",
+          "ad_en": "CHURCHİLL",
+          "fiyat": 60,
+          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-39",
+          "ad": "DİDİ BERGAMOT",
+          "ad_en": "DİDİ BERGAMOT",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 18,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-41",
+          "ad": "DİDİ LİMON",
+          "ad_en": "DİDİ LİMON",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 18,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-23",
+          "ad": "DİDİ ÇİLEK",
+          "ad_en": "DİDİ ÇİLEK",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 17,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-40",
+          "ad": "DİDİ ŞEFTALİ",
+          "ad_en": "DİDİ ŞEFTALİ",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 21,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-45",
+          "ad": "DİMES ANANAS",
+          "ad_en": "DİMES ANANAS",
+          "fiyat": 50,
+          "gorsel": "https://bizdemevcut.com.tr/wp-content/uploads/2024/12/dimes-active-meyve-suyu-ananas-1-lt.png",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 9,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-44",
+          "ad": "DİMES KARIŞIK",
+          "ad_en": "DİMES KARIŞIK",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 16,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-43",
+          "ad": "DİMES VİŞNE",
+          "ad_en": "DİMES VİŞNE",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 8,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-42",
+          "ad": "DİMES ŞEFTALİ",
+          "ad_en": "DİMES ŞEFTALİ",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 22,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-105",
+          "ad": "JUSS ANANAS",
+          "ad_en": "JUSS ANANAS",
+          "fiyat": 40,
+          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 19,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-108",
+          "ad": "JUSS VİŞNE",
+          "ad_en": "JUSS VİŞNE",
+          "fiyat": 40,
+          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 24,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-106",
+          "ad": "JUSS ŞEFTALİ",
+          "ad_en": "JUSS ŞEFTALİ",
+          "fiyat": 40,
+          "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 24,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-46",
+          "ad": "KIZILAY ELMA",
+          "ad_en": "KIZILAY ELMA",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 18,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-47",
+          "ad": "KIZILAY GUAVA",
+          "ad_en": "KIZILAY GUAVA",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 17,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-49",
+          "ad": "KIZILAY KARPUZ ÇİLEK",
+          "ad_en": "KIZILAY KARPUZ ÇİLEK",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 8,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-48",
+          "ad": "KIZILAY LİMON",
+          "ad_en": "KIZILAY LİMON",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 6,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-50",
+          "ad": "KIZILAY SADE",
+          "ad_en": "KIZILAY SADE",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 13,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-131",
+          "ad": "MUJİTOS",
+          "ad_en": "MUJİTOS",
+          "fiyat": 170,
+          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-26",
+          "ad": "NİĞDE GAZOZU",
+          "ad_en": "NİĞDE GAZOZU",
+          "fiyat": 40,
+          "gorsel": "https://cdn.dsmcdn.com/ty1433/product/media/images/prod/QC/20240720/01/f26c508a-39bf-3f36-8eb7-f08f72895ef7/1_org_zoom.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 8,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-63",
+          "ad": "SARIYER PORTAKAL",
+          "ad_en": "SARIYER PORTAKAL",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 17,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-22",
+          "ad": "SARIYER SİYAH KOLA",
+          "ad_en": "SARIYER SİYAH KOLA",
+          "fiyat": 50,
+          "gorsel": "https://images.unsplash.com/photo-1741461540180-312d6e29687b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 29,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-28",
+          "ad": "ULUDAĞ LİMONATA",
+          "ad_en": "ULUDAĞ LİMONATA",
+          "fiyat": 45,
+          "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 23,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-sutlu-kahve": {
+      "isim": "🥛 SÜTLÜ KAHVE",
+      "urunler": [
+        {
+          "id": "p-79",
+          "ad": "CAFE LATTE",
+          "ad_en": "CAFE LATTE",
+          "fiyat": 150,
+          "gorsel": "https://images.unsplash.com/photo-1661685249316-a06e692e1cb2?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-75",
+          "ad": "CAPPUCCINO",
+          "ad_en": "CAPPUCCINO",
+          "fiyat": 150,
+          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-69",
+          "ad": "ESPRESSO LATTE MACCHİATO",
+          "ad_en": "ESPRESSO LATTE MACCHİATO",
+          "fiyat": 150,
+          "gorsel": "https://www.texanerin.com/content/uploads/2024/01/easy-espresso-macchiato-photo.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-80",
+          "ad": "FLAT WHİTE",
+          "ad_en": "FLAT WHİTE",
+          "fiyat": 150,
+          "gorsel": "https://yemeksozluk.com/uploads/2024/09/Flat-White12.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-76",
+          "ad": "İTALİAN CAPPUCCINO",
+          "ad_en": "İTALİAN CAPPUCCINO",
+          "fiyat": 150,
+          "gorsel": "https://images.unsplash.com/photo-1661685249316-a06e692e1cb2?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-77",
+          "ad": "İTALİAN MACCHİATO",
+          "ad_en": "İTALİAN MACCHİATO",
+          "fiyat": 150,
+          "gorsel": "https://images.unsplash.com/photo-1508700080317-45bb1ebbe416?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-tatli": {
+      "isim": "📋 TATLI",
+      "urunler": [
+        {
+          "id": "p-12",
+          "ad": "CHEES KEK",
+          "ad_en": "CHEES KEK",
+          "fiyat": 140,
+          "gorsel": "https://images.unsplash.com/photo-1650147880857-95b822f65ff9?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-11",
+          "ad": "CUP TATLI",
+          "ad_en": "CUP TATLI",
+          "fiyat": 140,
+          "gorsel": "https://images.unsplash.com/photo-1565004602745-718e1b0d44f8?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-100",
+          "ad": "YAŞ PASTA",
+          "ad_en": "YAŞ PASTA",
+          "fiyat": 140,
+          "gorsel": "https://images.unsplash.com/photo-1708175313814-679cb8e90d2e?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-taze-sikim-meyve-suyu": {
+      "isim": "📋 TAZE SIKIM MEYVE SUYU",
+      "urunler": [
+        {
+          "id": "p-113",
+          "ad": "ELMA HAVUÇ SUYU",
+          "ad_en": "ELMA HAVUÇ SUYU",
           "fiyat": 150,
           "gorsel": "https://st.depositphotos.com/1177973/3649/i/950/depositphotos_36492153-stock-photo-glasses-of-juice-apples-and.jpg",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Apple Carrot Juice",
-          "aciklama": "Elma ve havucun dengeli uyumuyla taze sıkım meyve suyu.",
-          "aciklama_en": "Freshly squeezed juice with the balanced harmony of apple and carrot."
+          "varyantlar": []
         },
         {
-          "id": 9991,
-          "ad": "Elma Portakal Havuç Suyu",
+          "id": "p-118",
+          "ad": "ELMA PORTAKAL HAVUÇ SUYU",
+          "ad_en": "ELMA PORTAKAL HAVUÇ SUYU",
           "fiyat": 150,
           "gorsel": "https://www.vijesti.me/data/images/2019/02/16/00/2959715_2019021610020_5c67d121b789684e9f066b70jpeg_ls.jpg",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Apple Orange Carrot Juice",
-          "aciklama": "Elma, portakal ve havucun canlı aromalarını birleştiren taze sıkım karışım.",
-          "aciklama_en": "A fresh-squeezed blend combining the vibrant flavours of apple, orange and carrot."
+          "varyantlar": []
         },
         {
-          "id": 9992,
-          "ad": "Elma Suyu",
+          "id": "p-116",
+          "ad": "ELMA SUYU",
+          "ad_en": "ELMA SUYU",
           "fiyat": 150,
           "gorsel": "https://images.unsplash.com/photo-1690983321954-30481504365f?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Apple Juice",
-          "aciklama": "Elmanın doğal ve ferah aromasıyla hazırlanan taze sıkım meyve suyu.",
-          "aciklama_en": "Freshly squeezed apple juice with a naturally crisp, refreshing flavour."
+          "varyantlar": []
         },
         {
-          "id": 9993,
-          "ad": "Havuç Suyu",
+          "id": "p-117",
+          "ad": "HAVUÇ SUYU",
+          "ad_en": "HAVUÇ SUYU",
           "fiyat": 150,
           "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Carrot Juice",
-          "aciklama": "Havucun kendine özgü aromasıyla taze sıkım, sade meyve suyu.",
-          "aciklama_en": "A simple freshly squeezed juice with the distinctive flavour of carrot."
+          "varyantlar": []
         },
         {
-          "id": 9994,
-          "ad": "Portakal Suyu",
+          "id": "p-114",
+          "ad": "PORTAKAL SUYU",
+          "ad_en": "PORTAKAL SUYU",
           "fiyat": 150,
           "gorsel": "https://images.unsplash.com/photo-1724213653746-126a098d88df?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Orange Juice",
-          "aciklama": "Portakalın canlı ve ferah aromasıyla taze sıkım klasik.",
-          "aciklama_en": "A freshly squeezed classic with the lively, refreshing flavour of orange."
+          "varyantlar": []
         },
         {
-          "id": 9995,
-          "ad": "Taze Sıkım Limonata",
+          "id": "p-115",
+          "ad": "TAZE SIKIM LİMONATA",
+          "ad_en": "TAZE SIKIM LİMONATA",
           "fiyat": 150,
           "gorsel": "https://images.unsplash.com/photo-1651993737174-6890c1daef5b?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
           "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
           "ekstralar": [],
-          "ad_en": "Fresh Squeezed Lemonade",
-          "aciklama": "Taze limonun ferahlığıyla hazırlanan dengeli ve serinletici limonata.",
-          "aciklama_en": "A balanced, refreshing lemonade prepared with the brightness of fresh lemon."
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-yiyecek": {
+      "isim": "📋 YİYECEK",
+      "urunler": [
+        {
+          "id": "p-138",
+          "ad": "PATATES EKMEK",
+          "ad_en": "PATATES EKMEK",
+          "fiyat": 170,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRWmRZZzpfs8owQ3uh5vF5t63LU-R4TfNJOVnAXVTXXw&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-139",
+          "ad": "PATATES TABAĞI",
+          "ad_en": "PATATES TABAĞI",
+          "fiyat": 220,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1zuleas8Maa-duH6MBun8aX6dSj1EIMevr__zC0Tl1w&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-33",
+          "ad": "TOST KARIŞIK",
+          "ad_en": "TOST KARIŞIK",
+          "fiyat": 140,
+          "gorsel": "https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-31",
+          "ad": "TOST KAŞAR",
+          "ad_en": "TOST KAŞAR",
+          "fiyat": 100,
+          "gorsel": "https://images.unsplash.com/photo-1528736235302-52922df5c122?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-32",
+          "ad": "TOST SUCUK",
+          "ad_en": "TOST SUCUK",
+          "fiyat": 120,
+          "gorsel": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-cay": {
+      "isim": "🫖 ÇAY",
+      "urunler": [
+        {
+          "id": "p-60",
+          "ad": "BİTKİ ÇAYI ADAÇAYI",
+          "ad_en": "BİTKİ ÇAYI ADAÇAYI",
+          "fiyat": 100,
+          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-36",
+          "ad": "BİTKİ ÇAYI ATOM",
+          "ad_en": "BİTKİ ÇAYI ATOM",
+          "fiyat": 200,
+          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "bardak",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-59",
+          "ad": "BİTKİ ÇAYI IHLAMUR",
+          "ad_en": "BİTKİ ÇAYI IHLAMUR",
+          "fiyat": 100,
+          "gorsel": "https://www.buyukanadoluhastanesi.com/images/news/actual/Yhlamurun_Faydalari_Nelerdir_-_Buyuk_Anadolu_Hastanesi.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-58",
+          "ad": "BİTKİ ÇAYI PAPATYA",
+          "ad_en": "BİTKİ ÇAYI PAPATYA",
+          "fiyat": 100,
+          "gorsel": "https://onlinekuruyemis.com/wp-content/uploads/2024/10/papatya-cayinin-faydalari-1.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-137",
+          "ad": "DUBLE ÇAY",
+          "ad_en": "DUBLE ÇAY",
+          "fiyat": 40,
+          "gorsel": "",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-56",
+          "ad": "ELMA ÇAY",
+          "ad_en": "ELMA ÇAY",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1643067077447-78239a403a18?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-61",
+          "ad": "KEKİK ÇAY",
+          "ad_en": "KEKİK ÇAY",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-52",
+          "ad": "KUŞBURNU ÇAY",
+          "ad_en": "KUŞBURNU ÇAY",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1643067077447-78239a403a18?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-57",
+          "ad": "KİVİ ÇAY",
+          "ad_en": "KİVİ ÇAY",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1643067077447-78239a403a18?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-55",
+          "ad": "LİMON ÇAY",
+          "ad_en": "LİMON ÇAY",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1637216789852-d2c6d5de6f68?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-53",
+          "ad": "NANE LİMON ÇAY",
+          "ad_en": "NANE LİMON ÇAY",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1604450655696-bdb0b1993bf7?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-51",
+          "ad": "ORALET PORTAKAL ÇAY",
+          "ad_en": "ORALET PORTAKAL ÇAY",
+          "fiyat": 30,
+          "gorsel": "https://images.unsplash.com/photo-1637216789852-d2c6d5de6f68?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-1",
+          "ad": "ÇAY",
+          "ad_en": "ÇAY",
+          "fiyat": 20,
+          "gorsel": "https://mehtaperturk.com/wp-content/uploads/2022/04/turkish-tea.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-cerez": {
+      "isim": "📋 ÇEREZ",
+      "urunler": [
+        {
+          "id": "p-136",
+          "ad": "BÜYÜK TABAK KARIŞIK ÇEREZ(340G)",
+          "ad_en": "BÜYÜK TABAK KARIŞIK ÇEREZ(340G)",
+          "fiyat": 275,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-0rhaZxqusmSYsnCD8Rzf5KSRGc4mtTf1zRNMLJBD_w&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-135",
+          "ad": "KÜÇÜK TABAK KARIŞIK ÇEREZ(70G)",
+          "ad_en": "KÜÇÜK TABAK KARIŞIK ÇEREZ(70G)",
+          "fiyat": 100,
+          "gorsel": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-0rhaZxqusmSYsnCD8Rzf5KSRGc4mtTf1zRNMLJBD_w&s=10",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        }
+      ]
+    },
+    "cat-icecek": {
+      "isim": "📋 İÇECEK",
+      "urunler": [
+        {
+          "id": "p-96",
+          "ad": "BARDAK SU",
+          "ad_en": "BARDAK SU",
+          "fiyat": 5,
+          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 24,
+          "stokUyari": false,
+          "birim": "şişe",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-78",
+          "ad": "SICAK SÜT",
+          "ad_en": "SICAK SÜT",
+          "fiyat": 50,
+          "gorsel": "https://kahhve.com/blog/wp-content/uploads/2023/03/su%CC%88t-ko%CC%88pu%CC%88rtme-2.jpg",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": false,
+          "stokMiktar": null,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
+        },
+        {
+          "id": "p-4",
+          "ad": "SU(0.5L)",
+          "ad_en": "SU(0.5L)",
+          "fiyat": 15,
+          "gorsel": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=1200&auto=format&fit=crop&q=85",
+          "galeri_gorselleri": [],
+          "stoktaVar": true,
+          "stokTakibi": true,
+          "stokMiktar": 23,
+          "stokUyari": false,
+          "birim": "adet",
+          "ekstralar": [],
+          "varyantlar": []
         }
       ]
     }
   },
   "wifiYedek": {
-    "ad": "Keyfimce_WiFi",
+    "ad": "KEYFIMCE KAFE",
     "sifre": "********"
   },
   "headerBgYedek": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80",
-  "hizliSiparisYedek": []
+  "hizliSiparisYedek": [],
+  "frameYedek": {
+    "frames": {
+      "warm": {
+        "name": "Sıcak / Kahve",
+        "url": "product-frame-3d-transparent.png"
+      },
+      "cold": {
+        "name": "Soğuk İçecek",
+        "url": "product-frame-cold-transparent.png"
+      },
+      "sweet": {
+        "name": "Tatlı / Milkshake",
+        "url": "product-frame-sweet-transparent.png"
+      },
+      "food": {
+        "name": "Yiyecek / Tost",
+        "url": "product-frame-food-transparent.png"
+      },
+      "hookah": {
+        "name": "Nargile",
+        "url": "product-frame-hookah-transparent.png"
+      }
+    },
+    "categoryMap": {}
+  }
 }
