@@ -3995,9 +3995,85 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         </div>
     </div>
 
+    <style id="kfm-admin-control-center-style">
+      /* KFM_ADMIN_CONTROL_CENTER_V1 — tema bağımsız okunabilirlik + tek tık yayın merkezi */
+      #adminPanel{background:linear-gradient(145deg,#f8f4ef,#fffaf6)!important;color:var(--ink)!important;}
+      #adminPanel>.max-w-2xl{width:min(100%,1120px)!important;max-width:1120px!important;}
+      #adminPanel .admin-accordion-section{border:1px solid rgba(166,127,106,.24)!important;border-radius:24px!important;background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,248,242,.94))!important;color:var(--ink)!important;box-shadow:0 14px 34px rgba(74,40,24,.08),inset 0 1px 0 rgba(255,255,255,.9)!important;}
+      #adminPanel .admin-accordion-header{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:16px 18px!important;cursor:pointer;}
+      #adminPanel .admin-accordion-header h3{color:var(--rust)!important;line-height:1.25!important;}
+      #adminPanel .admin-accordion-header .chevron{flex:0 0 auto;}
+      #adminPanel .admin-accordion-content{padding:0 18px 20px!important;color:var(--ink)!important;}
+      #adminPanel .admin-accordion-content p,#adminPanel .admin-accordion-content label,#adminPanel .admin-accordion-content span{color:var(--muted)!important;}
+      #adminPanel input.ap-input,#adminPanel textarea.ap-input,#adminPanel select.ap-input,#adminPanel input:not([type="checkbox"]):not([type="file"]),#adminPanel textarea,#adminPanel select{width:100%;min-height:44px;border:1px solid #cbb9ae!important;border-radius:14px!important;background:#fffdfb!important;color:#2c1a12!important;caret-color:var(--rust);box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 2px 8px rgba(74,40,24,.04);}
+      #adminPanel textarea.ap-input,#adminPanel textarea{min-height:92px;padding-top:12px!important;resize:vertical;}
+      #adminPanel .ap-input::placeholder,#adminPanel input::placeholder,#adminPanel textarea::placeholder{color:#715a50!important;opacity:1!important;}
+      #adminPanel .ap-input:focus,#adminPanel input:focus,#adminPanel textarea:focus,#adminPanel select:focus{border-color:var(--rust)!important;outline:3px solid rgba(184,92,56,.16)!important;outline-offset:1px;box-shadow:0 0 0 4px rgba(184,92,56,.11),inset 0 1px 0 rgba(255,255,255,.96)!important;}
+      #adminPanel select.ap-input option,#adminPanel select option{background:#fffdfb!important;color:#2c1a12!important;}
+      #adminPanel input[type="checkbox"]{accent-color:var(--rust);}
+      #adminPanel button:focus-visible,#adminPanel label:focus-within{outline:3px solid rgba(184,92,56,.26);outline-offset:2px;}
+      #adminPanel .admin-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;}
+      #adminPanel .admin-stat-card{min-height:78px;padding:12px 11px;border:1px solid rgba(166,127,106,.2);border-radius:18px;background:#fffdfb!important;color:var(--ink)!important;box-shadow:0 8px 20px rgba(74,40,24,.06);}
+      #adminPanel .admin-stat-card i{color:var(--rust)!important;}
+      #adminPanel .admin-stat-value{color:var(--ink)!important;}
+      #adminPanel .admin-stat-label{color:var(--muted)!important;}
+      .kfm-admin-publish-hero{position:relative;overflow:hidden;margin:0 0 18px;padding:22px;border:1px solid rgba(78,70,191,.22);border-radius:26px;background:linear-gradient(135deg,#30255d 0%,#4b3c97 55%,#7658b7 100%);color:#fff;box-shadow:0 20px 42px rgba(54,40,119,.22),inset 0 1px 0 rgba(255,255,255,.22);}
+      .kfm-admin-publish-hero::after{content:'';position:absolute;right:-70px;top:-90px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 68%);pointer-events:none;}
+      .kfm-admin-publish-head,.kfm-admin-publish-actions,.kfm-admin-publish-metrics{position:relative;z-index:1;display:flex;align-items:center;gap:12px;}
+      .kfm-admin-publish-head{justify-content:space-between;align-items:flex-start;}
+      .kfm-admin-publish-kicker{display:inline-flex;align-items:center;gap:7px;color:#ddd6ff;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;}
+      .kfm-admin-publish-hero h3{margin:7px 0 4px;color:#fff;font-family:var(--font-display);font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.05;}
+      .kfm-admin-publish-hero p{margin:0;max-width:620px;color:#e7e3ff;font-size:12px;line-height:1.55;}
+      .kfm-admin-publish-state{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;padding:8px 11px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-size:10px;font-weight:850;white-space:nowrap;}
+      .kfm-admin-publish-state[data-state="saving"]{background:rgba(255,196,101,.18);color:#fff4d9;}
+      .kfm-admin-publish-state[data-state="error"]{background:rgba(255,108,108,.2);color:#ffe1e1;}
+      .kfm-admin-publish-metrics{flex-wrap:wrap;margin:18px 0 15px;gap:8px;}
+      .kfm-admin-publish-metric{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid rgba(255,255,255,.16);border-radius:12px;background:rgba(17,10,51,.18);color:#e8e2ff;font-size:10px;font-weight:750;}
+      .kfm-admin-publish-metric strong{color:#fff;font-size:13px;}
+      .kfm-admin-publish-actions{flex-wrap:wrap;}
+      .kfm-admin-publish-primary,.kfm-admin-publish-secondary{min-height:46px;border-radius:14px;padding:11px 15px;font:inherit;font-size:12px;font-weight:900;cursor:pointer;transition:transform .18s cubic-bezier(.23,1,.32,1),filter .18s ease,box-shadow .18s ease;}
+      .kfm-admin-publish-primary{border:1px solid rgba(255,255,255,.78);background:#fff;color:#372a7d;box-shadow:0 9px 18px rgba(18,10,67,.2);}
+      .kfm-admin-publish-secondary{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.1);color:#fff;}
+      .kfm-admin-publish-primary:hover,.kfm-admin-publish-secondary:hover{transform:translateY(-2px);filter:brightness(1.06);}
+      .kfm-admin-publish-primary:active,.kfm-admin-publish-secondary:active{transform:translateY(1px) scale(.98);}
+      .kfm-admin-publish-primary:disabled{cursor:wait;opacity:.68;transform:none;}
+      /* Ürün kartları son kullanıcı görünümünde her ekran genişliğinde ikişerli kalır. */
+      #productGrid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+      .kfm-admin-publish-summary{position:relative;z-index:1;margin:12px 0 0;color:#d8d1ff!important;font-size:10px!important;font-weight:750;}
+      html[data-theme="dark"] #adminPanel{background:linear-gradient(145deg,#17100d,#251610)!important;}
+      html[data-theme="dark"] #adminPanel .admin-accordion-section{background:linear-gradient(145deg,#342219,#241610)!important;border-color:var(--border2)!important;box-shadow:0 14px 34px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.05)!important;}
+      html[data-theme="dark"] #adminPanel input.ap-input,html[data-theme="dark"] #adminPanel textarea.ap-input,html[data-theme="dark"] #adminPanel select.ap-input,html[data-theme="dark"] #adminPanel input:not([type="checkbox"]):not([type="file"]),html[data-theme="dark"] #adminPanel textarea,html[data-theme="dark"] #adminPanel select{background:#24150f!important;color:#fff4e9!important;border-color:rgba(255,218,188,.42)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 2px 8px rgba(0,0,0,.18);}
+      html[data-theme="dark"] #adminPanel .ap-input::placeholder,html[data-theme="dark"] #adminPanel input::placeholder,html[data-theme="dark"] #adminPanel textarea::placeholder{color:#d3b6a5!important;}
+      html[data-theme="dark"] #adminPanel select.ap-input option,html[data-theme="dark"] #adminPanel select option{background:#24150f!important;color:#fff4e9!important;}
+      html[data-theme="dark"] #adminPanel .admin-stat-card{background:#24150f!important;border-color:rgba(255,218,188,.24)!important;}
+      @media(max-width:700px){#adminPanel>.max-w-2xl{padding-left:12px!important;padding-right:12px!important;}#adminPanel .admin-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}.kfm-admin-publish-hero{padding:18px;border-radius:22px;}.kfm-admin-publish-head{display:block;}.kfm-admin-publish-state{margin-top:12px;}.kfm-admin-publish-actions>*{flex:1 1 100%;}.kfm-admin-publish-primary,.kfm-admin-publish-secondary{width:100%;}}
+      @media(prefers-reduced-motion:reduce){.kfm-admin-publish-primary,.kfm-admin-publish-secondary{transition:none!important;}}
+    </style>
     <!-- Admin Panel -->
     <div id="adminPanel" style="display:none; position:fixed; inset:0; z-index:50; overflow-y:auto; -webkit-overflow-scrolling:touch; background:var(--bg);">
         <div class="max-w-2xl mx-auto px-4 py-6 pb-24">
+
+            <!-- Yayın Merkezi -->
+            <section id="adminPublishHero" class="kfm-admin-publish-hero" aria-labelledby="adminPublishTitle">
+                <div class="kfm-admin-publish-head">
+                    <div>
+                        <span class="kfm-admin-publish-kicker"><i class="fa-solid fa-satellite-dish"></i> Herkese açık yayın merkezi</span>
+                        <h3 id="adminPublishTitle">Değişiklikleri siteye gönder</h3>
+                        <p>Ürün, fiyat, kategori, tema ve görsel değişikliklerini tek düğmeyle GitHub’a kaydedin. Yayın başarılı olduğunda web sitesi yeni JSON ayarını okumaya başlar.</p>
+                    </div>
+                    <span id="adminPublishQuickStatus" class="kfm-admin-publish-state" data-state="idle"><i class="fa-solid fa-circle-check"></i> Hazır</span>
+                </div>
+                <div class="kfm-admin-publish-metrics" aria-live="polite">
+                    <span class="kfm-admin-publish-metric"><i class="fa-solid fa-boxes-stacked"></i><strong id="adminPublishProductCount">0</strong> ürün</span>
+                    <span class="kfm-admin-publish-metric"><i class="fa-solid fa-tags"></i><strong id="adminPublishCategoryCount">0</strong> kategori</span>
+                    <span class="kfm-admin-publish-metric"><i class="fa-solid fa-image"></i><strong id="adminPublishMissingImageCount">0</strong> eksik görsel</span>
+                </div>
+                <div class="kfm-admin-publish-actions">
+                    <button id="adminPublishQuickBtn" type="button" class="kfm-admin-publish-primary" onclick="kfmAdminHerkeseYayinla()"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>Herkese Yayınla</button>
+                    <button type="button" class="kfm-admin-publish-secondary" onclick="kfmAdminGitHubAyarlarinaGit()"><i class="fa-solid fa-sliders mr-2"></i>Yayın ayarlarını aç</button>
+                </div>
+                <p id="adminPublishSummary" class="kfm-admin-publish-summary">Yayın öncesi özet hazırlanıyor…</p>
+            </section>
 
             <!-- Başlık -->
             <div class="flex items-center justify-between mb-6 glass p-4 rounded-2xl border shadow-sm">
@@ -4907,6 +4983,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         lsSave('kfm_hizliSiparis', hizliSiparis);
         lsSave('kfm_frame_settings', kfmFrameSettings);
         lsSave('kfm_hide_out_of_stock', hideOutOfStock);
+        if (document.getElementById('adminPanel')?.style.display !== 'none') kfmAdminPublishMetricsGuncelle();
         // GitHub ayarları mevcutsa otomatik push
         if (ghSettings.token && ghSettings.user && ghSettings.repo && ghSettings.file) {
             githubPush();
@@ -5013,11 +5090,73 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     // ── GITHUB WRITEBACK ──
     // ══════════════════════════════════════════════════════════════
     function ghSetStatus(durum, mesaj) {
-        const badge = document.getElementById('ghStatusBadge');
-        if (!badge) return;
-        badge.className = 'gh-status ' + durum;
         const ikonlar = { idle: 'fa-circle-check', saving: 'fa-spinner fa-spin', error: 'fa-circle-xmark' };
-        badge.innerHTML = `<i class="fa-solid ${ikonlar[durum] || 'fa-circle-check'}"></i> ${mesaj}`;
+        const ikon = ikonlar[durum] || 'fa-circle-check';
+        const badge = document.getElementById('ghStatusBadge');
+        if (badge) {
+            badge.className = 'gh-status ' + durum;
+            badge.innerHTML = `<i class="fa-solid ${ikon}"></i> ${mesaj}`;
+        }
+        const quick = document.getElementById('adminPublishQuickStatus');
+        if (quick) {
+            quick.dataset.state = durum;
+            quick.innerHTML = `<i class="fa-solid ${ikon}"></i> ${mesaj}`;
+        }
+    }
+
+    function kfmAdminPublishMetricsGuncelle() {
+        const categories = Object.values(menuData || {});
+        const products = categories.flatMap(category => Array.isArray(category?.urunler) ? category.urunler : []);
+        const missing = products.filter(product => !String(product?.gorsel || '').trim()).length;
+        const setText = (id, value) => {
+            const element = document.getElementById(id);
+            if (element) element.textContent = String(value);
+        };
+        setText('adminPublishProductCount', products.length);
+        setText('adminPublishCategoryCount', categories.length);
+        setText('adminPublishMissingImageCount', missing);
+        const summary = document.getElementById('adminPublishSummary');
+        if (!summary) return;
+        summary.textContent = missing
+            ? `${products.length} ürün ve ${categories.length} kategori hazır · ${missing} üründe görsel eksik; yayın yine yapılabilir.`
+            : `${products.length} ürün ve ${categories.length} kategori hazır · görsel ön kontrolü temiz.`;
+    }
+
+    function kfmAdminGitHubAyarlarinaGit() {
+        const section = document.getElementById('ghPublishBtn')?.closest('.admin-accordion-section');
+        if (section && !section.classList.contains('active')) section.classList.add('active');
+        section?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        window.setTimeout(() => document.getElementById('apGhToken')?.focus({ preventScroll: true }), 180);
+    }
+
+    async function kfmAdminHerkeseYayinla() {
+        kfmAdminPublishMetricsGuncelle();
+        if (!ghSettings.token || !ghSettings.user || !ghSettings.repo || !ghSettings.file) {
+            ghSetStatus('error', 'Yayın ayarı eksik');
+            kfmAdminGitHubAyarlarinaGit();
+            toast('Yayın için önce GitHub ayarlarını kaydedin.');
+            return false;
+        }
+        const button = document.getElementById('adminPublishQuickBtn');
+        const original = button?.innerHTML || '';
+        if (button) {
+            button.disabled = true;
+            button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Yayınlanıyor...';
+        }
+        ghSetStatus('saving', 'Yayınlanıyor...');
+        const ok = await githubPush({ manual: true });
+        if (button) {
+            button.disabled = false;
+            button.innerHTML = original || '<i class="fa-solid fa-cloud-arrow-up mr-2"></i>Herkese Yayınla';
+        }
+        if (ok) {
+            ghSetStatus('idle', 'Herkese yayınlandı');
+            toast('Değişiklikler herkese açık siteye gönderildi.');
+        } else {
+            ghSetStatus('error', 'Yayın başarısız');
+            toast('Yayın tamamlanamadı. Ayarları ve bağlantıyı kontrol edin.');
+        }
+        return ok;
     }
 
     /* KFM_V24_GITHUB_JSON_PUBLISH
@@ -7173,6 +7312,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const hideBox = document.getElementById('apHideOutStock');
         if (hideBox) hideBox.checked = hideOutOfStock;
         apAdminOzetGuncelle();
+        kfmAdminPublishMetricsGuncelle();
     }
 
     function adminKapat() {

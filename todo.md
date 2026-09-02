@@ -14,3 +14,8 @@
 - [x] Çarkın açılma, sürükleme ve seçili kategori geçişlerinde yatay taşma oluşturmayan sabit etiketi uygulamak.
 - [x] Masaüstü ve mobil görünümde çark etkileşimini ve sayfa kaydırma davranışını doğrulamak.
 - [x] Doğrulanmış düzeltmeyi `main` dalına göndermek.
+
+- [x] Yönetim panelinde tema bağımsız okunabilir form alanları, placeholder/odak renkleri ve koyu tema kontrastı ekle.
+- [x] Yönetim paneline ürün/kategori/eksik görsel özeti ve görünür “Herkese Yayınla” aksiyon kartı ekle.
+- [x] Yayın düğmesini mevcut GitHub JSON PUT akışına bağla; spinner, ayar yönlendirmesi, başarı/hata durumu ve mobil responsive düzeni doğrula.
+- [ ] Yönetim paneli değişikliklerini gerçek `muhammedtalhakanat-sys/Keyfimce-Kafem-Web` reposu `main` dalına gönder.
