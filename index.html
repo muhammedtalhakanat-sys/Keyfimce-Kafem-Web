@@ -4023,7 +4023,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
       #adminPanel .admin-accordion-header h3{color:var(--rust)!important;line-height:1.25!important;}
       #adminPanel .admin-accordion-header .chevron{flex:0 0 auto;}
       #adminPanel .admin-accordion-content{padding:0 18px 20px!important;color:var(--ink)!important;}
-      #adminPanel .admin-accordion-content p,#adminPanel .admin-accordion-content label,#adminPanel .admin-accordion-content span{color:var(--muted)!important;}
+      #adminPanel .admin-accordion-content>p,#adminPanel .admin-accordion-content>label,#adminPanel .admin-accordion-content>span{color:var(--muted)!important;}
       #adminPanel input.ap-input,#adminPanel textarea.ap-input,#adminPanel select.ap-input,#adminPanel input:not([type="checkbox"]):not([type="file"]),#adminPanel textarea,#adminPanel select{width:100%;min-height:44px;border:1px solid #cbb9ae!important;border-radius:14px!important;background:#fffdfb!important;color:#2c1a12!important;caret-color:var(--rust);box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 2px 8px rgba(74,40,24,.04);}
       #adminPanel textarea.ap-input,#adminPanel textarea{min-height:92px;padding-top:12px!important;resize:vertical;}
       #adminPanel .ap-input::placeholder,#adminPanel input::placeholder,#adminPanel textarea::placeholder{color:#715a50!important;opacity:1!important;}
@@ -4067,6 +4067,17 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
       html[data-theme="dark"] #adminPanel .admin-stat-card{background:#24150f!important;border-color:rgba(255,218,188,.24)!important;}
       @media(max-width:700px){#adminPanel>.max-w-2xl{padding-left:12px!important;padding-right:12px!important;}#adminPanel .admin-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}.kfm-admin-publish-hero{padding:18px;border-radius:22px;}.kfm-admin-publish-head{display:block;}.kfm-admin-publish-state{margin-top:12px;}.kfm-admin-publish-actions>*{flex:1 1 100%;}.kfm-admin-publish-primary,.kfm-admin-publish-secondary{width:100%;}}
       @media(prefers-reduced-motion:reduce){.kfm-admin-publish-primary,.kfm-admin-publish-secondary{transition:none!important;}}
+      /* KFM_CONTRAST_AUDIT_V2 — semantik olmayan Tailwind renklerini tema değişkenlerine bağla. */
+      #adminPanel .text-gray-400,#adminPanel .text-gray-500,#adminPanel .text-gray-600,#adminPanel .text-gray-700{color:var(--muted)!important;}
+      #adminPanel .text-gray-800,#adminPanel .text-gray-900{color:var(--ink)!important;}
+      #adminPanel .ap-field label,#adminPanel .ap-field-wide label,#adminPanel .ap-save-hint,#adminPanel .ap-preview-link,#adminPanel .ap-product-category,#adminPanel .ap-product-meta,#adminPanel .ap-live-product-preview-head,#adminPanel .ap-preview-status{color:var(--muted)!important;}
+      #adminPanel .ap-product-title,#adminPanel .ap-live-product-card .product-card-title{color:var(--ink)!important;}
+      #adminPanel input::placeholder,#adminPanel textarea::placeholder,.modal-box input::placeholder,.modal-box textarea::placeholder{color:var(--muted2)!important;opacity:1!important;}
+      html[data-theme="dark"] .modal-box input:not([type="checkbox"]):not([type="file"]),html[data-theme="dark"] .modal-box textarea,html[data-theme="dark"] .modal-box select,html[data-theme="dark"] .modal-box .ap-input{background:var(--surface2)!important;color:var(--ink)!important;border-color:var(--border2)!important;color-scheme:dark;}
+      html[data-theme="dark"] .modal-box input::placeholder,html[data-theme="dark"] .modal-box textarea::placeholder{color:var(--muted)!important;}
+      html[data-theme="dark"] #adminPanel .admin-accordion-content>p,html[data-theme="dark"] #adminPanel .admin-accordion-content>label,html[data-theme="dark"] #adminPanel .admin-accordion-content>span{color:var(--muted)!important;}
+      html[data-theme="auto"] .modal-box input:not([type="checkbox"]):not([type="file"]),html[data-theme="auto"] .modal-box textarea,html[data-theme="auto"] .modal-box select,html[data-theme="auto"] .modal-box .ap-input{background:var(--surface2)!important;color:var(--ink)!important;border-color:var(--border2)!important;color-scheme:dark;}
+      html[data-theme="auto"] .modal-box input::placeholder,html[data-theme="auto"] .modal-box textarea::placeholder{color:var(--muted)!important;}
     </style>
     <!-- Admin Panel -->
     <div id="adminPanel" style="display:none; position:fixed; inset:0; z-index:50; overflow-y:auto; -webkit-overflow-scrolling:touch; background:var(--bg);">
@@ -7752,13 +7763,44 @@ function apUrunDosyaSecildi(event, catKey, id) {
     }
     async function kfmStatikMenuGorselleriniYukle() {
         try {
-            const response = await fetch(jsonDosyaAdi, { cache: 'no-store', headers: { Accept: 'application/json' } });
+            // GitHub Pages/ara proxy, no-store talebine rağmen aynı URL’yi tutabildiği
+            // için her açılışta değişen bir sorgu anahtarı kullanılır.
+            const settingsUrl = new URL(jsonDosyaAdi, window.location.href);
+            settingsUrl.searchParams.set('v', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+            const response = await fetch(settingsUrl.toString(), {
+                cache: 'no-store',
+                headers: { Accept: 'application/json', 'Cache-Control': 'no-cache' },
+            });
             if (!response.ok) throw new Error(`Statik menü HTTP ${response.status}`);
             const payload = await response.json();
             return payload && typeof payload === 'object' ? payload : null;
         } catch (error) {
-            console.warn('Statik ürün görselleri okunamadı; tarayıcı yedeği kullanılacak.', error);
+            console.warn('GitHub statik menü yedeği okunamadı; tarayıcı yedeği kullanılacak.', error);
             return null;
+        }
+    }
+
+    function kfmUzakYedekAyarlariniUygula(payload) {
+        if (!payload || typeof payload !== 'object') return;
+        if (payload.wifiYedek && typeof payload.wifiYedek === 'object') {
+            const remotePassword = String(payload.wifiYedek.sifre || '').trim();
+            const hasRealPassword = remotePassword && !/^(\*{3,}|•{3,})$/.test(remotePassword);
+            if (hasRealPassword) {
+                wifiData = { ...wifiData, ad: String(payload.wifiYedek.ad || wifiData.ad || ''), sifre: remotePassword };
+                lsSave('kfm_wifi', wifiData);
+            }
+        }
+        if (typeof payload.headerBgYedek === 'string' && payload.headerBgYedek.trim()) {
+            headerBgUrl = payload.headerBgYedek.trim();
+            lsSave('kfm_headerBg', headerBgUrl);
+        }
+        if (Array.isArray(payload.hizliSiparisYedek)) {
+            hizliSiparis = payload.hizliSiparisYedek;
+            lsSave('kfm_hizliSiparis', hizliSiparis);
+        }
+        if (payload.frameYedek && typeof payload.frameYedek === 'object' && typeof kfmCloneFrameSettings === 'function') {
+            kfmFrameSettings = kfmCloneFrameSettings(payload.frameYedek);
+            lsSave('kfm_frame_settings', kfmFrameSettings);
         }
     }
 
@@ -7862,21 +7904,28 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
     window.addEventListener("load", async () => {
         const staticPayload = await kfmStatikMenuGorselleriniYukle();
-        const staticImageMenu = staticPayload?.menuYedek && typeof staticPayload.menuYedek === 'object' ? staticPayload.menuYedek : null;
-        const publishedWifi = staticPayload?.wifiYedek;
-        if (publishedWifi && publishedWifi.sifre && publishedWifi.sifre !== '********' && publishedWifi.sifre !== '*****') {
-            wifiData = { ad: String(publishedWifi.ad || wifiData.ad || '').trim(), sifre: String(publishedWifi.sifre).trim() };
-            lsSave('kfm_wifi', wifiData);
-        }
+        const staticImageMenu = staticPayload?.menuYedek && typeof staticPayload.menuYedek === 'object'
+            ? staticPayload.menuYedek : null;
         try {
             const liveCatalog = await kfmCanliKatalogYukle();
+            // Relay’deki canlı katalog ürün/stok kaynağıdır; GitHub yedeği yayınlanmış
+            // görselleri ve menü dışı görünüm ayarlarını tamamlar.
             menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
+            kfmUzakYedekAyarlariniUygula(staticPayload);
             kfmCanliMenuAyarlariniUygula(liveCatalog.settings);
             lsSave('kfm_menu', menuData);
             console.info(`✓ Canlı D1 menü ve görünüm ayarları (sürüm ${liveCatalog.version || '?'}) yüklendi.`);
         } catch (err) {
             const cachedCatalog = ls(KFM_LIVE_CATALOG_CACHE_KEY, null);
-            if (cachedCatalog?.menu && typeof cachedCatalog.menu === 'object') {
+            if (staticImageMenu && Object.keys(staticImageMenu).length) {
+                // Diğer cihazlarda relay erişilemese bile GitHub Pages’e yayımlanan
+                // son menü gösterilir; eski localStorage sadece eksik görselleri korur.
+                menuData = kfmMergeUserImages(staticImageMenu, kfmLocalMenuSnapshot);
+                kfmUzakYedekAyarlariniUygula(staticPayload);
+                kfmCanliMenuAyarlariniUygula(staticPayload?.web_settings || KFM_LIVE_MENU_SETTINGS_DEFAULTS);
+                lsSave(KFM_LIVE_CATALOG_CACHE_KEY, { version: staticPayload?.publishedAt || null, menu: menuData, settings: window.kfmLiveMenuSettings, cachedAt: Date.now(), client_build: KFM_LIVE_CATALOG_CLIENT_BUILD });
+                console.warn('Canlı relay alınamadı; GitHub Pages’teki güncel statik yayın kullanılıyor.', err);
+            } else if (cachedCatalog?.menu && typeof cachedCatalog.menu === 'object') {
                 menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(cachedCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
                 kfmCanliMenuAyarlariniUygula(cachedCatalog.settings);
                 console.warn('Canlı katalog alınamadı; güvenli son katalog anlık görüntüsü kullanılıyor.', err);
