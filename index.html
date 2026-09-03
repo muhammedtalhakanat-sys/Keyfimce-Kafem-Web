@@ -3487,7 +3487,18 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				@keyframes kfmOrderPanelSuccess{0%{transform:scale(1)}42%{transform:scale(1.018)}72%{transform:scale(.994)}100%{transform:scale(1)}}
 				.order-cart-panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 13px 9px;border-bottom:1px solid rgba(146,80,47,.12);color:var(--ink);font-size:11px;font-weight:900;}
 				.order-cart-panel-head span{color:var(--muted2);font-size:10px;font-weight:750;}
-				.order-cart-list{display:grid;gap:1px;max-height:236px;overflow:auto;background:rgba(146,80,47,.08);}
+                .order-cart-filter{display:flex;align-items:center;gap:8px;padding:8px 11px;border-bottom:1px solid rgba(146,80,47,.1);background:rgba(255,250,243,.72);}
+                .order-cart-filter label{display:flex;align-items:center;justify-content:center;color:var(--muted2);font-size:12px;}
+                .order-cart-filter input{min-width:0;flex:1;border:1px solid rgba(146,80,47,.22);border-radius:10px;background:var(--surface);color:var(--ink);padding:8px 10px;font:inherit;font-size:12px;outline:none;}
+                .order-cart-filter input::placeholder{color:var(--muted2);opacity:1;}
+                .order-cart-filter input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(180,103,47,.14);}
+                .order-cart-filter button{display:grid;place-items:center;width:30px;height:30px;border:1px solid rgba(146,80,47,.18);border-radius:9px;background:var(--surface);color:var(--muted2);cursor:pointer;}
+                .order-cart-filter button:hover,.order-cart-filter button:focus-visible{border-color:var(--accent);color:var(--accent);}
+                .order-cart-filter-meta{display:flex;justify-content:space-between;gap:8px;padding:6px 13px;color:var(--muted2);font-size:10px;font-weight:750;}
+                .order-cart-filter-meta[hidden]{display:none;}
+                .order-cart-row.is-filtered-out{display:none;}
+                .order-cart-filter-empty{padding:18px 13px;color:var(--muted2);font-size:12px;text-align:center;}
+                .order-cart-list{display:grid;gap:1px;max-height:236px;overflow:auto;background:rgba(146,80,47,.08);}
 				.order-cart-empty{padding:18px 14px;color:var(--muted2);background:rgba(255,255,255,.55);font-size:11px;line-height:1.45;text-align:center;}
 				.order-cart-list.is-empty-transition .order-cart-empty{animation:kfmCartEmptyIn .24s cubic-bezier(.23,1,.32,1) both;}
 				@keyframes kfmCartEmptyIn{from{opacity:0;transform:translateY(7px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -3515,6 +3526,8 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				@keyframes cartQuickGoIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 				html[data-theme="dark"] .order-cart-panel{border-color:rgba(255,220,194,.14);background:rgba(255,255,255,.035);}
 			html[data-theme="dark"] .order-cart-row{background:rgba(255,255,255,.045);}
+                html[data-theme="dark"] .order-cart-filter{background:rgba(22,16,13,.82);border-color:rgba(255,220,194,.12);}
+                html[data-theme="dark"] .order-cart-filter input,html[data-theme="dark"] .order-cart-filter button{background:rgba(255,255,255,.06);border-color:rgba(255,220,194,.18);color:var(--ink);}
 			html[data-theme="dark"] .order-cart-empty{background:rgba(255,255,255,.035);}
 				html[data-theme="dark"] .order-cart-qty{border-color:rgba(255,220,194,.13);background:rgba(255,255,255,.035);}
 				html[data-theme="dark"] .order-cart-qty button{border-color:rgba(255,220,194,.17);color:#efab84;background:rgba(255,255,255,.06);}
@@ -3820,6 +3833,12 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <form id="webOrderForm" class="waiter-call-form" onsubmit="webSiparisFormGonder(event)" novalidate>
                     <div class="order-cart-panel" aria-live="polite">
                         <div class="order-cart-panel-head"><span>Seçtiğiniz ürünler</span><span id="orderCartCount">0 ürün</span></div>
+                        <div class="order-cart-filter" role="search">
+                            <label for="orderCartSearch" aria-label="Sepette ürün ara"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></label>
+                            <input id="orderCartSearch" type="search" autocomplete="off" placeholder="Sepette ürün ara…" aria-label="Sepette ürün, seçenek veya not ara" oninput="kfmOrderCartFilterUygula(this.value)" onkeydown="if(event.key==='Escape'){this.value='';kfmOrderCartFilterUygula('');this.blur();}">
+                            <button type="button" id="orderCartSearchClear" onclick="kfmOrderCartFilterTemizle()" aria-label="Sepet aramasını temizle" title="Aramayı temizle" hidden><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+                        </div>
+                        <div id="orderCartFilterMeta" class="order-cart-filter-meta" aria-live="polite" hidden><span id="orderCartFilterCount"></span><span>Esc ile temizle</span></div>
                         <div id="orderCartList" class="order-cart-list" role="list" aria-live="polite" aria-relevant="additions text"></div>
                         <div class="order-cart-total"><span>Tahmini toplam</span><strong id="orderCartTotal">0,00 ₺</strong></div>
                     </div>
@@ -5185,7 +5204,8 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         // Uzak JSON’daki bilinmeyen alanları koru; bilinen alanları güncel panel verisiyle değiştir.
         return Object.assign({}, remotePayload, {
             menuYedek: menuData,
-            wifiYedek: { ad: wifiData?.ad || '', sifre: '********' },
+            // Bağlantı/kopyalama için gerçek Wi-Fi parolasını taşı; admin parolası ve token dahil edilmez.
+            wifiYedek: { ad: wifiData?.ad || '', sifre: String(wifiData?.sifre || '') },
             headerBgYedek: headerBgUrl,
             hizliSiparisYedek: hizliSiparis,
             frameYedek: kfmFrameSettings
@@ -5310,7 +5330,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     function sistemiDisariAktarJSON() {
         const tumSistemYedek = {
             menuYedek: menuData,
-            wifiYedek: { ad: wifiData.ad, sifre: "********" }, // Şifreyi gizle
+            wifiYedek: { ad: wifiData.ad, sifre: "********" }, // Yerel dışa aktarma dosyasında parolayı gizle
             headerBgYedek: headerBgUrl,
             hizliSiparisYedek: hizliSiparis,
             frameYedek: kfmFrameSettings
@@ -5390,12 +5410,19 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 
     function wifiModalAc() { wifiEkraniGuncelle(); modalAc('wifiModal'); }
 
+    function kfmGercekWifiSifresi() {
+        const sifre = String(wifiData?.sifre || '').trim();
+        return /^(\*{3,}|•{3,})$/.test(sifre) ? '' : sifre;
+    }
+
     function wifiSifreyiKopyala() {
+        const sifre = kfmGercekWifiSifresi();
+        if (!sifre) { toast('Wi-Fi şifresi henüz yayınlanmamış.'); return; }
         if (navigator.clipboard) {
-            navigator.clipboard.writeText(wifiData.sifre)
+            navigator.clipboard.writeText(sifre)
                 .then(() => toast(t('toast_wifi_copied')))
-                .catch(() => fallbackKopyala(wifiData.sifre));
-        } else { fallbackKopyala(wifiData.sifre); }
+                .catch(() => fallbackKopyala(sifre));
+        } else { fallbackKopyala(sifre); }
     }
 
     function fallbackKopyala(text) {
@@ -5412,7 +5439,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     }
 
     function wifiBaglan() {
-        if (navigator.clipboard) navigator.clipboard.writeText(wifiData.sifre).catch(() => {});
+        const sifre = kfmGercekWifiSifresi();
+        if (!sifre) { toast('Wi-Fi şifresi henüz yayınlanmamış.'); return; }
+        if (navigator.clipboard) navigator.clipboard.writeText(sifre).catch(() => {});
         toast('📋 ' + (aktifDil === 'en' ? 'Password copied! Connect via Wi-Fi settings.' : 'Şifre kopyalandı! Cihazınızın Wi-Fi ayarlarından ağa bağlanabilirsiniz.'), 3500);
     }
 
@@ -7075,9 +7104,10 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		            count ? `${count} ürün seçildi. Tahmini toplam ${kfmFormatOrderTotal(total)}.` : 'Sepetiniz boş. Menüden ürün seçebilirsiniz.',
 		            count ? 'ready' : 'idle',
 		        );
-		if (!list) return;
-		if (!kfmOrderCart.length) {
-			list.innerHTML = '<div class="order-cart-empty"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><br>Ürün kartındaki <strong>+</strong> simgesiyle veya ürün detayından sepetinize ürün ekleyebilirsiniz.</div>';
+        if (!list) return;
+        if (!kfmOrderCart.length) {
+            list.innerHTML = '<div class="order-cart-empty"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><br>Ürün kartındaki <strong>+</strong> simgesiyle veya ürün detayından sepetinize ürün ekleyebilirsiniz.</div>';
+            kfmOrderCartFilterDurumunuSifirla();
 			const wasFilled = list.dataset.cartState === 'filled';
 			list.dataset.cartState = 'empty';
 			if (wasFilled) kfmOrderCartEmptyTransition(list);
@@ -7085,17 +7115,73 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		}
 		list.dataset.cartState = 'filled';
 		list.classList.remove('is-empty-transition');
-		list.innerHTML = kfmOrderCart.map((item, index) => `
-	            <div class="order-cart-row" role="listitem">
+        list.innerHTML = kfmOrderCart.map((item, index) => `
+                <div class="order-cart-row" role="listitem" data-cart-index="${index}">
 	                <div><strong>${escapeHtml(item.name)}</strong><small>${kfmFormatOrderTotal(item.unitPrice)} × ${item.quantity} · ${kfmFormatOrderTotal(item.unitPrice * item.quantity)}</small></div>
 	                <div class="order-cart-qty" role="group" aria-label="${escapeHtml(item.name)} miktarı">
 	                    <button type="button" onclick="kfmOrderCartChange(${index},-1)" aria-label="${escapeHtml(item.name)} adedini azalt" title="Bir azalt">−</button>
 	                    <output aria-label="${item.quantity} adet">${item.quantity}</output>
 	                    <button type="button" onclick="kfmOrderCartChange(${index},1)" aria-label="${escapeHtml(item.name)} adedini artır" title="Bir artır">+</button>
 	                </div>
-	            </div>`).join('');
-	}
-
+	                        </div>`).join('');
+        kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '');
+    }
+    function kfmOrderCartFilterMetni(item) {
+        const variants = Array.isArray(item?.alt_secenekler) ? item.alt_secenekler : [];
+        const groups = Array.isArray(item?.alt_secenek_gruplari) ? item.alt_secenek_gruplari.flatMap(group => [group?.isim, group?.grup]) : [];
+        return [item?.name, item?.productName, item?.not, item?.note, ...variants, ...groups].filter(Boolean).join(' ');
+    }
+    function kfmOrderCartFilterUygula(rawQuery) {
+        const query = kategoriUrunAramaMetni(rawQuery).trim();
+        const input = document.getElementById('orderCartSearch');
+        const clear = document.getElementById('orderCartSearchClear');
+        const meta = document.getElementById('orderCartFilterMeta');
+        const count = document.getElementById('orderCartFilterCount');
+        const rows = [...document.querySelectorAll('#orderCartList .order-cart-row')];
+        if (input && input.value !== String(rawQuery || '')) input.value = String(rawQuery || '');
+        if (clear) clear.hidden = !query;
+        if (!rows.length || !query) {
+            rows.forEach(row => row.classList.remove('is-filtered-out'));
+            if (meta) meta.hidden = true;
+            document.getElementById('orderCartFilterEmpty')?.remove();
+            return;
+        }
+        let visible = 0;
+        rows.forEach(row => {
+            const item = kfmOrderCart[Number(row.dataset.cartIndex)];
+            const matches = kategoriUrunAramaMetni(kfmOrderCartFilterMetni(item)).includes(query);
+            row.classList.toggle('is-filtered-out', !matches);
+            if (matches) visible += 1;
+        });
+        if (meta) meta.hidden = false;
+        if (count) count.textContent = `${visible} / ${rows.length} ürün gösteriliyor`;
+        let empty = document.getElementById('orderCartFilterEmpty');
+        if (!visible) {
+            if (!empty) {
+                empty = document.createElement('div');
+                empty.id = 'orderCartFilterEmpty';
+                empty.className = 'order-cart-filter-empty';
+                document.getElementById('orderCartList')?.appendChild(empty);
+            }
+            if (empty) empty.textContent = 'Bu aramayla eşleşen ürün yok.';
+        } else if (empty) empty.remove();
+    }
+    function kfmOrderCartFilterTemizle() {
+        const input = document.getElementById('orderCartSearch');
+        if (input) input.value = '';
+        kfmOrderCartFilterUygula('');
+        input?.focus();
+    }
+    function kfmOrderCartFilterDurumunuSifirla() {
+        const input = document.getElementById('orderCartSearch');
+        const clear = document.getElementById('orderCartSearchClear');
+        const meta = document.getElementById('orderCartFilterMeta');
+        const empty = document.getElementById('orderCartFilterEmpty');
+        if (input) input.value = '';
+        if (clear) clear.hidden = true;
+        if (meta) meta.hidden = true;
+        empty?.remove();
+    }
         function kfmOrderCartEmptyTransition(list) {
             if (!list || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             list.classList.remove('is-empty-transition');
@@ -7669,7 +7755,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const response = await fetch(jsonDosyaAdi, { cache: 'no-store', headers: { Accept: 'application/json' } });
             if (!response.ok) throw new Error(`Statik menü HTTP ${response.status}`);
             const payload = await response.json();
-            return payload?.menuYedek && typeof payload.menuYedek === 'object' ? payload.menuYedek : null;
+            return payload && typeof payload === 'object' ? payload : null;
         } catch (error) {
             console.warn('Statik ürün görselleri okunamadı; tarayıcı yedeği kullanılacak.', error);
             return null;
@@ -7775,7 +7861,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
     }
 
     window.addEventListener("load", async () => {
-        const staticImageMenu = await kfmStatikMenuGorselleriniYukle();
+        const staticPayload = await kfmStatikMenuGorselleriniYukle();
+        const staticImageMenu = staticPayload?.menuYedek && typeof staticPayload.menuYedek === 'object' ? staticPayload.menuYedek : null;
+        const publishedWifi = staticPayload?.wifiYedek;
+        if (publishedWifi && publishedWifi.sifre && publishedWifi.sifre !== '********' && publishedWifi.sifre !== '*****') {
+            wifiData = { ad: String(publishedWifi.ad || wifiData.ad || '').trim(), sifre: String(publishedWifi.sifre).trim() };
+            lsSave('kfm_wifi', wifiData);
+        }
         try {
             const liveCatalog = await kfmCanliKatalogYukle();
             menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
