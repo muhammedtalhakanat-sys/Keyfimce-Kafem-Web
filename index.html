@@ -3488,6 +3488,22 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				.order-cart-panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 13px 9px;border-bottom:1px solid rgba(146,80,47,.12);color:var(--ink);font-size:11px;font-weight:900;}
 				.order-cart-panel-head span{color:var(--muted2);font-size:10px;font-weight:750;}
                 .order-cart-filter{display:flex;align-items:center;gap:8px;padding:8px 11px;border-bottom:1px solid rgba(146,80,47,.1);background:rgba(255,250,243,.72);}
+                .order-cart-advanced-filter{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.7fr) minmax(0,.7fr) 30px;gap:6px;padding:0 11px 9px;background:rgba(255,250,243,.72);}
+                .order-cart-advanced-filter select,.order-cart-advanced-filter input{min-width:0;border:1px solid rgba(146,80,47,.2);border-radius:9px;background:var(--surface);color:var(--ink);padding:7px 8px;font:inherit;font-size:11px;outline:none;}
+                .order-cart-advanced-filter select:focus,.order-cart-advanced-filter input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(180,103,47,.14);}
+                .order-cart-advanced-filter input::placeholder{color:var(--muted2);opacity:1;}
+                .order-cart-advanced-filter button{display:grid;place-items:center;width:30px;height:30px;border:1px solid rgba(146,80,47,.18);border-radius:9px;background:var(--surface);color:var(--muted2);cursor:pointer;}
+                .order-cart-advanced-filter button:hover,.order-cart-advanced-filter button:focus-visible{border-color:var(--accent);color:var(--accent);}
+                .wifi-qr-card{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:12px;align-items:center;padding:14px;border:1px solid rgba(146,80,47,.16);border-radius:16px;background:rgba(255,255,255,.5);}
+                .wifi-qr-copy{display:grid;gap:5px;color:var(--ink);font-size:12px;line-height:1.35;}
+                .wifi-qr-copy span{color:var(--muted2);font-size:10px;}
+                .wifi-qr-code{display:grid;place-items:center;min-height:112px;padding:6px;border-radius:12px;background:#fff;}
+                .wifi-qr-code img,.wifi-qr-code canvas{display:block;width:100%!important;height:auto!important;max-width:112px;}
+                .wifi-qr-actions{grid-column:1/-1;display:flex;gap:7px;}
+                .wifi-qr-actions button{flex:1;border:1px solid rgba(146,80,47,.18);border-radius:10px;padding:8px 9px;color:var(--rust);background:var(--surface);font:700 11px inherit;cursor:pointer;}
+                .wifi-qr-actions button:hover,.wifi-qr-actions button:focus-visible{color:#fff;background:var(--rust);}
+                @media(max-width:420px){.order-cart-advanced-filter{grid-template-columns:1fr 1fr 30px}.order-cart-advanced-filter select{grid-column:1/-1}.wifi-qr-card{grid-template-columns:minmax(0,1fr) 96px}.wifi-qr-code{min-height:96px}.wifi-qr-code img,.wifi-qr-code canvas{max-width:96px;}}
+
                 .order-cart-filter label{display:flex;align-items:center;justify-content:center;color:var(--muted2);font-size:12px;}
                 .order-cart-filter input{min-width:0;flex:1;border:1px solid rgba(146,80,47,.22);border-radius:10px;background:var(--surface);color:var(--ink);padding:8px 10px;font:inherit;font-size:12px;outline:none;}
                 .order-cart-filter input::placeholder{color:var(--muted2);opacity:1;}
@@ -3838,6 +3854,12 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                             <input id="orderCartSearch" type="search" autocomplete="off" placeholder="Sepette ürün ara…" aria-label="Sepette ürün, seçenek veya not ara" oninput="kfmOrderCartFilterUygula(this.value)" onkeydown="if(event.key==='Escape'){this.value='';kfmOrderCartFilterUygula('');this.blur();}">
                             <button type="button" id="orderCartSearchClear" onclick="kfmOrderCartFilterTemizle()" aria-label="Sepet aramasını temizle" title="Aramayı temizle" hidden><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
                         </div>
+                        <div class="order-cart-advanced-filter" aria-label="Sepet gelişmiş filtreleri">
+                            <select id="orderCartCategoryFilter" aria-label="Kategoriye göre filtrele" onchange="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')"><option value="">Tüm kategoriler</option></select>
+                            <input id="orderCartMinPrice" type="number" min="0" step="1" inputmode="decimal" placeholder="Min ₺" aria-label="Minimum fiyat" oninput="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')">
+                            <input id="orderCartMaxPrice" type="number" min="0" step="1" inputmode="decimal" placeholder="Maks ₺" aria-label="Maksimum fiyat" oninput="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')">
+                            <button type="button" id="orderCartAdvancedClear" onclick="kfmOrderCartGelismisFiltreleriTemizle()" aria-label="Kategori ve fiyat filtrelerini temizle" title="Filtreleri temizle"><i class="fa-solid fa-filter-circle-xmark" aria-hidden="true"></i></button>
+                        </div>
                         <div id="orderCartFilterMeta" class="order-cart-filter-meta" aria-live="polite" hidden><span id="orderCartFilterCount"></span><span>Esc ile temizle</span></div>
                         <div id="orderCartList" class="order-cart-list" role="list" aria-live="polite" aria-relevant="additions text"></div>
                         <div class="order-cart-total"><span>Tahmini toplam</span><strong id="orderCartTotal">0,00 ₺</strong></div>
@@ -3928,6 +3950,11 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                             style="background:var(--rust); box-shadow: 0 4px 15px rgba(184,92,56,0.3);">
                         <i class="fa-solid fa-copy"></i><span data-i18n="copy_btn">Kopyala</span>
                     </button>
+                </div>
+                <div class="wifi-qr-card" aria-labelledby="wifiQrTitle">
+                    <div class="wifi-qr-copy"><strong id="wifiQrTitle"><i class="fa-solid fa-qrcode mr-1" aria-hidden="true"></i>QR ile bağlan</strong><span>Telefonunuzun kamerasıyla okutun; Wi‑Fi ağı ve şifre otomatik doldurulur.</span></div>
+                    <div id="wifiQrCode" class="wifi-qr-code" role="img" aria-label="Wi-Fi bağlantı QR kodu"></div>
+                    <div class="wifi-qr-actions"><button type="button" onclick="wifiQrIndir()"><i class="fa-solid fa-download" aria-hidden="true"></i> İndir</button><button type="button" onclick="wifiQrYazdir()"><i class="fa-solid fa-print" aria-hidden="true"></i> Yazdır</button></div>
                 </div>
                 <button onclick="wifiBaglan()"
                         class="w-full text-white py-3.5 rounded-2xl font-bold text-base transition-all active:scale-95 shadow-lg"
@@ -5449,6 +5476,50 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         document.body.removeChild(el);
     }
 
+    function kfmWifiQrMetni() {
+        const escapeWifi = value => String(value || '').replace(/[\\;,:]/g, '\\$&');
+        const ssid = String(wifiData?.ad || '').trim();
+        const password = kfmGercekWifiSifresi();
+        return ssid && password ? `WIFI:T:WPA;S:${escapeWifi(ssid)};P:${escapeWifi(password)};;` : '';
+    }
+    function wifiQrUret() {
+        const box = document.getElementById('wifiQrCode');
+        if (!box) return;
+        box.replaceChildren();
+        const text = kfmWifiQrMetni();
+        if (!text || typeof QRCode === 'undefined') {
+            box.textContent = 'QR hazır değil';
+            return;
+        }
+        new QRCode(box, { text, width: 112, height: 112, colorDark: '#2c1a12', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+    }
+    function wifiQrGorselUrl() {
+        const box = document.getElementById('wifiQrCode');
+        return box?.querySelector('canvas')?.toDataURL('image/png') || box?.querySelector('img')?.src || '';
+    }
+    function wifiQrIndir() {
+        const url = wifiQrGorselUrl();
+        if (!url) return toast('Önce geçerli Wi-Fi bilgisiyle QR kodu oluşturun.');
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = 'keyfimce-wifi-qr.png';
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+    }
+    function wifiQrYazdir() {
+        const url = wifiQrGorselUrl();
+        if (!url) return toast('Önce geçerli Wi-Fi bilgisiyle QR kodu oluşturun.');
+        const popup = window.open('', '_blank', 'noopener,noreferrer,width=420,height=520');
+        if (!popup) return toast('Yazdırma penceresi engellendi.');
+        popup.document.write(`<!doctype html><html lang="tr"><head><meta charset="utf-8"><title>Keyfimce Wi-Fi</title><style>body{font-family:Arial;text-align:center;padding:28px;color:#2c1a12}img{width:280px;height:280px}h2{font-size:20px}</style></head><body><h2>${escapeHtml(wifiData.ad)} Wi-Fi</h2><img src="${url}" alt="Wi-Fi QR kodu"><p>Kameranızla okutun ve ağa bağlanın.</p><script>window.onload=()=>window.print()<\/script></body></html>`);
+        popup.document.close();
+    }
+    function wifiModalAc() {
+        wifiEkraniGuncelle();
+        wifiQrUret();
+        modalAc('wifiModal');
+    }
     function wifiBaglan() {
         const sifre = kfmGercekWifiSifresi();
         if (!sifre) { toast('Wi-Fi şifresi henüz yayınlanmamış.'); return; }
@@ -7032,8 +7103,10 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        const existing = kfmOrderCart.find(item => item.productKey === productKey);
 	        if (existing) existing.quantity = Math.min(99, existing.quantity + 1);
 	        else kfmOrderCart.push({
-	            productKey, productName, name, unitPrice, quantity: 1,
-	            alt_secenekler: variantNames,
+                    productKey, productName, name, unitPrice, quantity: 1,
+                    categoryKey: String(product?.catKey || product?.kategori_id || '').trim(),
+                    categoryName: String(menuData?.[product?.catKey]?.isim || product?.kategori || '').trim(),
+                    alt_secenekler: variantNames,
 	            alt_secenek_gruplari: selectedVariants.map(variant => ({ isim: variant.isim, grup: variant.grup })),
 		});
 		kfmRenderOrderCart();
@@ -7135,7 +7208,17 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    <button type="button" onclick="kfmOrderCartChange(${index},1)" aria-label="${escapeHtml(item.name)} adedini artır" title="Bir artır">+</button>
 	                </div>
 	                        </div>`).join('');
+        kfmOrderCartFiltreSecenekleriniDoldur();
         kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '');
+    }
+    function kfmOrderCartFiltreSecenekleriniDoldur() {
+        const select = document.getElementById('orderCartCategoryFilter');
+        if (!select) return;
+        const selected = select.value;
+        const categories = new Map();
+        kfmOrderCart.forEach(item => { if (item.categoryKey || item.categoryName) categories.set(item.categoryKey || item.categoryName, item.categoryName || item.categoryKey); });
+        select.innerHTML = '<option value="">Tüm kategoriler</option>' + [...categories.entries()].map(([key, label]) => `<option value="${escapeHtml(key)}">${escapeHtml(label)}</option>`).join('');
+        if ([...categories.keys()].includes(selected)) select.value = selected;
     }
     function kfmOrderCartFilterMetni(item) {
         const variants = Array.isArray(item?.alt_secenekler) ? item.alt_secenekler : [];
@@ -7146,12 +7229,19 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const query = kategoriUrunAramaMetni(rawQuery).trim();
         const input = document.getElementById('orderCartSearch');
         const clear = document.getElementById('orderCartSearchClear');
+        const category = document.getElementById('orderCartCategoryFilter')?.value || '';
+        const minRaw = document.getElementById('orderCartMinPrice')?.value || '';
+        const maxRaw = document.getElementById('orderCartMaxPrice')?.value || '';
+        const minPrice = minRaw === '' ? null : Math.max(0, Number(minRaw) * 100);
+        const maxPrice = maxRaw === '' ? null : Math.max(0, Number(maxRaw) * 100);
         const meta = document.getElementById('orderCartFilterMeta');
         const count = document.getElementById('orderCartFilterCount');
         const rows = [...document.querySelectorAll('#orderCartList .order-cart-row')];
         if (input && input.value !== String(rawQuery || '')) input.value = String(rawQuery || '');
+        const hasAdvanced = Boolean(category || minPrice !== null || maxPrice !== null);
+        const activeFilter = Boolean(query || hasAdvanced);
         if (clear) clear.hidden = !query;
-        if (!rows.length || !query) {
+        if (!rows.length || !activeFilter) {
             rows.forEach(row => row.classList.remove('is-filtered-out'));
             if (meta) meta.hidden = true;
             document.getElementById('orderCartFilterEmpty')?.remove();
@@ -7160,7 +7250,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
         let visible = 0;
         rows.forEach(row => {
             const item = kfmOrderCart[Number(row.dataset.cartIndex)];
-            const matches = kategoriUrunAramaMetni(kfmOrderCartFilterMetni(item)).includes(query);
+            const itemPrice = Number(item?.unitPrice || 0);
+            const itemCategory = String(item?.categoryKey || item?.categoryName || '');
+            const matchesText = !query || kategoriUrunAramaMetni(kfmOrderCartFilterMetni(item)).includes(query);
+            const matchesCategory = !category || itemCategory === category;
+            const matchesMin = minPrice === null || itemPrice >= minPrice;
+            const matchesMax = maxPrice === null || itemPrice <= maxPrice;
+            const matches = matchesText && matchesCategory && matchesMin && matchesMax;
             row.classList.toggle('is-filtered-out', !matches);
             if (matches) visible += 1;
         });
@@ -7183,13 +7279,30 @@ function apUrunDosyaSecildi(event, catKey, id) {
         kfmOrderCartFilterUygula('');
         input?.focus();
     }
+    function kfmOrderCartGelismisFiltreleriTemizle() {
+        const category = document.getElementById('orderCartCategoryFilter');
+        const min = document.getElementById('orderCartMinPrice');
+        const max = document.getElementById('orderCartMaxPrice');
+        if (category) category.value = '';
+        if (min) min.value = '';
+        if (max) max.value = '';
+        kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '');
+    }
     function kfmOrderCartFilterDurumunuSifirla() {
         const input = document.getElementById('orderCartSearch');
         const clear = document.getElementById('orderCartSearchClear');
         const meta = document.getElementById('orderCartFilterMeta');
         const empty = document.getElementById('orderCartFilterEmpty');
         if (input) input.value = '';
+        const advancedClear = document.getElementById('orderCartAdvancedClear');
+        const category = document.getElementById('orderCartCategoryFilter');
+        const min = document.getElementById('orderCartMinPrice');
+        const max = document.getElementById('orderCartMaxPrice');
         if (clear) clear.hidden = true;
+        if (advancedClear) advancedClear.hidden = true;
+        if (category) category.value = '';
+        if (min) min.value = '';
+        if (max) max.value = '';
         if (meta) meta.hidden = true;
         empty?.remove();
     }

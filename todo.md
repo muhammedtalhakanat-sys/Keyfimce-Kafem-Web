@@ -27,3 +27,7 @@
 - [x] Wi‑Fi şifresi kopyalama düğmesinin maskeli yıldızları değil gerçek parola değerini panoya vermesini sağla; bağlantı akışını doğrula. Yayınlanan JSON gerçek parolayı taşır, yerel dışa aktarım dosyası güvenlik için maskeli kalır.
 - [x] Sepet içinde ürün adı, alt seçenek ve not alanlarında anlık arama/filtreleme ekle; sonuç sayısını, boş sonucu ve temizleme akışını erişilebilir hâle getir. Türkçe karakter duyarlı arama, Esc ile temizleme ve görünür sonuç sayacı eklendi.
 - [x] Wi‑Fi kopyalama ve sepet içi arama/filtreleme için sözleşme testleri yaz, tarayıcıda doğrula ve değişiklikleri GitHub `main` dalına gönder. Sözleşme testleri ile tarayıcıdaki eşleşen/boş sonuç kontrolleri başarılı.
+
+- [x] Wi‑Fi bilgi kartına SSID/parola içeren güvenli QR kod üretimi, indirilebilir/yazdırılabilir kart ve mobil uyumlu gösterim ekle. WPA Wi‑Fi metni QR’a dönüştürülür; modalda görüntüleme, indirme ve yazdırma çalışır.
+- [x] Sepet filtresine kategori seçimi, minimum/maksimum fiyat aralığı, aktif filtre özeti ve temizleme akışı ekle; toplam tutarı değiştirmeden yalnız görünür satırları filtrele. Kategori ve fiyat koşulları anlık çalışır; filtre temizleme ve sonuç sayacı doğrulandı.
+- [x] Wi‑Fi QR ve sepet gelişmiş filtrelerini sözleşme testleri ve tarayıcı doğrulamasıyla kontrol edip GitHub `main` dalına gönder. Web sözleşme testleri, JavaScript ayrıştırması ve gerçek tarayıcı kontrolleri başarılı.
