@@ -6,7 +6,7 @@ import path from 'node:path';
 const webRoot = path.resolve(import.meta.dirname, '..');
 const webSource = fs.readFileSync(path.join(webRoot, 'index.html'), 'utf8');
 
-const relayRoot = path.resolve(webRoot, '..', 'keyfimce-sync-relay', 'cloudflare-worker');
+const relayRoot = path.resolve(webRoot, '..', 'Keyfimce-Waiter-Relay', 'cloudflare-worker');
 const relaySource = fs.readFileSync(path.join(relayRoot, 'keyfimce-relay-core-worker.mjs'), 'utf8');
 
 test('web canlı katalog isteği sürüm/zaman cache anahtarı ve no-store kullanır', () => {
@@ -25,4 +25,11 @@ test('relay canlı katalog yanıtı edge ve tarayıcı cache’ine bırakılmaz'
 
 test('web canlı görseli mevcutsa statik yedek yalnız boş veya bilinen bozuk URL’de uygulanır', () => {
   assert.match(webSource, /if \(fallback && \(!current \|\| kfmKnownBrokenRemote\(product, current\)\)\) product\.gorsel = fallback/);
+});
+
+test('web ürün görseli geçerli Google thumbnail URL\'sini yükleme öncesi fallback\'e çevirmez', () => {
+  assert.doesNotMatch(
+    webSource,
+    /!explicit \|\| explicit\.startsWith\(['"]file:['"]\) \|\| \/encrypted-tbn0\.gstatic\.com/,
+  );
 });
