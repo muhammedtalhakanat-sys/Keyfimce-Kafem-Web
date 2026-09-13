@@ -18,6 +18,10 @@ for (const contract of [
   "trigger.setAttribute('aria-expanded', String(willOpen))",
   'Arama alanı yalnız kullanıcı dokunursa odaklanır.',
   'id="searchInput"',
+  'id="searchAllMenuBtn"',
+  'onclick="tumMenudeAra()"',
+  'function tumMenudeAra()',
+  "const categoryFiltered = aktifKat !== 'cat-all'",
 ]) {
   if (!source.includes(contract)) {
     throw new Error(`Eksik klavye odağı sözleşmesi: ${contract}`);
