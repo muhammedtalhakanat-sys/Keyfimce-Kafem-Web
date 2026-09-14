@@ -65,6 +65,26 @@
     user-select: text;
     font-family: inherit;
   }
+  
+  button, a, .cat-pill, .prod-card, .wifi-bar {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Better keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid var(--rust);
+    outline-offset: 2px;
+  }
+  
+  button:active, a:active, .cat-pill:active, .prod-card:active, .wifi-bar:active {
+    transform: scale(0.97);
+  }
+  
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
 
   .serif {
     font-family: 'Fraunces', serif;
@@ -904,6 +924,62 @@
     body { max-width: 760px; margin: 0 auto; }
     #bottomNav { max-width: 736px; margin: 0 auto; }
     #productGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    
+    /* Enhanced desktop experience */
+    input:focus, button:focus, a:focus, .cat-pill:focus, .prod-card:focus, .wifi-bar:focus {
+      outline: 2px solid var(--rust);
+      outline-offset: 2px;
+    }
+    
+    /* Better scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(232, 221, 213, 0.3);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(184, 92, 56, 0.4);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(184, 92, 56, 0.6);
+    }
+    
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--rust);
+      color: white;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+    
+    .skip-link:focus {
+      top: 0;
+    }
+    
+    /* Enhanced cursor states */
+    button, a, .cat-pill, .prod-card, .wifi-bar {
+      cursor: pointer;
+    }
+    
+    /* Better hover states */
+    .cat-pill:hover {
+      background: rgba(184, 92, 56, 0.1);
+    }
+    
+    .prod-card:hover {
+      cursor: pointer;
+    }
   }
 
   /* =========================================================
@@ -1523,9 +1599,99 @@
   .search-wrap{margin-top:24px}
   #productGrid{gap:22px;padding-top:8px}
   #productGrid>.prod-card{min-height:402px}
+  
+  /* Enhanced large screen experience */
+  .prod-card {
+    padding: 24px;
+    gap: 20px;
+  }
+  
+  .prod-name {
+    font-size: 18px;
+  }
+  
+  .prod-price {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .cat-pill {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+  
+  #searchInput {
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+  
+  .wifi-bar {
+    padding: 18px 24px;
+  }
+  
+  /* Better focus states for large screens */
+  input:focus, button:focus, a:focus, .cat-pill:focus, .prod-card:focus, .wifi-bar:focus {
+    outline: 2px solid var(--rust);
+    outline-offset: 3px;
+  }
 }
 @media(min-width:900px) and (max-width:1199px){#productGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(min-width:1200px){#productGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:1200px){
+  #productGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  
+  /* Extra large screen optimizations */
+  .prod-card {
+    padding: 28px;
+    gap: 24px;
+  }
+  
+  .prod-name {
+    font-size: 20px;
+  }
+  
+  .prod-price {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  
+  .cat-pill {
+    padding: 16px 28px;
+    font-size: 16px;
+  }
+  
+  #searchInput {
+    padding: 18px 24px;
+    font-size: 18px;
+  }
+  
+  .wifi-bar {
+    padding: 20px 28px;
+  }
+  
+  /* Enhanced cursor and focus for very large screens */
+  button, a, .cat-pill, .prod-card, .wifi-bar {
+    cursor: pointer;
+  }
+  
+  input:focus, button:focus, a:focus, .cat-pill:focus, .prod-card:focus, .wifi-bar:focus {
+    outline: 3px solid var(--rust);
+    outline-offset: 4px;
+  }
+  
+  /* Better spacing for content */
+  #mainHeader {
+    padding: 64px 56px;
+  }
+  
+  .search-wrap {
+    margin-top: 32px;
+  }
+  
+  #productGrid {
+    gap: 28px;
+    padding-top: 12px;
+  }
+}
 @media(max-width:680px){
   #mainHeader>.header-ambient-3d{opacity:.68}
   .header-orbit-a{left:-12%;top:14%;transform:scale(.72)}
@@ -3629,6 +3795,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				</style>
 </head>
 <body id="pageBody" style="padding-bottom: 90px;">
+
+    <!-- Skip to main content for accessibility -->
+    <a href="#productGrid" class="skip-link">İçeriğe geç</a>
 
     <!-- Tema ve dil kontrolleri -->
     <button id="themeToggleBtn" onclick="temaDegistir()" aria-label="Tema değiştir" title="Tema: Otomatik">
