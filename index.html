@@ -925,6 +925,13 @@
     #bottomNav { max-width: 736px; margin: 0 auto; }
     #productGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     
+    /* Category picker width control */
+    .menu-category-picker {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
     /* Enhanced desktop experience */
     input:focus, button:focus, a:focus, .cat-pill:focus, .prod-card:focus, .wifi-bar:focus {
       outline: 2px solid var(--rust);
@@ -1599,6 +1606,13 @@
   .search-wrap{margin-top:24px}
   #productGrid{gap:22px;padding-top:8px}
   #productGrid>.prod-card{min-height:402px}
+  
+  /* Category picker width control for large screens */
+  .menu-category-picker {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   
   /* Enhanced large screen experience */
   .prod-card {
@@ -3721,7 +3735,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 				@media(max-width:520px){.web-order-modal{width:100%!important;}.order-cart-list{max-height:205px;}.product-cart-btn{width:35px;height:35px;flex-basis:35px;}.order-cart-quick-go{bottom:calc(env(safe-area-inset-bottom) + 78px);right:12px;}}
 				@media(prefers-reduced-motion:reduce){.product-cart-btn{transition:none!important;}.product-cart-btn:hover{transform:none!important;}.order-cart-quick-go.is-visible,.order-cart-badge.is-count-pulsing,.order-cart-panel.is-order-success,.order-cart-list.is-empty-transition .order-cart-empty{animation:none!important;}.order-cart-panel::after{transition:none!important;}}
 				/* KFM_CATEGORY_PICKER_V1 — İlk kez kullanan misafirler için açık menü erişimi. */
-				.menu-category-picker{position:relative;z-index:32;margin:0 16px 18px;}
+				.menu-category-picker{position:relative;z-index:32;margin:0 16px 18px;max-width:760px;margin-left:auto;margin-right:auto;width:100%;}
 				.category-picker-trigger{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:82px;padding:13px 15px;border:1px solid rgba(159,73,41,.3);border-radius:20px;color:var(--ink);background:linear-gradient(135deg,#fffdf9 0%,#fff1e8 100%);box-shadow:0 12px 28px rgba(100,47,25,.13);text-align:left;cursor:pointer;transition:transform .16s cubic-bezier(.22,1,.36,1),box-shadow .16s ease,border-color .16s ease;}
 				.category-picker-trigger:hover{border-color:rgba(159,73,41,.52);box-shadow:0 15px 30px rgba(100,47,25,.18);transform:translateY(-2px);}
 				.category-picker-trigger:active{transform:scale(.985);}
@@ -5873,7 +5887,17 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     function setTab(tab) {
         document.getElementById('bnav-menu').className = 'bnav-btn' + (tab === 'menu' ? ' active' : '');
         kategoriGit(aktifKat);
-        if (tab === 'menu') window.setTimeout(scrollToMenuStart, 0);
+        if (tab === 'menu') {
+            // Force scroll to menu start immediately
+            scrollToMenuStart();
+            // Fallback attempts
+            setTimeout(function() {
+                scrollToMenuStart();
+            }, 100);
+            setTimeout(function() {
+                scrollToMenuStart();
+            }, 300);
+        }
     }
 
     function kategoriSeciciKapat(focusTrigger = false) {
@@ -8962,8 +8986,24 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
     // CINEMATIC WELCOME & MENU RETURN V3
     function scrollToMenuStart() {
-        const target = document.getElementById('catNav') || document.getElementById('productGrid');
+        // Find the actual menu target - check multiple possible elements
+        const catNav = document.getElementById('catNav');
+        const categoryPicker = document.getElementById('categoryPicker');
+        const productGrid = document.getElementById('productGrid');
+        
+        let target = null;
+        
+        // Priority: category picker > cat nav > product grid
+        if (categoryPicker && categoryPicker.offsetParent !== null) {
+            target = categoryPicker;
+        } else if (catNav && catNav.offsetParent !== null && catNav.style.display !== 'none') {
+            target = catNav;
+        } else if (productGrid) {
+            target = productGrid;
+        }
+        
         if (!target) return;
+        
         const menuButton = document.getElementById('bnav-menu');
         if (menuButton) {
             menuButton.classList.remove('menu-button-ring');
@@ -8971,9 +9011,19 @@ function apUrunDosyaSecildi(event, catKey, id) {
             menuButton.classList.add('menu-button-ring');
             window.setTimeout(() => menuButton.classList.remove('menu-button-ring'), 1260);
         }
+        
         const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - 18);
-        window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        
+        // Direct scroll using getBoundingClientRect calculation
+        const rect = target.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetTop = scrollTop + rect.top - 20; // 20px offset from top
+        
+        window.scrollTo({
+            top: targetTop,
+            behavior: reduceMotion ? 'auto' : 'smooth'
+        });
+        
         target.classList.remove('menu-return-focus');
         if (!reduceMotion) {
             requestAnimationFrame(() => target.classList.add('menu-return-focus'));
