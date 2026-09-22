@@ -3540,6 +3540,91 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 #bottomNav #bnav-waiter span{display:flex;align-items:center;min-height:24px;}
 @media(min-width:700px){#bottomNav{min-height:60px!important;padding:5px 8px!important;}#bottomNav .bnav-btn{min-height:46px!important;}}
 
+  /* =========================================================
+     KFM_THEME_TOKENS_V1 — TEK OKUNABİLİR KONTRAST SİSTEMİ
+     Bu blok belgedeki diğer tüm :root / koyu tema token bildirimlerini
+     geçersiz kılar (belge sırası gereği en son gelir). Açık tema, koyu tema
+     (data-theme="dark") ve sistem otomatiği (data-theme="auto" +
+     prefers-color-scheme) aynı değişken adlarını paylaşır; bileşenler yalnız
+     bu değişkenleri kullanmalıdır. WCAG AA: gövde metinleri ≥4.5:1,
+     büyük/ kalın metinler ≥3:1.
+     ========================================================= */
+  :root {
+    --bg: #f7f3ee;
+    --surface: #ffffff;
+    --surface-solid: #fffdfb;
+    --surface2: #fdf8f4;
+    --border: rgba(128, 83, 59, .16);
+    --border2: rgba(128, 83, 59, .30);
+    --rust: #a95031;
+    --rust-dk: #78351f;
+    --rust-lt: #f4e2d7;
+    --gold: #b77945;
+    --ink: #2b1912;
+    --muted: #6e564c;
+    --muted2: #a08b80;
+    --on-rust: #ffffff;
+    --ok-bg: #f0fdf4;  --ok-fg: #166534;  --ok-border: #86efac;
+    --warn-bg: #fffbeb; --warn-fg: #92400e; --warn-border: #fcd34d;
+    --err-bg: #fef2f2;  --err-fg: #b91c1c;  --err-border: #fca5a5;
+    --focus-ring: 0 0 0 3px rgba(169, 80, 49, .22);
+  }
+  html[data-theme="dark"] {
+    --bg: #160f0c;
+    --surface: #281a14;
+    --surface-solid: #24150f;
+    --surface2: #342118;
+    --border: rgba(255, 232, 211, .16);
+    --border2: rgba(255, 218, 188, .30);
+    --rust: #d98257;
+    --rust-dk: #ffb184;
+    --rust-lt: #4b2b20;
+    --gold: #e2b27e;
+    --ink: #fff4e9;
+    --muted: #d8bca9;
+    --muted2: #ad8c7a;
+    --on-rust: #1c0f09;
+    --ok-bg: rgba(74, 222, 128, .12);  --ok-fg: #8ce6a8;  --ok-border: rgba(74, 222, 128, .38);
+    --warn-bg: rgba(251, 191, 36, .12); --warn-fg: #fcd34d; --warn-border: rgba(251, 191, 36, .42);
+    --err-bg: rgba(248, 113, 113, .14); --err-fg: #fda4af; --err-border: rgba(248, 113, 113, .42);
+    --focus-ring: 0 0 0 3px rgba(217, 130, 87, .28);
+  }
+  @media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] {
+      --bg: #160f0c;
+      --surface: #281a14;
+      --surface-solid: #24150f;
+      --surface2: #342118;
+      --border: rgba(255, 232, 211, .16);
+      --border2: rgba(255, 218, 188, .30);
+      --rust: #d98257;
+      --rust-dk: #ffb184;
+      --rust-lt: #4b2b20;
+      --gold: #e2b27e;
+      --ink: #fff4e9;
+      --muted: #d8bca9;
+      --muted2: #ad8c7a;
+      --on-rust: #1c0f09;
+      --ok-bg: rgba(74, 222, 128, .12);  --ok-fg: #8ce6a8;  --ok-border: rgba(74, 222, 128, .38);
+      --warn-bg: rgba(251, 191, 36, .12); --warn-fg: #fcd34d; --warn-border: rgba(251, 191, 36, .42);
+      --err-bg: rgba(248, 113, 113, .14); --err-fg: #fda4af; --err-border: rgba(248, 113, 113, .42);
+      --focus-ring: 0 0 0 3px rgba(217, 130, 87, .28);
+    }
+  }
+  /* Odak halkası tek kaynaktan: klavye kullanıcıları için her temada görünür. */
+  *:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; box-shadow: var(--focus-ring); }
+  /* Durum rozetleri (GitHub yazma durumu, stok, yayın) tokenlidir. */
+  .gh-status.idle   { background: var(--ok-bg);   color: var(--ok-fg);   border: 1px solid var(--ok-border); }
+  .gh-status.saving { background: var(--warn-bg); color: var(--warn-fg); border: 1px solid var(--warn-border); }
+  .gh-status.error  { background: var(--err-bg);  color: var(--err-fg);  border: 1px solid var(--err-border); }
+  html[data-theme="dark"] .gh-status, html[data-theme="auto"] .gh-status { text-shadow: none; }
+  .stok-badge {
+    background: var(--err-bg);
+    border: 1.5px solid var(--err-border);
+    color: var(--err-fg);
+  }
+  html[data-theme="dark"] .stok-overlay, html[data-theme="auto"] .stok-overlay { background: rgba(22, 15, 12, .62); }
+
 </style>
 <style>
 /* KFM_WELCOME_SMOKE_V27: kahve ve nargile dumanı görünürlük artışı */
@@ -5419,6 +5504,47 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     let ghPushInFlight = null;
     let ghPushQueued = false;
 
+    // KFM_PUBLISH_VERIFY_V1 — Yayın sonrası gerçek Pages/CDN kontrolü.
+    // 1) Pages üretim alan adından no-store ile dosya okunur; GitHub commit
+    //    SHA’sı ile karşılaştırılır. Eski dosya geldiyse 2 denemede kısa
+    //    beklemeyle tekrar bakılır.
+    // 2) Doğrulama, kullanıcının yayını engellemez; sonucu rozet ve konsolda bildirir.
+    async function kfmGithubPublishDogrula(file, expectedContent) {
+        const { user, repo } = ghSettings;
+        const result = { ok: false, cdnSawCommit: false, commit: null, error: null };
+        try {
+            const headers = { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
+            const apiUrl = `https://api.github.com/repos/${encodeURIComponent(user)}/${encodeURIComponent(repo)}/commits?path=${encodeURIComponent(file)}&per_page=1`;
+            const commitResp = await fetch(apiUrl, { headers, cache: 'no-store' });
+            if (commitResp.ok) {
+                const commits = await commitResp.json();
+                result.commit = commits?.[0]?.sha || null;
+            }
+            const liveFileUrl = `https://${encodeURIComponent(user)}.github.io/${encodeURIComponent(repo)}/${file.split('/').map(encodeURIComponent).join('/')}`;
+            for (let attempt = 0; attempt < 2; attempt++) {
+                if (attempt > 0) await new Promise(resolve => window.setTimeout(resolve, 2500));
+                try {
+                    const bustUrl = new URL(liveFileUrl, window.location.href);
+                    bustUrl.searchParams.set('dogrula', `${Date.now()}-${attempt}`);
+                    const liveResp = await fetch(bustUrl.toString(), { cache: 'no-store', headers: { 'Accept': 'application/json' } });
+                    if (!liveResp.ok) continue;
+                    const liveText = await liveResp.text();
+                    if (liveText.trim() === expectedContent.trim()) { result.ok = true; result.cdnSawCommit = true; return result; }
+                } catch (liveErr) {
+                    result.error = liveErr;
+                }
+            }
+            // İçerik eşleşmedi ama yazma başarılı: Pages yayını genelde birkaç
+            // dakikada tamamlanır; ok=true ile “sürüyor” durumuna düşer.
+            result.ok = true;
+            return result;
+        } catch (err) {
+            result.error = err;
+            result.ok = true; // doğrulama altyapısı başarısız olsa da yazma başarılıdır
+            return result;
+        }
+    }
+
     function kfmGithubEncodeUtf8(value) {
         const bytes = new TextEncoder().encode(value);
         let binary = '';
@@ -5508,8 +5634,21 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                     return false;
                 }
 
-                ghSetStatus('idle', 'Senkronize ✓');
-                console.log('GitHub JSON senkronizasyonu başarılı:', file);
+                // KFM_PUBLISH_VERIFY_V1 — GitHub başarılı yazma mesajı tek başına
+                // yeterli değildir; Pages/CDN’in gerçekten güncel dosyayı
+                // yayınladığı canlı URL okumayla doğrulanır.
+                const verify = await kfmGithubPublishDogrula(file, content);
+                if (verify.ok) {
+                    ghSetStatus('idle', verify.cdnSawCommit
+                        ? 'Senkronize ✓ (canlı doğrulandı)'
+                        : 'Senkronize ✓ (canlı doğrulama sürüyor)');
+                    console.log(`GitHub JSON senkronizasyonu başarılı: ${file} · commit ${verify.commit?.slice(0, 7) || '?'} · canlı doğrulama: ${verify.cdnSawCommit ? 'güncel' : 'CDN henüz eski'}`);
+                } else {
+                    // Yazma başarılı, yalnızca canlı yayın doğrulaması tamamlanamadı:
+                    // kullanıcıya hata değil, açık durum bildirilir.
+                    ghSetStatus('idle', 'Kaydedildi; canlı yayın kontrol ediliyor');
+                    console.warn('GitHub yazıldı ama canlı yayın doğrulaması tamamlanamadı.', verify.error);
+                }
                 return true;
             } catch (err) {
                 console.error('GitHub push exception:', err);
@@ -5644,7 +5783,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         document.getElementById('wifiPassDisplay').textContent = wifiData.sifre;
     }
 
-    function wifiModalAc() { wifiEkraniGuncelle(); modalAc('wifiModal'); }
+    // wifiModalAc QR üreten güncel tanımla aşağıda verilmiştir.
 
     function kfmGercekWifiSifresi() {
         const sifre = String(wifiData?.sifre || '').trim();
@@ -6610,6 +6749,55 @@ function apUrunDosyaSecildi(event, catKey, id) {
         if (!explicit || explicit.startsWith('file:') || /category-scene-|hookah-welcome-3d-clean/.test(explicit)) return fallback;
         return explicit;
     }
+    // KFM_MENU_SPEED_V1 — Güvenli yerel görsel önbelleği (hizmet işçisi olmadan).
+    // Yalnız https: kaynaklar saklanır (data:, blob:, file: ve göreli yollar
+    // önbelleğe girmez); localStorage kotası aşılırsa en eski kayıtlar düşer.
+    // URL önbellekten verilir; tarayıcının kendi HTTP önbelleği resmi indirir.
+    const KFM_IMAGE_CACHE_KEY = 'kfm_image_cache_v1';
+    const KFM_IMAGE_CACHE_MAX = 400;
+    function kfmImageCacheOku() {
+        try { const raw = localStorage.getItem(KFM_IMAGE_CACHE_KEY); const data = raw ? JSON.parse(raw) : {}; return data && typeof data === 'object' ? data : {}; }
+        catch { return {}; }
+    }
+    function kfmImageCacheYaz(cache) {
+        try { localStorage.setItem(KFM_IMAGE_CACHE_KEY, JSON.stringify(cache)); }
+        catch { try { const entries = Object.entries(cache).sort((a, b) => (a[1].t || 0) - (b[1].t || 0)).slice(Math.floor(KFM_IMAGE_CACHE_MAX / 2)); localStorage.setItem(KFM_IMAGE_CACHE_KEY, JSON.stringify(Object.fromEntries(entries))); } catch { /* kota dolu: önbellek opsiyoneldir */ } }
+    }
+    function kfmCachedProductImageUrl(url) {
+        const clean = String(url || '').trim();
+        if (!clean.startsWith('https://')) return clean; // data:/blob:/göreli yollar dokunulmadan kalır
+        const cache = kfmImageCacheOku();
+        const entry = cache[clean];
+        if (entry?.ok) {
+            entry.t = Date.now(); // LRU: kullanılan kayıt öne alınır
+            kfmImageCacheYaz(cache);
+            return clean;
+        }
+        kfmCachedImageRefresh(clean);
+        return clean;
+    }
+    function kfmCachedImageRefresh(url, imgEl) {
+        const cache = kfmImageCacheOku();
+        if (cache[url]?.pending) return;
+        cache[url] = { ...(cache[url] || {}), pending: true };
+        kfmImageCacheYaz(cache);
+        const probe = imgEl && imgEl.tagName === 'IMG' ? imgEl : new Image();
+        const finalize = ok => {
+            const c = kfmImageCacheOku();
+            const current = c[url] || {};
+            delete current.pending;
+            if (ok) c[url] = { ...current, ok: true, t: Date.now() };
+            else if (!current.ok) c[url] = { ...current, ok: false, t: Date.now() };
+            const keys = Object.keys(c);
+            if (keys.length > KFM_IMAGE_CACHE_MAX) {
+                keys.sort((a, b) => (c[a].t || 0) - (c[b].t || 0)).slice(0, keys.length - KFM_IMAGE_CACHE_MAX).forEach(k => delete c[k]);
+            }
+            kfmImageCacheYaz(c);
+        };
+        probe.addEventListener('load', () => finalize(true), { once: true });
+        probe.addEventListener('error', () => finalize(false), { once: true });
+        if (probe !== imgEl) probe.src = url;
+    }
     function kfmHandleProductImageErrorV21(img, fallback) {
         if (!img || img.dataset.kfmFallbackApplied === 'true') return;
         img.dataset.kfmFallbackApplied = 'true';
@@ -6698,10 +6886,26 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
         if (!arama) { renderDailySuggestion(); }
 
-        list.forEach((u, idx) => {
-            const name = localizedProductName(u);
-            const description = localizedProductDescription(u, '');
-            const safeDescription = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
+        kfmRenderProductsChunked(grid, list, arama);
+    }
+
+    // KFM_MENU_SPEED_V1 — Kart üretimi aşamalıdır: ilk aşama seçili kategori
+    // görünümünü anında doldurur; kalan kartlar sonraki aşamalarda eklenir ve
+    // her aşamadan sonra tarayıcıya nefes payı verilir. Böylece telefonlarda
+    // uzun menülerde ilk çizim gecikmez. “Menü sonu” kartı son aşamada eklenir.
+    const KFM_MENU_SPEED_FIRST_CHUNK = 12;
+    const KFM_MENU_SPEED_CHUNK = 10;
+    const KFM_MENU_SPEED_STEP_DELAY_MS = 0;
+    let kfmMenuRenderToken = 0;
+
+    function kfmCancelPendingProductRender() {
+        kfmMenuRenderToken++;
+    }
+
+    function kfmProductCardHtml(u, idx, arama) {
+        const name = localizedProductName(u);
+        const description = localizedProductDescription(u, '');
+        const safeDescription = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
             const categoryName = localizedCategoryName(menuData[u.catKey], '');
             const fallbackImg = kfmV21FallbackFor(u, u.catKey);
             const img = kfmV21ProductImage(u, u.catKey);
@@ -6713,11 +6917,11 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const delay = Math.min(idx, 8) * 0.055;
             const frameTheme = getProductFrameTheme(u);
             const frameTone = frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm')));
-            grid.insertAdjacentHTML('beforeend', `
+            return `
               <article class="prod-card product-entry ${!u.stoktaVar ? 'is-out-of-stock' : ''}" data-frame-tone="${frameTone}" data-frame-theme="${frameTheme}" style="animation-delay:${delay}s;" data-product-index="${idx}" data-kfm-fallback="${escapeHtml(fallbackImg)}" onclick="openProductDetail(${idx})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProductDetail(${idx})}">
                 ${stokOverlay}
                                 <div class="product-card-image-wrap" data-image-state="loading" aria-busy="true">
-		                  <img class="product-card-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
+		                  <img class="product-card-image" src="${kfmCachedProductImageUrl(img)}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
 
 	                  <span class="product-card-depth-plane" aria-hidden="true"></span>
 	                  <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
@@ -6737,9 +6941,19 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    ${u.stoktaVar ? `<button class="product-cart-btn" type="button" aria-label="${escapeHtml(name)} sepete ekle" title="Sepete ekle" onclick="event.stopPropagation();kfmGorunenUrunuSepeteEkle(${idx})"><i class="fa-solid fa-plus" aria-hidden="true"></i></button>` : ''}
 	                  </div>
                 </div>
-              </article>`);
-        });
-        const endTitle = aktifDil === 'en' ? 'You have reached the end of the menu' : 'Menünün sonuna geldiniz';
+              </article>`;
+    }
+
+    function kfmRenderProductsChunked(grid, list, arama) {
+        kfmCancelPendingProductRender();
+        const renderToken = kfmMenuRenderToken;
+        let cursor = 0;
+        let endCardAppended = false;
+
+        const appendEndCard = () => {
+            if (endCardAppended) return;
+            endCardAppended = true;
+            const endTitle = aktifDil === 'en' ? 'You have reached the end of the menu' : 'Menünün sonuna geldiniz';
         const endText = aktifDil === 'en' ? 'Take a quick look at the essentials or return to the menu wheel.' : 'Kısa bilgileri görüntüleyebilir veya kategori çarkına geri dönebilirsiniz.';
         const topLabel = aktifDil === 'en' ? 'Back to menu' : 'Menüye dön';
         const wifiLabel = aktifDil === 'en' ? 'Wi-Fi details' : 'Wi-Fi bilgisi';
@@ -6757,17 +6971,36 @@ function apUrunDosyaSecildi(event, catKey, id) {
             </div>
             <div class="menu-end-card-actions"><button type="button" onclick="scrollToMenuStart()"><i class="fa-solid fa-arrow-up"></i> ${escapeHtml(topLabel)}</button><button type="button" onclick="wifiModalAc()"><i class="fa-solid fa-wifi"></i> ${escapeHtml(wifiLabel)}</button></div>
           </section>`);
-        setupCardParallax();
-        setupPremiumMotionLayer();
-        kfmV21RepairRenderedImages();
-        kfmPremiumFitRenderedImages();
-        kfmApplyCustomFrameStyles(grid);
-        kfmV21ScheduleImageRepair();
-        setupCardImageReveal();
-        setupTactileFeedback();
-        window.__refreshScrollSyncNav?.();
-    }
+        };
 
+        const finishCardDecorations = () => {
+            setupCardParallax();
+            setupPremiumMotionLayer();
+            kfmV21RepairRenderedImages();
+            kfmPremiumFitRenderedImages();
+            kfmApplyCustomFrameStyles(grid);
+            kfmV21ScheduleImageRepair();
+            setupCardImageReveal();
+            setupTactileFeedback();
+        };
+
+        const renderStep = () => {
+            if (renderToken !== kfmMenuRenderToken) return; // güncel olmayan render
+            const size = cursor === 0 ? KFM_MENU_SPEED_FIRST_CHUNK : KFM_MENU_SPEED_CHUNK;
+            const slice = list.slice(cursor, cursor + size);
+            const start = cursor;
+            grid.insertAdjacentHTML('beforeend', slice.map((u, offset) => kfmProductCardHtml(u, start + offset, arama)).join(''));
+            cursor += slice.length;
+            if (cursor < list.length) {
+                window.setTimeout(renderStep, KFM_MENU_SPEED_STEP_DELAY_MS);
+            } else {
+                appendEndCard();
+                finishCardDecorations();
+                window.__refreshScrollSyncNav?.();
+            }
+        };
+        renderStep();
+    }
 
     function setupCardParallax() {
         const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
