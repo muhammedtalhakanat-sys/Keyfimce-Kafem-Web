@@ -1396,6 +1396,18 @@
   #productDetailModal { padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
   #productDetailModal .detail-modal-box { display:flex; flex-direction:column; width:min(100%, 540px); max-height:calc(100dvh - 24px); overflow:hidden; }
   #productDetailModal .detail-content { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-bottom:max(20px, env(safe-area-inset-bottom)); }
+  /* KFM_DETAIL_TAGS_V1 — yönetilebilir içerik ve alerjen etiketleri */
+  .detail-content-tags { margin-top:14px; padding:12px 14px; border:1px solid var(--border); border-radius:16px; background:var(--surface2); }
+  .detail-content-tags[hidden] { display:none; }
+  .detail-tags-title { display:flex; align-items:center; gap:7px; margin:0 0 8px; color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+  .detail-tags-title i { color:var(--rust); }
+  .detail-tags-pills { display:flex; flex-wrap:wrap; gap:6px; }
+  .detail-content-tag { display:inline-flex; align-items:center; gap:5px; padding:5px 10px; border-radius:999px; font-size:11.5px; font-weight:700; border:1px solid var(--border2); background:var(--surface); color:var(--ink); }
+  .detail-content-tag.is-allergen { border-color:var(--err-border); background:var(--err-bg); color:var(--err-fg); }
+  .detail-content-tag i { font-size:10px; opacity:.8; }
+  .detail-allergen-notice { margin:8px 0 0; color:var(--muted); font-size:11px; line-height:1.5; }
+  .detail-allergen-notice[hidden] { display:none; }
+  html[data-theme="dark"] .detail-content-tags, html[data-theme="auto"] .detail-content-tags { background:var(--surface2); }
   .detail-gallery { display:flex; gap:8px; overflow-x:auto; padding:12px 0 2px; scrollbar-width:thin; }
   .detail-gallery[hidden] { display:none; }
   .detail-gallery-thumb { flex:0 0 56px; width:56px; height:56px; padding:0; overflow:hidden; border:2px solid transparent; border-radius:12px; background:var(--surface2); cursor:pointer; }
@@ -4173,6 +4185,11 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <div id="detailCategory" class="detail-category"></div>
                 <h2 id="detailTitle" class="detail-title"></h2>
                 <p id="detailDescription" class="detail-description"></p>
+                <section id="detailContentTags" class="detail-content-tags" hidden aria-label="İçerik ve alerjen bilgisi">
+                    <h3 class="detail-tags-title"><i class="fa-solid fa-leaf" aria-hidden="true"></i> <span id="detailTagsHeading">İçerik & Alerjenler</span></h3>
+                    <div id="detailContentPills" class="detail-tags-pills"></div>
+                    <p id="detailAllergenNotice" class="detail-allergen-notice" hidden></p>
+                </section>
                 <div id="detailGallery" class="detail-gallery" hidden aria-label="Ürün görselleri"></div>
                 <div id="detailExtras" class="detail-extras"></div>
                 <section id="detailVariants" class="detail-variants" hidden aria-live="polite">
@@ -7131,6 +7148,56 @@ function apUrunDosyaSecildi(event, catKey, id) {
         container.querySelector('.detail-pair-open')?.addEventListener('click', () => openProductDetail(null, { product: suggestion }));
     }
 
+    // KFM_DETAIL_TAGS_V1 — Yönetilebilir içerik ve alerjen etiketleri.
+    // Ürün kaydındaki isteğe bağlı alanlar: icerik (dizi veya virgüllü metin),
+    // alerjenler (dizi veya virgüllü metin), alerjen_notu (serbest metin).
+    // Etiketler yalnız dolu alanla bölüm gösterir; alt seçenek/stok/sepet
+    // davranışına dokunmaz.
+    const KFM_YAYGIN_ALERJENLER = [
+        { eslesme: /\b(gluten|buğday|bugday|wheat)\b/i, etiket_tr: 'Gluten', etiket_en: 'Gluten', ikon: 'fa-wheat-awn' },
+        { eslesme: /\b(süt|sut|sütc|laktoz|milk|süt ürünleri)\b/i, etiket_tr: 'Süt ürünleri', etiket_en: 'Dairy', ikon: 'fa-jar' },
+        { eslesme: /\b(fındık|findik|badem|ceviz|fıstık|fistik|nut|nuts|peanut|almond|walnut|hazelnut)\b/i, etiket_tr: 'Kuruyemiş', etiket_en: 'Nuts', ikon: 'fa-seedling' },
+        { eslesme: /\b(yumurta|egg|eggs)\b/i, etiket_tr: 'Yumurta', etiket_en: 'Egg', ikon: 'fa-egg' },
+        { eslesme: /\b(soya|soya fasulyesi|soy)\b/i, etiket_tr: 'Soya', etiket_en: 'Soy', ikon: 'fa-seedling' },
+        { eslesme: /\b(balık|balik|karides|deniz ürünleri|fish|shrimp|seafood)\b/i, etiket_tr: 'Deniz ürünleri', etiket_en: 'Seafood', ikon: 'fa-fish' },
+        { eslesme: /\b(sesam|susam)\b/i, etiket_tr: 'Susam', etiket_en: 'Sesame', ikon: 'fa-seedling' },
+        { eslesme: /\b(kafein|caffeine|kahve içeriği)\b/i, etiket_tr: 'Kafein', etiket_en: 'Caffeine', ikon: 'fa-mug-hot' },
+        { eslesme: /\b(tütün|nikotin|tobacco|nicotine)\b/i, etiket_tr: 'Tütün ürünü', etiket_en: 'Tobacco', ikon: 'fa-smoking' },
+    ];
+
+    function kfmAlanDizisineDonustur(value) {
+        if (Array.isArray(value)) return value.map(v => String(v || '').trim()).filter(Boolean);
+        return String(value || '').split(',').map(v => v.trim()).filter(Boolean);
+    }
+
+    function kfmAlerjenEtiketi(metin) {
+        const eslesen = KFM_YAYGIN_ALERJENLER.find(a => a.eslesme.test(String(metin || '')));
+        if (aktifDil === 'en') return eslesen ? eslesen.etiket_en : String(metin || '').trim();
+        return eslesen ? eslesen.etiket_tr : String(metin || '').trim();
+    }
+
+    function kfmUrunIcerikEtiketleriniGoster(item) {
+        const section = document.getElementById('detailContentTags');
+        if (!section) return;
+        const icerik = kfmAlanDizisineDonustur(item?.icerik);
+        const alerjenler = kfmAlanDizisineDonustur(item?.alerjenler);
+        const not = String(item?.alerjen_notu || '').trim();
+        const pills = document.getElementById('detailContentPills');
+        const notice = document.getElementById('detailAllergenNotice');
+        const heading = document.getElementById('detailTagsHeading');
+        if (heading) heading.textContent = aktifDil === 'en' ? 'Ingredients & Allergens' : 'İçerik & Alerjenler';
+        if (!icerik.length && !alerjenler.length && !not) { section.hidden = true; pills.innerHTML = ''; notice.hidden = true; return; }
+        section.hidden = false;
+        pills.innerHTML = [
+            ...icerik.map(entry => `<span class="detail-content-tag"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i>${escapeHtml(entry)}</span>`),
+            ...alerjenler.map(entry => `<span class="detail-content-tag is-allergen"><i class="fa-solid ${escapeHtml(KFM_YAYGIN_ALERJENLER.find(a => a.eslesme.test(String(entry)))?.ikon || 'fa-triangle-exclamation')}" aria-hidden="true"></i>${escapeHtml(kfmAlerjenEtiketi(entry))}</span>`),
+        ].join('');
+        if (notice) {
+            notice.textContent = not;
+            notice.hidden = !not;
+        }
+    }
+
     function openProductDetail(index, options = {}) {
         const item = options.product || window.__renderedProducts?.[index];
         if (!item) return;
@@ -7184,6 +7251,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         refreshDetailCategoryAction();
         document.getElementById('detailTitle').textContent = name;
         document.getElementById('detailDescription').textContent = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
+        kfmUrunIcerikEtiketleriniGoster(item);
         document.getElementById('detailPrice').textContent = `${item.fiyat}₺`;
         const stock = document.getElementById('detailStock');
         const detailStockAmount = item.stokMiktar === null || item.stokMiktar === undefined ? null : Number(item.stokMiktar);
@@ -8072,6 +8140,10 @@ function apUrunDosyaSecildi(event, catKey, id) {
     function stokDisiGizlemeAyarla(value) { hideOutOfStock = !!value; saveAll(); renderProducts(); toast(hideOutOfStock ? 'Stok dışı ürünler web sitesinde gizlendi.' : 'Stok dışı ürünler web sitesinde gösteriliyor.'); }
     function apGorselOnizle(url, previewId, fallback) { const img = document.getElementById(previewId); if (!img) return; img.onerror = () => { img.onerror = null; img.src = fallback; }; img.src = String(url || '').trim() || fallback; }
     function apAciklamaGuncelle(catKey, id, value) { menuData[catKey].urunler.forEach(u => { if (u.id === id) u.aciklama = String(value || '').trim(); }); saveAll(); renderProducts(); }
+    // KFM_DETAIL_TAGS_V1 — içerik, alerjen ve alerjen notu yönetimi.
+    function apIcerikGuncelle(catKey, id, value) { menuData[catKey].urunler.forEach(u => { if (u.id === id) u.icerik = String(value || '').trim(); }); saveAll(); toast('İçerik bilgisi güncellendi.'); }
+    function apAlerjenGuncelle(catKey, id, value) { menuData[catKey].urunler.forEach(u => { if (u.id === id) u.alerjenler = String(value || '').trim(); }); saveAll(); toast('Alerjen bilgisi güncellendi.'); }
+    function apAlerjenNotuGuncelle(catKey, id, value) { menuData[catKey].urunler.forEach(u => { if (u.id === id) u.alerjen_notu = String(value || '').trim(); }); saveAll(); toast('Alerjen notu güncellendi.'); }
     function urunKategoriDegistir(catKey, id, newCatKey) { if (!menuData[catKey] || !menuData[newCatKey] || catKey === newCatKey) return; const i = menuData[catKey].urunler.findIndex(u => u.id === id); if (i < 0) return; menuData[newCatKey].urunler.push(menuData[catKey].urunler.splice(i, 1)[0]); saveAll(); buildNav(); apKategoriListesiYenile(); apUrunListesiYenile(); renderProducts(); toast('Ürün kategorisi güncellendi.'); }
 
     function apUrunListesiYenile() {
@@ -8088,7 +8160,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
                 const frameTheme = kfmFrameThemeForProduct(u, catKey); const fallback = gorselHavuzu[catKey] || gorselHavuzu['cat-kahve']; const image = u.gorsel && u.gorsel.trim() ? u.gorsel : fallback;
                 const options = Object.keys(menuData).map(k => `<option value="${escapeHtml(k)}" ${k === catKey ? 'selected' : ''}>${escapeHtml(menuData[k].isim)}</option>`).join('');
                 const extraHtml = (u.ekstralar || []).map(ex => `<span class="extra-pill">${escapeHtml(ex.isim)} ${ex.fiyat}₺</span>`).join('');
-                box.insertAdjacentHTML('beforeend', `<article class="ap-product-editor"><div class="ap-product-head"><div class="ap-frame-preview ap-product-preview" id="apFramePreview_${u.id}" data-frame-theme="${escapeHtml(frameTheme)}"><img id="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" class="${u.gorsel && u.gorsel.trim() ? 'ap-preview-cover' : ''}" onerror="this.onerror=null;this.classList.remove('ap-preview-cover');this.src='${escapeHtml(fallback)}'"><span class="ap-frame-preview-art" data-frame-theme="${escapeHtml(frameTheme)}" aria-hidden="true"></span></div><div><div class="ap-product-title">${escapeHtml(name)}</div><div class="ap-product-category">${escapeHtml(menuData[catKey].isim)}</div><div class="ap-save-hint">Değişiklikler otomatik kaydedilir</div></div><button type="button" class="ap-stock-toggle ${u.stoktaVar ? 'on' : ''}" onclick="stokDegistir('${catKey}',${u.id})"><span class="ap-stock-dot"></span>${u.stoktaVar ? 'Stokta' : 'Stok dışı'}</button></div><div class="ap-product-fields"><div><label>Fiyat (₺)</label><input type="number" min="0" value="${u.fiyat}" onchange="fiyatGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium"></div><div><label>Kategori değiştir</label><select class="ap-input text-xs font-medium" onchange="urunKategoriDegistir('${catKey}',${u.id},this.value)">${options}</select></div><div class="ap-field-wide"><label>Görsel URL · kart önizlemesi</label><input type="text" value="${escapeHtml(u.gorsel || '')}" oninput="apEditorGorselOnizle(this.value,'apPreview_${u.id}','${escapeHtml(fallback)}','${escapeHtml(frameTheme)}')" onchange="gorselGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="https://..."><input class="ap-file-input" type="file" accept="image/*" onchange="apUrunDosyaSecildi(event,'${catKey}',${u.id})"><span class="ap-preview-link"><i class="fa-solid fa-eye"></i> Görsel ve kategori çerçevesi kartta anlık olarak önizlenir</span></div><div class="ap-field-wide"><label>Kısa açıklama · kartta görünen metin</label><textarea class="ap-input text-xs font-medium" onchange="apAciklamaGuncelle('${catKey}',${u.id},this.value)" placeholder="Ürünü kısa ve iştah açıcı şekilde anlatın...">${escapeHtml(desc)}</textarea></div></div><div class="ap-live-product-preview"><div class="ap-live-product-preview-head"><span><i class="fa-solid fa-eye mr-1"></i> Ziyaretçi kartı · canlı görsel önizleme</span><span class="ap-preview-status" data-ap-preview-status-for="apPreview_${u.id}" data-state="ready">Kart görünümü hazır</span></div><div class="ap-live-product-card" data-frame-theme="${escapeHtml(frameTheme)}" data-frame-tone="${escapeHtml(frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm'))))}"><div class="product-card-image-wrap"><img data-ap-live-preview-for="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" class="product-card-image ${u.gorsel && u.gorsel.trim() ? 'ap-preview-cover' : ''}" onerror="this.onerror=null;this.classList.remove('ap-preview-cover');this.src='${escapeHtml(fallback)}'"><span class="product-card-depth-plane" aria-hidden="true"></span><span class="product-card-frame-art" data-frame-theme="${escapeHtml(frameTheme)}" aria-hidden="true"></span></div><div class="product-card-body"><div class="product-card-category">${escapeHtml(menuData[catKey].isim)}</div><h3 class="product-card-title">${escapeHtml(name)}</h3><p class="product-card-description">${escapeHtml(desc || 'Ürün açıklaması burada görünür.')}</p><div class="product-card-footer"><strong class="product-card-price">${escapeHtml(String(u.fiyat))}₺</strong><span class="ap-live-card-tag"><i class="fa-solid fa-image mr-1"></i> Kart görünümü</span></div></div></div></div><div class="mt-3"><label>Ekstralar</label><div class="flex flex-wrap gap-1.5">${extraHtml || '<span class="italic text-[11px]" style="color:var(--muted2);">Ekstra yok</span>'}</div></div><div class="ap-product-actions"><button type="button" onclick="urunSil('${catKey}',${u.id})" style="color:#b91c1c;background:#fef2f2;border:1px solid #fca5a5;"><i class="fa-solid fa-trash mr-1"></i>Sil</button></div></article>`);
+                box.insertAdjacentHTML('beforeend', `<article class="ap-product-editor"><div class="ap-product-head"><div class="ap-frame-preview ap-product-preview" id="apFramePreview_${u.id}" data-frame-theme="${escapeHtml(frameTheme)}"><img id="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" class="${u.gorsel && u.gorsel.trim() ? 'ap-preview-cover' : ''}" onerror="this.onerror=null;this.classList.remove('ap-preview-cover');this.src='${escapeHtml(fallback)}'"><span class="ap-frame-preview-art" data-frame-theme="${escapeHtml(frameTheme)}" aria-hidden="true"></span></div><div><div class="ap-product-title">${escapeHtml(name)}</div><div class="ap-product-category">${escapeHtml(menuData[catKey].isim)}</div><div class="ap-save-hint">Değişiklikler otomatik kaydedilir</div></div><button type="button" class="ap-stock-toggle ${u.stoktaVar ? 'on' : ''}" onclick="stokDegistir('${catKey}',${u.id})"><span class="ap-stock-dot"></span>${u.stoktaVar ? 'Stokta' : 'Stok dışı'}</button></div><div class="ap-product-fields"><div><label>Fiyat (₺)</label><input type="number" min="0" value="${u.fiyat}" onchange="fiyatGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium"></div><div><label>Kategori değiştir</label><select class="ap-input text-xs font-medium" onchange="urunKategoriDegistir('${catKey}',${u.id},this.value)">${options}</select></div><div class="ap-field-wide"><label>Görsel URL · kart önizlemesi</label><input type="text" value="${escapeHtml(u.gorsel || '')}" oninput="apEditorGorselOnizle(this.value,'apPreview_${u.id}','${escapeHtml(fallback)}','${escapeHtml(frameTheme)}')" onchange="gorselGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="https://..."><input class="ap-file-input" type="file" accept="image/*" onchange="apUrunDosyaSecildi(event,'${catKey}',${u.id})"><span class="ap-preview-link"><i class="fa-solid fa-eye"></i> Görsel ve kategori çerçevesi kartta anlık olarak önizlenir</span></div><div class="ap-field-wide"><label>Kısa açıklama · kartta görünen metin</label><textarea class="ap-input text-xs font-medium" onchange="apAciklamaGuncelle('${catKey}',${u.id},this.value)" placeholder="Ürünü kısa ve iştah açıcı şekilde anlatın...">${escapeHtml(desc)}</textarea></div><div class="ap-field-wide"><label>İçerik · virgülle ayırın (ürün detayında etiket olarak görünür)</label><input type="text" value="${escapeHtml(Array.isArray(u.icerik) ? u.icerik.join(', ') : (u.icerik || ''))}" onchange="apIcerikGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="Örn. espresso, süt, kakao"></div><div class="ap-field-wide"><label>Alerjenler · virgülle ayırın (kırmızı etiketle işaretlenir)</label><input type="text" value="${escapeHtml(Array.isArray(u.alerjenler) ? u.alerjenler.join(', ') : (u.alerjenler || ''))}" onchange="apAlerjenGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="Örn. süt, fındık, gluten"></div><div class="ap-field-wide"><label>Alerjen notu · serbest metin</label><input type="text" value="${escapeHtml(u.alerjen_notu || '')}" onchange="apAlerjenNotuGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="Örn. Mutfağımızda gluten içeren ürünler hazırlanır."></div></div><div class="ap-live-product-preview"><div class="ap-live-product-preview-head"><span><i class="fa-solid fa-eye mr-1"></i> Ziyaretçi kartı · canlı görsel önizleme</span><span class="ap-preview-status" data-ap-preview-status-for="apPreview_${u.id}" data-state="ready">Kart görünümü hazır</span></div><div class="ap-live-product-card" data-frame-theme="${escapeHtml(frameTheme)}" data-frame-tone="${escapeHtml(frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm'))))}"><div class="product-card-image-wrap"><img data-ap-live-preview-for="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" class="product-card-image ${u.gorsel && u.gorsel.trim() ? 'ap-preview-cover' : ''}" onerror="this.onerror=null;this.classList.remove('ap-preview-cover');this.src='${escapeHtml(fallback)}'"><span class="product-card-depth-plane" aria-hidden="true"></span><span class="product-card-frame-art" data-frame-theme="${escapeHtml(frameTheme)}" aria-hidden="true"></span></div><div class="product-card-body"><div class="product-card-category">${escapeHtml(menuData[catKey].isim)}</div><h3 class="product-card-title">${escapeHtml(name)}</h3><p class="product-card-description">${escapeHtml(desc || 'Ürün açıklaması burada görünür.')}</p><div class="product-card-footer"><strong class="product-card-price">${escapeHtml(String(u.fiyat))}₺</strong><span class="ap-live-card-tag"><i class="fa-solid fa-image mr-1"></i> Kart görünümü</span></div></div></div></div><div class="mt-3"><label>Ekstralar</label><div class="flex flex-wrap gap-1.5">${extraHtml || '<span class="italic text-[11px]" style="color:var(--muted2);">Ekstra yok</span>'}</div></div><div class="ap-product-actions"><button type="button" onclick="urunSil('${catKey}',${u.id})" style="color:#b91c1c;background:#fef2f2;border:1px solid #fca5a5;"><i class="fa-solid fa-trash mr-1"></i>Sil</button></div></article>`);
             });
         }
         if (!count) box.innerHTML = '<div class="ap-admin-empty"><i class="fa-solid fa-filter-circle-xmark mb-2"></i><br>Bu filtreye uygun ürün bulunamadı.</div>';
