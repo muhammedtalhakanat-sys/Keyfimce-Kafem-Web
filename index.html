@@ -1396,6 +1396,36 @@
   #productDetailModal { padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
   #productDetailModal .detail-modal-box { display:flex; flex-direction:column; width:min(100%, 540px); max-height:calc(100dvh - 24px); overflow:hidden; }
   #productDetailModal .detail-content { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-bottom:max(20px, env(safe-area-inset-bottom)); }
+  /* KFM_ORDER_TRACKING_V1 — sipariş durumu takip görünümü */
+  .order-tracking-panel { margin-top:12px; padding:12px 14px; border:1px solid var(--border); border-radius:16px; background:var(--surface2); }
+  .order-tracking-panel[hidden] { display:none; }
+  .order-tracking-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px; }
+  .order-tracking-head strong { color:var(--ink); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; }
+  .order-tracking-refresh { display:inline-flex; align-items:center; gap:5px; padding:6px 10px; border:1px solid var(--border2); border-radius:999px; background:var(--surface); color:var(--muted); font-size:11px; font-weight:700; cursor:pointer; }
+  .order-tracking-refresh:hover { color:var(--rust); border-color:var(--rust); }
+  .order-tracking-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; list-style:none; margin:0; padding:0; }
+  .order-tracking-steps li { display:flex; flex-direction:column; align-items:center; gap:4px; padding:10px 4px; border-radius:12px; border:1px dashed var(--border2); color:var(--muted2); font-size:11px; font-weight:700; text-align:center; }
+  .order-tracking-steps li i { font-size:15px; }
+  .order-tracking-steps li.is-done { border-style:solid; border-color:var(--ok-border); background:var(--ok-bg); color:var(--ok-fg); }
+  .order-tracking-steps li.is-active { border-style:solid; border-color:var(--rust); color:var(--rust-dk); box-shadow:var(--focus-ring); }
+  .order-tracking-steps li.is-cancelled { border-style:solid; border-color:var(--err-border); background:var(--err-bg); color:var(--err-fg); }
+  .order-tracking-meta { margin:9px 0 0; color:var(--muted); font-size:11.5px; line-height:1.5; }
+  /* KFM_FAVORITES_V1 — cihazda saklanan favoriler ve son seçilenler */
+  .favorites-strip { display:flex; gap:10px; overflow-x:auto; padding:2px 16px 8px; scrollbar-width:thin; scroll-snap-type:x proximity; }
+  .favorites-strip[hidden] { display:none; }
+  .favorites-title { display:flex; align-items:center; gap:7px; margin:6px 16px 2px; color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
+  .favorites-title i { color:var(--rust); }
+  .fav-chip { display:inline-flex; align-items:center; gap:7px; flex:0 0 auto; scroll-snap-align:start; max-width:230px; padding:8px 12px; border:1.5px solid var(--border2); border-radius:16px; background:var(--surface); cursor:pointer; transition:transform .2s ease, border-color .2s ease; }
+  .fav-chip:hover { transform:translateY(-2px); border-color:var(--rust); }
+  .fav-chip img { width:38px; height:38px; border-radius:10px; object-fit:cover; background:var(--rust-lt); }
+  .fav-chip .fav-chip-name { display:block; max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink); font-size:12.5px; font-weight:700; }
+  .fav-chip .fav-chip-price { color:var(--rust-dk); font-size:11.5px; font-weight:800; }
+  .fav-chip .fav-remove { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border:0; border-radius:50%; background:transparent; color:var(--muted2); cursor:pointer; }
+  .fav-chip .fav-remove:hover { color:var(--err-fg); background:var(--err-bg); }
+  .fav-toggle { position:absolute; right:8px; top:8px; z-index:7; display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; border:1px solid var(--border2); border-radius:50%; background:rgba(255,255,255,.9); color:var(--muted2); cursor:pointer; }
+  .fav-toggle.is-fav { color:#e0245e; border-color:#f5b3c8; background:#fff0f4; }
+  html[data-theme="dark"] .fav-toggle, html[data-theme="auto"] .fav-toggle { background:rgba(40,26,20,.9); }
+  html[data-theme="dark"] .fav-toggle.is-fav, html[data-theme="auto"] .fav-toggle.is-fav { background:rgba(224,36,94,.16); }
   /* KFM_DETAIL_TAGS_V1 — yönetilebilir içerik ve alerjen etiketleri */
   .detail-content-tags { margin-top:14px; padding:12px 14px; border:1px solid var(--border); border-radius:16px; background:var(--surface2); }
   .detail-content-tags[hidden] { display:none; }
@@ -4065,6 +4095,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     </section>
     <div id="catNav" class="no-scroll px-4 pb-2 mb-5 fade-up fade-up-2" aria-label="Kategori menüsü"></div>
 
+    <section id="favoritesSection" aria-label="Favoriler ve son seçilenler" hidden>
+        <h2 class="favorites-title"><i class="fa-solid fa-heart" aria-hidden="true"></i> <span id="favoritesHeading">Favorilerim & Son Seçilenler</span></h2>
+        <div id="favoritesStrip" class="favorites-strip" role="list"></div>
+    </section>
     <main class="px-4" id="productGrid"></main>
 
     <nav id="bottomNav">
@@ -4164,6 +4198,15 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                     </div>
                     <button id="webOrderSubmit" type="submit" class="waiter-call-submit" disabled><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span>Siparişi İlet</span></button>
                     <p class="waiter-call-security"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i><span>Ürünler ve notunuz güvenli olarak iletilir. Gönderimden sonra sipariş ekibe düşer.</span></p>
+                    <section id="orderTrackingPanel" class="order-tracking-panel" hidden aria-label="Sipariş durumu takibi">
+                        <div class="order-tracking-head"><strong id="orderTrackingTitle">Sipariş Takibi</strong><button type="button" id="orderTrackingRefresh" class="order-tracking-refresh" onclick="kfmOrderTrackingYenile()" aria-label="Sipariş durumunu yenile"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i> Yenile</button></div>
+                        <ol id="orderTrackingSteps" class="order-tracking-steps" aria-live="polite">
+                            <li data-step="alindi"><i class="fa-solid fa-receipt" aria-hidden="true"></i><span>Alındı</span></li>
+                            <li data-step="hazirlaniyor"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i><span>Hazırlanıyor</span></li>
+                            <li data-step="hazir"><i class="fa-solid fa-bell-concierge" aria-hidden="true"></i><span>Hazır</span></li>
+                        </ol>
+                        <p id="orderTrackingMeta" class="order-tracking-meta"></p>
+                    </section>
                 </form>
             </div>
         </section>
@@ -6939,6 +6982,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
                 ${stokOverlay}
                                 <div class="product-card-image-wrap" data-image-state="loading" aria-busy="true">
 		                  <img class="product-card-image" src="${kfmCachedProductImageUrl(img)}" alt="${escapeHtml(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="kfmPremiumFitImage(this)" onerror="kfmHandleProductImageErrorV21(this,'${escapeHtml(fallbackImg)}')">
+	                  ${kfmFavToggleHtml({ ...u, catKey: u.catKey })}
 
 	                  <span class="product-card-depth-plane" aria-hidden="true"></span>
 	                  <span class="product-card-frame-art" data-frame-theme="${frameTheme}" aria-hidden="true"></span>
@@ -6999,6 +7043,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
             kfmV21ScheduleImageRepair();
             setupCardImageReveal();
             setupTactileFeedback();
+            kfmFavToggleBagla(grid);
+            kfmFavoritesStripGuncelle();
         };
 
         const renderStep = () => {
@@ -7205,6 +7251,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         window.__activeDetailProduct = { ...item };
         const interactionProduct = item;
         if (interactionProduct && options.recordInteraction !== false) recordDailySuggestionInteraction(interactionProduct);
+        if (interactionProduct && options.recordInteraction !== false) kfmRecentEkle({ ...interactionProduct });
         const name = localizedProductName(item);
         const description = localizedProductDescription(item, '');
         const categoryName = localizedCategoryName(menuData[item.catKey], '');
@@ -7686,6 +7733,228 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		        status.dataset.mode = mode;
 		    }
 
+	    // ── KFM_FAVORITES_V1: cihazda saklanan favoriler ve son seçilenler ──
+	    const KFM_FAVORITES_KEY = 'kfm_favorites_v1';
+	    const KFM_RECENT_KEY = 'kfm_recent_v1';
+	    const KFM_FAVORITES_MAX = 12;
+	    const KFM_RECENT_MAX = 8;
+
+	    function kfmProductRefFromItem(item) {
+	        if (!item) return null;
+	        const catKey = String(item.catKey || '').trim();
+	        const id = String(item.id ?? '').trim();
+	        if (!catKey || !id) return null;
+	        return { catKey, id };
+	    }
+
+	    function kfmProductByRef(ref) {
+	        if (!ref?.catKey || !ref?.id) return null;
+	        const category = menuData?.[ref.catKey];
+	        if (!category) return null;
+	        return (category.urunler || []).find(u => String(u.id) === String(ref.id)) || null;
+	    }
+
+	    function kfmRefListRead(key, max) {
+	        try {
+	            const raw = JSON.parse(localStorage.getItem(key) || '[]');
+	            return Array.isArray(raw) ? raw.filter(r => r?.catKey && r?.id).slice(0, max) : [];
+	        } catch { return []; }
+	    }
+
+	    function kfmRefListWrite(key, list) {
+	        try { localStorage.setItem(key, JSON.stringify(list.slice(0, 24))); } catch { /* kota dolu: favori opsiyoneldir */ }
+	    }
+
+	    function kfmFavoriteRefs() { return kfmRefListRead(KFM_FAVORITES_KEY, KFM_FAVORITES_MAX); }
+	    function kfmRecentRefs() { return kfmRefListRead(KFM_RECENT_KEY, KFM_RECENT_MAX); }
+
+	    function kfmIsFavorite(ref) {
+	        if (!ref) return false;
+	        return kfmFavoriteRefs().some(r => r.catKey === ref.catKey && r.id === ref.id);
+	    }
+
+	    function kfmFavoriteToggle(ref) {
+	        if (!ref) return false;
+	        const list = kfmFavoriteRefs();
+	        const index = list.findIndex(r => r.catKey === ref.catKey && r.id === ref.id);
+	        if (index >= 0) { list.splice(index, 1); kfmRefListWrite(KFM_FAVORITES_KEY, list); kfmFavoritesStripGuncelle(); return false; }
+	        list.unshift({ ...ref, t: Date.now() });
+	        kfmRefListWrite(KFM_FAVORITES_KEY, list.slice(0, KFM_FAVORITES_MAX));
+	        kfmFavoritesStripGuncelle();
+	        return true;
+	    }
+
+	    function kfmRecentEkle(item) {
+	        const ref = kfmProductRefFromItem(item);
+	        if (!ref) return;
+	        const list = kfmRecentRefs().filter(r => !(r.catKey === ref.catKey && r.id === ref.id));
+	        list.unshift({ ...ref, t: Date.now() });
+	        kfmRefListWrite(KFM_RECENT_KEY, list.slice(0, KFM_RECENT_MAX));
+	        kfmFavoritesStripGuncelle();
+	    }
+
+	    function kfmFavChipHtml(ref, isFav) {
+	        const product = kfmProductByRef(ref);
+	        if (!product || product.stoktaVar === false) return '';
+	        const listKey = isFav ? 'fav' : 'recent';
+	        const name = localizedProductName(product);
+	        const image = kfmCachedProductImageUrl(kfmV21ProductImage(product, ref.catKey));
+	        const refJson = escapeHtml(JSON.stringify(ref));
+	        return `<div class="fav-chip" role="listitem" data-ref="${refJson}" data-kind="${listKey}">
+	            <img src="${escapeHtml(image)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+	            <span><span class="fav-chip-name">${escapeHtml(name)}</span><span class="fav-chip-price">${product.fiyat}₺</span></span>
+	            ${isFav ? `<button type="button" class="fav-remove" aria-label="${escapeHtml(name)} favorilerden çıkar" onclick="event.stopPropagation();kfmFavoriteKaldir('${escapeHtml(ref.catKey)}','${escapeHtml(ref.id)}')"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>` : ''}
+	        </div>`;
+	    }
+
+	    function kfmFavoritesStripGuncelle() {
+	        const section = document.getElementById('favoritesSection');
+	        const strip = document.getElementById('favoritesStrip');
+	        if (!section || !strip) return;
+	        const heading = document.getElementById('favoritesHeading');
+	        if (heading) heading.textContent = aktifDil === 'en' ? 'Favorites & Recent' : 'Favorilerim & Son Seçilenler';
+	        const favRefs = kfmFavoriteRefs();
+	        const recentRefs = kfmRecentRefs().filter(r => !favRefs.some(f => f.catKey === r.catKey && f.id === r.id));
+	        const chips = [
+	            ...favRefs.map(ref => kfmFavChipHtml(ref, true)),
+	            ...recentRefs.map(ref => kfmFavChipHtml(ref, false)),
+	        ].filter(Boolean);
+	        section.hidden = chips.length === 0;
+	        strip.innerHTML = chips.join('');
+	        strip.querySelectorAll('.fav-chip').forEach(chip => chip.addEventListener('click', () => {
+	            try {
+	                const ref = JSON.parse(chip.dataset.ref || 'null');
+	                const product = kfmProductByRef(ref);
+	                if (!product) return;
+	                const list = window.__renderedProducts || [];
+	                const index = list.findIndex(u => String(u.id) === String(product.id) && u.catKey === ref.catKey);
+	                if (index >= 0) { openProductDetail(index); return; }
+	                openProductDetail(0, { product: { ...product, catKey: ref.catKey }, recordInteraction: false });
+	            } catch { /* bozuk referans: yoksay */ }
+	        }));
+	    }
+
+	    function kfmFavoriteKaldir(catKey, id) {
+	        kfmFavoriteToggle({ catKey: String(catKey || ''), id: String(id || '') });
+	    }
+
+	    function kfmFavToggleHtml(item) {
+	        const ref = kfmProductRefFromItem(item);
+	        if (!ref) return '';
+	        const isFav = kfmIsFavorite(ref);
+	        const refJson = escapeHtml(JSON.stringify(ref));
+	        return `<button type="button" class="fav-toggle ${isFav ? 'is-fav' : ''}" data-fav-ref="${refJson}" aria-pressed="${isFav}" aria-label="${isFav ? 'Favorilerden çıkar' : 'Favorilere ekle'}" title="${isFav ? 'Favorilerden çıkar' : 'Favorilere ekle'}"><i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart" aria-hidden="true"></i></button>`;
+	    }
+
+	    function kfmFavToggleBagla(scope) {
+	        (scope || document).querySelectorAll('.fav-toggle:not([data-fav-bound])').forEach(button => {
+	            button.dataset.favBound = 'true';
+	            button.addEventListener('click', event => {
+	                event.stopPropagation();
+	                try {
+	                    const ref = JSON.parse(button.dataset.favRef || 'null');
+	                    const nowFav = kfmFavoriteToggle(ref);
+	                    button.classList.toggle('is-fav', nowFav);
+	                    button.setAttribute('aria-pressed', String(nowFav));
+	                    button.querySelector('i')?.classList.toggle('fa-solid', nowFav);
+	                    button.querySelector('i')?.classList.toggle('fa-regular', !nowFav);
+	                    toast(nowFav ? '❤️ Favorilere eklendi.' : 'Favorilerden çıkarıldı.');
+	                } catch { /* bozuk referans */ }
+	            });
+	        });
+	    }
+
+	    // ── KFM_ORDER_TRACKING_V1: sipariş durumu takip görünümü ──
+	    const KFM_TRACKING_KEY = 'kfm_order_tracking_v1';
+	    const KFM_TRACKING_LABELS = {
+	        bekliyor: { tr: 'Ekibe iletildi', en: 'Sent to team' },
+	        alindi: { tr: 'Alındı', en: 'Received' },
+	        hazirlaniyor: { tr: 'Hazırlanıyor', en: 'Preparing' },
+	        hazir: { tr: 'Hazır', en: 'Ready' },
+	        iptal: { tr: 'İptal edildi', en: 'Cancelled' },
+	    };
+
+	    function kfmOrderTrackingKaydet(tracking) {
+	        if (!tracking?.kod) return;
+	        try { localStorage.setItem(KFM_TRACKING_KEY, JSON.stringify({ kod: String(tracking.kod), masa: String(tracking.masa || ''), kayit: Date.now() })); } catch { /* opsiyonel */ }
+	    }
+
+	    function kfmOrderTrackingOku() {
+	        try {
+	            const data = JSON.parse(localStorage.getItem(KFM_TRACKING_KEY) || 'null');
+	            if (!data?.kod) return null;
+	            if (Date.now() - (data.kayit || 0) > 24 * 60 * 60 * 1000) return null; // bir günlük takip ömrü
+	            return data;
+	        } catch { return null; }
+	    }
+
+	    async function kfmOrderTrackingYenile() {
+	        const tracking = kfmOrderTrackingOku();
+	        const panel = document.getElementById('orderTrackingPanel');
+	        const meta = document.getElementById('orderTrackingMeta');
+	        if (!tracking || !panel) { if (panel) panel.hidden = true; return; }
+	        panel.hidden = false;
+	        if (meta) meta.textContent = 'Durum sorgulanıyor…';
+	        try {
+	            const relayUrl = await getWaiterRelayUrl();
+	            const candidates = kfmWaiterRelayCandidates(relayUrl);
+	            let lastError = null;
+	            for (const base of candidates) {
+	                try {
+	                    const response = await fetch(`${base}/api/orders/track/${encodeURIComponent(tracking.kod)}`, { cache: 'no-store', headers: { 'Accept': 'application/json' } });
+	                    if (response.status === 404) { kfmOrderTrackingPaneliniGizle(); return; }
+	                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+	                    const data = await response.json();
+	                    kfmOrderTrackingGoster(data?.siparis || {});
+	                    return;
+	                } catch (error) { lastError = error; }
+	            }
+	            throw lastError || new Error('Takip servisine ulaşılamadı.');
+	        } catch (error) {
+	            if (meta) meta.textContent = 'Sipariş durumu şu anda okunamadı; birazdan tekrar deneyin.';
+	            console.warn('Sipariş takip sorgusu başarısız:', error);
+	        }
+	    }
+
+	    function kfmOrderTrackingPaneliniGizle() {
+	        try { localStorage.removeItem(KFM_TRACKING_KEY); } catch { }
+	        const panel = document.getElementById('orderTrackingPanel');
+	        if (panel) panel.hidden = true;
+	    }
+
+	    function kfmOrderTrackingPaneliniTazeleGuvenli() {
+	        window.setTimeout(() => { kfmOrderTrackingYenile().catch(() => {}); }, 600);
+	    }
+
+	    function kfmOrderTrackingGoster(siparis) {
+	        const panel = document.getElementById('orderTrackingPanel');
+	        const steps = document.getElementById('orderTrackingSteps');
+	        const meta = document.getElementById('orderTrackingMeta');
+	        const title = document.getElementById('orderTrackingTitle');
+	        if (!panel || !steps) return;
+	        panel.hidden = false;
+	        const durum = String(siparis?.durum || 'bekliyor');
+	        if (title) title.textContent = aktifDil === 'en' ? 'Order Tracking' : 'Sipariş Takibi';
+	        if (durum === 'iptal') {
+	            steps.querySelectorAll('li').forEach(li => { li.classList.remove('is-done', 'is-active'); li.classList.add('is-cancelled'); });
+	            if (meta) meta.textContent = aktifDil === 'en' ? 'This order was cancelled. Please contact the team.' : 'Bu sipariş iptal edildi. Ekip ile iletişime geçin.';
+	            return;
+	        }
+	        const siralama = ['alindi', 'hazirlaniyor', 'hazir'];
+	        const aktifIndex = Math.max(0, siralama.indexOf(durum));
+	        steps.querySelectorAll('li').forEach((li, index) => {
+	            li.classList.remove('is-cancelled');
+	            li.classList.toggle('is-done', index < aktifIndex || durum === 'hazir');
+	            li.classList.toggle('is-active', index === aktifIndex && durum !== 'hazir');
+	        });
+	        const readyAt = siparis?.tahmini_hazir_zamani ? new Date(siparis.tahmini_hazir_zamani) : null;
+	        const readyText = readyAt && Number.isFinite(readyAt.getTime())
+	            ? (aktifDil === 'en' ? ` · Estimated ready ${readyAt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}` : ` · Tahmini hazır: ${readyAt.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}`)
+	            : '';
+	        const label = KFM_TRACKING_LABELS[durum] || KFM_TRACKING_LABELS.bekliyor;
+	        if (meta) meta.textContent = (aktifDil === 'en' ? label.en : label.tr) + readyText;
+	    }
+
 		    function kfmRenderOrderCart() {
 	        const list = document.getElementById('orderCartList');
 	        const count = kfmOrderCart.reduce((sum, item) => sum + item.quantity, 0);
@@ -7853,6 +8122,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	function webSiparisPenceresiAc() {
 		        kfmRenderOrderCart();
 		        modalAc('webOrderModal');
+		        kfmOrderTrackingYenile().catch(() => {});
 		        kfmOrderStatusGuncelle(
 		            kfmOrderCart.length ? 'Sepetiniz hazır. Masa numaranızı yazıp siparişinizi iletebilirsiniz.' : 'Önce menüden ürün ekleyin; sepetiniz burada görünecek.',
 		            kfmOrderCart.length ? 'ready' : 'idle',
@@ -7898,6 +8168,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            const response = await kfmOrderPost(relayUrl, payload);
 	            const data = await response.json().catch(() => ({}));
 	            if (!response.ok || !data.ok) throw new Error(data.error || 'Sipariş gönderilemedi.');
+			kfmOrderTrackingKaydet({ kod: data.takip?.kod, masa: masaNo });
+			kfmOrderTrackingPaneliniTazeleGuvenli();
 			kfmOrderStatusGuncelle('Siparişiniz ekibe iletildi. Afiyet olsun!', 'success');
 			await kfmOrderSuccessAnimation();
 			kfmOrderCart = [];
