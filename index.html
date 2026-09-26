@@ -1429,6 +1429,9 @@
   /* KFM_DETAIL_TAGS_V1 — yönetilebilir içerik ve alerjen etiketleri */
   .detail-content-tags { margin-top:14px; padding:12px 14px; border:1px solid var(--border); border-radius:16px; background:var(--surface2); }
   .detail-content-tags[hidden] { display:none; }
+  .detail-content-toggle { display:inline-flex; align-items:center; gap:8px; width:max-content; max-width:100%; min-height:38px; margin-top:10px; padding:8px 12px; border:1px solid var(--border2); border-radius:12px; background:var(--surface2); color:var(--ink); font-size:12px; font-weight:800; cursor:pointer; }
+  .detail-content-toggle[hidden] { display:none !important; }
+  .detail-content-toggle[aria-expanded="true"] { color:var(--rust); border-color:var(--rust); }
   .detail-tags-title { display:flex; align-items:center; gap:7px; margin:0 0 8px; color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
   .detail-tags-title i { color:var(--rust); }
   .detail-tags-pills { display:flex; flex-wrap:wrap; gap:6px; }
@@ -4228,6 +4231,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <div id="detailCategory" class="detail-category"></div>
                 <h2 id="detailTitle" class="detail-title"></h2>
                 <p id="detailDescription" class="detail-description"></p>
+                <button id="detailContentToggle" class="detail-content-toggle" type="button" onclick="kfmUrunIcerikBolumunuDegistir()" aria-controls="detailContentTags" aria-expanded="false" hidden>
+                    <i class="fa-solid fa-bowl-food" aria-hidden="true"></i><span id="detailContentToggleText">Ürün İçeriği</span>
+                </button>
                 <section id="detailContentTags" class="detail-content-tags" hidden aria-label="İçerik ve alerjen bilgisi">
                     <h3 class="detail-tags-title"><i class="fa-solid fa-leaf" aria-hidden="true"></i> <span id="detailTagsHeading">İçerik & Alerjenler</span></h3>
                     <div id="detailContentPills" class="detail-tags-pills"></div>
@@ -7213,7 +7219,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
     function kfmAlanDizisineDonustur(value) {
         if (Array.isArray(value)) return value.map(v => String(v || '').trim()).filter(Boolean);
-        return String(value || '').split(',').map(v => v.trim()).filter(Boolean);
+        return String(value || '').split(/[,\n]+/).map(v => v.trim()).filter(Boolean);
     }
 
     function kfmAlerjenEtiketi(metin) {
@@ -7231,9 +7237,19 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const pills = document.getElementById('detailContentPills');
         const notice = document.getElementById('detailAllergenNotice');
         const heading = document.getElementById('detailTagsHeading');
+        const toggle = document.getElementById('detailContentToggle');
+        const toggleText = document.getElementById('detailContentToggleText');
         if (heading) heading.textContent = aktifDil === 'en' ? 'Ingredients & Allergens' : 'İçerik & Alerjenler';
-        if (!icerik.length && !alerjenler.length && !not) { section.hidden = true; pills.innerHTML = ''; notice.hidden = true; return; }
-        section.hidden = false;
+        if (toggleText) toggleText.textContent = aktifDil === 'en' ? 'Product Contents' : 'Ürün İçeriği';
+        if (!icerik.length && !alerjenler.length && !not) {
+            section.hidden = true;
+            if (toggle) { toggle.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+            pills.innerHTML = '';
+            notice.hidden = true;
+            return;
+        }
+        section.hidden = true;
+        if (toggle) { toggle.hidden = false; toggle.setAttribute('aria-expanded', 'false'); }
         pills.innerHTML = [
             ...icerik.map(entry => `<span class="detail-content-tag"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i>${escapeHtml(entry)}</span>`),
             ...alerjenler.map(entry => `<span class="detail-content-tag is-allergen"><i class="fa-solid ${escapeHtml(KFM_YAYGIN_ALERJENLER.find(a => a.eslesme.test(String(entry)))?.ikon || 'fa-triangle-exclamation')}" aria-hidden="true"></i>${escapeHtml(kfmAlerjenEtiketi(entry))}</span>`),
@@ -7242,6 +7258,15 @@ function apUrunDosyaSecildi(event, catKey, id) {
             notice.textContent = not;
             notice.hidden = !not;
         }
+    }
+
+    function kfmUrunIcerikBolumunuDegistir() {
+        const toggle = document.getElementById('detailContentToggle');
+        const section = document.getElementById('detailContentTags');
+        if (!toggle || !section || toggle.hidden) return;
+        const acik = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!acik));
+        section.hidden = acik;
     }
 
     function openProductDetail(index, options = {}) {
@@ -8767,6 +8792,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
                     ad_en: String(product?.ad || '').trim(),
                     fiyat: Number(product?.fiyat || 0),
                     gorsel: String(product?.gorsel_url || '').trim(),
+                    icerik: typeof product?.icerik === 'string' || Array.isArray(product?.icerik) ? product.icerik : '',
+                    alerjenler: Array.isArray(product?.alerjenler) || typeof product?.alerjenler === 'string' ? product.alerjenler : [],
+                    alerjen_notu: String(product?.alerjen_notu || '').trim(),
                     galeri_gorselleri: Array.isArray(product?.galeri_gorselleri) ? product.galeri_gorselleri.filter(url => typeof url === 'string' && /^https:\/\//.test(url)) : [],
                     stoktaVar: product?.stoktaVar !== false,
                     stokTakibi: product?.stok_takibi === true,
