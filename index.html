@@ -1410,11 +1410,22 @@
   .order-tracking-steps li.is-active { border-style:solid; border-color:var(--rust); color:var(--rust-dk); box-shadow:var(--focus-ring); }
   .order-tracking-steps li.is-cancelled { border-style:solid; border-color:var(--err-border); background:var(--err-bg); color:var(--err-fg); }
   .order-tracking-meta { margin:9px 0 0; color:var(--muted); font-size:11.5px; line-height:1.5; }
-  /* KFM_FAVORITES_V1 — cihazda saklanan favoriler ve son seçilenler */
-  .favorites-strip { display:flex; gap:10px; overflow-x:auto; padding:2px 16px 8px; scrollbar-width:thin; scroll-snap-type:x proximity; }
-  .favorites-strip[hidden] { display:none; }
-  .favorites-title { display:flex; align-items:center; gap:7px; margin:6px 16px 2px; color:var(--muted); font-size:11px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
-  .favorites-title i { color:var(--rust); }
+  /* KFM_FAVORITES_V2 — cihazda saklanan favoriler ve son seçilenler */
+  .favorites-group { margin:6px 16px 10px; border:1px solid var(--border); border-radius:15px; background:var(--surface); overflow:hidden; }
+  .favorites-group[hidden] { display:none !important; }
+  .favorites-group-head { display:flex; align-items:center; gap:8px; padding:7px 9px; }
+  .favorites-toggle { display:flex; align-items:center; justify-content:space-between; gap:12px; flex:1; min-width:0; min-height:40px; padding:7px 9px; border:0; border-radius:10px; background:transparent; color:var(--muted); text-align:left; font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; }
+  .favorites-toggle:hover, .favorites-toggle[aria-expanded="true"] { background:var(--surface2); color:var(--rust); }
+  .favorites-toggle-main { display:flex; align-items:center; gap:7px; min-width:0; }
+  .favorites-toggle-main > i { color:var(--rust); }
+  .favorites-count { color:var(--muted2); font-size:10px; letter-spacing:0; }
+  .favorites-toggle-chevron { flex:0 0 auto; transition:transform .2s ease; }
+  .favorites-toggle[aria-expanded="true"] .favorites-toggle-chevron { transform:rotate(180deg); }
+  .favorites-clear { flex:0 0 auto; min-height:34px; padding:6px 9px; border:1px solid var(--border); border-radius:9px; background:transparent; color:var(--muted); font-size:11px; font-weight:700; cursor:pointer; }
+  .favorites-clear:hover:not(:disabled) { color:var(--err-fg); border-color:var(--err-border); background:var(--err-bg); }
+  .favorites-clear:disabled { opacity:.45; cursor:default; }
+  .favorites-strip { display:flex; gap:10px; overflow-x:auto; padding:2px 12px 10px; scrollbar-width:thin; scroll-snap-type:x proximity; }
+  .favorites-strip[hidden] { display:none !important; }
   .fav-chip { display:inline-flex; align-items:center; gap:7px; flex:0 0 auto; scroll-snap-align:start; max-width:230px; padding:8px 12px; border:1.5px solid var(--border2); border-radius:16px; background:var(--surface); cursor:pointer; transition:transform .2s ease, border-color .2s ease; }
   .fav-chip:hover { transform:translateY(-2px); border-color:var(--rust); }
   .fav-chip img { width:38px; height:38px; border-radius:10px; object-fit:cover; background:var(--rust-lt); }
@@ -4099,8 +4110,26 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     <div id="catNav" class="no-scroll px-4 pb-2 mb-5 fade-up fade-up-2" aria-label="Kategori menüsü"></div>
 
     <section id="favoritesSection" aria-label="Favoriler ve son seçilenler" hidden>
-        <h2 class="favorites-title"><i class="fa-solid fa-heart" aria-hidden="true"></i> <span id="favoritesHeading">Favorilerim & Son Seçilenler</span></h2>
-        <div id="favoritesStrip" class="favorites-strip" role="list"></div>
+        <section class="favorites-group" id="favoritesGroup" aria-label="Favorilerim" hidden>
+            <div class="favorites-group-head">
+                <button type="button" class="favorites-toggle" id="favoritesToggle" onclick="kfmFavoritesBolumToggle('favorites')" aria-expanded="false" aria-controls="favoritesStrip">
+                    <span class="favorites-toggle-main"><i class="fa-solid fa-heart" aria-hidden="true"></i><span id="favoritesHeading">Favorilerim</span><span class="favorites-count" id="favoritesCount"></span></span>
+                    <i class="fa-solid fa-chevron-down favorites-toggle-chevron" id="favoritesToggleIcon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="favorites-clear" id="favoritesClear" onclick="kfmFavoritesTemizle()">Temizle</button>
+            </div>
+            <div id="favoritesStrip" class="favorites-strip" role="list" hidden></div>
+        </section>
+        <section class="favorites-group" id="recentGroup" aria-label="Son seçilenler" hidden>
+            <div class="favorites-group-head">
+                <button type="button" class="favorites-toggle" id="recentToggle" onclick="kfmFavoritesBolumToggle('recent')" aria-expanded="false" aria-controls="recentStrip">
+                    <span class="favorites-toggle-main"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i><span id="recentHeading">Son Seçilenler</span><span class="favorites-count" id="recentCount"></span></span>
+                    <i class="fa-solid fa-chevron-down favorites-toggle-chevron" id="recentToggleIcon" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="favorites-clear" id="recentClear" onclick="kfmRecentTemizle()">Temizle</button>
+            </div>
+            <div id="recentStrip" class="favorites-strip" role="list" hidden></div>
+        </section>
     </section>
     <main class="px-4" id="productGrid"></main>
 
@@ -7763,6 +7792,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	    const KFM_RECENT_KEY = 'kfm_recent_v1';
 	    const KFM_FAVORITES_MAX = 12;
 	    const KFM_RECENT_MAX = 8;
+	    let kfmFavoritesOpen = false;
+	    let kfmRecentOpen = false;
 
 	    function kfmProductRefFromItem(item) {
 	        if (!item) return null;
@@ -7818,6 +7849,26 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        kfmFavoritesStripGuncelle();
 	    }
 
+	    function kfmFavoritesBolumToggle(kind) {
+	        if (kind === 'favorites') kfmFavoritesOpen = !kfmFavoritesOpen;
+	        else if (kind === 'recent') kfmRecentOpen = !kfmRecentOpen;
+	        kfmFavoritesStripGuncelle();
+	    }
+
+	    function kfmFavoritesTemizle() {
+	        if (!kfmFavoriteRefs().length) return;
+	        kfmRefListWrite(KFM_FAVORITES_KEY, []);
+	        kfmFavoritesStripGuncelle();
+	        toast(aktifDil === 'en' ? 'Favorites cleared on this device.' : 'Favoriler bu cihazdan temizlendi.');
+	    }
+
+	    function kfmRecentTemizle() {
+	        if (!kfmRecentRefs().length) return;
+	        kfmRefListWrite(KFM_RECENT_KEY, []);
+	        kfmFavoritesStripGuncelle();
+	        toast(aktifDil === 'en' ? 'Recently viewed products cleared on this device.' : 'Son seçilenler bu cihazdan temizlendi.');
+	    }
+
 	    function kfmFavChipHtml(ref, isFav) {
 	        const product = kfmProductByRef(ref);
 	        if (!product || product.stoktaVar === false) return '';
@@ -7834,19 +7885,41 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
 	    function kfmFavoritesStripGuncelle() {
 	        const section = document.getElementById('favoritesSection');
-	        const strip = document.getElementById('favoritesStrip');
-	        if (!section || !strip) return;
-	        const heading = document.getElementById('favoritesHeading');
-	        if (heading) heading.textContent = aktifDil === 'en' ? 'Favorites & Recent' : 'Favorilerim & Son Seçilenler';
+	        const favStrip = document.getElementById('favoritesStrip');
+	        const recentStrip = document.getElementById('recentStrip');
+	        if (!section || !favStrip || !recentStrip) return;
 	        const favRefs = kfmFavoriteRefs();
 	        const recentRefs = kfmRecentRefs().filter(r => !favRefs.some(f => f.catKey === r.catKey && f.id === r.id));
-	        const chips = [
-	            ...favRefs.map(ref => kfmFavChipHtml(ref, true)),
-	            ...recentRefs.map(ref => kfmFavChipHtml(ref, false)),
-	        ].filter(Boolean);
-	        section.hidden = chips.length === 0;
-	        strip.innerHTML = chips.join('');
-	        strip.querySelectorAll('.fav-chip').forEach(chip => chip.addEventListener('click', () => {
+	        const favChips = favRefs.map(ref => kfmFavChipHtml(ref, true)).filter(Boolean);
+	        const recentChips = recentRefs.map(ref => kfmFavChipHtml(ref, false)).filter(Boolean);
+	        section.hidden = favChips.length === 0 && recentChips.length === 0;
+	        document.getElementById('favoritesGroup').hidden = favChips.length === 0;
+	        document.getElementById('recentGroup').hidden = recentChips.length === 0;
+	        favStrip.innerHTML = favChips.join('');
+	        recentStrip.innerHTML = recentChips.join('');
+	        favStrip.hidden = !kfmFavoritesOpen;
+	        recentStrip.hidden = !kfmRecentOpen;
+	        const favToggle = document.getElementById('favoritesToggle');
+	        const recentToggle = document.getElementById('recentToggle');
+	        favToggle.setAttribute('aria-expanded', String(kfmFavoritesOpen));
+	        recentToggle.setAttribute('aria-expanded', String(kfmRecentOpen));
+	        document.getElementById('favoritesHeading').textContent = aktifDil === 'en' ? 'Favorites' : 'Favorilerim';
+	        document.getElementById('recentHeading').textContent = aktifDil === 'en' ? 'Recently viewed' : 'Son Seçilenler';
+	        document.getElementById('favoritesCount').textContent = `(${favChips.length})`;
+	        document.getElementById('recentCount').textContent = `(${recentChips.length})`;
+	        for (const [id, hasItems, label] of [
+	            ['favoritesClear', favChips.length > 0, aktifDil === 'en' ? 'Clear favorites' : 'Favorileri temizle'],
+	            ['recentClear', recentChips.length > 0, aktifDil === 'en' ? 'Clear recently viewed products' : 'Son seçilenleri temizle'],
+	        ]) {
+	            const button = document.getElementById(id);
+	            button.disabled = !hasItems;
+	            button.textContent = aktifDil === 'en' ? 'Clear' : 'Temizle';
+	            button.title = label;
+	            button.setAttribute('aria-label', label);
+	        }
+	        favToggle.setAttribute('aria-label', `${document.getElementById('favoritesHeading').textContent}, ${favChips.length}`);
+	        recentToggle.setAttribute('aria-label', `${document.getElementById('recentHeading').textContent}, ${recentChips.length}`);
+	        favStrip.querySelectorAll('.fav-chip').forEach(chip => chip.addEventListener('click', () => {
 	            try {
 	                const ref = JSON.parse(chip.dataset.ref || 'null');
 	                const product = kfmProductByRef(ref);
@@ -7857,6 +7930,29 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                openProductDetail(0, { product: { ...product, catKey: ref.catKey }, recordInteraction: false });
 	            } catch { /* bozuk referans: yoksay */ }
 	        }));
+	        recentStrip.querySelectorAll('.fav-chip').forEach(chip => chip.addEventListener('click', () => {
+	            try {
+	                const ref = JSON.parse(chip.dataset.ref || 'null');
+	                const product = kfmProductByRef(ref);
+	                if (!product) return;
+	                const list = window.__renderedProducts || [];
+	                const index = list.findIndex(u => String(u.id) === String(product.id) && u.catKey === ref.catKey);
+	                if (index >= 0) { openProductDetail(index); return; }
+	                openProductDetail(0, { product: { ...product, catKey: ref.catKey }, recordInteraction: false });
+	            } catch { /* bozuk referans: yoksay */ }
+	        }));
+	        document.querySelectorAll('.fav-toggle').forEach(button => {
+	            try {
+	                const ref = JSON.parse(button.dataset.favRef || 'null');
+	                const isFav = kfmIsFavorite(ref);
+	                button.classList.toggle('is-fav', isFav);
+	                button.setAttribute('aria-pressed', String(isFav));
+	                button.setAttribute('aria-label', isFav ? 'Favorilerden çıkar' : 'Favorilere ekle');
+	                button.title = isFav ? 'Favorilerden çıkar' : 'Favorilere ekle';
+	                button.querySelector('i')?.classList.toggle('fa-solid', isFav);
+	                button.querySelector('i')?.classList.toggle('fa-regular', !isFav);
+	            } catch { /* bozuk referans */ }
+	        });
 	    }
 
 	    function kfmFavoriteKaldir(catKey, id) {
@@ -8790,6 +8886,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
                     id: String(product?.id || '').trim(),
                     ad: String(product?.ad || '').trim(),
                     ad_en: String(product?.ad || '').trim(),
+                    aciklama: String(product?.aciklama || '').trim(),
+                    aciklama_en: String(product?.aciklama_en || product?.aciklama || '').trim(),
                     fiyat: Number(product?.fiyat || 0),
                     gorsel: String(product?.gorsel_url || '').trim(),
                     icerik: typeof product?.icerik === 'string' || Array.isArray(product?.icerik) ? product.icerik : '',
