@@ -4209,9 +4209,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             <span id="lblSkor">Öneri-İstek</span>
         </button>
     </nav>
-    <button id="orderCartQuickGo" class="order-cart-quick-go" type="button" onclick="webSiparisPenceresiAc()" hidden aria-label="Sepete git">
+    <button id="orderCartQuickGo" class="order-cart-quick-go" type="button" onclick="webSiparisPenceresiAc()" hidden data-i18n-aria-label="cart_go" aria-label="Sepete git">
         <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
-        <span><small>Sepetiniz hazır</small><strong id="orderCartQuickGoLabel">0 ürün · 0,00 ₺</strong></span>
+        <span><small data-i18n="cart_ready">Sepetiniz hazır</small><strong id="orderCartQuickGoLabel">0 ürün · 0,00 ₺</strong></span>
         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
     </button>
 
@@ -4236,7 +4236,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                             <option value="genel" data-i18n="waiter_type_general">Genel çağrı</option>
                             <option value="siparis" data-i18n="waiter_type_order">Sipariş</option>
                             <option value="hesap" data-i18n="waiter_type_bill">Hesap</option>
-                            <option value="oneri">Öneri / İstek</option>
+                            <option value="oneri" data-i18n="waiter_type_suggestion">Öneri / İstek</option>
 	                        </select>
 	                        <small id="waiterCallTypeHint" data-i18n="waiter_type_hint">İhtiyacınızı seçin; ekibimiz daha hızlı yardımcı olsun.</small>
 	                    </div>
@@ -4254,48 +4254,48 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     <!-- Web Sipariş Sepeti -->
     <div id="webOrderModal" class="modal-overlay" role="presentation" onclick="if(event.target===this) modalKapat('webOrderModal')">
         <section class="modal-box waiter-call-modal web-order-modal" role="dialog" aria-modal="true" aria-labelledby="webOrderTitle" aria-describedby="webOrderDescription">
-            <button type="button" class="waiter-call-close" onclick="modalKapat('webOrderModal')" aria-label="Kapat"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <button type="button" class="waiter-call-close" onclick="modalKapat('webOrderModal')" data-i18n-aria-label="modal_close" aria-label="Kapat"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
             <div class="waiter-call-content">
                 <div class="waiter-call-hero">
                     <span class="waiter-call-icon" aria-hidden="true"><i class="fa-solid fa-bag-shopping"></i></span>
-                    <div><h3 id="webOrderTitle">Siparişinizi İletin</h3><p id="webOrderDescription">Ürünlerinizi seçin; masa bilginizle birlikte doğrudan ekibe iletelim.</p></div>
+                    <div><h3 id="webOrderTitle" data-i18n="order_modal_title">Siparişinizi İletin</h3><p id="webOrderDescription" data-i18n="order_modal_description">Ürünlerinizi seçin; masa bilginizle birlikte doğrudan ekibe iletelim.</p></div>
                 </div>
                 <form id="webOrderForm" class="waiter-call-form" onsubmit="webSiparisFormGonder(event)" novalidate>
                     <div class="order-cart-panel" aria-live="polite">
-                        <div class="order-cart-panel-head"><span>Seçtiğiniz ürünler</span><span id="orderCartCount">0 ürün</span></div>
+                        <div class="order-cart-panel-head"><span data-i18n="order_selected">Seçtiğiniz ürünler</span><span id="orderCartCount">0 ürün</span></div>
                         <div class="order-cart-filter" role="search">
-                            <label for="orderCartSearch" aria-label="Sepette ürün ara"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></label>
-                            <input id="orderCartSearch" type="search" autocomplete="off" placeholder="Sepette ürün ara…" aria-label="Sepette ürün, seçenek veya not ara" oninput="kfmOrderCartFilterUygula(this.value)" onkeydown="if(event.key==='Escape'){this.value='';kfmOrderCartFilterUygula('');this.blur();}">
-                            <button type="button" id="orderCartSearchClear" onclick="kfmOrderCartFilterTemizle()" aria-label="Sepet aramasını temizle" title="Aramayı temizle" hidden><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+                            <label for="orderCartSearch" data-i18n-aria-label="cart_search_aria" aria-label="Sepette ürün ara"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></label>
+                            <input id="orderCartSearch" type="search" autocomplete="off" data-i18n-placeholder="cart_search_placeholder" placeholder="Sepette ürün ara…" data-i18n-aria-label="cart_search_content_aria" aria-label="Sepette ürün, seçenek veya not ara" oninput="kfmOrderCartFilterUygula(this.value)" onkeydown="if(event.key==='Escape'){this.value='';kfmOrderCartFilterUygula('');this.blur();}">
+                            <button type="button" id="orderCartSearchClear" onclick="kfmOrderCartFilterTemizle()" data-i18n-aria-label="cart_search_clear" aria-label="Sepet aramasını temizle" data-i18n-title="cart_search_clear_title" title="Aramayı temizle" hidden><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
                         </div>
-                        <div class="order-cart-advanced-filter" aria-label="Sepet gelişmiş filtreleri">
-                            <select id="orderCartCategoryFilter" aria-label="Kategoriye göre filtrele" onchange="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')"><option value="">Tüm kategoriler</option></select>
-                            <input id="orderCartMinPrice" type="number" min="0" step="1" inputmode="decimal" placeholder="Min ₺" aria-label="Minimum fiyat" oninput="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')">
-                            <input id="orderCartMaxPrice" type="number" min="0" step="1" inputmode="decimal" placeholder="Maks ₺" aria-label="Maksimum fiyat" oninput="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')">
-                            <button type="button" id="orderCartAdvancedClear" onclick="kfmOrderCartGelismisFiltreleriTemizle()" aria-label="Kategori ve fiyat filtrelerini temizle" title="Filtreleri temizle"><i class="fa-solid fa-filter-circle-xmark" aria-hidden="true"></i></button>
+                        <div class="order-cart-advanced-filter" data-i18n-aria-label="cart_advanced_filter_aria" aria-label="Sepet gelişmiş filtreleri">
+                            <select id="orderCartCategoryFilter" data-i18n-aria-label="cart_category_filter_aria" aria-label="Kategoriye göre filtrele" onchange="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')"><option value="" data-i18n="cart_all_categories">Tüm kategoriler</option></select>
+                            <input id="orderCartMinPrice" type="number" min="0" step="1" inputmode="decimal" data-i18n-placeholder="cart_min_price_placeholder" placeholder="Min ₺" data-i18n-aria-label="cart_min_price_aria" aria-label="Minimum fiyat" oninput="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')">
+                            <input id="orderCartMaxPrice" type="number" min="0" step="1" inputmode="decimal" data-i18n-placeholder="cart_max_price_placeholder" placeholder="Maks ₺" data-i18n-aria-label="cart_max_price_aria" aria-label="Maksimum fiyat" oninput="kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '')">
+                            <button type="button" id="orderCartAdvancedClear" onclick="kfmOrderCartGelismisFiltreleriTemizle()" data-i18n-aria-label="cart_clear_filters_aria" aria-label="Kategori ve fiyat filtrelerini temizle" data-i18n-title="cart_clear_filters_title" title="Filtreleri temizle"><i class="fa-solid fa-filter-circle-xmark" aria-hidden="true"></i></button>
                         </div>
-                        <div id="orderCartFilterMeta" class="order-cart-filter-meta" aria-live="polite" hidden><span id="orderCartFilterCount"></span><span>Esc ile temizle</span></div>
+                        <div id="orderCartFilterMeta" class="order-cart-filter-meta" aria-live="polite" hidden><span id="orderCartFilterCount"></span><span data-i18n="cart_escape_hint">Esc ile temizle</span></div>
                         <div id="orderCartList" class="order-cart-list" role="list" aria-live="polite" aria-relevant="additions text"></div>
-                        <div class="order-cart-total"><span>Tahmini toplam</span><strong id="orderCartTotal">0,00 ₺</strong></div>
+                        <div class="order-cart-total"><span data-i18n="cart_estimated_total">Tahmini toplam</span><strong id="orderCartTotal">0,00 ₺</strong></div>
                     </div>
-                    <p id="orderStatusMessage" role="status" aria-live="polite" aria-atomic="true" class="order-status-message" data-mode="idle">Sepetinizdeki ürünleri ve masa bilginizi kontrol edin.</p>
+                    <p id="orderStatusMessage" role="status" aria-live="polite" aria-atomic="true" class="order-status-message" data-mode="idle" data-i18n="order_status_idle">Sepetinizdeki ürünleri ve masa bilginizi kontrol edin.</p>
                     <div class="waiter-call-field">
-                        <label for="orderTableNumber">Masa numaranız</label>
-                        <input id="orderTableNumber" name="masa_no" type="text" maxlength="32" autocomplete="off" inputmode="text" pattern="[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]+" required placeholder="Örn. 12 veya Teras 3" aria-describedby="orderTableHint">
-                        <small id="orderTableHint">Siparişinizin doğru masaya ulaşmasını sağlar.</small>
+                        <label for="orderTableNumber" data-i18n="order_table_label">Masa numaranız</label>
+                        <input id="orderTableNumber" name="masa_no" type="text" maxlength="32" autocomplete="off" inputmode="text" pattern="[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]+" required data-i18n-placeholder="order_table_placeholder" placeholder="Örn. 12 veya Teras 3" aria-describedby="orderTableHint">
+                        <small id="orderTableHint" data-i18n="order_table_hint">Siparişinizin doğru masaya ulaşmasını sağlar.</small>
                     </div>
                     <div class="waiter-call-field">
-                        <label for="orderNote">Sipariş notunuz <em>(isteğe bağlı)</em></label>
-                        <textarea id="orderNote" name="not" maxlength="280" placeholder="Örn. Şekersiz, buzsuz veya alerji notu"></textarea>
+                        <label for="orderNote"><span data-i18n="order_note_label">Sipariş notunuz</span> <em data-i18n="order_note_optional">(isteğe bağlı)</em></label>
+                        <textarea id="orderNote" name="not" maxlength="280" data-i18n-placeholder="order_note_placeholder" placeholder="Örn. Şekersiz, buzsuz veya alerji notu"></textarea>
                     </div>
-                    <button id="webOrderSubmit" type="submit" class="waiter-call-submit" disabled><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span>Siparişi İlet</span></button>
-                    <p class="waiter-call-security"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i><span>Ürünler ve notunuz güvenli olarak iletilir. Gönderimden sonra sipariş ekibe düşer.</span></p>
-                    <section id="orderTrackingPanel" class="order-tracking-panel" hidden aria-label="Sipariş durumu takibi">
-                        <div class="order-tracking-head"><strong id="orderTrackingTitle">Sipariş Takibi</strong><button type="button" id="orderTrackingRefresh" class="order-tracking-refresh" onclick="kfmOrderTrackingYenile()" aria-label="Sipariş durumunu yenile"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i> Yenile</button></div>
+                    <button id="webOrderSubmit" type="submit" class="waiter-call-submit" disabled><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span data-i18n="order_submit">Siparişi İlet</span></button>
+                    <p class="waiter-call-security"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i><span data-i18n="order_security">Ürünler ve notunuz güvenli olarak iletilir. Gönderimden sonra sipariş ekibe düşer.</span></p>
+                    <section id="orderTrackingPanel" class="order-tracking-panel" hidden data-i18n-aria-label="tracking_panel" aria-label="Sipariş durumu takibi">
+                        <div class="order-tracking-head"><strong id="orderTrackingTitle" data-i18n="tracking_title">Sipariş Takibi</strong><button type="button" id="orderTrackingRefresh" class="order-tracking-refresh" onclick="kfmOrderTrackingYenile()" data-i18n-aria-label="tracking_refresh" aria-label="Sipariş durumunu yenile"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i> <span data-i18n="tracking_refresh">Yenile</span></button></div>
                         <ol id="orderTrackingSteps" class="order-tracking-steps" aria-live="polite">
-                            <li data-step="alindi"><i class="fa-solid fa-receipt" aria-hidden="true"></i><span>Alındı</span></li>
-                            <li data-step="hazirlaniyor"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i><span>Hazırlanıyor</span></li>
-                            <li data-step="hazir"><i class="fa-solid fa-bell-concierge" aria-hidden="true"></i><span>Hazır</span></li>
+                            <li data-step="alindi"><i class="fa-solid fa-receipt" aria-hidden="true"></i><span data-i18n="tracking_received">Alındı</span></li>
+                            <li data-step="hazirlaniyor"><i class="fa-solid fa-fire-burner" aria-hidden="true"></i><span data-i18n="tracking_preparing">Hazırlanıyor</span></li>
+                            <li data-step="hazir"><i class="fa-solid fa-bell-concierge" aria-hidden="true"></i><span data-i18n="tracking_ready">Hazır</span></li>
                         </ol>
                         <p id="orderTrackingMeta" class="order-tracking-meta"></p>
                     </section>
@@ -4323,7 +4323,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <button id="detailContentToggle" class="detail-content-toggle" type="button" onclick="kfmUrunIcerikBolumunuDegistir()" aria-controls="detailContentTags" aria-expanded="false" hidden>
                     <i class="fa-solid fa-bowl-food" aria-hidden="true"></i><span id="detailContentToggleText">Ürün İçeriği</span>
                 </button>
-                <section id="detailContentTags" class="detail-content-tags" hidden aria-label="İçerik ve alerjen bilgisi">
+                <section id="detailContentTags" class="detail-content-tags" hidden data-i18n-aria-label="detail_tags_heading" aria-label="İçerik ve alerjen bilgisi">
                     <h3 class="detail-tags-title"><i class="fa-solid fa-leaf" aria-hidden="true"></i> <span id="detailTagsHeading">İçerik & Alerjenler</span></h3>
                     <div id="detailContentPills" class="detail-tags-pills"></div>
                     <p id="detailAllergenNotice" class="detail-allergen-notice" hidden></p>
@@ -4331,7 +4331,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <div id="detailGallery" class="detail-gallery" hidden aria-label="Ürün görselleri"></div>
                 <div id="detailExtras" class="detail-extras"></div>
                 <section id="detailVariants" class="detail-variants" hidden aria-live="polite">
-                    <div class="detail-variants-head"><strong>Alt seçenekler</strong><span>Zorunlu grupları tamamlayın</span></div>
+                    <div class="detail-variants-head"><strong data-i18n="detail_variant_heading">Alt seçenekler</strong><span data-i18n="detail_variant_hint">Zorunlu grupları tamamlayın</span></div>
                     <div id="detailVariantOptions" class="detail-variant-options"></div>
                 </section>
                 <div class="detail-meta">
@@ -4340,7 +4340,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 </div>
                 <section id="detail-pair-suggestions" class="detail-pair detail-pair-suggestions" aria-live="polite" hidden></section>
                 <div class="detail-actions">
-                    <button class="detail-action-soft" onclick="modalKapat('productDetailModal')">Kapat</button>
+                    <button class="detail-action-soft" onclick="modalKapat('productDetailModal')" data-i18n="modal_close">Kapat</button>
                     <button id="detailMainAction" class="detail-action-main" onclick="modalKapat('productDetailModal')">
                         <i class="fa-solid fa-check"></i> Menüyü Görüntüle
                     </button>
@@ -5056,7 +5056,98 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             no_quick_products_en: "No quick order products yet.",
             pair_label: "Mükemmel İkili",
             pair_detail: "Birlikte daha keyifli",
-            suggestion_view_detail: "Detayı gör"
+            suggestion_view_detail: "Detayı gör",
+            pair_discover: "Bu eşleşmeyi keşfedin",
+            pair_open: "{name} detayını aç",
+            category_fallback: "Kategori",
+            detail_tags_heading: "İçerik & Alerjenler",
+            detail_contents_toggle: "Ürün İçeriği",
+            variant_required: "Seçim gerekli",
+            variant_optional: "İsteğe bağlı",
+            variant_single: "Tek seçim",
+            variant_max: "En fazla {count} seçim",
+            variant_multiple: "Birden fazla seçilebilir",
+            variant_count: "{selected}/{limit} seçildi · {remaining} kaldı",
+            variant_count_selected: "{count} seçildi",
+            variant_no_selection: "Henüz seçim yok",
+            variant_complete: "✓ Seçim tamam",
+            variant_required_prompt: "● Seçim gerekli",
+            variant_limit_error: "⚠️ {group} için en fazla {count} seçim yapabilirsiniz.",
+            variant_alt_suffix: "alt seçeneğini ekle",
+            variant_stock_remaining: "Kalan",
+            variant_out_of_stock: "Stokta yok",
+            variant_stock_low: "Stok eşiğinde",
+            detail_add_to_cart: "Sepete Ekle",
+            detail_included: "Dahil",
+            cart_empty: "Ürün kartındaki + simgesiyle veya ürün detayından sepetinize ürün ekleyebilirsiniz.",
+            cart_quantity: "miktarı",
+            cart_decrease: "Bir azalt",
+            cart_increase: "Bir artır",
+            cart_all_categories: "Tüm kategoriler",
+            cart_product_fallback: "Ürün",
+            cart_count_message: "{name} · {count} adet sepette",
+            order_unavailable_product: "⚠️ Bu ürün şu anda siparişe eklenemiyor.",
+            order_no_options: "⚠️ Stokta seçenek yok: {groups}",
+            order_choose_option: "⚠️ Önce seçim yapın: {groups}",
+            order_reduce_selection: "⚠️ Seçim sayısını azaltın: {groups}",
+            order_invalid_product: "⚠️ Ürün bilgisi siparişe uygun değil.",
+            cart_ready: "Sepetiniz hazır",
+            cart_go: "Sepete git",
+            cart_count: "{count} ürün",
+            order_modal_title: "Siparişinizi İletin",
+            order_modal_description: "Ürünlerinizi seçin; masa bilginizle birlikte doğrudan ekibe iletelim.",
+            order_selected: "Seçtiğiniz ürünler",
+            cart_search_aria: "Sepette ürün ara",
+            cart_search_placeholder: "Sepette ürün ara…",
+            cart_search_content_aria: "Sepette ürün, seçenek veya not ara",
+            cart_search_clear: "Sepet aramasını temizle",
+            cart_search_clear_title: "Aramayı temizle",
+            cart_advanced_filter_aria: "Sepet gelişmiş filtreleri",
+            cart_category_filter_aria: "Kategoriye göre filtrele",
+            cart_min_price_aria: "Minimum fiyat",
+            cart_max_price_aria: "Maksimum fiyat",
+            cart_clear_filters_aria: "Kategori ve fiyat filtrelerini temizle",
+            cart_clear_filters_title: "Filtreleri temizle",
+            cart_escape_hint: "Esc ile temizle",
+            cart_filter_count: "{visible} / {total} ürün gösteriliyor",
+            cart_filter_empty: "Bu aramayla eşleşen ürün yok.",
+            cart_estimated_total: "Tahmini toplam",
+            order_status_idle: "Sepetinizdeki ürünleri ve masa bilginizi kontrol edin.",
+            order_status_empty: "Sepetiniz boş. Menüden ürün seçebilirsiniz.",
+            order_status_count: "{count} ürün seçildi. Tahmini toplam {total}.",
+            order_status_ready: "Sepetiniz hazır. Masa numaranızı yazıp siparişinizi iletebilirsiniz.",
+            order_status_before_add: "Önce menüden ürün ekleyin; sepetiniz burada görünecek.",
+            order_status_loading: "Sipariş iletiliyor…",
+            order_status_sent: "Siparişiniz ekibe iletildi. Afiyet olsun!",
+            order_status_send_failed: "Sipariş şu anda iletilemedi. Bağlantınızı kontrol edip tekrar deneyin.",
+            order_toast_network: "Sipariş servisine ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.",
+            order_toast_failed: "Sipariş gönderilemedi. Lütfen tekrar deneyin.",
+            order_add_first: "⚠️ Önce siparişinize en az bir ürün ekleyin.",
+            order_table_invalid: "Geçerli bir masa numarası yazın.",
+            cart_removed: "✓ {name} sepetten çıkarıldı.",
+            cart_quantity_updated: "✓ {name} adedi {count} oldu.",
+            order_table_label: "Masa numaranız",
+            order_table_placeholder: "Örn. 12 veya Teras 3",
+            order_table_hint: "Siparişinizin doğru masaya ulaşmasını sağlar.",
+            order_note_label: "Sipariş notunuz",
+            order_note_optional: "(isteğe bağlı)",
+            order_note_placeholder: "Örn. Şekersiz, buzsuz veya alerji notu",
+            order_submit: "Siparişi İlet",
+            order_security: "Ürünler ve notunuz güvenli olarak iletilir. Gönderimden sonra sipariş ekibe düşer.",
+            tracking_panel: "Sipariş durumu takibi",
+            tracking_refresh: "Yenile",
+            tracking_title: "Sipariş Takibi",
+            tracking_received: "Alındı",
+            tracking_waiting: "Bekliyor",
+            tracking_preparing: "Hazırlanıyor",
+            tracking_ready: "Hazır",
+            tracking_cancelled: "Bu sipariş iptal edildi. Ekip ile iletişime geçin.",
+            tracking_estimated_ready: "Tahmini hazır: {time}",
+            waiter_type_suggestion: "Öneri / İstek",
+            detail_variant_heading: "Alt seçenekler",
+            detail_variant_hint: "Zorunlu grupları tamamlayın",
+            cart_min_price_placeholder: "Min ₺",
+            cart_max_price_placeholder: "Maks ₺"
         },
         ar: {
             welcome_eyebrow: "قهوة · محادثة · راحة",
@@ -5169,7 +5260,98 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             no_quick_products_en: "No quick order products yet.",
             pair_label: "زوج مثالي",
             pair_detail: "أفضل معاً",
-            suggestion_view_detail: "عرض التفاصيل"
+            suggestion_view_detail: "عرض التفاصيل",
+            pair_discover: "اكتشف هذا التوافق",
+            pair_open: "عرض تفاصيل {name}",
+            category_fallback: "فئة",
+            detail_tags_heading: "المكونات ومسببات الحساسية",
+            detail_contents_toggle: "مكونات المنتج",
+            variant_required: "الاختيار مطلوب",
+            variant_optional: "اختياري",
+            variant_single: "اختيار واحد",
+            variant_max: "بحد أقصى {count} اختيارات",
+            variant_multiple: "يمكن اختيار أكثر من خيار",
+            variant_count: "{selected}/{limit} تم الاختيار · المتبقي {remaining}",
+            variant_count_selected: "تم اختيار {count}",
+            variant_no_selection: "لم يتم الاختيار بعد",
+            variant_complete: "✓ اكتمل الاختيار",
+            variant_required_prompt: "● الاختيار مطلوب",
+            variant_limit_error: "⚠️ يمكنك اختيار {count} خيارات كحد أقصى من {group}.",
+            variant_alt_suffix: "إضافة هذا الخيار",
+            variant_stock_remaining: "المتبقي",
+            variant_out_of_stock: "غير متوفر",
+            variant_stock_low: "المخزون منخفض",
+            detail_add_to_cart: "أضف إلى السلة",
+            detail_included: "مشمول",
+            cart_empty: "يمكنك إضافة المنتجات إلى السلة باستخدام علامة + على بطاقة المنتج أو من تفاصيل المنتج.",
+            cart_quantity: "الكمية",
+            cart_decrease: "تقليل واحد",
+            cart_increase: "زيادة واحدة",
+            cart_all_categories: "جميع الفئات",
+            cart_product_fallback: "منتج",
+            cart_count_message: "{name} · {count} في السلة",
+            order_unavailable_product: "⚠️ لا يمكن إضافة هذا المنتج إلى الطلب الآن.",
+            order_no_options: "⚠️ لا توجد خيارات متاحة في المخزون: {groups}",
+            order_choose_option: "⚠️ يرجى الاختيار أولاً: {groups}",
+            order_reduce_selection: "⚠️ قلل عدد الخيارات المحددة: {groups}",
+            order_invalid_product: "⚠️ معلومات المنتج غير صالحة للطلب.",
+            cart_ready: "سلتك جاهزة",
+            cart_go: "انتقل إلى السلة",
+            cart_count: "{count} منتجات",
+            order_modal_title: "أرسل طلبك",
+            order_modal_description: "اختر منتجاتك وسنرسلها مباشرة إلى الفريق مع رقم طاولتك.",
+            order_selected: "المنتجات المختارة",
+            cart_search_aria: "ابحث عن منتج في السلة",
+            cart_search_placeholder: "ابحث عن منتج في السلة…",
+            cart_search_content_aria: "ابحث في السلة عن منتج أو خيار أو ملاحظة",
+            cart_search_clear: "مسح بحث السلة",
+            cart_search_clear_title: "مسح البحث",
+            cart_advanced_filter_aria: "فلاتر السلة المتقدمة",
+            cart_category_filter_aria: "تصفية حسب الفئة",
+            cart_min_price_aria: "الحد الأدنى للسعر",
+            cart_max_price_aria: "الحد الأقصى للسعر",
+            cart_clear_filters_aria: "مسح فلاتر الفئة والسعر",
+            cart_clear_filters_title: "مسح الفلاتر",
+            cart_escape_hint: "اضغط Esc للمسح",
+            cart_filter_count: "عرض {visible} من {total} منتجات",
+            cart_filter_empty: "لا توجد منتجات تطابق هذا البحث.",
+            cart_estimated_total: "الإجمالي التقديري",
+            order_status_idle: "تحقق من المنتجات في سلتك ومعلومات الطاولة.",
+            order_status_empty: "سلتك فارغة. اختر منتجات من القائمة.",
+            order_status_count: "تم اختيار {count} منتجات. الإجمالي التقديري {total}.",
+            order_status_ready: "سلتك جاهزة. أدخل رقم الطاولة لإرسال طلبك.",
+            order_status_before_add: "أضف منتجات من القائمة لتظهر هنا في السلة.",
+            order_status_loading: "جارٍ إرسال الطلب…",
+            order_status_sent: "تم إرسال طلبك إلى الفريق. نتمنى لك وجبة شهية!",
+            order_status_send_failed: "تعذر إرسال الطلب الآن. تحقق من اتصالك وحاول مرة أخرى.",
+            order_toast_network: "تعذر الاتصال بخدمة الطلبات. تحقق من اتصالك وحاول مرة أخرى.",
+            order_toast_failed: "تعذر إرسال الطلب. يرجى المحاولة مرة أخرى.",
+            order_add_first: "⚠️ أضف منتجاً واحداً على الأقل إلى طلبك أولاً.",
+            order_table_invalid: "أدخل رقم طاولة صالحاً.",
+            cart_removed: "✓ تمت إزالة {name} من السلة.",
+            cart_quantity_updated: "✓ أصبحت كمية {name}: {count}.",
+            order_table_label: "رقم طاولتك",
+            order_table_placeholder: "مثال: 12 أو تراس 3",
+            order_table_hint: "يساعد ذلك على إيصال طلبك إلى الطاولة الصحيحة.",
+            order_note_label: "ملاحظة الطلب",
+            order_note_optional: "(اختياري)",
+            order_note_placeholder: "مثال: بدون سكر أو ثلج، أو ملاحظة للحساسية",
+            order_submit: "إرسال الطلب",
+            order_security: "سيتم إرسال المنتجات وملاحظتك بأمان مباشرة إلى الفريق.",
+            tracking_panel: "تتبع حالة الطلب",
+            tracking_refresh: "تحديث",
+            tracking_title: "تتبع الطلب",
+            tracking_received: "تم الاستلام",
+            tracking_waiting: "بانتظار المعالجة",
+            tracking_preparing: "قيد التحضير",
+            tracking_ready: "جاهز",
+            tracking_cancelled: "تم إلغاء هذا الطلب. يرجى التواصل مع الفريق.",
+            tracking_estimated_ready: "موعد الجاهزية المتوقع: {time}",
+            waiter_type_suggestion: "اقتراح / طلب",
+            detail_variant_heading: "خيارات المنتج",
+            detail_variant_hint: "أكمل الخيارات المطلوبة",
+            cart_min_price_placeholder: "الحد الأدنى ₺",
+            cart_max_price_placeholder: "الحد الأقصى ₺"
         },
         en: {
 	            welcome_eyebrow: "COFFEE · CONVERSATION · COMFORT",
@@ -5282,7 +5464,98 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	            no_quick_products_en: "No quick order products yet.",
 	            pair_label: "Perfect Pair",
 	            pair_detail: "Better together",
-	            suggestion_view_detail: "View details"
+	            suggestion_view_detail: "View details",
+	            pair_discover: "Discover this match",
+	            pair_open: "View {name} details",
+	            category_fallback: "Category",
+	            detail_tags_heading: "Ingredients & Allergens",
+	            detail_contents_toggle: "Product contents",
+	            variant_required: "Required",
+	            variant_optional: "Optional",
+	            variant_single: "Choose one",
+	            variant_max: "Choose up to {count}",
+	            variant_multiple: "Choose multiple",
+	            variant_count: "{selected}/{limit} selected · {remaining} left",
+	            variant_count_selected: "{count} selected",
+	            variant_no_selection: "No selection yet",
+	            variant_complete: "✓ Selection complete",
+	            variant_required_prompt: "● Selection required",
+	            variant_limit_error: "⚠️ Choose up to {count} options for {group}.",
+	            variant_alt_suffix: "add this option",
+	            variant_stock_remaining: "Remaining",
+	            variant_out_of_stock: "Out of stock",
+	            variant_stock_low: "Low stock",
+	            detail_add_to_cart: "Add to cart",
+	            detail_included: "Included",
+	            cart_empty: "Add products to your cart with the + icon on a product card or from its details.",
+	            cart_quantity: "quantity",
+	            cart_decrease: "Decrease by one",
+	            cart_increase: "Increase by one",
+	            cart_all_categories: "All categories",
+	            cart_product_fallback: "Product",
+	            cart_count_message: "{name} · {count} in cart",
+	            order_unavailable_product: "⚠️ This product cannot be added to the order right now.",
+	            order_no_options: "⚠️ No options are currently in stock: {groups}",
+	            order_choose_option: "⚠️ Please make a selection first: {groups}",
+	            order_reduce_selection: "⚠️ Reduce the number of selected options: {groups}",
+	            order_invalid_product: "⚠️ Product information is not valid for an order.",
+	            cart_ready: "Your cart is ready",
+	            cart_go: "Go to cart",
+	            cart_count: "{count} items",
+	            order_modal_title: "Send your order",
+	            order_modal_description: "Choose your products and we will send them directly to the team with your table number.",
+	            order_selected: "Selected products",
+	            cart_search_aria: "Search products in cart",
+	            cart_search_placeholder: "Search cart…",
+	            cart_search_content_aria: "Search cart products, options, or notes",
+	            cart_search_clear: "Clear cart search",
+	            cart_search_clear_title: "Clear search",
+	            cart_advanced_filter_aria: "Advanced cart filters",
+	            cart_category_filter_aria: "Filter by category",
+	            cart_min_price_aria: "Minimum price",
+	            cart_max_price_aria: "Maximum price",
+	            cart_clear_filters_aria: "Clear category and price filters",
+	            cart_clear_filters_title: "Clear filters",
+	            cart_escape_hint: "Press Esc to clear",
+	            cart_filter_count: "Showing {visible} of {total} products",
+	            cart_filter_empty: "No products match this search.",
+	            cart_estimated_total: "Estimated total",
+	            order_status_idle: "Review the items in your cart and your table number.",
+	            order_status_empty: "Your cart is empty. Choose products from the menu.",
+	            order_status_count: "{count} items selected. Estimated total: {total}.",
+	            order_status_ready: "Your cart is ready. Enter your table number to send the order.",
+	            order_status_before_add: "Add products from the menu and they will appear here.",
+	            order_status_loading: "Sending your order…",
+	            order_status_sent: "Your order has reached the team. Enjoy!",
+	            order_status_send_failed: "Your order could not be sent. Check your connection and try again.",
+	            order_toast_network: "The order service could not be reached. Check your connection and try again.",
+	            order_toast_failed: "Your order could not be sent. Please try again.",
+	            order_add_first: "⚠️ Add at least one product to your order first.",
+	            order_table_invalid: "Enter a valid table number.",
+	            cart_removed: "✓ {name} was removed from your cart.",
+	            cart_quantity_updated: "✓ {name} quantity is now {count}.",
+	            order_table_label: "Your table number",
+	            order_table_placeholder: "For example: 12 or Terrace 3",
+	            order_table_hint: "This helps your order reach the correct table.",
+	            order_note_label: "Order note",
+	            order_note_optional: "(optional)",
+	            order_note_placeholder: "For example: no sugar, no ice, or an allergy note",
+	            order_submit: "Send order",
+	            order_security: "Your products and note are sent securely to the team.",
+	            tracking_panel: "Order status tracking",
+	            tracking_refresh: "Refresh",
+	            tracking_title: "Order tracking",
+	            tracking_received: "Received",
+	            tracking_waiting: "Waiting",
+	            tracking_preparing: "Preparing",
+	            tracking_ready: "Ready",
+	            tracking_cancelled: "This order was cancelled. Please contact the team.",
+	            tracking_estimated_ready: "Estimated ready: {time}",
+	            waiter_type_suggestion: "Suggestion / Request",
+	            detail_variant_heading: "Product options",
+	            detail_variant_hint: "Complete the required groups",
+	            cart_min_price_placeholder: "Min ₺",
+	            cart_max_price_placeholder: "Max ₺"
         }
     };
 
@@ -5296,7 +5569,8 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         return detectedLang;
     }
 
-    let aktifDil = localStorage.getItem('kfm_lang') || getBrowserLanguage();
+    const savedLanguage = localStorage.getItem('kfm_lang');
+    let aktifDil = ['tr', 'en', 'ar'].includes(savedLanguage) ? savedLanguage : getBrowserLanguage();
 
     function t(key) {
         return (i18n[aktifDil] && i18n[aktifDil][key]) ? i18n[aktifDil][key] : (i18n['tr'][key] || key);
@@ -5402,28 +5676,173 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     "Fındık Şurubu": "Hazelnut Syrup"
 };
 
+    const EN_MENU_WORDS = {
+        adacayi: 'sage', affa: 'iced', al: 'Al', americano: 'Americano', an: 'and', ananas: 'pineapple',
+        atom: 'herbal blend', ayran: 'ayran', bardak: 'glass', bergamot: 'bergamot', beypazari: 'Beypazarı',
+        bitki: 'herbal', bursa: 'Bursa', buyuk: 'large', cadi: 'witch', cafe: 'cafe', cappuccino: 'cappuccino',
+        cay: 'tea', cayi: 'tea', cerez: 'nuts', chees: 'cheese', chilled: 'chilled', churchill: 'Churchill',
+        cikolata: 'chocolate', cilek: 'strawberry', coffe: 'coffee', cup: 'cup', dejavu: 'Deja Vu', dibek: 'dibek',
+        didi: 'Didi', dimes: 'Dimes', dominik: 'Dominican', dondurma: 'ice cream', dondurmali: 'with ice cream',
+        doppio: 'doppio', dream: 'dream', duble: 'double', egzotica: 'Exotica', ekmek: 'bread', elma: 'apple',
+        espresso: 'espresso', extra: 'extra', fakher: 'Al Fakher', fistik: 'pistachio', flat: 'flat',
+        frappe: 'frappe', gato: 'cake', gazozu: 'soda', guava: 'guava', havuc: 'carrot', hazir: 'instant',
+        icecek: 'drink', ihlamur: 'linden', italian: 'Italian', juss: 'Juss', kahve: 'coffee', kahvesi: 'coffee',
+        kakule: 'cardamom', karisik: 'mixed', karpuz: 'watermelon', kasesi: 'bowl', kek: 'cake', kekik: 'thyme',
+        killer: 'Killer', kivi: 'kiwi', kizilay: 'Kızılay', klasik: 'classic', kola: 'cola', kucuk: 'small',
+        kusburnu: 'rosehip', laddy: 'Lady', latte: 'latte', limon: 'lemon', limonata: 'lemonade', love66: 'Love 66',
+        lule: 'hookah bowl', lungo: 'lungo', macchiato: 'macchiato', macciato: 'macchiato', mango: 'mango',
+        menengic: 'menengic', meyve: 'fruit', meyvesi: 'fruit', milkshake: 'milkshake', mujitos: 'mojito',
+        muz: 'banana', nane: 'mint', nargile: 'hookah', nitra: 'nitro', oralet: 'orange drink', orman: 'forest',
+        osmanli: 'Ottoman', papatya: 'chamomile', pasta: 'cake', patates: 'potato', peri: 'fairy',
+        portakal: 'orange', red: 'red', ristretto: 'ristretto', sade: 'plain', sakiz: 'gum', sariyer: 'Sarıyer',
+        seftali: 'peach', seker: 'sugar', serin: 'cool', sicak: 'hot', sikim: 'freshly squeezed',
+        smoothie: 'smoothie', soguk: 'iced', su: 'water', sucuk: 'sausage', sut: 'milk', suyu: 'juice',
+        tabagi: 'plate', tabak: 'plate', tatli: 'dessert', taze: 'fresh', top: 'scoop', tost: 'toast',
+        alt: 'sub', secenek: 'option', secenekler: 'options', adet: 'piece', filtre: 'filter', nakhla: 'Nakhla',
+        nigde: 'Nigde', siyah: 'black', sutlu: 'with milk', kasar: 'kashar cheese',
+        '0': '0', '200ml': '200 ml', '340g': '340 g', '70g': '70 g', '5l': '5 L',
+        turk: 'Turkish', uc: 'three', uludag: 'Uludağ', uzum: 'grape', uzun: 'long', vanilya: 'vanilla',
+        visne: 'sour cherry', white: 'white', yas: 'whole', yesil: 'green', yiyecek: 'food'
+    };
+
+    const AR_MENU_WORDS = {
+        adacayi: 'مريمية', affa: 'أفوجاتو', al: 'آل', americano: 'أمريكانو', an: 'و', ananas: 'أناناس',
+        atom: 'أتوم', ayran: 'عيران', bardak: 'كوب', bergamot: 'برغموت', beypazari: 'بيبازاري',
+        bitki: 'أعشاب', bursa: 'بورصة', buyuk: 'كبير', cadi: 'ساحرة', cafe: 'كافيه',
+        cappuccino: 'كابتشينو', cay: 'شاي', cayi: 'شاي', cerez: 'مكسرات', chees: 'تشيز',
+        chilled: 'مبرد', churchill: 'تشرشل', cikolata: 'شوكولاتة', cilek: 'فراولة', coffe: 'قهوة',
+        cup: 'كوب', dejavu: 'دجافو', dibek: 'ديبك', didi: 'ديدي', dimes: 'دايمز', dominik: 'دومينيك',
+        dondurma: 'آيس كريم', dondurmali: 'مع آيس كريم', doppio: 'دوبّيو', dream: 'حلم', duble: 'مزدوج',
+        egzotica: 'إكزوتيكا', ekmek: 'خبز', elma: 'تفاح', espresso: 'إسبريسو', extra: 'إضافي',
+        fakher: 'فاخر', fistik: 'فستق', flat: 'فلات', frappe: 'فرابيه', gato: 'غاتو', gazozu: 'مشروب غازي',
+        guava: 'جوافة', havuc: 'جزر', hazir: 'سريع التحضير', icecek: 'مشروب', ihlamur: 'زيزفون',
+        italian: 'إيطالي', juss: 'جوس', kahve: 'قهوة', kahvesi: 'قهوة', kakule: 'هيل', karisik: 'مشكل',
+        karpuz: 'بطيخ', kasesi: 'وعاء', kek: 'كيك', kekik: 'زعتر', killer: 'كيلر', kivi: 'كيوي',
+        kizilay: 'كيزيلاي', klasik: 'كلاسيكي', kola: 'كولا', kucuk: 'صغير', kusburnu: 'ورد بري',
+        laddy: 'لادي', latte: 'لاتيه', limon: 'ليمون', limonata: 'ليمونادة', love66: 'لاف 66',
+        lule: 'رأس الشيشة', lungo: 'لونغو', macchiato: 'ماكياتو', macciato: 'ماكياتو', mango: 'مانجو',
+        menengic: 'مينينغيتش', meyve: 'فاكهة', meyvesi: 'فاكهة', milkshake: 'ميلك شيك', mujitos: 'موهيتو',
+        muz: 'موز', nane: 'نعناع', nargile: 'شيشة', nitra: 'نيترو', oralet: 'أوراليت', orman: 'غابة',
+        osmanli: 'عثماني', papatya: 'بابونج', pasta: 'كعكة', patates: 'بطاطس', peri: 'جنية',
+        portakal: 'برتقال', red: 'أحمر', ristretto: 'ريستريتو', sade: 'سادة', sakiz: 'علكة',
+        sariyer: 'سارير', seftali: 'خوخ', seker: 'سكر', serin: 'منعش', sicak: 'ساخن', sikim: 'معصور طازج',
+        smoothie: 'سموذي', soguk: 'بارد', su: 'ماء', sucuk: 'سجق', sut: 'حليب', suyu: 'عصير',
+        tabagi: 'طبق', tabak: 'طبق', tatli: 'حلوى', taze: 'طازج', top: 'كرة', tost: 'توست',
+        alt: 'فرعي', secenek: 'خيار', secenekler: 'خيارات', adet: 'قطعة', filtre: 'مفلتر', nakhla: 'نخلة',
+        nigde: 'نيغده', siyah: 'أسود', sutlu: 'بالحليب', kasar: 'جبنة كاشار',
+        '0': '٠', '200ml': '٢٠٠ مل', '340g': '٣٤٠ غراماً', '70g': '٧٠ غراماً', '5l': '٥ لترات',
+        turk: 'تركي', uc: 'ثلاث', uludag: 'أولوداغ', uzum: 'عنب', uzun: 'طويل', vanilya: 'فانيليا',
+        visne: 'كرز حامض', white: 'أبيض', yas: 'كامل', yesil: 'أخضر', yiyecek: 'طعام'
+    };
+
+    const ARABIC_LETTERS = {
+        a: 'ا', b: 'ب', c: 'ك', d: 'د', e: 'ي', f: 'ف', g: 'ج', h: 'ه', i: 'ي', j: 'ج',
+        k: 'ك', l: 'ل', m: 'م', n: 'ن', o: 'و', p: 'ب', q: 'ق', r: 'ر', s: 'س', t: 'ت',
+        u: 'و', v: 'ف', w: 'و', x: 'كس', y: 'ي', z: 'ز'
+    };
+
+    const normalizeMenuTranslationKey = value => String(value || '')
+        .normalize('NFD')
+        .replace(/\p{M}/gu, '')
+        .toLocaleLowerCase('tr-TR')
+        .replace(/ı/g, 'i')
+        .replace(/\s+/g, ' ')
+        .trim();
+    const normalizedEnglishTranslations = new Map(
+        Object.entries(translationsDict).map(([source, translated]) => [normalizeMenuTranslationKey(source), translated])
+    );
+    const ARABIC_PRODUCT_DESCRIPTIONS = new Map([
+        ['Bol köpüğü ve yoğun aromasıyla geleneksel Türk kahvesi keyfi.', 'رشفات من القهوة التركية التقليدية برغوة غنية ونكهة عميقة.'],
+        ['Dengeli gövdesi ve temiz bitişiyle gün boyu keyifle içilen filtre kahve.', 'قهوة مفلترة متوازنة ذات مذاق صافٍ، مناسبة للاستمتاع بها طوال اليوم.'],
+        ['Katmanlı süt ve espresso görünümüyle hafif, zarif ve yumuşak içimli kahve.', 'قهوة خفيفة وأنيقة وناعمة، بطبقات واضحة من الحليب والإسبريسو.'],
+        ['Sütlü ve yumuşak içimiyle sıcak günler için ideal soğuk latte.', 'لاتيه بارد ناعم بالحليب، مثالي للأيام الحارة.'],
+        ['Kremamsı dokusu ve dengeli tatlılığıyla kahvenize eşlik eden özel cheesecake.', 'تشيز كيك مميز بقوام كريمي وحلاوة متوازنة، يرافق قهوتك على نحو مثالي.']
+    ].map(([source, translated]) => [normalizeMenuTranslationKey(source), translated]));
+
+    function transliterateArabicMenuWord(word) {
+        return [...word].map(letter => ARABIC_LETTERS[letter] || letter).join('');
+    }
+
+    function translateMenuText(value, language = aktifDil) {
+        const source = String(value || '').trim();
+        if (!source || language === 'tr') return source;
+        const normalized = normalizeMenuTranslationKey(source);
+        if (language === 'en') {
+            const exact = normalizedEnglishTranslations.get(normalized);
+            if (exact) return exact;
+        }
+        const words = language === 'ar' ? AR_MENU_WORDS : EN_MENU_WORDS;
+        return normalized.replace(/[a-z0-9]+|[^a-z0-9]+/g, token => {
+            if (!/[a-z0-9]/.test(token)) return token;
+            if (words[token]) return words[token];
+            return language === 'ar' ? transliterateArabicMenuWord(token) : token;
+        });
+    }
+
     function localizedExtraName(extra) {
         if (!extra) return '';
-        if (aktifDil === 'en') return extra.isim_en || translationsDict[extra.isim] || extra.isim || '';
-        return extra.isim || '';
+        const source = extra.isim || '';
+        if (aktifDil === 'tr') return source;
+        const translated = aktifDil === 'ar'
+            ? extra.isim_ar
+            : (extra.isim_en && normalizeMenuTranslationKey(extra.isim_en) !== normalizeMenuTranslationKey(source) ? extra.isim_en : '');
+        return translated && normalizeMenuTranslationKey(translated) !== normalizeMenuTranslationKey(source)
+            ? translated
+            : translateMenuText(source);
     }
 
     function localizedCategoryName(category, fallback = '') {
         if (!category) return fallback;
-        if (aktifDil === 'en') return category.isim_en || translationsDict[category.isim] || category.isim || fallback;
-        return category.isim || fallback;
+        const source = category.isim || fallback;
+        if (aktifDil === 'tr') return source;
+        const translated = aktifDil === 'ar'
+            ? category.isim_ar
+            : (category.isim_en && normalizeMenuTranslationKey(category.isim_en) !== normalizeMenuTranslationKey(source) ? category.isim_en : '');
+        return translated && normalizeMenuTranslationKey(translated) !== normalizeMenuTranslationKey(source)
+            ? translated
+            : translateMenuText(source);
     }
 
     function localizedProductName(product) {
         if (!product) return '';
-        if (aktifDil === 'en') return product.ad_en || translationsDict[product.ad] || product.ad || '';
-        return product.ad || '';
+        const source = product.ad || '';
+        if (aktifDil === 'tr') return source;
+        const translated = aktifDil === 'ar'
+            ? product.ad_ar
+            : (product.ad_en && normalizeMenuTranslationKey(product.ad_en) !== normalizeMenuTranslationKey(source) ? product.ad_en : '');
+        return translated && normalizeMenuTranslationKey(translated) !== normalizeMenuTranslationKey(source)
+            ? translated
+            : translateMenuText(source);
     }
 
     function localizedProductDescription(product, fallback = '') {
         if (!product) return fallback;
-        if (aktifDil === 'en') return product.aciklama_en || fallback;
-        return product.aciklama || fallback;
+        if (aktifDil === 'tr') return product.aciklama || fallback;
+        const source = String(product.aciklama || '').trim();
+        const translated = aktifDil === 'ar'
+            ? product.aciklama_ar
+            : product.aciklama_en;
+        if (translated && normalizeMenuTranslationKey(translated) !== normalizeMenuTranslationKey(source)) return translated;
+        if (aktifDil === 'ar') return ARABIC_PRODUCT_DESCRIPTIONS.get(normalizeMenuTranslationKey(source)) || fallback;
+        return fallback;
+    }
+
+    function localizedVariantName(variant) {
+        const source = String(variant?.isim || '');
+        if (aktifDil === 'tr') return source;
+        const translated = variant?.[`isim_${aktifDil}`];
+        return translated && normalizeMenuTranslationKey(translated) !== normalizeMenuTranslationKey(source)
+            ? translated
+            : translateMenuText(source);
+    }
+
+    function localizedVariantGroupName(group) {
+        const source = String(group?.grup || '');
+        if (aktifDil === 'tr') return source;
+        const translated = group?.[`grup_${aktifDil}`];
+        return translated && normalizeMenuTranslationKey(translated) !== normalizeMenuTranslationKey(source)
+            ? translated
+            : translateMenuText(source);
     }
 
     function refreshLocalizedControls() {
@@ -5463,6 +5882,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	            const key = el.getAttribute('data-i18n-aria-label');
 	            el.setAttribute('aria-label', t(key));
 	        });
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            const key = el.getAttribute('data-i18n-title');
+            el.title = t(key);
+        });
         // Dil butonu etiketi
         const langLabels = { tr: 'EN', en: 'AR', ar: 'TR' };
         document.getElementById('langBtnLabel').textContent = langLabels[aktifDil] || 'EN';
@@ -5489,6 +5912,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         // Tüm dinamik bileşenleri yenile
         buildNav();
         renderProducts();
+        if (typeof kfmRenderOrderCart === 'function') kfmRenderOrderCart();
+        if (window.__activeOrderTracking && !document.getElementById('orderTrackingPanel')?.hidden) {
+            kfmOrderTrackingGoster(window.__activeOrderTracking);
+        }
         if (document.getElementById('productDetailModal')?.classList.contains('open')) {
             if (window.__activeDetailProduct) openProductDetail(null, { product: window.__activeDetailProduct, recordInteraction: false });
             else if (aktifDetayIndex !== null) openProductDetail(aktifDetayIndex, { recordInteraction: false });
@@ -5647,9 +6074,11 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             const label = document.getElementById('cartAddToastProduct');
             if (!el || !label) return;
             const count = Math.max(1, Number(quantity) || 1);
-            const name = String(productName || (aktifDil === 'en' ? 'Product' : 'Ürün'));
+            const name = String(productName || t('cart_product_fallback'));
             label.textContent = count > 1
-                ? `${name} · ${count} adet sepette`
+                ? t('cart_count_message')
+                    .replace('{name}', name)
+                    .replace('{count}', new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR').format(count))
                 : name;
             kfmCartIconBounce();
             el.classList.add('is-visible');
@@ -6299,7 +6728,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             box.insertAdjacentHTML('beforeend', `
               <div class="flex items-center justify-between glass border p-3 rounded-2xl shadow-sm">
                 <div>
-                  <p class="font-bold text-[13px]" style="color:var(--ink);">${escapeHtml((aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim)}</p>
+                  <p class="font-bold text-[13px]" style="color:var(--ink);">${escapeHtml(localizedCategoryName(menuData[k]))}</p>
                   <p class="text-[11px] font-medium" style="color:var(--muted2);">ID: ${escapeHtml(k)} · ${urunSayisi} ürün</p>
                 </div>
                 <button onclick="kategoriSil('${escapeHtml(k)}')"
@@ -6372,10 +6801,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         }
         const matches = [];
         Object.entries(menuData).forEach(([categoryKey, category]) => {
-            const categoryName = (aktifDil === 'en' && category.isim_en) ? category.isim_en : category.isim;
+            const categoryName = localizedCategoryName(category);
             (category.urunler || []).forEach(product => {
                 if (hideOutOfStock && product.stoktaVar === false) return;
-                const productName = (aktifDil === 'en' && product.ad_en) ? product.ad_en : product.ad;
+                const productName = localizedProductName(product);
                 const searchable = [product.ad, product.ad_en, productName, categoryName, ...(product.ekstralar || []).map(extra => extra.isim || extra.name)].join(' ');
                 if (kategoriUrunAramaMetni(searchable).includes(query)) {
                     matches.push({ categoryKey, categoryName, product, productName });
@@ -6497,7 +6926,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         for (let k in menuData) {
             const btn = document.createElement('div');
             const count = (menuData[k].urunler || []).filter(item => !hideOutOfStock || item.stoktaVar !== false).length;
-            const label = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
+            const label = localizedCategoryName(menuData[k]);
             btn.className = 'cat-pill' + (k === aktifKat ? ' active' : '') + (window.kfmLiveMenuSettings?.featured_category_id === k ? ' remote-featured' : '');
             btn.id = 'cp-' + k;
             btn.innerHTML = `<span class="cat-pill-label">${escapeHtml(label)}</span><span class="cat-pill-count">${count}</span>`;
@@ -6507,7 +6936,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 
             const opt = document.createElement('option');
             opt.value = k;
-            opt.textContent = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
+            opt.textContent = localizedCategoryName(menuData[k]);
             apKat.appendChild(opt.cloneNode(true));
             apFil.appendChild(opt);
         }
@@ -7352,7 +7781,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         if (!button || !modal) return;
         const key = modal.dataset.categoryKey || '';
         const category = menuData[key];
-        const categoryName = localizedCategoryName(category, aktifDil === 'en' ? 'Category' : 'Kategori');
+        const categoryName = localizedCategoryName(category, t('category_fallback'));
         const prefix = t('more_category');
         button.innerHTML = `<i class="fa-solid fa-layer-group"></i><span>${escapeHtml(prefix)} ${escapeHtml(categoryName)}</span>`;
         button.disabled = !key || !category;
@@ -7407,9 +7836,11 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const category = localizedCategoryName(menuData[suggestion.catKey], 'Keyfimce');
         const image = kfmV21ProductImage(suggestion, suggestion.catKey);
         const fallback = kfmV21FallbackFor(suggestion, suggestion.catKey);
-        const copy = aktifDil === 'en'
-            ? { kicker: 'Perfect pair', detail: 'Discover this match', action: `View ${name}` }
-            : { kicker: 'Mükemmel ikili', detail: 'Bu eşleşmeyi keşfedin', action: `${name} detayını aç` };
+        const copy = {
+            kicker: t('pair_label'),
+            detail: t('pair_discover'),
+            action: t('pair_open').replace('{name}', name)
+        };
         container.hidden = false;
         container.innerHTML = `
           <div class="detail-pair-card">
@@ -7432,15 +7863,15 @@ function apUrunDosyaSecildi(event, catKey, id) {
     // Etiketler yalnız dolu alanla bölüm gösterir; alt seçenek/stok/sepet
     // davranışına dokunmaz.
     const KFM_YAYGIN_ALERJENLER = [
-        { eslesme: /\b(gluten|buğday|bugday|wheat)\b/i, etiket_tr: 'Gluten', etiket_en: 'Gluten', ikon: 'fa-wheat-awn' },
-        { eslesme: /\b(süt|sut|sütc|laktoz|milk|süt ürünleri)\b/i, etiket_tr: 'Süt ürünleri', etiket_en: 'Dairy', ikon: 'fa-jar' },
-        { eslesme: /\b(fındık|findik|badem|ceviz|fıstık|fistik|nut|nuts|peanut|almond|walnut|hazelnut)\b/i, etiket_tr: 'Kuruyemiş', etiket_en: 'Nuts', ikon: 'fa-seedling' },
-        { eslesme: /\b(yumurta|egg|eggs)\b/i, etiket_tr: 'Yumurta', etiket_en: 'Egg', ikon: 'fa-egg' },
-        { eslesme: /\b(soya|soya fasulyesi|soy)\b/i, etiket_tr: 'Soya', etiket_en: 'Soy', ikon: 'fa-seedling' },
-        { eslesme: /\b(balık|balik|karides|deniz ürünleri|fish|shrimp|seafood)\b/i, etiket_tr: 'Deniz ürünleri', etiket_en: 'Seafood', ikon: 'fa-fish' },
-        { eslesme: /\b(sesam|susam)\b/i, etiket_tr: 'Susam', etiket_en: 'Sesame', ikon: 'fa-seedling' },
-        { eslesme: /\b(kafein|caffeine|kahve içeriği)\b/i, etiket_tr: 'Kafein', etiket_en: 'Caffeine', ikon: 'fa-mug-hot' },
-        { eslesme: /\b(tütün|nikotin|tobacco|nicotine)\b/i, etiket_tr: 'Tütün ürünü', etiket_en: 'Tobacco', ikon: 'fa-smoking' },
+        { eslesme: /\b(gluten|buğday|bugday|wheat)\b/i, etiket_tr: 'Gluten', etiket_en: 'Gluten', etiket_ar: 'الغلوتين', ikon: 'fa-wheat-awn' },
+        { eslesme: /\b(süt|sut|sütc|laktoz|milk|süt ürünleri)\b/i, etiket_tr: 'Süt ürünleri', etiket_en: 'Dairy', etiket_ar: 'منتجات الألبان', ikon: 'fa-jar' },
+        { eslesme: /\b(fındık|findik|badem|ceviz|fıstık|fistik|nut|nuts|peanut|almond|walnut|hazelnut)\b/i, etiket_tr: 'Kuruyemiş', etiket_en: 'Nuts', etiket_ar: 'المكسرات', ikon: 'fa-seedling' },
+        { eslesme: /\b(yumurta|egg|eggs)\b/i, etiket_tr: 'Yumurta', etiket_en: 'Egg', etiket_ar: 'البيض', ikon: 'fa-egg' },
+        { eslesme: /\b(soya|soya fasulyesi|soy)\b/i, etiket_tr: 'Soya', etiket_en: 'Soy', etiket_ar: 'الصويا', ikon: 'fa-seedling' },
+        { eslesme: /\b(balık|balik|karides|deniz ürünleri|fish|shrimp|seafood)\b/i, etiket_tr: 'Deniz ürünleri', etiket_en: 'Seafood', etiket_ar: 'مأكولات بحرية', ikon: 'fa-fish' },
+        { eslesme: /\b(sesam|susam)\b/i, etiket_tr: 'Susam', etiket_en: 'Sesame', etiket_ar: 'السمسم', ikon: 'fa-seedling' },
+        { eslesme: /\b(kafein|caffeine|kahve içeriği)\b/i, etiket_tr: 'Kafein', etiket_en: 'Caffeine', etiket_ar: 'الكافيين', ikon: 'fa-mug-hot' },
+        { eslesme: /\b(tütün|nikotin|tobacco|nicotine)\b/i, etiket_tr: 'Tütün ürünü', etiket_en: 'Tobacco', etiket_ar: 'منتج تبغ', ikon: 'fa-smoking' },
     ];
 
     function kfmAlanDizisineDonustur(value) {
@@ -7450,23 +7881,33 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
     function kfmAlerjenEtiketi(metin) {
         const eslesen = KFM_YAYGIN_ALERJENLER.find(a => a.eslesme.test(String(metin || '')));
-        if (aktifDil === 'en') return eslesen ? eslesen.etiket_en : String(metin || '').trim();
+        if (aktifDil === 'en') return eslesen ? eslesen.etiket_en : translateMenuText(metin);
+        if (aktifDil === 'ar') return eslesen ? eslesen.etiket_ar : translateMenuText(metin);
         return eslesen ? eslesen.etiket_tr : String(metin || '').trim();
     }
 
     function kfmUrunIcerikEtiketleriniGoster(item) {
         const section = document.getElementById('detailContentTags');
         if (!section) return;
-        const icerik = kfmAlanDizisineDonustur(item?.icerik);
-        const alerjenler = kfmAlanDizisineDonustur(item?.alerjenler);
-        const not = String(item?.alerjen_notu || '').trim();
+        const localizeEntries = key => {
+            const source = item?.[key];
+            if (aktifDil === 'tr') return kfmAlanDizisineDonustur(source);
+            const translated = item?.[`${key}_${aktifDil}`];
+            if (translated) return kfmAlanDizisineDonustur(translated);
+            return kfmAlanDizisineDonustur(source).map(entry => translateMenuText(entry));
+        };
+        const icerik = localizeEntries('icerik');
+        const alerjenler = localizeEntries('alerjenler');
+        const translatedNote = item?.[`alerjen_notu_${aktifDil}`];
+        const rawNote = String(aktifDil === 'tr' ? item?.alerjen_notu : (translatedNote || item?.alerjen_notu) || '').trim();
+        const not = rawNote && aktifDil !== 'tr' && !translatedNote ? translateMenuText(rawNote) : rawNote;
         const pills = document.getElementById('detailContentPills');
         const notice = document.getElementById('detailAllergenNotice');
         const heading = document.getElementById('detailTagsHeading');
         const toggle = document.getElementById('detailContentToggle');
         const toggleText = document.getElementById('detailContentToggleText');
-        if (heading) heading.textContent = aktifDil === 'en' ? 'Ingredients & Allergens' : 'İçerik & Alerjenler';
-        if (toggleText) toggleText.textContent = aktifDil === 'en' ? 'Product Contents' : 'Ürün İçeriği';
+        if (heading) heading.textContent = t('detail_tags_heading');
+        if (toggleText) toggleText.textContent = t('detail_contents_toggle');
         if (!icerik.length && !alerjenler.length && !not) {
             section.hidden = true;
             if (toggle) { toggle.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
@@ -7474,8 +7915,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
             notice.hidden = true;
             return;
         }
-        section.hidden = true;
-        if (toggle) { toggle.hidden = false; toggle.setAttribute('aria-expanded', 'false'); }
+        section.hidden = false;
+        if (toggle) { toggle.hidden = false; toggle.setAttribute('aria-expanded', 'true'); }
         pills.innerHTML = [
             ...icerik.map(entry => `<span class="detail-content-tag"><i class="fa-solid fa-bowl-food" aria-hidden="true"></i>${escapeHtml(entry)}</span>`),
             ...alerjenler.map(entry => `<span class="detail-content-tag is-allergen"><i class="fa-solid ${escapeHtml(KFM_YAYGIN_ALERJENLER.find(a => a.eslesme.test(String(entry)))?.ikon || 'fa-triangle-exclamation')}" aria-hidden="true"></i>${escapeHtml(kfmAlerjenEtiketi(entry))}</span>`),
@@ -7586,8 +8027,17 @@ function apUrunDosyaSecildi(event, catKey, id) {
                         .filter(input => input.dataset.variantGroup === groupName).length;
                     const remaining = Math.max(0, limit - selected);
                     const required = counter.dataset.selectionRequired === 'true';
-                    const counterText = limit ? (remaining ? `${selected}/${limit} seçildi · ${remaining} kaldı` : `${selected}/${limit} seçildi · Limit doldu`) : (selected ? `${selected} seçildi` : 'Henüz seçim yok');
-                    counter.textContent = required ? (selected ? `✓ Seçim tamam · ${counterText}` : `● Seçim gerekli · ${counterText}`) : counterText;
+                    const formatNumber = value => new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR').format(value);
+                    const counterText = limit
+                        ? t('variant_count')
+                            .replace('{selected}', formatNumber(selected))
+                            .replace('{limit}', formatNumber(limit))
+                            .replace('{remaining}', formatNumber(remaining))
+                        : (selected
+                            ? t('variant_count_selected').replace('{count}', formatNumber(selected))
+                            : t('variant_no_selection'));
+                    const requiredText = selected ? t('variant_complete') : t('variant_required_prompt');
+                    counter.textContent = required ? `${requiredText} · ${counterText}` : counterText;
                     counter.classList.toggle('is-full', limit > 0 && remaining === 0);
                     counter.classList.toggle('is-required', required && selected === 0);
                     counter.classList.toggle('is-complete', required && selected > 0);
@@ -7599,9 +8049,14 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                const title = document.createElement('div');
 	                title.className = 'detail-variant-group-title';
 	                const titleText = document.createElement('span');
-	                titleText.textContent = group.grup;
+	                titleText.textContent = localizedVariantGroupName(group);
 	                const rule = document.createElement('small');
-	                rule.textContent = `${group.zorunlu ? 'Seçim gerekli' : 'İsteğe bağlı'} · ${group.secim_tipi === 'tekli' ? 'Tek seçim' : (group.max_secim ? `En fazla ${group.max_secim} seçim` : 'Birden fazla seçilebilir')}`;
+                    const choiceRule = group.secim_tipi === 'tekli'
+                        ? t('variant_single')
+                        : (group.max_secim
+                            ? t('variant_max').replace('{count}', String(group.max_secim))
+                            : t('variant_multiple'));
+	                rule.textContent = `${group.zorunlu ? t('variant_required') : t('variant_optional')} · ${choiceRule}`;
 	                title.append(titleText, rule);
                 if (group.max_secim || group.zorunlu) {
                     const counter = document.createElement('small');
@@ -7622,7 +8077,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    input.value = kfmOrderVariantKey(variant);
 	                    input.dataset.variantName = variant.isim;
 			                    input.dataset.variantGroup = variant.grup;
-			                    input.setAttribute('aria-label', `${variant.isim} alt seçeneğini ekle`);
+			                    input.setAttribute('aria-label', `${localizedVariantName(variant)} ${t('variant_alt_suffix')}`);
 			                    input.disabled = !variant.stokta_var;
 	                    input.addEventListener('change', () => {
 	                        if (input.checked && input.type === 'checkbox' && group.max_secim) {
@@ -7630,7 +8085,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                                .filter(candidate => candidate.dataset.variantGroup === group.grup);
 	                            if (selectedInGroup.length > group.max_secim) {
 	                                input.checked = false;
-	                                toast(`⚠️ ${group.grup} için en fazla ${group.max_secim} seçim yapabilirsiniz.`);
+                                    toast(t('variant_limit_error')
+                                        .replace('{group}', localizedVariantGroupName(group))
+                                        .replace('{count}', String(group.max_secim)));
 	                            }
 	                        }
 	                        selectionsSync();
@@ -7638,11 +8095,17 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    const main = document.createElement('span');
 	                    main.className = 'detail-variant-option-main';
                     const variantStockAmount = variant.stok_miktar === null || variant.stok_miktar === undefined ? null : Number(variant.stok_miktar);
-                    const variantStockText = Number.isFinite(variantStockAmount) ? ` · Kalan: ${new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 2 }).format(variantStockAmount)} ${variant.stok_birim || 'adet'}` : '';
-                    main.append(input, document.createTextNode(!variant.stokta_var ? `${variant.isim} (Stokta yok${variantStockText})` : (variant.stok_uyari ? `${variant.isim} (Stok eşiğinde${variantStockText})` : variant.isim)));
+                    const variantName = localizedVariantName(variant);
+                    const variantStockText = Number.isFinite(variantStockAmount)
+                        ? ` · ${t('variant_stock_remaining')}: ${new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR', { maximumFractionDigits: 2 }).format(variantStockAmount)} ${translateMenuText(variant.stok_birim || 'adet')}`
+                        : '';
+                    const variantStatus = !variant.stokta_var
+                        ? ` (${t('variant_out_of_stock')}${variantStockText})`
+                        : (variant.stok_uyari ? ` (${t('variant_stock_low')}${variantStockText})` : '');
+                    main.append(input, document.createTextNode(`${variantName}${variantStatus}`));
 	                    const price = document.createElement('span');
 	                    price.className = 'detail-variant-option-price';
-	                    price.textContent = variant.ek_fiyat ? `+${variant.ek_fiyat}₺` : 'Dahil';
+	                    price.textContent = variant.ek_fiyat ? `+${variant.ek_fiyat}₺` : t('detail_included');
 	                    option.append(main, price);
 	                    groupEl.appendChild(option);
 	                });
@@ -7654,8 +8117,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        if (addToCartButton) {
 	            addToCartButton.disabled = !item.stoktaVar;
 	            addToCartButton.innerHTML = item.stoktaVar
-	                ? '<i class="fa-solid fa-bag-shopping"></i> Sepete Ekle'
-	                : '<i class="fa-solid fa-ban"></i> Stokta Yok';
+	                ? `<i class="fa-solid fa-bag-shopping"></i> ${escapeHtml(t('detail_add_to_cart'))}`
+	                : `<i class="fa-solid fa-ban"></i> ${escapeHtml(t('out_of_stock'))}`;
 	        }
 	        renderDetailPairSuggestion(item);
         modalAc('productDetailModal');
@@ -7816,7 +8279,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	    let kfmOrderCart = [];
 
 	    function kfmFormatOrderTotal(amountInKurus) {
-	        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 2 }).format(amountInKurus / 100);
+	        const locale = aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR';
+	        return new Intl.NumberFormat(locale, { style: 'currency', currency: 'TRY', maximumFractionDigits: 2 }).format(amountInKurus / 100);
 	    }
 
 	    function kfmOrderProductKey(product, name, unitPrice, variantNames = []) {
@@ -7829,8 +8293,12 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        return (Array.isArray(product?.varyantlar) ? product.varyantlar : [])
 	            .map(variant => ({
 	                isim: String(variant?.isim || '').trim(),
+                    isim_en: String(variant?.isim_en || '').trim(),
+                    isim_ar: String(variant?.isim_ar || '').trim(),
 	                ek_fiyat: Math.max(0, Math.round(Number(variant?.ek_fiyat || 0))),
 			                grup: String(variant?.grup || 'Alt seçenekler').trim().slice(0, 48) || 'Alt seçenekler',
+                    grup_en: String(variant?.grup_en || '').trim(),
+                    grup_ar: String(variant?.grup_ar || '').trim(),
 	                grup_sira: Math.max(0, Math.min(999, Math.round(Number(variant?.grup_sira || 0)))),
 	                zorunlu: variant?.zorunlu === true,
 	                secim_tipi: String(variant?.secim_tipi || '').toLowerCase() === 'tekli' ? 'tekli' : 'coklu',
@@ -7850,7 +8318,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	    function kfmOrderVariantGroups(variants) {
 			        const groups = new Map();
 			        variants.forEach(variant => {
-	            const group = groups.get(variant.grup) || { grup: variant.grup, grup_sira: variant.grup_sira, zorunlu: false, secim_tipi: 'coklu', max_secim: 0, varyantlar: [] };
+	            const group = groups.get(variant.grup) || { grup: variant.grup, grup_en: variant.grup_en, grup_ar: variant.grup_ar, grup_sira: variant.grup_sira, zorunlu: false, secim_tipi: 'coklu', max_secim: 0, varyantlar: [] };
 			            group.grup_sira = Math.min(group.grup_sira, variant.grup_sira);
 	            group.zorunlu ||= variant.zorunlu;
 	            if (variant.secim_tipi === 'tekli') group.secim_tipi = 'tekli';
@@ -7881,6 +8349,11 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            .map(group => group.grup);
 	    }
 
+    function kfmLocalizedVariantGroupList(product, names) {
+        const groups = kfmOrderVariantGroups(kfmOrderProductVariants(product));
+        return names.map(name => localizedVariantGroupName(groups.find(group => group.grup === name) || { grup: name })).join(', ');
+    }
+
 	    function kfmExceededVariantGroups(product, selectedNames = []) {
 	        const selectedKeys = new Set(kfmSelectedOrderVariants(product, selectedNames).map(kfmOrderVariantKey));
 	        return kfmOrderVariantGroups(kfmOrderProductVariants(product))
@@ -7890,42 +8363,54 @@ function apUrunDosyaSecildi(event, catKey, id) {
 
 	    function kfmAddProductToOrder(product, selectedNames = []) {
 	        if (!product || !product.stoktaVar) {
-	            toast('⚠️ Bu ürün şu anda siparişe eklenemiyor.');
+	            toast(t('order_unavailable_product'));
 	            return;
 	        }
 			        const productName = localizedProductName(product).trim();
 			        const baseUnitPrice = Math.round(Number(product.fiyat) * 100);
 			        const unavailableGroups = kfmUnavailableRequiredVariantGroups(product);
 			        if (unavailableGroups.length) {
-			            toast(`⚠️ Stokta seçenek yok: ${unavailableGroups.join(', ')}`);
+			            toast(t('order_no_options').replace('{groups}', kfmLocalizedVariantGroupList(product, unavailableGroups)));
 			            return;
 			        }
 			        const missingGroups = kfmMissingRequiredVariantGroups(product, selectedNames);
 	        if (missingGroups.length) {
-	            toast(`⚠️ Önce seçin: ${missingGroups.join(', ')}`);
+	            toast(t('order_choose_option').replace('{groups}', kfmLocalizedVariantGroupList(product, missingGroups)));
 	            return;
 	        }
 	        const exceededGroups = kfmExceededVariantGroups(product, selectedNames);
 	        if (exceededGroups.length) {
-	            toast(`⚠️ Seçim limitini azaltın: ${exceededGroups.join(', ')}`);
+	            toast(t('order_reduce_selection').replace('{groups}', kfmLocalizedVariantGroupList(product, exceededGroups)));
 	            return;
 	        }
 	        const selectedVariants = kfmSelectedOrderVariants(product, selectedNames);
 	        const variantAmount = selectedVariants.reduce((sum, variant) => sum + variant.ek_fiyat, 0) * 100;
 	        const unitPrice = baseUnitPrice + variantAmount;
 	        const variantNames = selectedVariants.map(variant => variant.isim);
-	        const name = `${productName}${variantNames.length ? ` (${variantNames.join(', ')})` : ''}`;
+            const displayVariantNames = selectedVariants.map(localizedVariantName);
+	        const name = `${productName}${displayVariantNames.length ? ` (${displayVariantNames.join(', ')})` : ''}`;
 	        if (!productName || !Number.isSafeInteger(unitPrice) || unitPrice < 0) {
-	            toast('⚠️ Ürün bilgisi siparişe uygun değil.');
+	            toast(t('order_invalid_product'));
 	            return;
 	        }
 	        const productKey = kfmOrderProductKey(product, productName, baseUnitPrice, variantNames);
 	        const existing = kfmOrderCart.find(item => item.productKey === productKey);
 	        if (existing) existing.quantity = Math.min(99, existing.quantity + 1);
 	        else kfmOrderCart.push({
-                    productKey, productName, name, unitPrice, quantity: 1,
+                    productKey, productName, name,
+                    sourceProductName: String(product?.ad || productName),
+                    sourceProductData: { ad: String(product?.ad || ''), ad_en: String(product?.ad_en || ''), ad_ar: String(product?.ad_ar || '') },
+                    sourceVariantNames: variantNames,
+                    sourceVariants: selectedVariants.map(variant => ({ isim: variant.isim, isim_en: variant.isim_en, isim_ar: variant.isim_ar })),
+                    unitPrice, quantity: 1,
                     categoryKey: String(product?.catKey || product?.kategori_id || '').trim(),
-                    categoryName: String(menuData?.[product?.catKey]?.isim || product?.kategori || '').trim(),
+                    categoryName: localizedCategoryName(menuData?.[product?.catKey], String(product?.kategori || '').trim()),
+                    sourceCategoryName: String(menuData?.[product?.catKey]?.isim || product?.kategori || '').trim(),
+                    sourceCategoryData: menuData?.[product?.catKey] ? {
+                        isim: String(menuData[product.catKey].isim || ''),
+                        isim_en: String(menuData[product.catKey].isim_en || ''),
+                        isim_ar: String(menuData[product.catKey].isim_ar || '')
+                    } : null,
                     alt_secenekler: variantNames,
 	            alt_secenek_gruplari: selectedVariants.map(variant => ({ isim: variant.isim, grup: variant.grup })),
 		});
@@ -7933,6 +8418,15 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		kfmOrderBadgePulse();
 		kfmCartAddToast(name, existing ? existing.quantity : 1);
 	}
+
+    function kfmOrderCartDisplayName(item) {
+        if (!item?.sourceProductName) return item?.name || '';
+        const productName = localizedProductName(item.sourceProductData || { ad: item.sourceProductName });
+        const variants = Array.isArray(item.sourceVariants)
+            ? item.sourceVariants.map(localizedVariantName)
+            : (Array.isArray(item.sourceVariantNames) ? item.sourceVariantNames : []).map(name => translateMenuText(name));
+        return `${productName}${variants.length ? ` (${variants.join(', ')})` : ''}`;
+    }
 
         function kfmOrderBadgePulse() {
             const badge = document.getElementById('orderCartBadge');
@@ -7970,11 +8464,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        if (!item.quantity) {
 	            kfmOrderCart.splice(index, 1);
 	            kfmRenderOrderCart();
-	            toast(`✓ ${item.name} sepetten çıkarıldı.`);
+	            toast(t('cart_removed').replace('{name}', kfmOrderCartDisplayName(item)));
 	            return;
 	        }
 		        kfmRenderOrderCart();
-		        toast(`✓ ${item.name} adedi ${item.quantity} oldu.`);
+        toast(t('cart_quantity_updated')
+            .replace('{name}', kfmOrderCartDisplayName(item))
+            .replace('{count}', new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR').format(item.quantity)));
 		    }
 
 		    function kfmOrderStatusGuncelle(message, mode = 'idle') {
@@ -8251,11 +8747,12 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        const title = document.getElementById('orderTrackingTitle');
 	        if (!panel || !steps) return;
 	        panel.hidden = false;
+        window.__activeOrderTracking = siparis;
 	        const durum = String(siparis?.durum || 'bekliyor');
-	        if (title) title.textContent = aktifDil === 'en' ? 'Order Tracking' : 'Sipariş Takibi';
+	        if (title) title.textContent = t('tracking_title');
 	        if (durum === 'iptal') {
 	            steps.querySelectorAll('li').forEach(li => { li.classList.remove('is-done', 'is-active'); li.classList.add('is-cancelled'); });
-	            if (meta) meta.textContent = aktifDil === 'en' ? 'This order was cancelled. Please contact the team.' : 'Bu sipariş iptal edildi. Ekip ile iletişime geçin.';
+	            if (meta) meta.textContent = t('tracking_cancelled');
 	            return;
 	        }
 	        const siralama = ['alindi', 'hazirlaniyor', 'hazir'];
@@ -8267,10 +8764,11 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        });
 	        const readyAt = siparis?.tahmini_hazir_zamani ? new Date(siparis.tahmini_hazir_zamani) : null;
 	        const readyText = readyAt && Number.isFinite(readyAt.getTime())
-	            ? (aktifDil === 'en' ? ` · Estimated ready ${readyAt.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}` : ` · Tahmini hazır: ${readyAt.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}`)
+	            ? ` · ${t('tracking_estimated_ready').replace('{time}', readyAt.toLocaleTimeString(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en-US' : 'tr-TR', { hour: '2-digit', minute: '2-digit' }))}`
 	            : '';
-	        const label = KFM_TRACKING_LABELS[durum] || KFM_TRACKING_LABELS.bekliyor;
-	        if (meta) meta.textContent = (aktifDil === 'en' ? label.en : label.tr) + readyText;
+        const trackingKeys = { alindi: 'tracking_received', hazirlaniyor: 'tracking_preparing', hazir: 'tracking_ready' };
+        const label = t(trackingKeys[durum] || 'tracking_waiting');
+	        if (meta) meta.textContent = label + readyText;
 	    }
 
 		    function kfmRenderOrderCart() {
@@ -8284,22 +8782,26 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		        const quickGo = document.getElementById('orderCartQuickGo');
 		        const quickGoLabel = document.getElementById('orderCartQuickGoLabel');
 		        if (badge) { badge.hidden = count === 0; badge.textContent = count > 99 ? '99+' : String(count); }
-		        if (countLabel) countLabel.textContent = `${count} ürün`;
+        const formattedCount = new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR').format(count);
+        const countText = t('cart_count').replace('{count}', formattedCount);
+		        if (countLabel) countLabel.textContent = countText;
 		        if (totalLabel) totalLabel.textContent = kfmFormatOrderTotal(total);
 		        if (submit) submit.disabled = count === 0;
 		        if (quickGo) {
 		            quickGo.hidden = count === 0;
 		            quickGo.classList.toggle('is-visible', count > 0);
-		            quickGo.setAttribute('aria-label', count ? `${count} ürün, ${kfmFormatOrderTotal(total)}. Sepete git.` : 'Sepete git');
+		            quickGo.setAttribute('aria-label', count ? `${countText}, ${kfmFormatOrderTotal(total)}. ${t('cart_go')}.` : t('cart_go'));
 		        }
-		        if (quickGoLabel) quickGoLabel.textContent = `${count} ürün · ${kfmFormatOrderTotal(total)}`;
+		        if (quickGoLabel) quickGoLabel.textContent = `${countText} · ${kfmFormatOrderTotal(total)}`;
 		        kfmOrderStatusGuncelle(
-		            count ? `${count} ürün seçildi. Tahmini toplam ${kfmFormatOrderTotal(total)}.` : 'Sepetiniz boş. Menüden ürün seçebilirsiniz.',
+		            count
+                        ? t('order_status_count').replace('{count}', formattedCount).replace('{total}', kfmFormatOrderTotal(total))
+                        : t('order_status_empty'),
 		            count ? 'ready' : 'idle',
 		        );
         if (!list) return;
         if (!kfmOrderCart.length) {
-            list.innerHTML = '<div class="order-cart-empty"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><br>Ürün kartındaki <strong>+</strong> simgesiyle veya ürün detayından sepetinize ürün ekleyebilirsiniz.</div>';
+            list.innerHTML = `<div class="order-cart-empty"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><br>${escapeHtml(t('cart_empty').replace('+', '＋'))}</div>`;
             kfmOrderCartFilterDurumunuSifirla();
 			const wasFilled = list.dataset.cartState === 'filled';
 			list.dataset.cartState = 'empty';
@@ -8308,15 +8810,19 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		}
 		list.dataset.cartState = 'filled';
 		list.classList.remove('is-empty-transition');
-        list.innerHTML = kfmOrderCart.map((item, index) => `
+        list.innerHTML = kfmOrderCart.map((item, index) => {
+            const displayName = kfmOrderCartDisplayName(item);
+            const quantityLabel = `${displayName} ${t('cart_quantity')}`;
+            return `
                 <div class="order-cart-row" role="listitem" data-cart-index="${index}">
-	                <div><strong>${escapeHtml(item.name)}</strong><small>${kfmFormatOrderTotal(item.unitPrice)} × ${item.quantity} · ${kfmFormatOrderTotal(item.unitPrice * item.quantity)}</small></div>
-	                <div class="order-cart-qty" role="group" aria-label="${escapeHtml(item.name)} miktarı">
-	                    <button type="button" onclick="kfmOrderCartChange(${index},-1)" aria-label="${escapeHtml(item.name)} adedini azalt" title="Bir azalt">−</button>
-	                    <output aria-label="${item.quantity} adet">${item.quantity}</output>
-	                    <button type="button" onclick="kfmOrderCartChange(${index},1)" aria-label="${escapeHtml(item.name)} adedini artır" title="Bir artır">+</button>
+	                <div><strong>${escapeHtml(displayName)}</strong><small>${kfmFormatOrderTotal(item.unitPrice)} × ${item.quantity} · ${kfmFormatOrderTotal(item.unitPrice * item.quantity)}</small></div>
+	                <div class="order-cart-qty" role="group" aria-label="${escapeHtml(quantityLabel)}">
+	                    <button type="button" onclick="kfmOrderCartChange(${index},-1)" aria-label="${escapeHtml(`${displayName} ${t('cart_decrease')}`)}" title="${escapeHtml(t('cart_decrease'))}">−</button>
+	                    <output aria-label="${new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR').format(item.quantity)} ${escapeHtml(t('cart_quantity'))}">${item.quantity}</output>
+	                    <button type="button" onclick="kfmOrderCartChange(${index},1)" aria-label="${escapeHtml(`${displayName} ${t('cart_increase')}`)}" title="${escapeHtml(t('cart_increase'))}">+</button>
 	                </div>
-	                        </div>`).join('');
+	                        </div>`;
+        }).join('');
         kfmOrderCartFiltreSecenekleriniDoldur();
         kfmOrderCartFilterUygula(document.getElementById('orderCartSearch')?.value || '');
     }
@@ -8325,8 +8831,14 @@ function apUrunDosyaSecildi(event, catKey, id) {
         if (!select) return;
         const selected = select.value;
         const categories = new Map();
-        kfmOrderCart.forEach(item => { if (item.categoryKey || item.categoryName) categories.set(item.categoryKey || item.categoryName, item.categoryName || item.categoryKey); });
-        select.innerHTML = '<option value="">Tüm kategoriler</option>' + [...categories.entries()].map(([key, label]) => `<option value="${escapeHtml(key)}">${escapeHtml(label)}</option>`).join('');
+        kfmOrderCart.forEach(item => {
+            const label = localizedCategoryName(
+                menuData?.[item.categoryKey] || item.sourceCategoryData,
+                item.sourceCategoryName || item.categoryName || item.categoryKey
+            );
+            if (item.categoryKey || label) categories.set(item.categoryKey || label, label);
+        });
+        select.innerHTML = `<option value="">${escapeHtml(t('cart_all_categories'))}</option>` + [...categories.entries()].map(([key, label]) => `<option value="${escapeHtml(key)}">${escapeHtml(label)}</option>`).join('');
         if ([...categories.keys()].includes(selected)) select.value = selected;
     }
     function kfmOrderCartFilterMetni(item) {
@@ -8370,7 +8882,10 @@ function apUrunDosyaSecildi(event, catKey, id) {
             if (matches) visible += 1;
         });
         if (meta) meta.hidden = false;
-        if (count) count.textContent = `${visible} / ${rows.length} ürün gösteriliyor`;
+        const locale = aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR';
+        if (count) count.textContent = t('cart_filter_count')
+            .replace('{visible}', new Intl.NumberFormat(locale).format(visible))
+            .replace('{total}', new Intl.NumberFormat(locale).format(rows.length));
         let empty = document.getElementById('orderCartFilterEmpty');
         if (!visible) {
             if (!empty) {
@@ -8379,7 +8894,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
                 empty.className = 'order-cart-filter-empty';
                 document.getElementById('orderCartList')?.appendChild(empty);
             }
-            if (empty) empty.textContent = 'Bu aramayla eşleşen ürün yok.';
+            if (empty) empty.textContent = t('cart_filter_empty');
         } else if (empty) empty.remove();
     }
     function kfmOrderCartFilterTemizle() {
@@ -8442,7 +8957,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		        modalAc('webOrderModal');
 		        kfmOrderTrackingYenile().catch(() => {});
 		        kfmOrderStatusGuncelle(
-		            kfmOrderCart.length ? 'Sepetiniz hazır. Masa numaranızı yazıp siparişinizi iletebilirsiniz.' : 'Önce menüden ürün ekleyin; sepetiniz burada görünecek.',
+		            kfmOrderCart.length ? t('order_status_ready') : t('order_status_before_add'),
 		            kfmOrderCart.length ? 'ready' : 'idle',
 		        );
 		        window.setTimeout(() => document.getElementById('orderTableNumber')?.focus(), 180);
@@ -8456,9 +8971,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        const masaNo = String(tableInput?.value || '').trim();
 	        const note = String(noteInput?.value || '').trim();
 	        const tablePattern = /^[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]{1,32}$/;
-	        if (!kfmOrderCart.length) { toast('⚠️ Önce siparişinize en az bir ürün ekleyin.'); return; }
+	        if (!kfmOrderCart.length) { toast(t('order_add_first')); return; }
 	        if (!tablePattern.test(masaNo)) {
-	            tableInput?.setCustomValidity('Geçerli bir masa numarası yazın.');
+	            tableInput?.setCustomValidity(t('order_table_invalid'));
 	            tableInput?.reportValidity();
 	            return;
 	        }
@@ -8468,7 +8983,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            ...(note ? { not: note } : {}),
 	            request_id: kfmWaiterRequestId(),
 	            items: kfmOrderCart.map(item => ({
-	                urun_adi: item.productName || item.name,
+	                urun_adi: item.sourceProductData
+                        ? localizedProductName(item.sourceProductData)
+                        : (item.productName || item.name),
 	                miktar: item.quantity,
 	                birim_fiyat: item.unitPrice,
 	                alt_secenekler: Array.isArray(item.alt_secenekler) ? item.alt_secenekler : [],
@@ -8480,7 +8997,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		            submitButton.setAttribute('aria-busy', 'true');
 		            submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i><span>Sipariş iletiliyor…</span>';
 		        }
-		        kfmOrderStatusGuncelle('Sipariş iletiliyor…', 'loading');
+		        kfmOrderStatusGuncelle(t('order_status_loading'), 'loading');
 		        try {
 	            const relayUrl = await getWaiterRelayUrl();
 	            const response = await kfmOrderPost(relayUrl, payload);
@@ -8488,7 +9005,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            if (!response.ok || !data.ok) throw new Error(data.error || 'Sipariş gönderilemedi.');
 			kfmOrderTrackingKaydet({ kod: data.takip?.kod, masa: masaNo });
 			kfmOrderTrackingPaneliniTazeleGuvenli();
-			kfmOrderStatusGuncelle('Siparişiniz ekibe iletildi. Afiyet olsun!', 'success');
+			kfmOrderStatusGuncelle(t('order_status_sent'), 'success');
 			await kfmOrderSuccessAnimation();
 			kfmOrderCart = [];
 			kfmRenderOrderCart();
@@ -8498,8 +9015,9 @@ function apUrunDosyaSecildi(event, catKey, id) {
 		        } catch (error) {
 		            console.error('Web sipariş relay hatası:', error);
 		            const isNetworkError = /networkerror|failed to fetch|abort/i.test(String(error?.message || ''));
-		            kfmOrderStatusGuncelle('Sipariş şu anda iletilemedi. Bağlantınızı kontrol edip tekrar deneyin.', 'error');
-	            toast('⚠️ ' + (isNetworkError ? 'Sipariş servisine ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.' : (error?.message || 'Sipariş şu anda iletilemedi. Lütfen tekrar deneyin.')));
+		            kfmOrderStatusGuncelle(t('order_status_send_failed'), 'error');
+                console.error('Web order submission failed.', error);
+	            toast('⚠️ ' + (isNetworkError ? t('order_toast_network') : t('order_toast_failed')));
 	        } finally {
 	            if (submitButton) {
 	                submitButton.removeAttribute('aria-busy');
@@ -8787,7 +9305,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
         for (let k in menuData) {
             const opt = document.createElement('option');
             opt.value = k;
-            opt.textContent = (aktifDil === 'en' && menuData[k].isim_en) ? menuData[k].isim_en : menuData[k].isim;
+            opt.textContent = localizedCategoryName(menuData[k]);
             select.appendChild(opt);
         }
         apQuickUrunleriDoldur();
