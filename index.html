@@ -8,7 +8,7 @@
 
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 
@@ -52,6 +52,59 @@
     overscroll-behavior-y: contain;
     margin: 0;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* RTL Support for Arabic */
+  html[dir="rtl"] body {
+    font-family: 'Plus Jakarta Sans', 'Tajawal', 'Cairo', sans-serif;
+  }
+  html[dir="rtl"] .serif {
+    font-family: 'Fraunces', 'Amiri', serif;
+  }
+  html[dir="rtl"] * {
+    text-align: right;
+  }
+  html[dir="rtl"] .cat-pill,
+  html[dir="rtl"] .prod-card,
+  html[dir="rtl"] .wifi-bar {
+    flex-direction: row-reverse;
+  }
+  html[dir="rtl"] .prod-card img {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  html[dir="rtl"] .prod-price {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  html[dir="rtl"] #bottomNav {
+    flex-direction: row;
+  }
+  html[dir="rtl"] .bnav-btn {
+    flex-direction: column;
+  }
+  html[dir="rtl"] .modal-box {
+    text-align: right;
+  }
+  html[dir="rtl"] input,
+  html[dir="rtl"] textarea,
+  html[dir="rtl"] select {
+    text-align: right;
+  }
+  html[dir="rtl"] .search-wrap input {
+    text-align: right;
+  }
+  html[dir="rtl"] #langToggleBtn {
+    left: 14px;
+    right: auto;
+  }
+  html[dir="rtl"] #themeToggleBtn {
+    left: 72px;
+    right: auto;
+  }
+  @media (max-width: 380px) {
+    html[dir="rtl"] #themeToggleBtn { left: 67px; }
+    html[dir="rtl"] #langToggleBtn { left: 10px; }
   }
 
   @keyframes gradientBG {
@@ -819,6 +872,13 @@
     --wheel-label: 'CATEGORIES';
     --wheel-pro-title: 'CATEGORY WHEEL';
     --wheel-pro-hint: '↕  DRAG  ·  WAIT 1.5 SECONDS AT CENTER';
+  }
+  #catNav[data-lang="ar"] {
+    --wheel-collapsed-hint: 'انقر للوصول إلى القائمة';
+    --wheel-open-hint: 'قم بالتمرير لأعلى ولأسفل · انتظر 1.5 ثانية في المركز';
+    --wheel-label: 'الفئات';
+    --wheel-pro-title: 'عجلة الفئات';
+    --wheel-pro-hint: '↕  اسحب  ·  انتظر 1.5 ثانية في المركز';
   }
     gap: 10px;
     padding-top: 4px;
@@ -4998,7 +5058,120 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             pair_detail: "Birlikte daha keyifli",
             suggestion_view_detail: "Detayı gör"
         },
-	        en: {
+        ar: {
+            welcome_eyebrow: "قهوة · محادثة · راحة",
+            welcome_ready: "جاهز لك",
+            welcome_title: "حيث تبدأ لحظتك",
+            welcome_sub: "القائمة وضيف Wi-Fi خدمة النادل في مكان واحد.",
+            welcome_note_title: "تجربة Keyfimce",
+            welcome_note_text: "كل ما تحتاجه على بعد بضع نقرات.",
+            welcome_pill_menu: "استكشف القائمة",
+            welcome_pill_service: "الخدمة بنقرة واحدة",
+            welcome_pill_wifi: "ضيف Wi-Fi",
+            welcome_tip: "جاري تحضير قائمتك",
+            wifi_sub: "ضيف Wi-Fi — اتصل أو انسخ كلمة المرور",
+            wifi_title: "ضيف Wi-Fi",
+            wifi_ssid_label: "اسم الشبكة (SSID)",
+            wifi_pass_label: "كلمة المرور",
+            copy_btn: "نسخ",
+            wifi_connect_btn: "نسخ كلمة المرور والاتصال",
+            wifi_hint: "تم نسخ كلمة المرور؛ يمكنك لصقها في إعدادات Wi-Fi.",
+            review_title: "الاقتراحات والطلبات",
+            review_name_label: "اسمك (اختياري)",
+            review_name_ph: "اسمك",
+            review_msg_label: "ملاحظاتك",
+            review_msg_ph: "أفكارك قيمة...",
+            review_score_label: "تقييمك",
+            review_send_btn: "إرسال",
+            auth_title: "تسجيل دخول المسؤول",
+            cancel_btn: "إلغاء",
+            login_btn: "تسجيل الدخول",
+            admin_title: "لوحة التحكم",
+            back_to_menu: "العودة إلى القائمة",
+            nav_menu: "القائمة",
+            search_placeholder: "ماذا كنت تبحث؟",
+            all_menu: "✨ القائمة الكاملة",
+            out_of_stock: "نفذت الكمية",
+            no_product: "لم يتم العثور على منتجات",
+            detail_btn: "عرض التفاصيل",
+            extra_options: "خيارات",
+            modal_close: "إغلاق",
+            view_menu: "عرض القائمة",
+            more_category: "المزيد",
+            theme_label: "المظهر",
+            theme_auto: "مظهر تلقائي",
+            theme_light: "مظهر فاتح",
+            theme_dark: "مظهر داكن",
+            theme_now_dark: "حالياً داكن",
+            theme_now_light: "حالياً فاتح",
+            theme_change_hint: "انقر للتغيير.",
+            search_clear: "مسح البحث",
+            category_menu_label: "قائمة الفئات",
+            wheel_sound_off: "كتم أصوات العجلة",
+            wheel_sound_on: "تفعيل أصوات العجلة",
+            review_nav_default: "الاقتراحات",
+            toast_wifi_copied: "📋 تم نسخ كلمة المرور!",
+            toast_wifi_updated: "✅ تم تحديث معلومات Wi-Fi",
+            toast_pass_updated: "✅ تم تحديث كلمة مرور المسؤول",
+            toast_header_updated: "✅ تم تحديث خلفية الرأس",
+            toast_product_added: "✅ تمت إضافة المنتج",
+            toast_product_deleted: "🗑️ تم حذف المنتج",
+            toast_extra_added: "✅ تمت إضافة إضافي",
+            toast_review_sent: "✅ تم استلام ملاحظاتك، شكراً لك!",
+            toast_json_downloaded: "💾 تم تنزيل ملف JSON!",
+            toast_json_loaded: "✅ تم تحميل بيانات JSON بنجاح!",
+            toast_wrong_pass: "❌ كلمة مرور خاطئة",
+            toast_cat_added: "✅ تمت إضافة الفئة",
+            toast_cat_deleted: "🗑️ تم حذف الفئة",
+            toast_cat_has_products: "❌ لا يمكن حذف فئة تحتوي على منتجات",
+            toast_cat_exists: "❌ هذا المعرف موجود بالفعل",
+            toast_cat_empty: "❌ لا يمكن أن يكون معرف الفئة واسمها فارغين",
+            toast_cat_invalid_id: "❌ لا يمكن أن يحتوي معرف الفئة على مسافات",
+            toast_gh_settings_saved: "✅ تم حفظ إعدادات GitHub",
+            toast_gh_push_ok: "✅ تم الدفع إلى GitHub بنجاح!",
+            toast_gh_push_fail: "❌ فشل الدفع إلى GitHub",
+            toast_gh_no_settings: "❌ يرجى حفظ إعدادات GitHub أولاً",
+            gh_publish_btn: "حفظ ونشر JSON إلى GitHub",
+            gh_publish_note: "احفظ تغييرات المنتج والفئة والترجمة والمخزون والإطار إلى GitHub بزر واحد مع الحفاظ على مخطط JSON الحالي. الإعدادات المحفوظة لـ GitHub تتيح أيضًا المزامنة التلقائية بعد حفظ النموذج.",
+            quick_order: "⚡ طلب سريع",
+            quick_order_en: "⚡ Quick Order",
+            call_waiter: "استدعاء النادل",
+            call_waiter_en: "Call Waiter",
+            waiter_called: "✅ تم استدعاء النادل!",
+            waiter_called_en: "✅ Waiter called!",
+            waiter_modal_title: "استدعاء نادل",
+            waiter_modal_description: "أدخل رقم طاولتك وأرسل طلبك مباشرة إلى الفريق.",
+            waiter_table_label: "رقم طاولتك",
+            waiter_table_placeholder: "مثال: 12 أو تراس 3",
+            waiter_table_hint: "رقم طاولتك يساعد طلبك في الوصول إلى الفريق الصحيح.",
+            waiter_type_label: "نوع الطلب",
+            waiter_type_hint: "اختر ما تحتاجه حتى يتمكن الفريق من مساعدتك بشكل أسرع.",
+            waiter_type_general: "طلب عام",
+            waiter_type_order: "طلب",
+            waiter_type_bill: "الفاتورة",
+            waiter_note_label: "ملاحظتك",
+            waiter_optional: "(اختياري)",
+            waiter_note_placeholder: "مثال: أرجو الفاتورة، من فضلك",
+            waiter_submit: "استدعاء نادل",
+            waiter_security_hint: "يتم إرسال الطلبات بشكل آمن. يمكن إرسال 3 طلبات كحد أقصى من نفس الجهاز خلال فترة قصيرة.",
+            waiter_table_required: "الرجاء إدخال رقم طاولة صالح.",
+            waiter_sending: "جاري إرسال طلبك…",
+            waiter_sent: "✅ وصل طلبك إلى الفريق. سيكون النادل معك قريباً.",
+            quick_order_title: "إدارة الطلبات السريعة",
+            quick_order_title_en: "Quick Order Management",
+            quick_order_desc: "أضف المنتجات الأكثر مبيعاً هنا، يمكن للعملاء الطلب بسرعة كاختصارات.",
+            quick_order_desc_en: "Add best-selling products here, customers can order quickly as shortcuts.",
+            add_to_quick: "إضافة للطلب السريع",
+            add_to_quick_en: "Add to Quick Order",
+            remove_from_quick: "إزالة",
+            remove_from_quick_en: "Remove",
+            no_quick_products: "لا توجد منتجات للطلب السريع بعد.",
+            no_quick_products_en: "No quick order products yet.",
+            pair_label: "زوج مثالي",
+            pair_detail: "أفضل معاً",
+            suggestion_view_detail: "عرض التفاصيل"
+        },
+        en: {
 	            welcome_eyebrow: "COFFEE · CONVERSATION · COMFORT",
 	            welcome_ready: "Ready for you",
 	            welcome_title: "Where your moment begins",
@@ -5009,72 +5182,72 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	            welcome_pill_service: "Service in one tap",
 	            welcome_pill_wifi: "Guest Wi-Fi",
 	            welcome_tip: "Preparing your menu",
-            wifi_sub: "Guest Wi-Fi — connect or copy password",
-            wifi_title: "Guest Wi-Fi",
-            wifi_ssid_label: "Network Name (SSID)",
-            wifi_pass_label: "Password",
-            copy_btn: "Copy",
-            wifi_connect_btn: "Copy Password & Connect",
-            wifi_hint: "Password is copied; paste it in your Wi-Fi settings.",
-            review_title: "Suggestions & Requests",
-            review_name_label: "Your Name (Optional)",
-            review_name_ph: "Your name",
-            review_msg_ph: "Your thoughts are valuable...",
-            review_msg_label: "Your Feedback",
-            review_score_label: "Your Rating",
-            review_send_btn: "Send",
-            auth_title: "Admin Login",
-            cancel_btn: "Cancel",
-            login_btn: "Login",
-            admin_title: "Admin Panel",
-            back_to_menu: "Back to Menu",
-            nav_menu: "Menu",
-            search_placeholder: "Search...",
-            all_menu: "✨ Full Menu",
-            out_of_stock: "SOLD OUT",
-            no_product: "No products found",
-            detail_btn: "View details",
-            extra_options: "options",
-            modal_close: "Close",
-            view_menu: "View Menu",
-            more_category: "More",
-            theme_label: "Theme",
-            theme_auto: "Auto theme",
-            theme_light: "Light theme",
-            theme_dark: "Dark theme",
-            theme_now_dark: "currently dark",
-            theme_now_light: "currently light",
-            theme_change_hint: "Click to change.",
-            search_clear: "Clear search",
-            category_menu_label: "Category menu",
-            wheel_sound_off: "Mute wheel sounds",
-            wheel_sound_on: "Enable wheel sounds",
-            review_nav_default: "Suggestions",
-            toast_wifi_copied: "📋 Password copied!",
-            toast_wifi_updated: "✅ Wi-Fi info updated",
-            toast_pass_updated: "✅ Admin password updated",
-            toast_header_updated: "✅ Header background updated",
-            toast_product_added: "✅ Product added",
-            toast_product_deleted: "🗑️ Product deleted",
-            toast_extra_added: "✅ Extra added",
-            toast_review_sent: "✅ Feedback received, thank you!",
-            toast_json_downloaded: "💾 JSON file downloaded!",
-            toast_json_loaded: "✅ JSON data loaded successfully!",
-            toast_wrong_pass: "❌ Wrong password",
-            toast_cat_added: "✅ Category added",
-            toast_cat_deleted: "🗑️ Category deleted",
-            toast_cat_has_products: "❌ Cannot delete a category with products",
-            toast_cat_exists: "❌ This ID already exists",
-            toast_cat_empty: "❌ Category ID and name cannot be empty",
-            toast_cat_invalid_id: "❌ Category ID cannot contain spaces",
-            toast_gh_settings_saved: "✅ GitHub settings saved",
-            toast_gh_push_ok: "✅ Successfully pushed to GitHub!",
-            toast_gh_push_fail: "❌ GitHub push failed",
-            toast_gh_no_settings: "❌ Please save GitHub settings first",
-            gh_publish_btn: "Save and Publish JSON to GitHub",
-            gh_publish_note: "Save product, category, translation, stock, and frame changes to GitHub with one button while preserving the existing JSON schema. Saved GitHub settings also enable automatic sync after form saves.",
-            quick_order: "⚡ Quick Order",
-            quick_order_en: "⚡ Quick Order",
+	            wifi_sub: "Guest Wi-Fi — connect or copy password",
+	            wifi_title: "Guest Wi-Fi",
+	            wifi_ssid_label: "Network Name (SSID)",
+	            wifi_pass_label: "Password",
+	            copy_btn: "Copy",
+	            wifi_connect_btn: "Copy Password & Connect",
+	            wifi_hint: "Password is copied; paste it in your Wi-Fi settings.",
+	            review_title: "Suggestions & Requests",
+	            review_name_label: "Your Name (Optional)",
+	            review_name_ph: "Your name",
+	            review_msg_ph: "Your thoughts are valuable...",
+	            review_msg_label: "Your Feedback",
+	            review_score_label: "Your Rating",
+	            review_send_btn: "Send",
+	            auth_title: "Admin Login",
+	            cancel_btn: "Cancel",
+	            login_btn: "Login",
+	            admin_title: "Admin Panel",
+	            back_to_menu: "Back to Menu",
+	            nav_menu: "Menu",
+	            search_placeholder: "Search...",
+	            all_menu: "✨ Full Menu",
+	            out_of_stock: "SOLD OUT",
+	            no_product: "No products found",
+	            detail_btn: "View details",
+	            extra_options: "options",
+	            modal_close: "Close",
+	            view_menu: "View Menu",
+	            more_category: "More",
+	            theme_label: "Theme",
+	            theme_auto: "Auto theme",
+	            theme_light: "Light theme",
+	            theme_dark: "Dark theme",
+	            theme_now_dark: "currently dark",
+	            theme_now_light: "currently light",
+	            theme_change_hint: "Click to change.",
+	            search_clear: "Clear search",
+	            category_menu_label: "Category menu",
+	            wheel_sound_off: "Mute wheel sounds",
+	            wheel_sound_on: "Enable wheel sounds",
+	            review_nav_default: "Suggestions",
+	            toast_wifi_copied: "📋 Password copied!",
+	            toast_wifi_updated: "✅ Wi-Fi info updated",
+	            toast_pass_updated: "✅ Admin password updated",
+	            toast_header_updated: "✅ Header background updated",
+	            toast_product_added: "✅ Product added",
+	            toast_product_deleted: "🗑️ Product deleted",
+	            toast_extra_added: "✅ Extra added",
+	            toast_review_sent: "✅ Feedback received, thank you!",
+	            toast_json_downloaded: "💾 JSON file downloaded!",
+	            toast_json_loaded: "✅ JSON data loaded successfully!",
+	            toast_wrong_pass: "❌ Wrong password",
+	            toast_cat_added: "✅ Category added",
+	            toast_cat_deleted: "🗑️ Category deleted",
+	            toast_cat_has_products: "❌ Cannot delete a category with products",
+	            toast_cat_exists: "❌ This ID already exists",
+	            toast_cat_empty: "❌ Category ID and name cannot be empty",
+	            toast_cat_invalid_id: "❌ Category ID cannot contain spaces",
+	            toast_gh_settings_saved: "✅ GitHub settings saved",
+	            toast_gh_push_ok: "✅ Successfully pushed to GitHub!",
+	            toast_gh_push_fail: "❌ GitHub push failed",
+	            toast_gh_no_settings: "❌ Please save GitHub settings first",
+	            gh_publish_btn: "Save and Publish JSON to GitHub",
+	            gh_publish_note: "Save product, category, translation, stock, and frame changes to GitHub with one button while preserving the existing JSON schema. Saved GitHub settings also enable automatic sync after form saves.",
+	            quick_order: "⚡ Quick Order",
+	            quick_order_en: "⚡ Quick Order",
 	            call_waiter: "Call Waiter",
 	            call_waiter_en: "Call Waiter",
 	            waiter_called: "✅ Waiter called!",
@@ -5098,18 +5271,18 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	            waiter_sending: "Sending your request…",
 	            waiter_sent: "✅ Your request has reached the team. A waiter will be with you shortly.",
 	            quick_order_title: "Quick Order Management",
-            quick_order_title_en: "Quick Order Management",
-            quick_order_desc: "Add best-selling products here, customers can order quickly as shortcuts.",
-            quick_order_desc_en: "Add best-selling products here, customers can order quickly as shortcuts.",
-            add_to_quick: "Add to Quick Order",
-            add_to_quick_en: "Add to Quick Order",
-            remove_from_quick: "Remove",
-            remove_from_quick_en: "Remove",
-            no_quick_products: "No quick order products yet.",
-            no_quick_products_en: "No quick order products yet.",
-            pair_label: "Perfect Pair",
-            pair_detail: "Better together",
-            suggestion_view_detail: "View details"
+	            quick_order_title_en: "Quick Order Management",
+	            quick_order_desc: "Add best-selling products here, customers can order quickly as shortcuts.",
+	            quick_order_desc_en: "Add best-selling products here, customers can order quickly as shortcuts.",
+	            add_to_quick: "Add to Quick Order",
+	            add_to_quick_en: "Add to Quick Order",
+	            remove_from_quick: "Remove",
+	            remove_from_quick_en: "Remove",
+	            no_quick_products: "No quick order products yet.",
+	            no_quick_products_en: "No quick order products yet.",
+	            pair_label: "Perfect Pair",
+	            pair_detail: "Better together",
+	            suggestion_view_detail: "View details"
         }
     };
 
@@ -5281,11 +5454,22 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	            el.setAttribute('aria-label', t(key));
 	        });
         // Dil butonu etiketi
-        document.getElementById('langBtnLabel').textContent = aktifDil === 'tr' ? 'EN' : 'TR';
+        const langLabels = { tr: 'EN', en: 'AR', ar: 'TR' };
+        document.getElementById('langBtnLabel').textContent = langLabels[aktifDil] || 'EN';
         // html lang attr
         document.getElementById('htmlRoot').lang = aktifDil;
+        // RTL/LTR direction
+        document.getElementById('htmlRoot').dir = aktifDil === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('htmlRoot').setAttribute('data-dir', aktifDil === 'ar' ? 'rtl' : 'ltr');
         const menuHint = document.getElementById('menuAccessHintText');
-        if (menuHint) menuHint.textContent = aktifDil === 'en' ? 'Click to access the menu' : 'Menüye ulaşmak için tıklayınız';
+        if (menuHint) {
+            const hints = {
+                tr: 'Menüye ulaşmak için tıklayınız',
+                en: 'Click to access the menu',
+                ar: 'انقر للوصول إلى القائمة'
+            };
+            menuHint.textContent = hints[aktifDil] || hints['tr'];
+        }
         const categoryWheel = document.getElementById('catNav');
         if (categoryWheel) {
             categoryWheel.dataset.lang = aktifDil;
@@ -5308,7 +5492,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
     }
 
     function dilDegistir() {
-        aktifDil = aktifDil === 'tr' ? 'en' : 'tr';
+        const languages = ['tr', 'en', 'ar'];
+        const currentIndex = languages.indexOf(aktifDil);
+        const nextIndex = (currentIndex + 1) % languages.length;
+        aktifDil = languages[nextIndex];
         localStorage.setItem('kfm_lang', aktifDil);
         dilUygula();
     }
