@@ -5286,7 +5286,17 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         }
     };
 
-    let aktifDil = localStorage.getItem('kfm_lang') || 'tr';
+    // Telefon diline göre otomatik dil seçimi
+    function getBrowserLanguage() {
+        const browserLang = navigator.language || navigator.userLanguage || 'tr';
+        const langCode = browserLang.split('-')[0].toLowerCase();
+        const supportedLangs = ['tr', 'en', 'ar'];
+        const detectedLang = supportedLangs.includes(langCode) ? langCode : 'tr';
+        console.log('Browser language detected:', browserLang, '->', detectedLang);
+        return detectedLang;
+    }
+
+    let aktifDil = localStorage.getItem('kfm_lang') || getBrowserLanguage();
 
     function t(key) {
         return (i18n[aktifDil] && i18n[aktifDil][key]) ? i18n[aktifDil][key] : (i18n['tr'][key] || key);
