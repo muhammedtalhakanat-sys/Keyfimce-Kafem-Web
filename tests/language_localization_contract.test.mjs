@@ -138,6 +138,17 @@ test('localized description uses Arabic copy and never falls back to Turkish in 
   assert.equal(helpers.localizedProductDescription({ aciklama: 'Turkish source only' }, ''), '');
 });
 
+test('unknown future catalogue labels are preserved instead of being guessed or transliterated', () => {
+  const helpers = localizationHelpers();
+  const source = 'Yeni Özel Ürün 2026';
+  helpers.setLanguage('ar');
+  assert.equal(helpers.localizedProductName({ ad: source }), source);
+  assert.equal(helpers.localizedCategoryName({ isim: source }), source);
+  helpers.setLanguage('en');
+  assert.equal(helpers.localizedProductName({ ad: source }), source);
+  assert.equal(helpers.localizedProductName({ ad: source, ad_en: 'New Special Product 2026' }), 'New Special Product 2026');
+});
+
 test('product descriptions, extras and variants prefer saved translations without leaking Turkish fallbacks', () => {
   assert.match(html, /extra\.isim_ar/);
   assert.match(html, /category\.isim_ar/);
@@ -165,4 +176,14 @@ test('product detail and cart actions use the selected language, including Arabi
   }
   assert.match(html, /document\.getElementById\('htmlRoot'\)\.dir = aktifDil === 'ar' \? 'rtl' : 'ltr'/);
   assert.match(html, /if \(typeof kfmRenderOrderCart === 'function'\) kfmRenderOrderCart\(\)/);
+});
+
+test('live catalogue conversion retains explicit translations and does not copy source names into English fields', () => {
+  assert.match(html, /isim_en: String\(category\.name_en \|\| ''\)\.trim\(\)/);
+  assert.match(html, /isim_ar: String\(category\.name_ar \|\| ''\)\.trim\(\)/);
+  assert.match(html, /ad_en: String\(product\?\.ad_en \|\| ''\)\.trim\(\)/);
+  assert.match(html, /ad_ar: String\(product\?\.ad_ar \|\| ''\)\.trim\(\)/);
+  assert.match(html, /aciklama_ar: String\(product\?\.aciklama_ar \|\| ''\)\.trim\(\)/);
+  assert.match(html, /function apUrunCevirisiniGuncelle\s*\(/);
+  assert.match(html, /id: Date\.now\(\), ad, ad_en: adEn, ad_ar: adAr/);
 });

@@ -4774,6 +4774,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                             <input type="text" id="apYeniKatIsim" class="ap-input text-sm font-medium" placeholder="🍵 Yeni Kategori">
                         </div>
                     </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="text" id="apYeniKatIsimEn" class="ap-input text-sm font-medium" placeholder="Category name in English (optional)">
+                        <input type="text" id="apYeniKatIsimAr" class="ap-input text-sm font-medium" placeholder="اسم الفئة بالعربية (اختياري)">
+                    </div>
                     <button onclick="kategoriEkle()"
                             class="w-full py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform text-white shadow-md"
                             style="background:#16a34a;">
@@ -4813,6 +4817,15 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                     <div class="grid grid-cols-2 gap-3">
                         <input type="text" id="apAd" class="ap-input text-sm font-medium" placeholder="Ürün adı">
                         <input type="number" id="apFiyat" class="ap-input text-sm font-medium" placeholder="Fiyat (TL)">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="text" id="apAdEn" class="ap-input text-sm font-medium" placeholder="Product name in English (optional)">
+                        <input type="text" id="apAdAr" class="ap-input text-sm font-medium" placeholder="اسم المنتج بالعربية (اختياري)">
+                    </div>
+                    <textarea id="apAciklama" class="ap-input text-sm font-medium" placeholder="Kısa ürün açıklaması (Türkçe, isteğe bağlı)"></textarea>
+                    <div class="grid grid-cols-2 gap-3">
+                        <textarea id="apAciklamaEn" class="ap-input text-sm font-medium" placeholder="Product description in English (optional)"></textarea>
+                        <textarea id="apAciklamaAr" class="ap-input text-sm font-medium" placeholder="وصف المنتج بالعربية (اختياري)"></textarea>
                     </div>
                     <div class="ap-new-product-media">
                         <div class="ap-frame-preview ap-new-product-preview" id="apNewProductPreview"><img id="apNewProductPreviewImage" src="product-fallback-warm-coffee.png" alt="Ürün önizleme"><span id="apNewProductPreviewArt" class="ap-frame-preview-art" data-frame-theme="warm" aria-hidden="true"></span></div>
@@ -5076,6 +5089,25 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             pair_discover: "Bu eşleşmeyi keşfedin",
             pair_open: "{name} detayını aç",
             category_fallback: "Kategori",
+            category_picker_eyebrow: "ÜRÜNLERİ GÖRMEK İÇİN",
+            category_picker_title: "MENÜ KATEGORİLERİ",
+            category_picker_help: "Buraya dokunun, kahve ve diğer menüler açılır",
+            category_picker_instruction: "Bir kategori seçin; ürünler hemen aşağıda gösterilir.",
+            category_picker_tap: "DOKUNUN",
+            category_picker_search: "Ürün ara: latte, çay, tatlı...",
+            category_picker_search_aria: "Menüde ürün ara",
+            favorites_heading: "Favorilerim",
+            recent_heading: "Son Seçilenler",
+            favorites_section_aria: "Favoriler ve son seçilenler",
+            recent_section_aria: "Son seçilenler",
+            favorites_clear: "Temizle",
+            recent_clear: "Temizle",
+            favorites_clear_label: "Favorileri temizle",
+            recent_clear_label: "Son seçilenleri temizle",
+            favorites_cleared_notice: "Favoriler bu cihazdan temizlendi.",
+            recent_cleared_notice: "Son seçilenler bu cihazdan temizlendi.",
+            favorite_remove_item: "Favorilerden çıkar",
+            favorite_add_item: "Favorilere ekle",
             detail_tags_heading: "İçerik & Alerjenler",
             detail_contents_toggle: "Ürün İçeriği",
             variant_required: "Seçim gerekli",
@@ -5169,12 +5201,12 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             welcome_eyebrow: "قهوة · محادثة · راحة",
             welcome_ready: "جاهز لك",
             welcome_title: "حيث تبدأ لحظتك",
-            welcome_sub: "القائمة وضيف Wi-Fi خدمة النادل في مكان واحد.",
+            welcome_sub: "القائمة وشبكة Wi-Fi للضيوف وخدمة النادل في مكان واحد.",
             welcome_note_title: "تجربة Keyfimce",
             welcome_note_text: "كل ما تحتاجه على بعد بضع نقرات.",
             welcome_pill_menu: "استكشف القائمة",
             welcome_pill_service: "الخدمة بنقرة واحدة",
-            welcome_pill_wifi: "ضيف Wi-Fi",
+            welcome_pill_wifi: "Wi-Fi للضيوف",
             welcome_tip: "جاري تحضير قائمتك",
             wifi_sub: "ضيف Wi-Fi — اتصل أو انسخ كلمة المرور",
             wifi_title: "ضيف Wi-Fi",
@@ -5235,8 +5267,8 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             toast_cat_empty: "❌ لا يمكن أن يكون معرف الفئة واسمها فارغين",
             toast_cat_invalid_id: "❌ لا يمكن أن يحتوي معرف الفئة على مسافات",
             toast_gh_settings_saved: "✅ تم حفظ إعدادات GitHub",
-            toast_gh_push_ok: "✅ تم الدفع إلى GitHub بنجاح!",
-            toast_gh_push_fail: "❌ فشل الدفع إلى GitHub",
+            toast_gh_push_ok: "✅ تم النشر إلى GitHub بنجاح!",
+            toast_gh_push_fail: "❌ فشل النشر إلى GitHub",
             toast_gh_no_settings: "❌ يرجى حفظ إعدادات GitHub أولاً",
             gh_publish_btn: "حفظ ونشر JSON إلى GitHub",
             gh_publish_note: "احفظ تغييرات المنتج والفئة والترجمة والمخزون والإطار إلى GitHub بزر واحد مع الحفاظ على مخطط JSON الحالي. الإعدادات المحفوظة لـ GitHub تتيح أيضًا المزامنة التلقائية بعد حفظ النموذج.",
@@ -5274,12 +5306,31 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             remove_from_quick_en: "Remove",
             no_quick_products: "لا توجد منتجات للطلب السريع بعد.",
             no_quick_products_en: "No quick order products yet.",
-            pair_label: "زوج مثالي",
-            pair_detail: "أفضل معاً",
+            pair_label: "ثنائي مثالي",
+            pair_detail: "ألذ معاً",
             suggestion_view_detail: "عرض التفاصيل",
             pair_discover: "اكتشف هذا التوافق",
             pair_open: "عرض تفاصيل {name}",
             category_fallback: "فئة",
+            category_picker_eyebrow: "لعرض المنتجات",
+            category_picker_title: "فئات القائمة",
+            category_picker_help: "اضغط هنا لفتح قائمة القهوة والمنتجات الأخرى",
+            category_picker_instruction: "اختر فئة؛ ستظهر المنتجات أسفلها مباشرة.",
+            category_picker_tap: "اضغط هنا",
+            category_picker_search: "ابحث عن منتج: لاتيه، شاي، حلوى...",
+            category_picker_search_aria: "ابحث عن منتجات القائمة",
+            favorites_heading: "المفضلة",
+            recent_heading: "شوهدت مؤخراً",
+            favorites_section_aria: "المفضلة والمنتجات التي شوهدت مؤخراً",
+            recent_section_aria: "المنتجات التي شوهدت مؤخراً",
+            favorites_clear: "مسح المفضلة",
+            recent_clear: "مسح المنتجات التي شوهدت مؤخراً",
+            favorites_clear_label: "مسح المفضلة",
+            recent_clear_label: "مسح المنتجات التي شوهدت مؤخراً",
+            favorites_cleared_notice: "تم مسح المفضلة من هذا الجهاز.",
+            recent_cleared_notice: "تم مسح المنتجات التي شوهدت مؤخراً من هذا الجهاز.",
+            favorite_remove_item: "إزالة من المفضلة",
+            favorite_add_item: "إضافة إلى المفضلة",
             detail_tags_heading: "المكونات ومسببات الحساسية",
             detail_contents_toggle: "مكونات المنتج",
             variant_required: "الاختيار مطلوب",
@@ -5484,6 +5535,25 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
 	            pair_discover: "Discover this match",
 	            pair_open: "View {name} details",
 	            category_fallback: "Category",
+	            category_picker_eyebrow: "TO SEE PRODUCTS",
+	            category_picker_title: "MENU CATEGORIES",
+	            category_picker_help: "Tap here to open coffee and other menus",
+	            category_picker_instruction: "Choose a category; products appear right below.",
+	            category_picker_tap: "TAP HERE",
+	            category_picker_search: "Search products: latte, tea, dessert...",
+	            category_picker_search_aria: "Search menu products",
+	            favorites_heading: "Favorites",
+	            recent_heading: "Recently viewed",
+	            favorites_section_aria: "Favorites and recently viewed products",
+	            recent_section_aria: "Recently viewed products",
+	            favorites_clear: "Clear favorites",
+	            recent_clear: "Clear recently viewed products",
+	            favorites_clear_label: "Clear favorites",
+	            recent_clear_label: "Clear recently viewed products",
+	            favorites_cleared_notice: "Favorites cleared on this device.",
+	            recent_cleared_notice: "Recently viewed products cleared on this device.",
+	            favorite_remove_item: "Remove from favorites",
+	            favorite_add_item: "Add to favorites",
 	            detail_tags_heading: "Ingredients & Allergens",
 	            detail_contents_toggle: "Product contents",
 	            variant_required: "Required",
@@ -5751,12 +5821,6 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         visne: 'كرز حامض', white: 'أبيض', yas: 'كامل', yesil: 'أخضر', yiyecek: 'طعام'
     };
 
-    const ARABIC_LETTERS = {
-        a: 'ا', b: 'ب', c: 'ك', d: 'د', e: 'ي', f: 'ف', g: 'ج', h: 'ه', i: 'ي', j: 'ج',
-        k: 'ك', l: 'ل', m: 'م', n: 'ن', o: 'و', p: 'ب', q: 'ق', r: 'ر', s: 'س', t: 'ت',
-        u: 'و', v: 'ف', w: 'و', x: 'كس', y: 'ي', z: 'ز'
-    };
-
     const normalizeMenuTranslationKey = value => String(value || '')
         .normalize('NFD')
         .replace(/\p{M}/gu, '')
@@ -5775,10 +5839,6 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         ['Kremamsı dokusu ve dengeli tatlılığıyla kahvenize eşlik eden özel cheesecake.', 'تشيز كيك مميز بقوام كريمي وحلاوة متوازنة، يرافق قهوتك على نحو مثالي.']
     ].map(([source, translated]) => [normalizeMenuTranslationKey(source), translated]));
 
-    function transliterateArabicMenuWord(word) {
-        return [...word].map(letter => ARABIC_LETTERS[letter] || letter).join('');
-    }
-
     function translateMenuText(value, language = aktifDil) {
         const source = String(value || '').trim();
         if (!source || language === 'tr') return source;
@@ -5788,11 +5848,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
             if (exact) return exact;
         }
         const words = language === 'ar' ? AR_MENU_WORDS : EN_MENU_WORDS;
-        return normalized.replace(/[a-z0-9]+|[^a-z0-9]+/g, token => {
-            if (!/[a-z0-9]/.test(token)) return token;
-            if (words[token]) return words[token];
-            return language === 'ar' ? transliterateArabicMenuWord(token) : token;
-        });
+        const tokens = normalized.match(/[a-z0-9]+|[^a-z0-9]+/g) || [];
+        if (tokens.some(token => /[a-z0-9]/.test(token) && !Object.hasOwn(words, token))) return source;
+        return tokens.map(token => /[a-z0-9]/.test(token) ? words[token] : token).join('');
     }
 
     function localizedExtraName(extra) {
@@ -5881,6 +5939,18 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         }
         if (typeof temaArayuzunuGuncelle === 'function') temaArayuzunuGuncelle();
         if (typeof window.__refreshWheelSoundToggle === 'function') window.__refreshWheelSoundToggle();
+        const favoritesHeading = document.getElementById('favoritesHeading');
+        const recentHeading = document.getElementById('recentHeading');
+        const favoritesClear = document.getElementById('favoritesClear');
+        const recentClear = document.getElementById('recentClear');
+        const favoritesSection = document.getElementById('favoritesSection');
+        const recentGroup = document.getElementById('recentGroup');
+        if (favoritesHeading) favoritesHeading.textContent = t('favorites_heading');
+        if (recentHeading) recentHeading.textContent = t('recent_heading');
+        if (favoritesClear) favoritesClear.textContent = t('favorites_clear');
+        if (recentClear) recentClear.textContent = t('recent_clear');
+        if (favoritesSection) favoritesSection.setAttribute('aria-label', t('favorites_section_aria'));
+        if (recentGroup) recentGroup.setAttribute('aria-label', t('recent_section_aria'));
     }
 
     function dilUygula() {
@@ -6598,7 +6668,9 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         const sifre = kfmGercekWifiSifresi();
         if (!sifre) { toast('Wi-Fi şifresi henüz yayınlanmamış.'); return; }
         if (navigator.clipboard) navigator.clipboard.writeText(sifre).catch(() => {});
-        toast('📋 ' + (aktifDil === 'en' ? 'Password copied! Connect via Wi-Fi settings.' : 'Şifre kopyalandı! Cihazınızın Wi-Fi ayarlarından ağa bağlanabilirsiniz.'), 3500);
+        toast('📋 ' + (aktifDil === 'en'
+            ? 'Password copied! Connect via Wi-Fi settings.'
+            : aktifDil === 'ar' ? 'تم نسخ كلمة المرور! اتصل بالشبكة من إعدادات Wi-Fi.' : 'Şifre kopyalandı! Cihazınızın Wi-Fi ayarlarından ağa bağlanabilirsiniz.'), 3500);
     }
 
     const KFM_TABLE_NAME_PATTERN = /^[A-Za-z0-9ÇĞİÖŞÜçğıöşü _-]{1,32}$/;
@@ -6701,13 +6773,28 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         if (!id || !isim) { toast(t('toast_cat_empty')); return; }
         if (/\s/.test(id)) { toast(t('toast_cat_invalid_id')); return; }
         if (menuData[id]) { toast(t('toast_cat_exists')); return; }
-        menuData[id] = { isim, isim_en: translationsDict[isim] || isim, urunler: [] };
+        menuData[id] = {
+            isim,
+            isim_en: document.getElementById('apYeniKatIsimEn').value.trim(),
+            isim_ar: document.getElementById('apYeniKatIsimAr').value.trim(),
+            urunler: []
+        };
         saveAll();
         buildNav();
         apKategoriListesiYenile();
         document.getElementById('apYeniKatId').value   = '';
         document.getElementById('apYeniKatIsim').value = '';
+        document.getElementById('apYeniKatIsimEn').value = '';
+        document.getElementById('apYeniKatIsimAr').value = '';
         toast(t('toast_cat_added'));
+    }
+
+    function apKategoriCevirisiniGuncelle(id, language, value) {
+        const field = language === 'en' ? 'isim_en' : language === 'ar' ? 'isim_ar' : '';
+        if (!field || !menuData[id]) return;
+        menuData[id][field] = String(value || '').trim();
+        saveAll();
+        buildNav();
     }
 
     function kategoriSil(id) {
@@ -6746,6 +6833,10 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 <div>
                   <p class="font-bold text-[13px]" style="color:var(--ink);">${escapeHtml(localizedCategoryName(menuData[k]))}</p>
                   <p class="text-[11px] font-medium" style="color:var(--muted2);">ID: ${escapeHtml(k)} · ${urunSayisi} ürün</p>
+                  <div class="grid grid-cols-2 gap-2 mt-2">
+                    <input class="ap-input text-xs" aria-label="English category name" value="${escapeHtml(menuData[k].isim_en || '')}" placeholder="English name" onchange="apKategoriCevirisiniGuncelle('${escapeHtml(k)}','en',this.value)">
+                    <input class="ap-input text-xs" aria-label="Arabic category name" dir="rtl" value="${escapeHtml(menuData[k].isim_ar || '')}" placeholder="الاسم بالعربية" onchange="apKategoriCevirisiniGuncelle('${escapeHtml(k)}','ar',this.value)">
+                  </div>
                 </div>
                 <button onclick="kategoriSil('${escapeHtml(k)}')"
                   class="px-3 py-2 rounded-xl text-[11px] font-bold active:scale-95 transition-transform shadow-sm flex-shrink-0"
@@ -7011,6 +7102,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         const pickerInstruction = document.getElementById('categoryPickerInstruction');
         const pickerTapHint = document.getElementById('categoryPickerTapHint');
         const pickerSearch = document.getElementById('categoryPickerSearch');
+        const categoryPicker = document.getElementById('categoryPicker');
         kategoriSeciciKur();
         nav.dataset.lang = aktifDil;
         const apKat = document.getElementById('apKat');
@@ -7018,24 +7110,15 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         nav.innerHTML   = '';
         pickerOptions.innerHTML = '';
         apKat.innerHTML = '';
-        apFil.innerHTML = `<option value="hepsi">✨ ${aktifDil === 'en' ? 'All Categories' : 'Tüm Kategoriler'}</option>`;
-        if (aktifDil === 'en') {
-            pickerEyebrow.textContent = 'TO SEE PRODUCTS';
-            pickerTitle.textContent = 'MENU CATEGORIES';
-            pickerHelp.textContent = 'Tap here to open coffee and other menus';
-            pickerInstruction.textContent = 'Choose a category; products appear right below.';
-            pickerTapHint.innerHTML = '<i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> TAP HERE';
-            pickerSearch.placeholder = 'Search products: latte, tea, dessert...';
-            pickerSearch.setAttribute('aria-label', 'Search menu products');
-        } else {
-            pickerEyebrow.textContent = 'ÜRÜNLERİ GÖRMEK İÇİN';
-            pickerTitle.textContent = 'MENÜ KATEGORİLERİ';
-            pickerHelp.textContent = 'Buraya dokunun, kahve ve diğer menüler açılır';
-            pickerInstruction.textContent = 'Bir kategori seçin; ürünler hemen aşağıda gösterilir.';
-            pickerTapHint.innerHTML = '<i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> DOKUNUN';
-            pickerSearch.placeholder = 'Ürün ara: latte, çay, tatlı...';
-            pickerSearch.setAttribute('aria-label', 'Menüde ürün ara');
-        }
+        apFil.innerHTML = `<option value="hepsi">✨ ${aktifDil === 'en' ? 'All Categories' : aktifDil === 'ar' ? 'جميع الفئات' : 'Tüm Kategoriler'}</option>`;
+        pickerEyebrow.textContent = t('category_picker_eyebrow');
+        pickerTitle.textContent = t('category_picker_title');
+        pickerHelp.textContent = t('category_picker_help');
+        pickerInstruction.textContent = t('category_picker_instruction');
+        pickerTapHint.innerHTML = `<i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> ${escapeHtml(t('category_picker_tap'))}`;
+        pickerSearch.placeholder = t('category_picker_search');
+        pickerSearch.setAttribute('aria-label', t('category_picker_search_aria'));
+        categoryPicker.setAttribute('aria-label', t('category_menu_label'));
         if (pickerSearch?.value) kategoriUrunAramaSonuclariniGoster(pickerSearch.value);
 
         const pickerOptionEkle = (key, label, count) => {
@@ -7211,16 +7294,16 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         const isWarmSeason = month >= 5 && month <= 9;
         const isCoolSeason = month === 11 || month === 12 || month <= 2;
         const slotDefinitions = [
-            { start: 360, end: 510, key: 'early', icon: 'fa-sun', categories: ['cat-kahve','cat-sutlu-kahve','cat-cay'], window: '06:00–08:29', tr: { label: 'Şu anın önerisi · Erken gün', detail: 'Güne sıcak ve dengeli bir başlangıç' }, en: { label: 'For now · Early day', detail: 'A warm, balanced start to the day' } },
-            { start: 510, end: 660, key: 'morning', icon: 'fa-mug-hot', categories: ['cat-kahve','cat-sutlu-kahve','cat-kahve','cat-tatli'], window: '08:30–10:59', tr: { label: 'Şu anın önerisi · Sabah', detail: 'Sabah ritmine uygun seçilmiş bir eşlik' }, en: { label: 'For now · Morning', detail: 'Chosen to match the morning rhythm' } },
-            { start: 660, end: 840, key: 'lunch', icon: 'fa-utensils', categories: ['cat-yiyecek','cat-icecek','cat-yiyecek','cat-soguk-icecek'], window: '11:00–13:59', tr: { label: 'Şu anın önerisi · Öğle', detail: 'Öğle molası için dengeli bir tercih' }, en: { label: 'For now · Lunch', detail: 'A balanced choice for the lunch break' } },
-            { start: 840, end: 1020, key: 'afternoon', icon: 'fa-glass-water', categories: ['cat-soguk-kahve','cat-smoothie','cat-soguk-kahve','cat-milkshake','cat-tatli'], window: '14:00–16:59', tr: { label: 'Şu anın önerisi · Öğleden sonra', detail: 'Günün temposuna ferah bir ara' }, en: { label: 'For now · Afternoon', detail: 'A refreshing pause for the day' } },
-            { start: 1020, end: 1200, key: 'sunset', icon: 'fa-mug-saucer', categories: ['cat-cay','cat-tatli','cat-cay','cat-nargile'], window: '17:00–19:59', tr: { label: 'Şu anın önerisi · Akşamüstü', detail: 'Gün batımına keyifli bir eşlik' }, en: { label: 'For now · Sunset', detail: 'A fitting companion for the evening' } },
-            { start: 1200, end: 1380, key: 'evening', icon: 'fa-cloud', categories: ['cat-nargile','cat-cay','cat-nargile','cat-kahve'], window: '20:00–22:59', tr: { label: 'Şu anın önerisi · Akşam', detail: 'Akşam keyfi için özenle dengelendi' }, en: { label: 'For now · Evening', detail: 'Balanced for an unhurried evening' } }
+            { start: 360, end: 510, key: 'early', icon: 'fa-sun', categories: ['cat-kahve','cat-sutlu-kahve','cat-cay'], window: '06:00–08:29', tr: { label: 'Şu anın önerisi · Erken gün', detail: 'Güne sıcak ve dengeli bir başlangıç' }, en: { label: 'For now · Early day', detail: 'A warm, balanced start to the day' }, ar: { label: 'اقتراح الآن · بداية اليوم', detail: 'بداية دافئة ومتوازنة ليومك' } },
+            { start: 510, end: 660, key: 'morning', icon: 'fa-mug-hot', categories: ['cat-kahve','cat-sutlu-kahve','cat-kahve','cat-tatli'], window: '08:30–10:59', tr: { label: 'Şu anın önerisi · Sabah', detail: 'Sabah ritmine uygun seçilmiş bir eşlik' }, en: { label: 'For now · Morning', detail: 'Chosen to match the morning rhythm' }, ar: { label: 'اقتراح الآن · الصباح', detail: 'اختيار يناسب أجواء الصباح' } },
+            { start: 660, end: 840, key: 'lunch', icon: 'fa-utensils', categories: ['cat-yiyecek','cat-icecek','cat-yiyecek','cat-soguk-icecek'], window: '11:00–13:59', tr: { label: 'Şu anın önerisi · Öğle', detail: 'Öğle molası için dengeli bir tercih' }, en: { label: 'For now · Lunch', detail: 'A balanced choice for the lunch break' }, ar: { label: 'اقتراح الآن · الظهيرة', detail: 'خيار متوازن لاستراحة الظهيرة' } },
+            { start: 840, end: 1020, key: 'afternoon', icon: 'fa-glass-water', categories: ['cat-soguk-kahve','cat-smoothie','cat-soguk-kahve','cat-milkshake','cat-tatli'], window: '14:00–16:59', tr: { label: 'Şu anın önerisi · Öğleden sonra', detail: 'Günün temposuna ferah bir ara' }, en: { label: 'For now · Afternoon', detail: 'A refreshing pause for the day' }, ar: { label: 'اقتراح الآن · بعد الظهر', detail: 'استراحة منعشة خلال اليوم' } },
+            { start: 1020, end: 1200, key: 'sunset', icon: 'fa-mug-saucer', categories: ['cat-cay','cat-tatli','cat-cay','cat-nargile'], window: '17:00–19:59', tr: { label: 'Şu anın önerisi · Akşamüstü', detail: 'Gün batımına keyifli bir eşlik' }, en: { label: 'For now · Sunset', detail: 'A fitting companion for the evening' }, ar: { label: 'اقتراح الآن · المساء', detail: 'رفيق لطيف لأجواء المساء' } },
+            { start: 1200, end: 1380, key: 'evening', icon: 'fa-cloud', categories: ['cat-nargile','cat-cay','cat-nargile','cat-kahve'], window: '20:00–22:59', tr: { label: 'Şu anın önerisi · Akşam', detail: 'Akşam keyfi için özenle dengelendi' }, en: { label: 'For now · Evening', detail: 'Balanced for an unhurried evening' }, ar: { label: 'اقتراح الآن · المساء', detail: 'اختيار متوازن لأمسية هادئة' } }
         ];
         const slot = slotDefinitions.find(item => minutes >= item.start && minutes < item.end) || {
             key: 'night', icon: 'fa-moon', categories: ['cat-cay','cat-kahve','cat-cay','cat-tatli'], window: '23:00–05:59',
-            tr: { label: 'Şu anın önerisi · Gece', detail: 'Gece sohbetlerine sakin bir eşlik' }, en: { label: 'For now · Night', detail: 'A calm companion for late conversations' }
+            tr: { label: 'Şu anın önerisi · Gece', detail: 'Gece sohbetlerine sakin bir eşlik' }, en: { label: 'For now · Night', detail: 'A calm companion for late conversations' }, ar: { label: 'اقتراح الآن · الليل', detail: 'رفيق هادئ لأحاديث الليل' }
         };
         const allAvailable = Object.keys(menuData).filter(catKey => catKey !== 'cat-all' && (menuData[catKey]?.urunler || []).some(item => item.stoktaVar !== false));
         if (!allAvailable.length) return null;
@@ -7263,7 +7346,13 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         const candidates = fresh.length ? fresh : available;
         const product = candidates[(hashFor(`${selectionKey}|${selectedCategory}`) + interactions.length * 7) % candidates.length];
         const selectedKey = productSuggestionKey(selectedCategory, product);
-        const seasonNote = isWarmSeason ? (aktifDil === 'en' ? 'seasonal cool balance' : 'mevsimsel ferahlık dengesi') : isCoolSeason ? (aktifDil === 'en' ? 'seasonal warm balance' : 'mevsimsel sıcak denge') : (isWeekend ? (aktifDil === 'en' ? 'weekend rhythm' : 'hafta sonu ritmi') : (aktifDil === 'en' ? 'daily rhythm' : 'günün ritmi'));
+        const seasonNote = isWarmSeason
+            ? (aktifDil === 'en' ? 'seasonal cool balance' : aktifDil === 'ar' ? 'انتعاش يناسب الموسم' : 'mevsimsel ferahlık dengesi')
+            : isCoolSeason
+                ? (aktifDil === 'en' ? 'seasonal warm balance' : aktifDil === 'ar' ? 'دفء يناسب الموسم' : 'mevsimsel sıcak denge')
+                : isWeekend
+                    ? (aktifDil === 'en' ? 'weekend rhythm' : aktifDil === 'ar' ? 'أجواء عطلة نهاية الأسبوع' : 'hafta sonu ritmi')
+                    : (aktifDil === 'en' ? 'daily rhythm' : aktifDil === 'ar' ? 'إيقاع اليوم' : 'günün ritmi');
         try {
             if (localStorage.getItem('kfm_suggestion_last_bucket') !== selectionKey) {
                 const nextHistory = [{ key: selectedKey, catKey: selectedCategory, at: Date.now() }, ...history.filter(item => item.key !== selectedKey)].slice(0, 18);
@@ -7271,7 +7360,7 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
                 localStorage.setItem('kfm_suggestion_last_bucket', selectionKey);
             }
         } catch (_) { /* Depolama kapalıysa seçim yine güvenle yapılır. */ }
-        const copy = slot[aktifDil] || slot.tr;
+        const copy = slot[aktifDil] || (aktifDil === 'ar' ? { label: 'اقتراح الآن', detail: '' } : slot.tr);
         const nextCopy = { ...copy, detail: `${copy.detail} · ${seasonNote}` };
         return { ...slot, [aktifDil]: nextCopy, tr: aktifDil === 'tr' ? nextCopy : slot.tr, en: aktifDil === 'en' ? nextCopy : slot.en, catKey: selectedCategory, product, context: { isWeekend, isWarmSeason, isCoolSeason, interactionCount: interactions.length } };
     }
@@ -7368,17 +7457,20 @@ html[data-theme="dark"] #productGrid > .prod-card.is-out-of-stock .product-card-
         if (allMenu) {
             const categoryFiltered = aktifKat !== 'cat-all';
             allMenu.hidden = !categoryFiltered;
-            allMenu.setAttribute('aria-label', aktifDil === 'en' ? 'Search entire menu' : 'Tüm menüde ara');
-            allMenu.title = aktifDil === 'en' ? 'Search entire menu' : 'Tüm menüde ara';
+            const searchAllLabel = aktifDil === 'en' ? 'Search entire menu' : aktifDil === 'ar' ? 'ابحث في القائمة كاملة' : 'Tüm menüde ara';
+            allMenu.setAttribute('aria-label', searchAllLabel);
+            allMenu.title = searchAllLabel;
             const buttonLabel = allMenu.querySelector('span');
-            if (buttonLabel) buttonLabel.textContent = aktifDil === 'en' ? 'Search all menu' : 'Tüm menüde ara';
+            if (buttonLabel) buttonLabel.textContent = aktifDil === 'en' ? 'Search all menu' : aktifDil === 'ar' ? 'ابحث في القائمة كاملة' : 'Tüm menüde ara';
         }
-        const label = aktifDil === 'en' ? 'products' : 'ürün';
-        const shown = aktifDil === 'en' ? `${visibleCount} ${label} shown` : `${visibleCount} ${label} gösteriliyor`;
+        const label = aktifDil === 'en' ? 'products' : aktifDil === 'ar' ? 'منتج' : 'ürün';
+        const shown = aktifDil === 'en'
+            ? `${visibleCount} ${label} shown`
+            : aktifDil === 'ar' ? `عرض ${visibleCount} ${label}` : `${visibleCount} ${label} gösteriliyor`;
         const scope = globalFallback
-            ? (aktifDil === 'en' ? ' · found in the whole menu' : ' · tüm menüde bulundu')
+            ? (aktifDil === 'en' ? ' · found in the whole menu' : aktifDil === 'ar' ? ' · في القائمة كاملة' : ' · tüm menüde bulundu')
             : arama && scopedCount !== visibleCount
-                ? (aktifDil === 'en' ? `of ${scopedCount}` : `${scopedCount} içinden`)
+                ? (aktifDil === 'en' ? `of ${scopedCount}` : aktifDil === 'ar' ? `من ${scopedCount}` : `${scopedCount} içinden`)
                 : '';
         summary.innerHTML = `<span><strong>${shown}</strong> ${scope}</span>`;
     }
@@ -7757,9 +7849,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
         window.__renderedProducts = list;
         updateSearchSummary(list.length, categoryScopedCount, arama, wholeMenuFallback);
         if (!list.length) {
-            const title = arama ? (aktifDil === 'en' ? 'No matching products' : 'Eşleşen ürün bulunamadı') : t('no_product');
-            const detail = arama ? (aktifDil === 'en' ? 'Try another product, category or description.' : 'Başka bir ürün adı, kategori veya açıklama deneyin.') : (aktifDil === 'en' ? 'There are no visible products in this category.' : 'Bu kategoride gösterilecek ürün bulunmuyor.');
-            grid.innerHTML = `<div class="search-empty"><i class="fa-solid fa-mug-hot"></i><strong>${escapeHtml(title)}</strong><span>${escapeHtml(detail)}</span>${arama ? `<button type="button" onclick="aramaTemizle()">${aktifDil === 'en' ? 'Clear search' : 'Aramayı temizle'}</button>` : ''}</div>`;
+            const title = arama
+                ? (aktifDil === 'en' ? 'No matching products' : aktifDil === 'ar' ? 'لم يتم العثور على منتجات مطابقة' : 'Eşleşen ürün bulunamadı')
+                : t('no_product');
+            const detail = arama
+                ? (aktifDil === 'en' ? 'Try another product, category or description.' : aktifDil === 'ar' ? 'جرّب البحث باسم منتج أو فئة أو وصف آخر.' : 'Başka bir ürün adı, kategori veya açıklama deneyin.')
+                : (aktifDil === 'en' ? 'There are no visible products in this category.' : aktifDil === 'ar' ? 'لا توجد منتجات متاحة في هذه الفئة.' : 'Bu kategoride gösterilecek ürün bulunmuyor.');
+            grid.innerHTML = `<div class="search-empty"><i class="fa-solid fa-mug-hot"></i><strong>${escapeHtml(title)}</strong><span>${escapeHtml(detail)}</span>${arama ? `<button type="button" onclick="aramaTemizle()">${t('search_clear')}</button>` : ''}</div>`;
             return;
         }
 
@@ -7784,15 +7880,21 @@ function apUrunDosyaSecildi(event, catKey, id) {
     function kfmProductCardHtml(u, idx, arama) {
         const name = localizedProductName(u);
         const description = localizedProductDescription(u, '');
-        const safeDescription = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
+        const safeDescription = description || (aktifDil === 'en'
+            ? 'Carefully prepared for your enjoyment.'
+            : aktifDil === 'ar' ? 'يُحضّر بعناية لتستمتع به.' : 'Keyfiniz için özenle hazırlanır.');
             const categoryName = localizedCategoryName(menuData[u.catKey], '');
             const fallbackImg = kfmV21FallbackFor(u, u.catKey);
             const img = kfmV21ProductImage(u, u.catKey);
             const extrasCount = u.ekstralar?.length || 0;
             const stokOverlay = u.stoktaVar === false ? `<div class="stok-overlay"><span class="stok-badge">${t('out_of_stock')}</span></div>` : '';
             const stokMiktar = u.stokMiktar === null || u.stokMiktar === undefined ? null : Number(u.stokMiktar);
-            const stokMiktarMetni = Number.isFinite(stokMiktar) ? ` · ${aktifDil === 'en' ? 'Left' : 'Kalan'}: ${new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 2 }).format(stokMiktar)} ${escapeHtml(u.birim || 'adet')}` : '';
-            const stokUyariRozeti = u.stoktaVar && u.stokUyari ? `<span class="product-card-stock-warning"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>${aktifDil === 'en' ? 'Low stock' : 'Stok eşiğinde'}${stokMiktarMetni}</span>` : '';
+            const stokMiktarMetni = Number.isFinite(stokMiktar)
+                ? ` · ${aktifDil === 'en' ? 'Left' : aktifDil === 'ar' ? 'المتبقي' : 'Kalan'}: ${new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR', { maximumFractionDigits: 2 }).format(stokMiktar)} ${escapeHtml(u.birim || (aktifDil === 'ar' ? 'قطعة' : 'adet'))}`
+                : '';
+            const stokUyariRozeti = u.stoktaVar && u.stokUyari
+                ? `<span class="product-card-stock-warning"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>${aktifDil === 'en' ? 'Low stock' : aktifDil === 'ar' ? 'المخزون منخفض' : 'Stok eşiğinde'}${stokMiktarMetni}</span>`
+                : '';
             const delay = Math.min(idx, 8) * 0.055;
             const frameTheme = getProductFrameTheme(u);
             const frameTone = frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm')));
@@ -7833,18 +7935,18 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const appendEndCard = () => {
             if (endCardAppended) return;
             endCardAppended = true;
-            const endTitle = aktifDil === 'en' ? 'You have reached the end of the menu' : 'Menünün sonuna geldiniz';
-        const endText = aktifDil === 'en' ? 'Take a quick look at the essentials or return to the menu wheel.' : 'Kısa bilgileri görüntüleyebilir veya kategori çarkına geri dönebilirsiniz.';
-        const topLabel = aktifDil === 'en' ? 'Back to menu' : 'Menüye dön';
-        const wifiLabel = aktifDil === 'en' ? 'Wi-Fi details' : 'Wi-Fi bilgisi';
-        const hoursLabel = aktifDil === 'en' ? 'Hours' : 'Çalışma saatleri';
-        const dailyHours = aktifDil === 'en' ? 'Every day · 09:00–00:00' : 'Her gün · 09:00–00:00';
+            const endTitle = aktifDil === 'en' ? 'You have reached the end of the menu' : aktifDil === 'ar' ? 'وصلت إلى نهاية القائمة' : 'Menünün sonuna geldiniz';
+        const endText = aktifDil === 'en' ? 'Take a quick look at the essentials or return to the menu wheel.' : aktifDil === 'ar' ? 'ألقِ نظرة سريعة على المعلومات أو عُد إلى فئات القائمة.' : 'Kısa bilgileri görüntüleyebilir veya kategori çarkına geri dönebilirsiniz.';
+        const topLabel = aktifDil === 'en' ? 'Back to menu' : aktifDil === 'ar' ? 'العودة إلى القائمة' : 'Menüye dön';
+        const wifiLabel = aktifDil === 'en' ? 'Wi-Fi details' : aktifDil === 'ar' ? 'تفاصيل Wi-Fi' : 'Wi-Fi bilgisi';
+        const hoursLabel = aktifDil === 'en' ? 'Hours' : aktifDil === 'ar' ? 'ساعات العمل' : 'Çalışma saatleri';
+        const dailyHours = aktifDil === 'en' ? 'Every day · 09:00–00:00' : aktifDil === 'ar' ? 'يومياً · 09:00–00:00' : 'Her gün · 09:00–00:00';
         const wifiName = document.getElementById('wifiDisplayName')?.textContent?.trim() || 'Keyfimce_WiFi';
         grid.insertAdjacentHTML('beforeend', `
           <section class="menu-end-card" aria-label="${escapeHtml(endTitle)}">
             <div class="menu-end-card-main">
               <div class="menu-end-card-copy"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i><div><strong>${escapeHtml(endTitle)}</strong><span>${escapeHtml(endText)}</span></div></div>
-              <ul class="menu-end-card-info" aria-label="${aktifDil === 'en' ? 'Cafe information' : 'Kafe bilgileri'}">
+              <ul class="menu-end-card-info" aria-label="${aktifDil === 'en' ? 'Cafe information' : aktifDil === 'ar' ? 'معلومات المقهى' : 'Kafe bilgileri'}">
                 <li><i class="fa-regular fa-clock" aria-hidden="true"></i><span>${escapeHtml(hoursLabel)}</span><strong>${escapeHtml(dailyHours)}</strong></li>
                 <li><i class="fa-solid fa-wifi" aria-hidden="true"></i><span>Wi-Fi</span><strong>${escapeHtml(wifiName)}</strong></li>
               </ul>
@@ -8147,13 +8249,21 @@ function apUrunDosyaSecildi(event, catKey, id) {
         document.getElementById('detailCategory').textContent = categoryName || 'Keyfimce';
         refreshDetailCategoryAction();
         document.getElementById('detailTitle').textContent = name;
-        document.getElementById('detailDescription').textContent = description || (aktifDil === 'en' ? 'Carefully prepared for your enjoyment.' : 'Keyfiniz için özenle hazırlanır.');
+        document.getElementById('detailDescription').textContent = description || (aktifDil === 'en'
+            ? 'Carefully prepared for your enjoyment.'
+            : aktifDil === 'ar' ? 'يُحضّر بعناية لتستمتع به.' : 'Keyfiniz için özenle hazırlanır.');
         kfmUrunIcerikEtiketleriniGoster(item);
         document.getElementById('detailPrice').textContent = `${item.fiyat}₺`;
         const stock = document.getElementById('detailStock');
         const detailStockAmount = item.stokMiktar === null || item.stokMiktar === undefined ? null : Number(item.stokMiktar);
-        const detailStockAmountText = Number.isFinite(detailStockAmount) ? ` · ${aktifDil === 'en' ? 'Left' : 'Kalan'}: ${new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 2 }).format(detailStockAmount)} ${item.birim || 'adet'}` : '';
-        stock.textContent = !item.stoktaVar ? `${t('out_of_stock')}${detailStockAmountText}` : (item.stokUyari ? `${aktifDil === 'en' ? 'Low stock' : 'Stok eşiğinde'}${detailStockAmountText}` : `${aktifDil === 'en' ? 'Available' : 'Stokta mevcut'}${detailStockAmountText}`);
+        const detailStockAmountText = Number.isFinite(detailStockAmount)
+            ? ` · ${aktifDil === 'en' ? 'Left' : aktifDil === 'ar' ? 'المتبقي' : 'Kalan'}: ${new Intl.NumberFormat(aktifDil === 'ar' ? 'ar' : aktifDil === 'en' ? 'en' : 'tr-TR', { maximumFractionDigits: 2 }).format(detailStockAmount)} ${item.birim || (aktifDil === 'ar' ? 'قطعة' : 'adet')}`
+            : '';
+        stock.textContent = !item.stoktaVar
+            ? `${t('out_of_stock')}${detailStockAmountText}`
+            : item.stokUyari
+                ? `${aktifDil === 'en' ? 'Low stock' : aktifDil === 'ar' ? 'المخزون منخفض' : 'Stok eşiğinde'}${detailStockAmountText}`
+                : `${aktifDil === 'en' ? 'Available' : aktifDil === 'ar' ? 'متوفر' : 'Stokta mevcut'}${detailStockAmountText}`;
         stock.classList.toggle('out', !item.stoktaVar);
         stock.classList.toggle('warning', item.stoktaVar && item.stokUyari);
         const badge = document.getElementById('detailBadge');
@@ -8710,14 +8820,14 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        if (!kfmFavoriteRefs().length) return;
 	        kfmRefListWrite(KFM_FAVORITES_KEY, []);
 	        kfmFavoritesStripGuncelle();
-	        toast(aktifDil === 'en' ? 'Favorites cleared on this device.' : 'Favoriler bu cihazdan temizlendi.');
+	        toast(t('favorites_cleared_notice'));
 	    }
 
 	    function kfmRecentTemizle() {
 	        if (!kfmRecentRefs().length) return;
 	        kfmRefListWrite(KFM_RECENT_KEY, []);
 	        kfmFavoritesStripGuncelle();
-	        toast(aktifDil === 'en' ? 'Recently viewed products cleared on this device.' : 'Son seçilenler bu cihazdan temizlendi.');
+	        toast(t('recent_cleared_notice'));
 	    }
 
 	    function kfmFavChipHtml(ref, isFav) {
@@ -8730,7 +8840,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        return `<div class="fav-chip" role="listitem" data-ref="${refJson}" data-kind="${listKey}">
 	            <img src="${escapeHtml(image)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
 	            <span><span class="fav-chip-name">${escapeHtml(name)}</span><span class="fav-chip-price">${product.fiyat}₺</span></span>
-	            ${isFav ? `<button type="button" class="fav-remove" aria-label="${escapeHtml(name)} favorilerden çıkar" onclick="event.stopPropagation();kfmFavoriteKaldir('${escapeHtml(ref.catKey)}','${escapeHtml(ref.id)}')"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>` : ''}
+	            ${isFav ? `<button type="button" class="fav-remove" aria-label="${escapeHtml(name)} ${escapeHtml(t('favorite_remove_item'))}" onclick="event.stopPropagation();kfmFavoriteKaldir('${escapeHtml(ref.catKey)}','${escapeHtml(ref.id)}')"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>` : ''}
 	        </div>`;
 	    }
 
@@ -8754,17 +8864,17 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        const recentToggle = document.getElementById('recentToggle');
 	        favToggle.setAttribute('aria-expanded', String(kfmFavoritesOpen));
 	        recentToggle.setAttribute('aria-expanded', String(kfmRecentOpen));
-	        document.getElementById('favoritesHeading').textContent = aktifDil === 'en' ? 'Favorites' : 'Favorilerim';
-	        document.getElementById('recentHeading').textContent = aktifDil === 'en' ? 'Recently viewed' : 'Son Seçilenler';
+	        document.getElementById('favoritesHeading').textContent = t('favorites_heading');
+	        document.getElementById('recentHeading').textContent = t('recent_heading');
 	        document.getElementById('favoritesCount').textContent = `(${favChips.length})`;
 	        document.getElementById('recentCount').textContent = `(${recentChips.length})`;
 	        for (const [id, hasItems, label] of [
-	            ['favoritesClear', favChips.length > 0, aktifDil === 'en' ? 'Clear favorites' : 'Favorileri temizle'],
-	            ['recentClear', recentChips.length > 0, aktifDil === 'en' ? 'Clear recently viewed products' : 'Son seçilenleri temizle'],
+	            ['favoritesClear', favChips.length > 0, t('favorites_clear_label')],
+	            ['recentClear', recentChips.length > 0, t('recent_clear_label')],
 	        ]) {
 	            const button = document.getElementById(id);
 	            button.disabled = !hasItems;
-	            button.textContent = aktifDil === 'en' ? 'Clear' : 'Temizle';
+	            button.textContent = t(id === 'favoritesClear' ? 'favorites_clear' : 'recent_clear');
 	            button.title = label;
 	            button.setAttribute('aria-label', label);
 	        }
@@ -8798,8 +8908,8 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                const isFav = kfmIsFavorite(ref);
 	                button.classList.toggle('is-fav', isFav);
 	                button.setAttribute('aria-pressed', String(isFav));
-	                button.setAttribute('aria-label', isFav ? 'Favorilerden çıkar' : 'Favorilere ekle');
-	                button.title = isFav ? 'Favorilerden çıkar' : 'Favorilere ekle';
+	                button.setAttribute('aria-label', isFav ? t('favorite_remove_item') : t('favorite_add_item'));
+	                button.title = isFav ? t('favorite_remove_item') : t('favorite_add_item');
 	                button.querySelector('i')?.classList.toggle('fa-solid', isFav);
 	                button.querySelector('i')?.classList.toggle('fa-regular', !isFav);
 	            } catch { /* bozuk referans */ }
@@ -8815,7 +8925,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	        if (!ref) return '';
 	        const isFav = kfmIsFavorite(ref);
 	        const refJson = escapeHtml(JSON.stringify(ref));
-	        return `<button type="button" class="fav-toggle ${isFav ? 'is-fav' : ''}" data-fav-ref="${refJson}" aria-pressed="${isFav}" aria-label="${isFav ? 'Favorilerden çıkar' : 'Favorilere ekle'}" title="${isFav ? 'Favorilerden çıkar' : 'Favorilere ekle'}"><i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart" aria-hidden="true"></i></button>`;
+	        return `<button type="button" class="fav-toggle ${isFav ? 'is-fav' : ''}" data-fav-ref="${refJson}" aria-pressed="${isFav}" aria-label="${escapeHtml(isFav ? t('favorite_remove_item') : t('favorite_add_item'))}" title="${escapeHtml(isFav ? t('favorite_remove_item') : t('favorite_add_item'))}"><i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart" aria-hidden="true"></i></button>`;
 	    }
 
 	    function kfmFavToggleBagla(scope) {
@@ -8830,7 +8940,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	                    button.setAttribute('aria-pressed', String(nowFav));
 	                    button.querySelector('i')?.classList.toggle('fa-solid', nowFav);
 	                    button.querySelector('i')?.classList.toggle('fa-regular', !nowFav);
-	                    toast(nowFav ? '❤️ Favorilere eklendi.' : 'Favorilerden çıkarıldı.');
+	                    toast(nowFav ? `❤️ ${t('favorite_add_item')}` : t('favorite_remove_item'));
 	                } catch { /* bozuk referans */ }
 	            });
 	        });
@@ -9327,6 +9437,11 @@ function apUrunDosyaSecildi(event, catKey, id) {
     function urunEkle() {
         const cat    = document.getElementById('apKat').value;
         const ad     = document.getElementById('apAd').value.trim();
+        const adEn   = document.getElementById('apAdEn').value.trim();
+        const adAr   = document.getElementById('apAdAr').value.trim();
+        const aciklama = document.getElementById('apAciklama').value.trim();
+        const aciklamaEn = document.getElementById('apAciklamaEn').value.trim();
+        const aciklamaAr = document.getElementById('apAciklamaAr').value.trim();
         const fiyat  = parseInt(document.getElementById('apFiyat').value);
         const gorsel = document.getElementById('apGorsel').value.trim();
         const exRaw  = document.getElementById('apEkstra').value.trim();
@@ -9337,11 +9452,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const [isim, f] = item.split(':');
             if (isim && f) ekstralar.push({ isim: isim.trim(), fiyat: parseInt(f.trim()) || 0 });
         });
-        const ad_en = translationsDict[ad] || ad;
-        const ekstralar_en = ekstralar.map(ex => ({ ...ex, isim_en: translationsDict[ex.isim] || ex.isim }));
-        menuData[cat].urunler.push({ id: Date.now(), ad, ad_en, fiyat, gorsel, stoktaVar: true, ekstralar: ekstralar_en });
+        menuData[cat].urunler.push({
+            id: Date.now(), ad, ad_en: adEn, ad_ar: adAr,
+            aciklama, aciklama_en: aciklamaEn, aciklama_ar: aciklamaAr,
+            fiyat, gorsel, stoktaVar: true, ekstralar
+        });
         saveAll();
-        ['apAd', 'apFiyat', 'apGorsel', 'apEkstra', 'apYeniGorselDosya'].forEach(i => { const el = document.getElementById(i); if (el) el.value = ''; });
+        ['apAd', 'apAdEn', 'apAdAr', 'apAciklama', 'apAciklamaEn', 'apAciklamaAr', 'apFiyat', 'apGorsel', 'apEkstra', 'apYeniGorselDosya'].forEach(i => { const el = document.getElementById(i); if (el) el.value = ''; });
         apYeniUrunOnizlemeGuncelle();
         apUrunListesiYenile();
         apKategoriListesiYenile();
@@ -9406,6 +9523,15 @@ function apUrunDosyaSecildi(event, catKey, id) {
     function stokDisiGizlemeAyarla(value) { hideOutOfStock = !!value; saveAll(); renderProducts(); toast(hideOutOfStock ? 'Stok dışı ürünler web sitesinde gizlendi.' : 'Stok dışı ürünler web sitesinde gösteriliyor.'); }
     function apGorselOnizle(url, previewId, fallback) { const img = document.getElementById(previewId); if (!img) return; img.onerror = () => { img.onerror = null; img.src = fallback; }; img.src = String(url || '').trim() || fallback; }
     function apAciklamaGuncelle(catKey, id, value) { menuData[catKey].urunler.forEach(u => { if (u.id === id) u.aciklama = String(value || '').trim(); }); saveAll(); renderProducts(); }
+    function apUrunCevirisiniGuncelle(catKey, id, field, value) {
+        if (!['ad_en', 'ad_ar', 'aciklama_en', 'aciklama_ar', 'icerik_en', 'icerik_ar', 'alerjenler_en', 'alerjenler_ar', 'alerjen_notu_en', 'alerjen_notu_ar'].includes(field)) return;
+        const product = (menuData[catKey]?.urunler || []).find(item => String(item.id) === String(id));
+        if (!product) return;
+        product[field] = String(value || '').trim();
+        saveAll();
+        renderProducts();
+        apUrunListesiYenile();
+    }
     // KFM_DETAIL_TAGS_V1 — içerik, alerjen ve alerjen notu yönetimi.
     function apIcerikGuncelle(catKey, id, value) { menuData[catKey].urunler.forEach(u => { if (u.id === id) u.icerik = String(value || '').trim(); }); saveAll(); toast('İçerik bilgisi güncellendi.'); }
     function apAlerjenGuncelle(catKey, id, value) { menuData[catKey].urunler.forEach(u => { if (u.id === id) u.alerjenler = String(value || '').trim(); }); saveAll(); toast('Alerjen bilgisi güncellendi.'); }
@@ -9416,19 +9542,26 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const box = document.getElementById('apUrunListesi');
         const filtreKat = document.getElementById('apMevcutKatFiltre').value;
         const aramaKel = document.getElementById('apUrunAraInput').value.toLowerCase().trim();
-        box.innerHTML = ''; let count = 0;
+        box.innerHTML = ''; let count = 0; const visibleProducts = [];
         for (const catKey in menuData) {
             if (filtreKat !== 'hepsi' && filtreKat !== catKey) continue;
             (menuData[catKey].urunler || []).forEach(u => {
                 const name = localizedProductName(u); const desc = localizedProductDescription(u, '');
                 if (aramaKel && !(name + ' ' + desc).toLowerCase().includes(aramaKel)) return;
-                if (apStokFiltresi === 'in' && !u.stoktaVar) return; if (apStokFiltresi === 'out' && u.stoktaVar) return; count++;
+                if (apStokFiltresi === 'in' && !u.stoktaVar) return; if (apStokFiltresi === 'out' && u.stoktaVar) return; count++; visibleProducts.push({ catKey, product: u });
                 const frameTheme = kfmFrameThemeForProduct(u, catKey); const fallback = gorselHavuzu[catKey] || gorselHavuzu['cat-kahve']; const image = u.gorsel && u.gorsel.trim() ? u.gorsel : fallback;
                 const options = Object.keys(menuData).map(k => `<option value="${escapeHtml(k)}" ${k === catKey ? 'selected' : ''}>${escapeHtml(menuData[k].isim)}</option>`).join('');
                 const extraHtml = (u.ekstralar || []).map(ex => `<span class="extra-pill">${escapeHtml(ex.isim)} ${ex.fiyat}₺</span>`).join('');
                 box.insertAdjacentHTML('beforeend', `<article class="ap-product-editor"><div class="ap-product-head"><div class="ap-frame-preview ap-product-preview" id="apFramePreview_${u.id}" data-frame-theme="${escapeHtml(frameTheme)}"><img id="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" class="${u.gorsel && u.gorsel.trim() ? 'ap-preview-cover' : ''}" onerror="this.onerror=null;this.classList.remove('ap-preview-cover');this.src='${escapeHtml(fallback)}'"><span class="ap-frame-preview-art" data-frame-theme="${escapeHtml(frameTheme)}" aria-hidden="true"></span></div><div><div class="ap-product-title">${escapeHtml(name)}</div><div class="ap-product-category">${escapeHtml(menuData[catKey].isim)}</div><div class="ap-save-hint">Değişiklikler otomatik kaydedilir</div></div><button type="button" class="ap-stock-toggle ${u.stoktaVar ? 'on' : ''}" onclick="stokDegistir('${catKey}',${u.id})"><span class="ap-stock-dot"></span>${u.stoktaVar ? 'Stokta' : 'Stok dışı'}</button></div><div class="ap-product-fields"><div><label>Fiyat (₺)</label><input type="number" min="0" value="${u.fiyat}" onchange="fiyatGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium"></div><div><label>Kategori değiştir</label><select class="ap-input text-xs font-medium" onchange="urunKategoriDegistir('${catKey}',${u.id},this.value)">${options}</select></div><div class="ap-field-wide"><label>Görsel URL · kart önizlemesi</label><input type="text" value="${escapeHtml(u.gorsel || '')}" oninput="apEditorGorselOnizle(this.value,'apPreview_${u.id}','${escapeHtml(fallback)}','${escapeHtml(frameTheme)}')" onchange="gorselGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="https://..."><input class="ap-file-input" type="file" accept="image/*" onchange="apUrunDosyaSecildi(event,'${catKey}',${u.id})"><span class="ap-preview-link"><i class="fa-solid fa-eye"></i> Görsel ve kategori çerçevesi kartta anlık olarak önizlenir</span></div><div class="ap-field-wide"><label>Kısa açıklama · kartta görünen metin</label><textarea class="ap-input text-xs font-medium" onchange="apAciklamaGuncelle('${catKey}',${u.id},this.value)" placeholder="Ürünü kısa ve iştah açıcı şekilde anlatın...">${escapeHtml(desc)}</textarea></div><div class="ap-field-wide"><label>İçerik · virgülle ayırın (ürün detayında etiket olarak görünür)</label><input type="text" value="${escapeHtml(Array.isArray(u.icerik) ? u.icerik.join(', ') : (u.icerik || ''))}" onchange="apIcerikGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="Örn. espresso, süt, kakao"></div><div class="ap-field-wide"><label>Alerjenler · virgülle ayırın (kırmızı etiketle işaretlenir)</label><input type="text" value="${escapeHtml(Array.isArray(u.alerjenler) ? u.alerjenler.join(', ') : (u.alerjenler || ''))}" onchange="apAlerjenGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="Örn. süt, fındık, gluten"></div><div class="ap-field-wide"><label>Alerjen notu · serbest metin</label><input type="text" value="${escapeHtml(u.alerjen_notu || '')}" onchange="apAlerjenNotuGuncelle('${catKey}',${u.id},this.value)" class="ap-input text-xs font-medium" placeholder="Örn. Mutfağımızda gluten içeren ürünler hazırlanır."></div></div><div class="ap-live-product-preview"><div class="ap-live-product-preview-head"><span><i class="fa-solid fa-eye mr-1"></i> Ziyaretçi kartı · canlı görsel önizleme</span><span class="ap-preview-status" data-ap-preview-status-for="apPreview_${u.id}" data-state="ready">Kart görünümü hazır</span></div><div class="ap-live-product-card" data-frame-theme="${escapeHtml(frameTheme)}" data-frame-tone="${escapeHtml(frameTheme === 'cold' ? 'cool' : (frameTheme === 'sweet' ? 'sweet' : (frameTheme === 'hookah' ? 'night' : (frameTheme === 'food' ? 'herbal' : 'warm'))))}"><div class="product-card-image-wrap"><img data-ap-live-preview-for="apPreview_${u.id}" src="${escapeHtml(image)}" alt="${escapeHtml(name)}" class="product-card-image ${u.gorsel && u.gorsel.trim() ? 'ap-preview-cover' : ''}" onerror="this.onerror=null;this.classList.remove('ap-preview-cover');this.src='${escapeHtml(fallback)}'"><span class="product-card-depth-plane" aria-hidden="true"></span><span class="product-card-frame-art" data-frame-theme="${escapeHtml(frameTheme)}" aria-hidden="true"></span></div><div class="product-card-body"><div class="product-card-category">${escapeHtml(menuData[catKey].isim)}</div><h3 class="product-card-title">${escapeHtml(name)}</h3><p class="product-card-description">${escapeHtml(desc || 'Ürün açıklaması burada görünür.')}</p><div class="product-card-footer"><strong class="product-card-price">${escapeHtml(String(u.fiyat))}₺</strong><span class="ap-live-card-tag"><i class="fa-solid fa-image mr-1"></i> Kart görünümü</span></div></div></div></div><div class="mt-3"><label>Ekstralar</label><div class="flex flex-wrap gap-1.5">${extraHtml || '<span class="italic text-[11px]" style="color:var(--muted2);">Ekstra yok</span>'}</div></div><div class="ap-product-actions"><button type="button" onclick="urunSil('${catKey}',${u.id})" style="color:#b91c1c;background:#fef2f2;border:1px solid #fca5a5;"><i class="fa-solid fa-trash mr-1"></i>Sil</button></div></article>`);
             });
         }
+        visibleProducts.forEach(({ catKey, product }) => {
+            const productAttributes = `data-category-key="${escapeHtml(catKey)}" data-product-id="${escapeHtml(String(product.id))}"`;
+            box.insertAdjacentHTML('beforeend', `<details class="ap-product-editor"><summary class="font-bold text-xs cursor-pointer">Çeviriler · ${escapeHtml(product.ad || '')}</summary><div class="grid grid-cols-2 gap-2 mt-3"><input class="ap-input text-xs" aria-label="English product name" ${productAttributes} data-product-field="ad_en" value="${escapeHtml(product.ad_en || '')}" placeholder="English product name"><input class="ap-input text-xs" aria-label="Arabic product name" dir="rtl" ${productAttributes} data-product-field="ad_ar" value="${escapeHtml(product.ad_ar || '')}" placeholder="اسم المنتج بالعربية"><textarea class="ap-input text-xs" aria-label="English product description" ${productAttributes} data-product-field="aciklama_en" placeholder="English description">${escapeHtml(product.aciklama_en || '')}</textarea><textarea class="ap-input text-xs" aria-label="Arabic product description" dir="rtl" ${productAttributes} data-product-field="aciklama_ar" placeholder="الوصف بالعربية">${escapeHtml(product.aciklama_ar || '')}</textarea><textarea class="ap-input text-xs" aria-label="English product contents" ${productAttributes} data-product-field="icerik_en" placeholder="Ingredients in English">${escapeHtml(product.icerik_en || '')}</textarea><textarea class="ap-input text-xs" aria-label="Arabic product contents" dir="rtl" ${productAttributes} data-product-field="icerik_ar" placeholder="المكونات بالعربية">${escapeHtml(product.icerik_ar || '')}</textarea><input class="ap-input text-xs" aria-label="English allergens" ${productAttributes} data-product-field="alerjenler_en" value="${escapeHtml(product.alerjenler_en || '')}" placeholder="Allergens in English"><input class="ap-input text-xs" aria-label="Arabic allergens" dir="rtl" ${productAttributes} data-product-field="alerjenler_ar" value="${escapeHtml(product.alerjenler_ar || '')}" placeholder="مسببات الحساسية بالعربية"><textarea class="ap-input text-xs" aria-label="English allergen note" ${productAttributes} data-product-field="alerjen_notu_en" placeholder="Allergen note in English">${escapeHtml(product.alerjen_notu_en || '')}</textarea><textarea class="ap-input text-xs" aria-label="Arabic allergen note" dir="rtl" ${productAttributes} data-product-field="alerjen_notu_ar" placeholder="ملاحظة الحساسية بالعربية">${escapeHtml(product.alerjen_notu_ar || '')}</textarea></div></details>`);
+        });
+        box.querySelectorAll('[data-product-field]').forEach(input => input.addEventListener('change', () => {
+            apUrunCevirisiniGuncelle(input.dataset.categoryKey, input.dataset.productId, input.dataset.productField, input.value);
+        }));
         if (!count) box.innerHTML = '<div class="ap-admin-empty"><i class="fa-solid fa-filter-circle-xmark mb-2"></i><br>Bu filtreye uygun ürün bulunamadı.</div>';
         apAdminOzetGuncelle();
     }
@@ -9621,7 +9754,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
     function kfmImageKey(product) {
         if (!product) return '';
         const id = String(product.id ?? '').trim();
-        const name = String(product.ad_en || product.ad || '').trim().toLocaleLowerCase('tr-TR');
+        const name = String(product.ad || '').trim().toLocaleLowerCase('tr-TR');
         return id ? `id:${id}` : `name:${name}`;
     }
     function kfmKnownBrokenRemote(product, url) {
@@ -9629,26 +9762,67 @@ function apUrunDosyaSecildi(event, catKey, id) {
         const name = String(product?.ad_en || product?.ad || '').toLowerCase();
         return (name.includes('italian cappuccino') || name.includes('italian macchiato')) && value.includes('encrypted-tbn0.gstatic.com');
     }
-    function kfmMergeUserImages(remoteMenu, localMenu) {
+    function kfmMergeUserMenuData(remoteMenu, localMenu) {
         if (!remoteMenu || !localMenu) return remoteMenu;
         const merged = JSON.parse(JSON.stringify(remoteMenu));
         const remoteIndex = new Map();
+        const remoteCategories = new Map(Object.entries(merged));
+        const mergeLocalizedFields = (target, source, fields) => {
+            fields.forEach(([translatedKey, sourceKey]) => {
+                const translatedValue = source?.[translatedKey];
+                if ((!Array.isArray(translatedValue) && typeof translatedValue !== 'string') || !String(translatedValue).trim()) return;
+                const sourceValue = Array.isArray(source?.[sourceKey]) ? source[sourceKey].join(', ') : source?.[sourceKey];
+                if (normalizeMenuTranslationKey(translatedValue) === normalizeMenuTranslationKey(sourceValue)) return;
+                const currentValue = target?.[translatedKey];
+                const targetSource = Array.isArray(target?.[sourceKey]) ? target[sourceKey].join(', ') : target?.[sourceKey];
+                if (!currentValue || normalizeMenuTranslationKey(currentValue) === normalizeMenuTranslationKey(targetSource)) {
+                    target[translatedKey] = translatedValue;
+                }
+            });
+        };
         Object.values(merged).forEach(cat => (cat?.urunler || []).forEach(product => {
             remoteIndex.set(kfmImageKey(product), product);
         }));
-        Object.values(localMenu).forEach(cat => (cat?.urunler || []).forEach(localProduct => {
-            const localImage = String(localProduct?.gorsel || '').trim();
-            if (!localImage) return;
-            const target = remoteIndex.get(kfmImageKey(localProduct));
-            if (!target) return;
-            const remoteImage = String(target.gorsel || '').trim();
-            if (!remoteImage || kfmKnownBrokenRemote(target, remoteImage)) target.gorsel = localImage;
-        }));
+        Object.entries(localMenu).forEach(([categoryKey, localCategory]) => {
+            const targetCategory = remoteCategories.get(categoryKey);
+            if (targetCategory) {
+                mergeLocalizedFields(targetCategory, localCategory, [['isim_en', 'isim'], ['isim_ar', 'isim']]);
+            }
+            (localCategory?.urunler || []).forEach(localProduct => {
+                const target = remoteIndex.get(kfmImageKey(localProduct));
+                if (!target) return;
+                const localImage = String(localProduct?.gorsel || '').trim();
+                const remoteImage = String(target.gorsel || '').trim();
+                if (localImage && (!remoteImage || kfmKnownBrokenRemote(target, remoteImage))) target.gorsel = localImage;
+                mergeLocalizedFields(target, localProduct, [
+                    ['ad_en', 'ad'], ['ad_ar', 'ad'],
+                    ['aciklama_en', 'aciklama'], ['aciklama_ar', 'aciklama'],
+                    ['icerik_en', 'icerik'], ['icerik_ar', 'icerik'],
+                    ['alerjenler_en', 'alerjenler'], ['alerjenler_ar', 'alerjenler'],
+                    ['alerjen_notu_en', 'alerjen_notu'], ['alerjen_notu_ar', 'alerjen_notu'],
+                ]);
+                const localExtras = new Map((localProduct.ekstralar || []).map(extra => [normalizeMenuTranslationKey(extra?.isim), extra]));
+                (target.ekstralar || []).forEach(extra => {
+                    const sourceExtra = localExtras.get(normalizeMenuTranslationKey(extra?.isim));
+                    if (sourceExtra) mergeLocalizedFields(extra, sourceExtra, [['isim_en', 'isim'], ['isim_ar', 'isim']]);
+                });
+                const localVariants = new Map((localProduct.varyantlar || []).map(variant => [
+                    `${normalizeMenuTranslationKey(variant?.grup)}|${normalizeMenuTranslationKey(variant?.isim)}`,
+                    variant,
+                ]));
+                (target.varyantlar || []).forEach(variant => {
+                    const sourceVariant = localVariants.get(`${normalizeMenuTranslationKey(variant?.grup)}|${normalizeMenuTranslationKey(variant?.isim)}`);
+                    if (sourceVariant) mergeLocalizedFields(variant, sourceVariant, [
+                        ['isim_en', 'isim'], ['isim_ar', 'isim'], ['grup_en', 'grup'], ['grup_ar', 'grup'],
+                    ]);
+                });
+            });
+        });
         return merged;
     }
 
     function kfmStaticImageKey(product) {
-        const raw = String(product?.ad_en || product?.ad || '').trim().toLocaleLowerCase('tr-TR');
+        const raw = String(product?.ad || '').trim().toLocaleLowerCase('tr-TR');
         return raw.replace(/\s+/g, ' ').replace(/[()]/g, '').trim();
     }
     function kfmStaticInternetGorselleriniUygula(remoteMenu, staticMenu) {
@@ -9755,17 +9929,27 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const icon = String(category.icon || '📋').trim();
             converted[categoryId] = {
                 isim: `${icon} ${categoryName}`.trim(),
+                isim_en: String(category.name_en || '').trim(),
+                isim_ar: String(category.name_ar || '').trim(),
                 urunler: category.products.map(product => ({
                     id: String(product?.id || '').trim(),
                     ad: String(product?.ad || '').trim(),
-                    ad_en: String(product?.ad || '').trim(),
+                    ad_en: String(product?.ad_en || '').trim(),
+                    ad_ar: String(product?.ad_ar || '').trim(),
                     aciklama: String(product?.aciklama || '').trim(),
-                    aciklama_en: String(product?.aciklama_en || product?.aciklama || '').trim(),
+                    aciklama_en: String(product?.aciklama_en || '').trim(),
+                    aciklama_ar: String(product?.aciklama_ar || '').trim(),
                     fiyat: Number(product?.fiyat || 0),
                     gorsel: String(product?.gorsel_url || '').trim(),
                     icerik: typeof product?.icerik === 'string' || Array.isArray(product?.icerik) ? product.icerik : '',
+                    icerik_en: typeof product?.icerik_en === 'string' || Array.isArray(product?.icerik_en) ? product.icerik_en : '',
+                    icerik_ar: typeof product?.icerik_ar === 'string' || Array.isArray(product?.icerik_ar) ? product.icerik_ar : '',
                     alerjenler: Array.isArray(product?.alerjenler) || typeof product?.alerjenler === 'string' ? product.alerjenler : [],
+                    alerjenler_en: Array.isArray(product?.alerjenler_en) || typeof product?.alerjenler_en === 'string' ? product.alerjenler_en : [],
+                    alerjenler_ar: Array.isArray(product?.alerjenler_ar) || typeof product?.alerjenler_ar === 'string' ? product.alerjenler_ar : [],
                     alerjen_notu: String(product?.alerjen_notu || '').trim(),
+                    alerjen_notu_en: String(product?.alerjen_notu_en || '').trim(),
+                    alerjen_notu_ar: String(product?.alerjen_notu_ar || '').trim(),
                     galeri_gorselleri: Array.isArray(product?.galeri_gorselleri) ? product.galeri_gorselleri.filter(url => typeof url === 'string' && /^https:\/\//.test(url)) : [],
                     stoktaVar: product?.stoktaVar !== false,
                     stokTakibi: product?.stok_takibi === true,
@@ -9820,7 +10004,7 @@ function apUrunDosyaSecildi(event, catKey, id) {
             const liveCatalog = await kfmCanliKatalogYukle();
             // Relay’deki canlı katalog ürün/stok kaynağıdır; GitHub yedeği yayınlanmış
             // görselleri ve menü dışı görünüm ayarlarını tamamlar.
-            menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
+            menuData = kfmMergeUserMenuData(kfmMergeUserMenuData(kfmStaticInternetGorselleriniUygula(liveCatalog.menu, staticImageMenu), staticImageMenu), kfmLocalMenuSnapshot);
             kfmUzakYedekAyarlariniUygula(staticPayload);
             kfmCanliMenuAyarlariniUygula(liveCatalog.settings);
             lsSave('kfm_menu', menuData);
@@ -9830,13 +10014,13 @@ function apUrunDosyaSecildi(event, catKey, id) {
             if (staticImageMenu && Object.keys(staticImageMenu).length) {
                 // Diğer cihazlarda relay erişilemese bile GitHub Pages’e yayımlanan
                 // son menü gösterilir; eski localStorage sadece eksik görselleri korur.
-                menuData = kfmMergeUserImages(staticImageMenu, kfmLocalMenuSnapshot);
+                menuData = kfmMergeUserMenuData(staticImageMenu, kfmLocalMenuSnapshot);
                 kfmUzakYedekAyarlariniUygula(staticPayload);
                 kfmCanliMenuAyarlariniUygula(staticPayload?.web_settings || KFM_LIVE_MENU_SETTINGS_DEFAULTS);
                 lsSave(KFM_LIVE_CATALOG_CACHE_KEY, { version: staticPayload?.publishedAt || null, menu: menuData, settings: window.kfmLiveMenuSettings, cachedAt: Date.now(), client_build: KFM_LIVE_CATALOG_CLIENT_BUILD });
                 console.warn('Canlı relay alınamadı; GitHub Pages’teki güncel statik yayın kullanılıyor.', err);
             } else if (cachedCatalog?.menu && typeof cachedCatalog.menu === 'object') {
-                menuData = kfmMergeUserImages(kfmStaticInternetGorselleriniUygula(cachedCatalog.menu, staticImageMenu), kfmLocalMenuSnapshot);
+                menuData = kfmMergeUserMenuData(kfmMergeUserMenuData(kfmStaticInternetGorselleriniUygula(cachedCatalog.menu, staticImageMenu), staticImageMenu), kfmLocalMenuSnapshot);
                 kfmCanliMenuAyarlariniUygula(cachedCatalog.settings);
                 console.warn('Canlı katalog alınamadı; güvenli son katalog anlık görüntüsü kullanılıyor.', err);
             } else {

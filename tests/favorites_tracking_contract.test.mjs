@@ -28,7 +28,7 @@ describe("KFM_FAVORITES_TRACKING_V1 favoriler ve sipariş takibi", () => {
   });
 
   test("favori şeridi boşken gizlenir; kartlar ürün ve fiyat gösterir", () => {
-    assert.match(code, /section\.hidden = chips\.length === 0/);
+    assert.match(code, /section\.hidden = favChips\.length === 0 && recentChips\.length === 0/);
     assert.match(html, /id="favoritesStrip"/);
     assert.match(html, /id="favoritesSection"[^>]*hidden/);
   });

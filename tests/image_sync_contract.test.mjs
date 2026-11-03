@@ -33,3 +33,47 @@ test('web ürün görseli geçerli Google thumbnail URL\'sini yükleme öncesi f
     /!explicit \|\| explicit\.startsWith\(['"]file:['"]\) \|\| \/encrypted-tbn0\.gstatic\.com/,
   );
 });
+
+test('D1 kataloğu statik yayındaki geçerli çevirileri alır ve canlı çevirilerin üstüne yazmaz', () => {
+  const start = webSource.indexOf('function kfmImageKey');
+  const end = webSource.indexOf('function kfmStaticImageKey', start);
+  assert.ok(start >= 0 && end > start, 'menu merge helper exists');
+  const normalize = value => String(value || '')
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .toLocaleLowerCase('tr-TR')
+    .replace(/ı/g, 'i')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const merge = new Function('normalizeMenuTranslationKey', 'kfmKnownBrokenRemote', `
+    ${webSource.slice(start, end)}
+    return kfmMergeUserMenuData;
+  `)(normalize, () => false);
+  const live = {
+    'cat-kahve': { isim: '☕ Kahveler', urunler: [{
+      id: 'p-1', ad: 'Yeni Latte', ad_en: '', ad_ar: '', aciklama: 'Sütlü kahve',
+      gorsel: '', ekstralar: [{ isim: 'Fındık' }], varyantlar: [{ isim: 'Büyük', grup: 'Boy' }]
+    }] }
+  };
+  const published = {
+    'cat-kahve': { isim: '☕ Kahveler', isim_en: 'Coffee', isim_ar: 'قهوة', urunler: [{
+      id: 'p-1', ad: 'Yeni Latte', ad_en: 'New Latte', ad_ar: 'لاتيه جديد',
+      aciklama: 'Sütlü kahve', aciklama_en: 'Coffee with milk', aciklama_ar: 'قهوة بالحليب',
+      gorsel: 'https://example.test/latte.jpg',
+      ekstralar: [{ isim: 'Fındık', isim_en: 'Hazelnut', isim_ar: 'بندق' }],
+      varyantlar: [{ isim: 'Büyük', grup: 'Boy', isim_en: 'Large', isim_ar: 'كبير', grup_en: 'Size', grup_ar: 'الحجم' }]
+    }] }
+  };
+  const merged = merge(live, published);
+  const product = merged['cat-kahve'].urunler[0];
+  assert.equal(merged['cat-kahve'].isim_ar, 'قهوة');
+  assert.equal(product.ad_en, 'New Latte');
+  assert.equal(product.aciklama_ar, 'قهوة بالحليب');
+  assert.equal(product.gorsel, 'https://example.test/latte.jpg');
+  assert.equal(product.ekstralar[0].isim_ar, 'بندق');
+  assert.equal(product.varyantlar[0].grup_en, 'Size');
+  assert.equal(live['cat-kahve'].urunler[0].ad_en, '');
+
+  live['cat-kahve'].urunler[0].ad_en = 'Live English';
+  assert.equal(merge(live, published)['cat-kahve'].urunler[0].ad_en, 'Live English');
+});
