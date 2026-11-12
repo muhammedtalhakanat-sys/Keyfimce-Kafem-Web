@@ -9282,10 +9282,12 @@ function apUrunDosyaSecildi(event, catKey, id) {
 	            toast('✓ Siparişiniz ekibe iletildi. Afiyet olsun!');
 		        } catch (error) {
 		            console.error('Web sipariş relay hatası:', error);
-		            const isNetworkError = /networkerror|failed to fetch|abort/i.test(String(error?.message || ''));
-		            kfmOrderStatusGuncelle(t('order_status_send_failed'), 'error');
+		            const errorMessage = String(error?.message || '');
+		            const isNetworkError = /networkerror|failed to fetch|abort/i.test(errorMessage);
+		            const visibleError = isNetworkError ? t('order_toast_network') : (errorMessage || t('order_toast_failed'));
+		            kfmOrderStatusGuncelle(`${t('order_status_send_failed')} ${visibleError}`, 'error');
                 console.error('Web order submission failed.', error);
-	            toast('⚠️ ' + (isNetworkError ? t('order_toast_network') : t('order_toast_failed')));
+	            toast('⚠️ ' + visibleError, 5000);
 	        } finally {
 	            if (submitButton) {
 	                submitButton.removeAttribute('aria-busy');

@@ -15,3 +15,8 @@ test('garson çağrısı canlı Worker geri dönüşü ve zaman aşımı korumas
 test('ağ hatasında VPN ve proxy için kullanıcıya anlaşılır yönlendirme gösterilir', () => {
   assert.match(source, /VPN\/proxy veya reklam engelleme açıksa kapatıp tekrar deneyin/);
 });
+
+test('sipariş hatasında relay kaynaklı hata ayrıntısı kullanıcıya gösterilir', () => {
+  assert.match(source, /const visibleError = isNetworkError \? t\('order_toast_network'\) : \(errorMessage \|\| t\('order_toast_failed'\)\)/);
+  assert.match(source, /kfmOrderStatusGuncelle\(`\$\{t\('order_status_send_failed'\)\} \$\{visibleError\}`, 'error'\)/);
+});
