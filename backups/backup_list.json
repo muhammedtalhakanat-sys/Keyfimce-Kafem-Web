@@ -14,5 +14,13 @@
     "checksum": "3c8e7e37115b2545c94eea60761ba2d2c2b6c41ded0e55a225bc104d7892a3ed",
     "hostname": "cachyos-x8664",
     "created_at": "2026-09-21T17:33:51.463091"
+  },
+  {
+    "filename": "kafe_backup_20261116_201820.db",
+    "timestamp": "20261116_201820",
+    "size": 278528,
+    "checksum": "35558705ba8af8d0e308620fbe9ae3df035b825d060c1ebd28020b7c685b088a",
+    "hostname": "MTK",
+    "created_at": "2026-11-16T20:18:20.034051"
   }
 ]
